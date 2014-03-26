@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Form</title>
+<link rel="stylesheet" type="text/css" href="styles/loginPage.css">
+</head>
+<body>
+	<div class="center">
+		<form method="post" action="j_security_check" name="login">
+			<fieldset>
+				<legend>Login</legend>
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<label>Username:</label>
+								<input type="text" name="j_username" value="" autocomplete="off" class="required"/>
+							</td>
+							<td>
+								<label>Password:</label>
+								<input type="password" name="j_password" value="" autocomplete="off" class="required"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="registerPage.html">Register</a>
+								<a href="forgotPasswordPage.html">Forgot password</a>
+							</td>
+							<td>
+								<input id="login_button" type="submit" value="Login"/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>

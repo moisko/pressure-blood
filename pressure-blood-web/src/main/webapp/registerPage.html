@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register Form</title>
+<link rel="stylesheet" type="text/css" href="styles/registerPage.css">
+<script src="scripts/jquery-1.10.2.js"></script>
+<script src="scripts/jquery.validate.js"></script>
+<script>
+
+	var reloadPage = function() {
+		window.location.reload();
+	};
+
+	var getUsername = function() {
+		return $("#username").val();
+	}
+
+	var getPassword1 = function() {
+		return $("#password1").val();
+	}
+
+	var getPassword2 = function() {
+		return $("#password2").val();
+	}
+
+	var getEmail = function() {
+		return $("#email").val();
+	}
+
+	var registerUser = function() {
+		$.ajax({
+			url : "/pressure-blood-web/RegisterNewUserServlet",
+			type : "POST",
+			dataType : "json",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({
+				"username" : getUsername(),
+				"password1" : getPassword1(),
+				"password2" : getPassword2(),
+				"email" : getEmail()
+			}),
+			success : function(json) {
+				var status = json.status;
+				switch (status) {
+					case "success" :
+						alert(json.message);
+						window.location.href = "/pressure-blood-web/GetResultServlet";
+						break;
+					case "exists":
+					case "error":
+						alert(json.message);
+						reloadPage();
+						break;
+				}
+			},
+			error : function(json) {
+				alert(json.responseJSON.message);
+				reloadPage();
+			}
+		});
+	};
+
+	var validateRegisterForm = function() {
+		$("#registerForm").validate({
+			rules: {
+				username: {
+					required: true,
+					minlength: 2
+				},
+				password1: {
+					required: true,
+					minlength: 4
+				},
+				password2: {
+					required: true,
+					minlength: 4,
+					equalTo: "#password1"
+				},
+				email: {
+					required: true,
+					email: true
+				}
+			},
+			messages: {
+				username: {
+					required: "Username is required",
+					minlength: jQuery.format("At least {0} characters required")
+				},
+				password1: {
+					required: "Password is required",
+					minlength: jQuery.format("At least {0} characters required")
+				},
+				password2: {
+					required: "Confirmed password is required",
+					minlength: jQuery.format("At least {0} characters required")
+				},
+				email: {
+					required: "Email is required",
+					email: jQuery.format("Email is not valid")
+				}
+			}
+		});
+	};
+
+	var isRegisterFormValid = function() {
+		return $("#registerForm").valid();
+	}
+
+	// When the browser is ready
+	$(function() {
+		validateRegisterForm();
+
+		$("#registerForm").submit(function(event) {
+			if(isRegisterFormValid()) {
+				registerUser();
+			}
+
+			event.preventDefault();
+		});
+	});
+
+</script>
+</head>
+<body>
+	<div class="center">
+		<form id="registerForm" method="post" action="">
+			<fieldset>
+				<legend>Register to Web App</legend>
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<label for="username">Username*:</label>
+								<input id="username" name="username" type="text" value="" autocomplete="off" class="required">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label for="password1">Password*:</label>
+								<input id="password1" name="password1" type="password" value="" autocomplete="off" class="required">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label for="password2">Confirm password*:</label>
+								<input id="password2" name="password2" type="password" value="" autocomplete="off" class="required">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label for="email">Email*:</label>
+								<input id="email" name="email" type="text" name="" value="" autocomplete="off" class="required">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button type="submit">Register and Login</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>

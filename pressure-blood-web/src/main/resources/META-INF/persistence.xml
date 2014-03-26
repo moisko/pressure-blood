@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="PressureBlood" transaction-type="JTA">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<jta-data-source>java:/comp/env/jdbc/mysqlDB</jta-data-source>
+		<class>pb.model.PressureBlood</class>
+		<class>pb.model.Measurement</class>
+		<class>pb.model.Users</class>
+		<class>pb.model.UserRoles</class>
+		<properties>
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+		</properties>
+	</persistence-unit>
+</persistence>

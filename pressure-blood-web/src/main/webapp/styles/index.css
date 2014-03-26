@@ -1,0 +1,11 @@
+.center {
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.user-info {
+	position: absolute;
+	left: 90%;
+	top: 0;
+}
