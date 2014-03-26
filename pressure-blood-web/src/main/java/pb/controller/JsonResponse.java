@@ -4,34 +4,40 @@ import java.io.Serializable;
 
 public class JsonResponse implements Serializable {
 
-	// Register operation
-	public static final String SUCCESS = "success";
-	public static final String ERROR = "error";
-	public static final String EXISTS = "exists";
+	public enum Status {
+		SUCCESS("success"), ERROR("error"), EXISTS("exists"), RECORD_FOUND(
+				"recordFound"), RECORD_NOT_FOUND("recordNotFound");
 
-	// Delete operation
-	public static final String RECORD_FOUND = "recordFound";
-	public static final String RECORD_NOT_FOUND = "recordNotFound";
+		private String status;
+
+		private Status(String status) {
+			this.status = status;
+		}
+
+		public String getStatus() {
+			return status;
+		}
+	}
 
 	private static final long serialVersionUID = 1L;
 
-	private String status;
+	private Status status;
 	private String message;
 
 	public JsonResponse() {
 
 	}
 
-	public JsonResponse(String status, String message) {
+	public JsonResponse(Status status, String message) {
 		this.status = status;
 		this.message = message;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

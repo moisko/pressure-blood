@@ -42,12 +42,12 @@
 			success : function(json) {
 				var status = json.status;
 				switch (status) {
-					case "success" :
+					case "SUCCESS" :
 						alert(json.message);
 						window.location.href = "/pressure-blood-web/GetResultServlet";
 						break;
-					case "exists":
-					case "error":
+					case "EXISTS":
+					case "ERROR":
 						alert(json.message);
 						reloadPage();
 						break;

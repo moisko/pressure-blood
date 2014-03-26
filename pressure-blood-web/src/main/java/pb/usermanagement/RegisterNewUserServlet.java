@@ -36,14 +36,14 @@ public class RegisterNewUserServlet extends HttpServlet {
 			UsersDTO userDTO = gson.fromJson(br, UsersDTO.class);
 			Users user = new Users(userDTO);
 			JsonResponse jsonResponse = registerUser(user);
-			if (jsonResponse.getStatus().equals(JsonResponse.SUCCESS)) {
+			if (jsonResponse.getStatus().equals(JsonResponse.Status.SUCCESS)) {
 				request.login(user.getUsername(), user.getPassword());
 			}
 			String json = gson.toJson(jsonResponse);
 			writer.write(json);
 		} catch (ServletException | IllegalArgumentException e) {
-			JsonResponse jsonResponse = new JsonResponse(JsonResponse.ERROR,
-					e.getMessage());
+			JsonResponse jsonResponse = new JsonResponse(
+					JsonResponse.Status.ERROR, e.getMessage());
 			String json = gson.toJson(jsonResponse);
 			writer.write(json);
 		} finally {
@@ -57,15 +57,16 @@ public class RegisterNewUserServlet extends HttpServlet {
 	private JsonResponse registerUser(Users user) {
 		EntityManager em = (EntityManager) getServletContext().getAttribute(
 				"em");
-		JsonResponse jsonResponse = new JsonResponse(JsonResponse.EXISTS,
-				"User " + user.getUsername() + " already exists");
+		JsonResponse jsonResponse = new JsonResponse(
+				JsonResponse.Status.EXISTS, "User " + user.getUsername()
+						+ " already exists");
 		Users userFromDb = em.find(Users.class, user.getUsername());
 		if (userFromDb == null) {
 			em.getTransaction().begin();
 			em.persist(user);
 			em.getTransaction().commit();
-			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "User "
-					+ user.getUsername() + " successfully registered");
+			jsonResponse = new JsonResponse(JsonResponse.Status.SUCCESS,
+					"User " + user.getUsername() + " successfully registered");
 		}
 		return jsonResponse;
 	}

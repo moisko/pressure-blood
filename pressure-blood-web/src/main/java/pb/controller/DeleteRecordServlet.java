@@ -34,7 +34,7 @@ public class DeleteRecordServlet extends HttpServlet {
 		Measurement measurement = em.find(Measurement.class,
 				Long.parseLong(recordId));
 		if (measurement == null) {
-			jsonResponse.setStatus(JsonResponse.RECORD_NOT_FOUND);
+			jsonResponse.setStatus(JsonResponse.Status.RECORD_NOT_FOUND);
 			jsonResponse
 					.setMessage("Record with id " + recordId + " not found");
 		} else {
@@ -43,11 +43,11 @@ public class DeleteRecordServlet extends HttpServlet {
 				em.getTransaction().begin();
 				em.remove(measurement);
 				em.getTransaction().commit();
-				jsonResponse.setStatus(JsonResponse.RECORD_FOUND);
+				jsonResponse.setStatus(JsonResponse.Status.RECORD_FOUND);
 				jsonResponse.setMessage("Record with id " + recordId
 						+ " successfully deleted from db");
 			} else {
-				jsonResponse.setStatus(JsonResponse.RECORD_NOT_FOUND);
+				jsonResponse.setStatus(JsonResponse.Status.RECORD_NOT_FOUND);
 				jsonResponse.setMessage("Record with id " + recordId
 						+ " not found");
 			}
