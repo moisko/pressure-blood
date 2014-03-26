@@ -86,8 +86,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>pressure-blood</finalName>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
