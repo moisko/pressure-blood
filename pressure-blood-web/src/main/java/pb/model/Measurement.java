@@ -29,6 +29,7 @@ public class Measurement implements Serializable {
 	private PressureBlood pressureBlood;
 	private Users user;
 	private Hand hand = Hand.LEFT_HAND;
+	private Integer pulse;
 
 	@Column(name = "TIME", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -78,6 +79,15 @@ public class Measurement implements Serializable {
 
 	public void setHand(Hand hand) {
 		this.hand = hand;
+	}
+
+	@Column(name = "PULSE", nullable = true)
+	public Integer getPulse() {
+		return pulse;
+	}
+
+	public void setPulse(Integer pulse) {
+		this.pulse = pulse;
 	}
 
 }

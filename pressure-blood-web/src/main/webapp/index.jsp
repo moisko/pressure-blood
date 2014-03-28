@@ -18,7 +18,7 @@
 
 	var getElementValueById = function(elementId) {
 		var elementValue = document.getElementById(elementId).value;
-		if(elementValue == null || elementValue == "") {
+		if(!elementValue) {
 			throw new Error("getElementValueById(): value of element with id " + elementId + " not set");
 		}
 		return elementValue;
@@ -30,7 +30,19 @@
 	};
 
 	var getHand = function() {
-		return $("#hand").val();
+		var hand = $("#hand").val();
+		if(!hand) {
+			throw new Error("getHand(): value of element with id hand not set");
+		}
+		return hand;
+	};
+
+	var getPulse = function() {
+		var pulse = $("#pulse_input").val();
+		if(!pulse) {
+			pulse = 0;
+		}
+		return pulse;
 	};
 
 	var addRecord = function() {
@@ -43,7 +55,8 @@
 				"pressureBlood" : {"sbp": getElementValueById("sbp_input"),
 									"dbp": getElementValueById("dbp_input")},
 				"datetime" : parseDate(getElementValueById("datetime_picker")),
-				"hand" : getHand()
+				"hand" : getHand(),
+				"pulse" : getPulse()
 			}),
 			success : function() {
 				reloadBody();
@@ -86,15 +99,15 @@
 <body onload="reloadBody()">
 	<div class="user-info">
 		<h3>
-			User: ${pageContext.request.remoteUser} <a
-				href="/pressure-blood-web/LogoutServlet">Logout</a>
+			${pageContext.request.remoteUser}
+			<a href="/pressure-blood-web/LogoutServlet">Logout</a>
 		</h3>
 	</div>
 	<div class="center">
 		<table id="entries_table" border="1">
 			<thead>
 				<tr>
-					<th colspan="5">${measurements.size()} Measures</th>
+					<th colspan="6">${measurements.size()} Measures</th>
 				</tr>
 				<tr>
 					<th>ID</th>
@@ -102,6 +115,7 @@
 					<th>SBP</th>
 					<th>DBP</th>
 					<th>HAND</th>
+					<th>PULSE</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -112,6 +126,7 @@
 						<td>${measurement.pressureBlood.sbp}</td>
 						<td>${measurement.pressureBlood.dbp}</td>
 						<td>${measurement.hand}</td>
+						<td>${measurement.pulse}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -120,14 +135,22 @@
 		<h2>Add measure</h2>
 		<label for="sbp_input">SBP: </label>
 		<input id="sbp_input" name="sbp_input" type="number" min="0" max="300">
+
 		<label for="dbp_input">DBP: </label>
 		<input id="dbp_input" name="dbp_input" type="number" min="0" max="300">
-		<label for="datetime_picker">DATETIME: </label>
-		<input id="datetime_picker" name="datetime_picker" type="datetime-local">
-		<select id="hand">
+
+		<label for="hand">HAND: </label>
+		<select id="hand" name="hand">
 			<option value="LEFT_HAND">Left hand</option>
 			<option value="RIGHT_HAND">Right hand</option>
 		</select>
+
+		<label for="datetime_picker">DATETIME: </label>
+		<input id="datetime_picker" name="datetime_picker" type="datetime-local">
+
+		<label for="pulse_input">PULSE: </label>
+		<input id="pulse_input" name="pulse_input" type="number" min="0" max="300">
+
 		<button id="add_button">Add record</button>
 
 		<h2>Delete measure</h2>
