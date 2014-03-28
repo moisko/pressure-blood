@@ -177,14 +177,14 @@
 			<label for="pulse_input">PULSE: </label>
 			<input id="pulse_input" name="pulse_input" type="number" min="0" max="300">
 
-			<button id="add_button" type="submit">Add record</button>
+			<button id="add_button" type="submit">Add measure</button>
 		</form>
 
 		<h2>Delete measure</h2>
 		<form id="deleteMeasure" action="">
 			<label for="del_input">ID:</label>
 			<input id="del_input" name="del_input" type="number" min="1">
-			<button id="del_button" type="submit">Delete record</button>
+			<button id="del_button" type="submit">Delete measure</button>
 		</form>
 	</div>
 </body>
