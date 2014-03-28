@@ -5,8 +5,10 @@
 <head>
 <title>Pressure Blood App</title>
 <link rel="stylesheet" type="text/css" href="styles/index.css">
+<link rel="stylesheet" type="text/css" href="styles/jquery.dataTables.css">
 <script src="scripts/jquery-1.10.2.js"></script>
 <script src="scripts/moment.js"></script>
+<script src="scripts/jquery.dataTables.js"></script>
 <script src = "scripts/Html.js"></script>
 <script type="text/javascript"></script>
 <script>
@@ -98,6 +100,8 @@
 
 	// When the browser is ready ...
 	$(function() {
+		$("#entries_table").dataTable();
+
 		// Add record to db
 		$("#add_button").click(addRecord);
 
