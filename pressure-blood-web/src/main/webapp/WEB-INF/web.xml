@@ -21,9 +21,9 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Update PB database</web-resource-name>
-			<url-pattern>/AddRecordServlet</url-pattern>
-			<url-pattern>/GetResultServlet</url-pattern>
-			<url-pattern>/DeleteRecordServlet</url-pattern>
+			<url-pattern>/AddMeasure</url-pattern>
+			<url-pattern>/GetMeasures</url-pattern>
+			<url-pattern>/DeleteMeasure</url-pattern>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>
 			<http-method>PUT</http-method>

@@ -16,8 +16,8 @@ import pb.model.Users;
 
 import com.google.gson.Gson;
 
-@WebServlet("/DeleteRecordServlet")
-public class DeleteRecordServlet extends HttpServlet {
+@WebServlet("/DeleteMeasure")
+public class DeleteMeasure extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 

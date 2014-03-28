@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import pb.model.Measurement;
 import pb.model.Users;
 
-@WebServlet("/GetResultServlet")
-public class GetResultServlet extends HttpServlet {
+@WebServlet("/GetMeasures")
+public class GetMeasures extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 

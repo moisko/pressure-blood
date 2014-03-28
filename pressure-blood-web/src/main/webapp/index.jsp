@@ -30,7 +30,7 @@
 
 	var reloadBody = function() {
 		var html = new Html();
-		html.reloadBody("/pressure-blood-web/GetResultServlet");
+		html.reloadBody("/pressure-blood-web/GetMeasures");
 	};
 
 	var getSBP = function() {
@@ -63,7 +63,7 @@
 
 	var addMeasure = function() {
 		$.ajax({
-			url : "/pressure-blood-web/AddRecordServlet",
+			url : "/pressure-blood-web/AddMeasure",
 			type : "PUT",
 			dataType : "html",
 			contentType : "application/json; charset=utf-8",
@@ -86,7 +86,7 @@
 	var deleteMeasure = function() {
 		$.ajax({
 			type : "POST",
-			url : "/pressure-blood-web/DeleteRecordServlet",
+			url : "/pressure-blood-web/DeleteMeasure",
 			data : "id=" + getElementValueById("del_input"),
 			dataType : "json",
 			success : function(json) {

@@ -25,8 +25,8 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
-@WebServlet("/AddRecordServlet")
-public class AddRecordServlet extends HttpServlet {
+@WebServlet("/AddMeasure")
+public class AddMeasure extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
