@@ -104,10 +104,18 @@
 		$("#entries_table").dataTable();
 
 		// Add record to db
-		$("#add_button").click(addRecord);
+		$("#addRecord").submit(function(event) {
+			addRecord();
+
+			event.preventDefault();
+		});
 
 		// Delete record from db
-		$("#del_button").click(deleteRecord);
+		$("#deleteRecord").submit(function(event) {
+			deleteRecord();
+
+			event.preventDefault();
+		});
 	});
 
 </script>
@@ -149,30 +157,34 @@
 		</table>
 
 		<h2>Add measure</h2>
-		<label for="sbp_input">SBP*: </label>
-		<input id="sbp_input" name="sbp_input" type="number" min="0" max="300">
+		<form id="addRecord" action="">
+			<label for="sbp_input">SBP*: </label>
+			<input id="sbp_input" name="sbp_input" type="number" min="0" max="300">
 
-		<label for="dbp_input">DBP*: </label>
-		<input id="dbp_input" name="dbp_input" type="number" min="0" max="300">
+			<label for="dbp_input">DBP*: </label>
+			<input id="dbp_input" name="dbp_input" type="number" min="0" max="300">
 
-		<label for="hand">HAND*: </label>
-		<select id="hand" name="hand">
-			<option value="LEFT_HAND">Left hand</option>
-			<option value="RIGHT_HAND">Right hand</option>
-		</select>
+			<label for="hand">HAND*: </label>
+			<select id="hand" name="hand">
+				<option value="LEFT_HAND">Left hand</option>
+				<option value="RIGHT_HAND">Right hand</option>
+			</select>
 
-		<label for="datetime_picker">DATETIME*: </label>
-		<input id="datetime_picker" name="datetime_picker" type="datetime-local">
+			<label for="datetime_picker">DATETIME*: </label>
+			<input id="datetime_picker" name="datetime_picker" type="datetime-local">
 
-		<label for="pulse_input">PULSE: </label>
-		<input id="pulse_input" name="pulse_input" type="number" min="0" max="300">
+			<label for="pulse_input">PULSE: </label>
+			<input id="pulse_input" name="pulse_input" type="number" min="0" max="300">
 
-		<button id="add_button">Add record</button>
+			<button id="add_button" type="submit">Add record</button>
+		</form>
 
 		<h2>Delete measure</h2>
-		<label for="del_input">ID:</label>
-		<input id="del_input" name="del_input" type="number" min="1">
-		<button id="del_button">Delete record</button>
+		<form id="deleteRecord" action="">
+			<label for="del_input">ID:</label>
+			<input id="del_input" name="del_input" type="number" min="1">
+			<button id="del_button" type="submit">Delete record</button>
+		</form>
 	</div>
 </body>
 </html>
