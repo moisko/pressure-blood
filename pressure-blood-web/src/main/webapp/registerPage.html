@@ -98,6 +98,12 @@
 					required: "Email is required",
 					email: $.format("Email is not valid")
 				}
+			},
+			highlight: function(element, errorClass, validClass) {
+				$(element).addClass(errorClass).removeClass(validClass);
+			},
+			unhighlight: function(element, errorClass, validClass) {
+				$(element).removeClass(errorClass).addClass(validClass);
 			}
 		});
 	};

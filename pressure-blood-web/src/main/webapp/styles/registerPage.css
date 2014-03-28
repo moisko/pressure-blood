@@ -9,6 +9,10 @@
 	background-color: silver;
 }
 
+.error {
+	color: red;
+}
+
 fieldset {
 	border: 1px solid black;
 	float: left;
@@ -25,4 +29,8 @@ label {
 
 button {
 	float: right;
+}
+
+form {
+	width: 510px;
 }
