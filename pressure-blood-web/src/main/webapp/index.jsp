@@ -148,19 +148,19 @@
 		</table>
 
 		<h2>Add measure</h2>
-		<label for="sbp_input">SBP: </label>
+		<label for="sbp_input">SBP*: </label>
 		<input id="sbp_input" name="sbp_input" type="number" min="0" max="300">
 
-		<label for="dbp_input">DBP: </label>
+		<label for="dbp_input">DBP*: </label>
 		<input id="dbp_input" name="dbp_input" type="number" min="0" max="300">
 
-		<label for="hand">HAND: </label>
+		<label for="hand">HAND*: </label>
 		<select id="hand" name="hand">
 			<option value="LEFT_HAND">Left hand</option>
 			<option value="RIGHT_HAND">Right hand</option>
 		</select>
 
-		<label for="datetime_picker">DATETIME: </label>
+		<label for="datetime_picker">DATETIME*: </label>
 		<input id="datetime_picker" name="datetime_picker" type="datetime-local">
 
 		<label for="pulse_input">PULSE: </label>
