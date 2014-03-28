@@ -55,11 +55,9 @@ public class RegisterNewUserServlet extends HttpServlet {
 	}
 
 	private JsonResponse registerUser(Users user) {
+		JsonResponse jsonResponse = null;
 		EntityManager em = (EntityManager) getServletContext().getAttribute(
 				"em");
-		JsonResponse jsonResponse = new JsonResponse(
-				JsonResponse.Status.EXISTS, "User " + user.getUsername()
-						+ " already exists");
 		Users userFromDb = em.find(Users.class, user.getUsername());
 		if (userFromDb == null) {
 			em.getTransaction().begin();
@@ -67,6 +65,9 @@ public class RegisterNewUserServlet extends HttpServlet {
 			em.getTransaction().commit();
 			jsonResponse = new JsonResponse(JsonResponse.Status.SUCCESS,
 					"User " + user.getUsername() + " successfully registered");
+		} else {
+			jsonResponse = new JsonResponse(JsonResponse.Status.EXISTS, "User "
+					+ user.getUsername() + " already exists");
 		}
 		return jsonResponse;
 	}
