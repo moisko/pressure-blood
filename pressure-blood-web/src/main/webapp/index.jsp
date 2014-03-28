@@ -19,7 +19,7 @@
 	var getElementValueById = function(elementId) {
 		var elementValue = document.getElementById(elementId).value;
 		if(!elementValue) {
-			throw new Error("getElementValueById(): value of element with id " + elementId + " not set");
+			throw new Error("Value of element with id " + elementId + " not set");
 		}
 		return elementValue;
 	};
@@ -27,6 +27,18 @@
 	var reloadBody = function() {
 		var html = new Html();
 		html.reloadBody("/pressure-blood-web/GetResultServlet");
+	};
+
+	var getSBP = function() {
+		return getElementValueById("sbp_input");
+	};
+
+	var getDBP = function() {
+		return getElementValueById("dbp_input");
+	};
+
+	var getDatetime = function() {
+		return getElementValueById("datetime_picker");
 	};
 
 	var getHand = function() {
@@ -52,9 +64,8 @@
 			dataType : "html",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({
-				"pressureBlood" : {"sbp": getElementValueById("sbp_input"),
-									"dbp": getElementValueById("dbp_input")},
-				"datetime" : parseDate(getElementValueById("datetime_picker")),
+				"pressureBlood" : {"sbp": getSBP(), "dbp": getDBP()},
+				"datetime" : parseDate(getDatetime()),
 				"hand" : getHand(),
 				"pulse" : getPulse()
 			}),
