@@ -94,7 +94,7 @@
 		<table id="entries_table" border="1">
 			<thead>
 				<tr>
-					<th colspan="5">${measurements.size()} Measures in database</th>
+					<th colspan="5">${measurements.size()} Measures</th>
 				</tr>
 				<tr>
 					<th>ID</th>
@@ -117,7 +117,7 @@
 			</tbody>
 		</table>
 
-		<h2>Add measure to database</h2>
+		<h2>Add measure</h2>
 		<label for="sbp_input">SBP: </label>
 		<input id="sbp_input" name="sbp_input" type="number" min="0" max="300">
 		<label for="dbp_input">DBP: </label>
@@ -130,7 +130,7 @@
 		</select>
 		<button id="add_button">Add record</button>
 
-		<h2>Delete measure from database</h2>
+		<h2>Delete measure</h2>
 		<label for="del_input">ID:</label>
 		<input id="del_input" name="del_input" type="number" min="1">
 		<button id="del_button">Delete record</button>

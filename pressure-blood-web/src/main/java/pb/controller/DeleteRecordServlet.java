@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pb.controller.JsonResponse.Status;
 import pb.model.Measurement;
 import pb.model.Users;
 
@@ -25,7 +26,7 @@ public class DeleteRecordServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 
-		JsonResponse jsonResponse = new JsonResponse();
+		JsonResponse jsonResponse = null;
 
 		EntityManager em = (EntityManager) getServletContext().getAttribute(
 				"em");
@@ -34,22 +35,20 @@ public class DeleteRecordServlet extends HttpServlet {
 		Measurement measurement = em.find(Measurement.class,
 				Long.parseLong(recordId));
 		if (measurement == null) {
-			jsonResponse.setStatus(JsonResponse.Status.RECORD_NOT_FOUND);
-			jsonResponse
-					.setMessage("Record with id " + recordId + " not found");
+			jsonResponse = new JsonResponse(Status.RECORD_NOT_FOUND,
+					"Measure with id " + recordId + " not found");
 		} else {
 			String username = user.getUsername();
 			if (measurement.getUser().getUsername().equals(username)) {
 				em.getTransaction().begin();
 				em.remove(measurement);
 				em.getTransaction().commit();
-				jsonResponse.setStatus(JsonResponse.Status.RECORD_FOUND);
-				jsonResponse.setMessage("Record with id " + recordId
-						+ " successfully deleted from db");
+				jsonResponse = new JsonResponse(Status.RECORD_FOUND,
+						"Measure with id " + recordId
+								+ " successfully deleted from db");
 			} else {
-				jsonResponse.setStatus(JsonResponse.Status.RECORD_NOT_FOUND);
-				jsonResponse.setMessage("Record with id " + recordId
-						+ " not found");
+				jsonResponse = new JsonResponse(Status.RECORD_NOT_FOUND,
+						"Measure with id " + recordId + " not found");
 			}
 		}
 		PrintWriter writer = response.getWriter();
