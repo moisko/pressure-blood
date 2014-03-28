@@ -84,56 +84,56 @@
 </script>
 </head>
 <body onload="reloadBody()">
-<div class="user-info">
-	<h3>
-		User: ${pageContext.request.remoteUser}
-		<a href="/pressure-blood-web/LogoutServlet">Logout</a>
-	</h3>
-</div>
-<div class="center">
-	<table id="entries_table" border="1">
-		<thead>
-			<tr>
-				<th colspan="5">${measurements.size()} Entries in database</th>
-			</tr>
-			<tr>
-				<th>ID</th>
-				<th>TIME</th>
-				<th>SBP</th>
-				<th>DBP</th>
-				<th>HAND</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="measurement" items="${measurements}">
+	<div class="user-info">
+		<h3>
+			User: ${pageContext.request.remoteUser} <a
+				href="/pressure-blood-web/LogoutServlet">Logout</a>
+		</h3>
+	</div>
+	<div class="center">
+		<table id="entries_table" border="1">
+			<thead>
 				<tr>
-					<td>${measurement.id}</td>
-					<td>${measurement.datetime}</td>
-					<td>${measurement.pressureBlood.sbp}</td>
-					<td>${measurement.pressureBlood.dbp}</td>
-					<td>${measurement.hand}</td>
+					<th colspan="5">${measurements.size()} Measures in database</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+				<tr>
+					<th>ID</th>
+					<th>TIME</th>
+					<th>SBP</th>
+					<th>DBP</th>
+					<th>HAND</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="measurement" items="${measurements}">
+					<tr>
+						<td>${measurement.id}</td>
+						<td>${measurement.datetime}</td>
+						<td>${measurement.pressureBlood.sbp}</td>
+						<td>${measurement.pressureBlood.dbp}</td>
+						<td>${measurement.hand}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 
-	<h2>Add record to database</h2>
-	<label>SBP: </label>
-	<input id="sbp_input" type="number" min="0" max="300">
-	<label>DBP: </label>
-	<input id="dbp_input" type="number" min="0" max="300">
-	<label>DATETIME: </label>
-	<input id="datetime_picker" type="datetime-local">
-	<select id="hand">
-		<option value="LEFT_HAND">Left hand</option>
-		<option value="RIGHT_HAND">Right hand</option>
-	</select>
-	<button id="add_button">Add record</button>
+		<h2>Add measure to database</h2>
+		<label for="sbp_input">SBP: </label>
+		<input id="sbp_input" name="sbp_input" type="number" min="0" max="300">
+		<label for="dbp_input">DBP: </label>
+		<input id="dbp_input" name="dbp_input" type="number" min="0" max="300">
+		<label for="datetime_picker">DATETIME: </label>
+		<input id="datetime_picker" name="datetime_picker" type="datetime-local">
+		<select id="hand">
+			<option value="LEFT_HAND">Left hand</option>
+			<option value="RIGHT_HAND">Right hand</option>
+		</select>
+		<button id="add_button">Add record</button>
 
-	<h2>Delete record from database</h2>
-	<label>ID:</label>
-	<input id="del_input" type="number" min="1">
-	<button id="del_button">Delete record</button>
-</div>
+		<h2>Delete measure from database</h2>
+		<label for="del_input">ID:</label>
+		<input id="del_input" name="del_input" type="number" min="1">
+		<button id="del_button">Delete record</button>
+	</div>
 </body>
 </html>
