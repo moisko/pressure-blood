@@ -35,7 +35,7 @@ public class DeleteMeasure extends HttpServlet {
 		Measurement measurement = em.find(Measurement.class,
 				Long.parseLong(recordId));
 		if (measurement == null) {
-			jsonResponse = new JsonResponse(Status.RECORD_NOT_FOUND,
+			jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
 					"Measure with id " + recordId + " not found");
 		} else {
 			String username = user.getUsername();
@@ -43,11 +43,11 @@ public class DeleteMeasure extends HttpServlet {
 				em.getTransaction().begin();
 				em.remove(measurement);
 				em.getTransaction().commit();
-				jsonResponse = new JsonResponse(Status.RECORD_FOUND,
+				jsonResponse = new JsonResponse(Status.MEASURE_FOUND,
 						"Measure with id " + recordId
 								+ " successfully deleted from db");
 			} else {
-				jsonResponse = new JsonResponse(Status.RECORD_NOT_FOUND,
+				jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
 						"Measure with id " + recordId + " not found");
 			}
 		}

@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class JsonResponse implements Serializable {
 
 	public enum Status {
-		SUCCESS("success"), ERROR("error"), EXISTS("exists"), RECORD_FOUND(
-				"recordFound"), RECORD_NOT_FOUND("recordNotFound");
+		SUCCESS("success"), ERROR("error"), EXISTS("exists"), MEASURE_FOUND(
+				"recordFound"), MEASURE_NOT_FOUND("recordNotFound");
 
 		private String status;
 
