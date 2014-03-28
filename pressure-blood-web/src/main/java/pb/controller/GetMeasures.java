@@ -29,9 +29,8 @@ public class GetMeasures extends HttpServlet {
 		EntityManager em = (EntityManager) getServletContext().getAttribute(
 				"em");
 		Users user = em.find(Users.class, request.getRemoteUser());
-		Query q = em
-				.createQuery("SELECT m FROM Measurement m WHERE m.user.username = '"
-						+ user.getUsername() + "'");
+		Query q = em.createNamedQuery("findAllMeasurementsByUsername");
+		q.setParameter("username", user.getUsername());
 		List<Measurement> measurements = q.getResultList();
 		request.setAttribute("measurements", measurements);
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");

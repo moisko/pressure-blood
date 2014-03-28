@@ -13,12 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQuery(name = "findAllMeasurementsByUsername", query = "SELECT m FROM Measurement m WHERE m.user.username = :username")
 @Table(name = "MEASUREMENT")
 public class Measurement implements Serializable {
 
