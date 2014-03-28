@@ -21,6 +21,7 @@
 
 	var getElementValueById = function(elementId) {
 		var elementValue = document.getElementById(elementId).value;
+		console.log("value of element with id " + elementId + ": " + elementValue);
 		if(!elementValue) {
 			throw new Error("Value of element with id " + elementId + " not set");
 		}
@@ -60,7 +61,7 @@
 		return pulse;
 	};
 
-	var addRecord = function() {
+	var addMeasure = function() {
 		$.ajax({
 			url : "/pressure-blood-web/AddRecordServlet",
 			type : "PUT",
@@ -82,7 +83,7 @@
 		});
 	};
 
-	var deleteRecord = function() {
+	var deleteMeasure = function() {
 		$.ajax({
 			type : "POST",
 			url : "/pressure-blood-web/DeleteRecordServlet",
@@ -101,18 +102,18 @@
 
 	// When the browser is ready ...
 	$(function() {
-		$("#entries_table").dataTable();
+		$("#measuresTable").dataTable();
 
 		// Add record to db
-		$("#addRecord").submit(function(event) {
-			addRecord();
+		$("#addMeasure").submit(function(event) {
+			addMeasure();
 
 			event.preventDefault();
 		});
 
 		// Delete record from db
-		$("#deleteRecord").submit(function(event) {
-			deleteRecord();
+		$("#deleteMeasure").submit(function(event) {
+			deleteMeasure();
 
 			event.preventDefault();
 		});
@@ -128,7 +129,7 @@
 		</h3>
 	</div>
 	<div class="center">
-		<table id="entries_table" border="1">
+		<table id="measuresTable" border="1">
 			<thead>
 				<tr>
 					<th colspan="6">${measurements.size()} Measures</th>
@@ -157,7 +158,7 @@
 		</table>
 
 		<h2>Add measure</h2>
-		<form id="addRecord" action="">
+		<form id="addMeasure" action="">
 			<label for="sbp_input">SBP*: </label>
 			<input id="sbp_input" name="sbp_input" type="number" min="0" max="300">
 
@@ -180,7 +181,7 @@
 		</form>
 
 		<h2>Delete measure</h2>
-		<form id="deleteRecord" action="">
+		<form id="deleteMeasure" action="">
 			<label for="del_input">ID:</label>
 			<input id="del_input" name="del_input" type="number" min="1">
 			<button id="del_button" type="submit">Delete record</button>
