@@ -111,17 +111,15 @@
 
 	var isRegisterFormValid = function() {
 		return $("#registerForm").valid();
-	}
+	};
 
 	// When the browser is ready
 	$(function() {
-		validateRegisterForm();
-
 		$("#registerForm").submit(function(event) {
+			validateRegisterForm();
 			if(isRegisterFormValid()) {
 				registerUser();
 			}
-
 			event.preventDefault();
 		});
 	});

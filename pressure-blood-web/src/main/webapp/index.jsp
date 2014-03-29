@@ -8,23 +8,20 @@
 <link rel="stylesheet" type="text/css" href="styles/index.css">
 <link rel="stylesheet" type="text/css" href="styles/jquery.dataTables.css">
 <script src="scripts/jquery-1.10.2.js"></script>
+<script src="scripts/jquery.validate.js"></script>
 <script src="scripts/moment.js"></script>
 <script src="scripts/jquery.dataTables.js"></script>
 <script src = "scripts/Html.js"></script>
 <script type="text/javascript"></script>
 <script>
 
-	var parseDate = function(dateTime) {
-		var date = moment(dateTime).format("lll");
-		return date;
+	var parseDate = function(datetime) {
+		var datetime = moment(datetime).format("lll");
+		return datetime;
 	};
 
 	var getElementValueById = function(elementId) {
 		var elementValue = document.getElementById(elementId).value;
-		console.log("value of element with id " + elementId + ": " + elementValue);
-		if(!elementValue) {
-			throw new Error("Value of element with id " + elementId + " not set");
-		}
 		return elementValue;
 	};
 
@@ -34,28 +31,38 @@
 	};
 
 	var getSBP = function() {
-		return getElementValueById("sbp_input");
+		var sbp = getElementValueById("sbp_input");
+		if (!sbp) {
+			throw new Error("[" + datetime + "] is not a valid value for sbp");
+		}
+		return sbp;
 	};
 
 	var getDBP = function() {
-		return getElementValueById("dbp_input");
+		var dbp = getElementValueById("dbp_input");
+		if (!dbp) {
+			throw new Error("[" + datetime + "] is not a valid value for dbp");
+		}
+		return dbp;
 	};
 
 	var getDatetime = function() {
-		return getElementValueById("datetime_picker");
+		var datetime = getElementValueById("datetime_picker");
+		if (!datetime) {
+			throw new Error("[" + datetime
+					+ "] is not a valid value for datetime");
+		}
+		return datetime;
 	};
 
 	var getHand = function() {
 		var hand = $("#hand").val();
-		if(!hand) {
-			throw new Error("getHand(): value of element with id hand not set");
-		}
 		return hand;
 	};
 
 	var getPulse = function() {
 		var pulse = $("#pulse_input").val();
-		if(!pulse) {
+		if (!pulse) {
 			pulse = 0;
 		}
 		return pulse;
@@ -68,7 +75,10 @@
 			dataType : "html",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({
-				"pressureBlood" : {"sbp": getSBP(), "dbp": getDBP()},
+				"pressureBlood" : {
+					"sbp" : getSBP(),
+					"dbp" : getDBP()
+				},
 				"datetime" : parseDate(getDatetime()),
 				"hand" : getHand(),
 				"pulse" : getPulse()
@@ -94,31 +104,83 @@
 				reloadBody();
 			},
 			error : function() {
-				alert("Error occured while deleting record with id " + getElementValueById("del_input"));
+				alert("Error occured while deleting record with id "
+						+ getElementValueById("del_input"));
 				reloadBody();
 			}
 		});
+	};
+
+	var validateAddMeasureForm = function() {
+		$("#addMeasure").validate({
+			rules: {
+				sbp_input: {
+					required: true
+				},
+				dbp_input: {
+					required: true
+				},
+				datetime_picker: {
+					required: true
+				}
+			},
+			errorPlacement: function(error, element) {},
+			highlight: function(element, errorClass, validClass) {
+				var label = $("label[for='" + element.id + "']");
+				$(label).css("color", "red");
+			},
+			unhighlight: function(element, errorClass, validClass) {
+				var label = $("label[for='" + element.id + "']");
+				$(label).css("color", "black");
+			}
+		});
+	};
+
+	var validateDeleteMeasureForm = function() {
+		$("#deleteMeasure").validate({
+			rules: {
+				required: true
+			},
+			errorPlacement: function(error, element) {},
+			highlight: function(element, errorClass, validClass) {
+				var label = $("label[for='" + element.id + "']");
+				$(label).css("color", "red");
+			},
+			unhighlight: function(element, errorClass, validClass) {
+				var label = $("label[for='" + element.id + "']");
+				$(label).css("color", "black");
+			}
+		});
+	};
+
+	var isAddMeasureFormValid = function() {
+		return $("#addMeasure").valid();
+	};
+
+	var isDeleteMeasureFormValid = function() {
+		return $("#deleteMeasure").valid();
 	};
 
 	// When the browser is ready ...
 	$(function() {
 		$("#measuresTable").dataTable();
 
-		// Add record to db
 		$("#addMeasure").submit(function(event) {
-			addMeasure();
-
+			validateAddMeasureForm();
+			if(isAddMeasureFormValid()) {
+				addMeasure();
+			}
 			event.preventDefault();
 		});
 
-		// Delete record from db
 		$("#deleteMeasure").submit(function(event) {
-			deleteMeasure();
-
+			validateDeleteMeasureForm();
+			if(isDeleteMeasureFormValid()) {
+				deleteMeasure();
+			}
 			event.preventDefault();
 		});
 	});
-
 </script>
 </head>
 <body onload="reloadBody()">
@@ -159,20 +221,20 @@
 
 		<h2>Add measure</h2>
 		<form id="addMeasure" action="">
-			<label for="sbp_input">SBP*: </label>
-			<input id="sbp_input" name="sbp_input" type="number" min="0" max="300">
+			<label class="control-label" for="sbp_input">SBP*: </label>
+			<input id="sbp_input" name="sbp_input" type="number" min="0" max="300" class="required">
 
-			<label for="dbp_input">DBP*: </label>
-			<input id="dbp_input" name="dbp_input" type="number" min="0" max="300">
+			<label class="control-label" for="dbp_input">DBP*: </label>
+			<input id="dbp_input" name="dbp_input" type="number" min="0" max="300" class="required">
 
-			<label for="hand">HAND*: </label>
+			<label class="control-label" for="datetime_picker">DATETIME*: </label>
+			<input id="datetime_picker" name="datetime_picker" type="datetime-local" class="required">
+
+			<label for="hand">HAND: </label>
 			<select id="hand" name="hand">
 				<option value="LEFT_HAND">Left hand</option>
 				<option value="RIGHT_HAND">Right hand</option>
 			</select>
-
-			<label for="datetime_picker">DATETIME*: </label>
-			<input id="datetime_picker" name="datetime_picker" type="datetime-local">
 
 			<label for="pulse_input">PULSE: </label>
 			<input id="pulse_input" name="pulse_input" type="number" min="0" max="300">
@@ -182,8 +244,8 @@
 
 		<h2>Delete measure</h2>
 		<form id="deleteMeasure" action="">
-			<label for="del_input">ID:</label>
-			<input id="del_input" name="del_input" type="number" min="1">
+			<label for="del_input">ID*: </label>
+			<input id="del_input" name="del_input" type="number" min="1" class="required error">
 			<button id="del_button" type="submit">Delete measure</button>
 		</form>
 	</div>
