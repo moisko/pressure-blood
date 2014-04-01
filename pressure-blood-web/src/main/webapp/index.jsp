@@ -191,7 +191,7 @@
 		</h3>
 	</div>
 	<div class="center">
-		<table id="measuresTable" border="1">
+		<table id="measuresTable" border="1" class="dataTable">
 			<thead>
 				<tr>
 					<th colspan="6">${measurements.size()} Measures</th>
