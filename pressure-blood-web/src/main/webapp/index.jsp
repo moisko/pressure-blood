@@ -29,7 +29,7 @@
 	};
 
 	var getSBP = function() {
-		var sbp = getElementValueById("sbp_input");
+		var sbp = getElementValueById("sbp");
 		if (!sbp) {
 			throw new Error("[" + datetime + "] is not a valid value for sbp");
 		}
@@ -37,7 +37,7 @@
 	};
 
 	var getDBP = function() {
-		var dbp = getElementValueById("dbp_input");
+		var dbp = getElementValueById("dbp");
 		if (!dbp) {
 			throw new Error("[" + datetime + "] is not a valid value for dbp");
 		}
@@ -59,7 +59,7 @@
 	};
 
 	var getPulse = function() {
-		var pulse = $("#pulse_input").val();
+		var pulse = $("#pulse").val();
 		if (!pulse) {
 			pulse = 0;
 		}
@@ -95,13 +95,17 @@
 		$.ajax({
 			type : "POST",
 			url : "/pressure-blood-web/DeleteMeasure",
-			data : "id=" + getElementValueById("del_input"),
+			data : "id=" + getElementValueById("del"),
 			dataType : "json",
 			success : function(json) {
+				var status = json.status;
+				if(status == "MEASURE_NOT_FOUND") {
+					alert(json.message);
+				}
 				reloadBody();
 			},
 			error : function() {
-				alert("Failed to delete measure with id " + getElementValueById("del_input"));
+				alert("Failed to delete measure with id " + getElementValueById("del"));
 				reloadBody();
 			}
 		});
@@ -110,10 +114,10 @@
 	var validateAddMeasureForm = function() {
 		$("#addMeasureForm").validate({
 			rules: {
-				sbp_input: {
+				sbp: {
 					required: true
 				},
-				dbp_input: {
+				dbp: {
 					required: true
 				},
 				datetimepicker: {
@@ -225,11 +229,11 @@
 		<div id="addMeasure">
 			<h2>Add measure</h2>
 			<form id="addMeasureForm" action="">
-				<label class="control-label" for="sbp_input">SBP*: </label>
-				<input id="sbp_input" name="sbp_input" type="number" min="0" max="300" maxlength="3" size="3" class="required">
+				<label class="control-label" for="sbp">SBP*: </label>
+				<input id="sbp" name="sbp" type="number" min="0" max="300" maxlength="3" size="3" class="required">
 
-				<label class="control-label" for="dbp_input">DBP*: </label>
-				<input id="dbp_input" name="dbp_input" type="number" min="0" max="300" maxlength="3" size="3" class="required">
+				<label class="control-label" for="dbp">DBP*: </label>
+				<input id="dbp" name="dbp" type="number" min="0" max="300" maxlength="3" size="3" class="required">
 
 				<label class="control-label" for="datetimepicker">DATETIME*: </label>
 				<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
@@ -240,19 +244,19 @@
 					<option value="RIGHT_HAND">Right hand</option>
 				</select>
 
-				<label for="pulse_input">PULSE: </label>
-				<input id="pulse_input" name="pulse_input" type="number" min="0" max="300" maxlength="3" size="3">
+				<label for="pulse">PULSE: </label>
+				<input id="pulse" name="pulse" type="number" min="0" max="300" maxlength="3" size="3">
 
-				<button id="add_button" type="submit">Add measure</button>
+				<button type="submit">Add measure</button>
 			</form>
 		</div>
 
 		<div id="deleteMeasure">
 			<h2>Delete measure</h2>
 			<form id="deleteMeasureForm" action="">
-				<label for="del_input">ID*: </label>
-				<input id="del_input" name="del_input" type="number" min="1" class="required error">
-				<button id="del_button" type="submit">Delete measure</button>
+				<label for="del">ID*: </label>
+				<input id="del" name="del" type="number" min="1" class="required error">
+				<button type="submit">Delete measure</button>
 			</form>
 		</div>
 	</div>
