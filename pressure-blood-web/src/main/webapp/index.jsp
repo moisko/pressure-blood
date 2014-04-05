@@ -192,33 +192,35 @@
 		</h3>
 	</div>
 	<div class="center">
-		<table id="measuresTable" border="1">
-			<thead>
-				<tr>
-					<th colspan="6">${measurements.size()} Measures</th>
-				</tr>
-				<tr>
-					<th>ID</th>
-					<th>TIME</th>
-					<th>SBP</th>
-					<th>DBP</th>
-					<th>HAND</th>
-					<th>PULSE</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="measurement" items="${measurements}">
+		<div id="measures">
+			<table id="measuresTable" border="1">
+				<thead>
 					<tr>
-						<td>${measurement.id}</td>
-						<td>${measurement.datetime}</td>
-						<td>${measurement.pressureBlood.sbp}</td>
-						<td>${measurement.pressureBlood.dbp}</td>
-						<td>${measurement.hand}</td>
-						<td>${measurement.pulse}</td>
+						<th colspan="6">${measurements.size()} Measures</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+					<tr>
+						<th>ID</th>
+						<th>TIME</th>
+						<th>SBP</th>
+						<th>DBP</th>
+						<th>HAND</th>
+						<th>PULSE</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="measurement" items="${measurements}">
+						<tr>
+							<td>${measurement.id}</td>
+							<td>${measurement.datetime}</td>
+							<td>${measurement.pressureBlood.sbp}</td>
+							<td>${measurement.pressureBlood.dbp}</td>
+							<td>${measurement.hand}</td>
+							<td>${measurement.pulse}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 
 		<div id="addMeasure">
 			<h2>Add measure</h2>
