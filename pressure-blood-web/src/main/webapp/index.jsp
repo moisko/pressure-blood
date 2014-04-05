@@ -85,7 +85,7 @@
 				reloadBody();
 			},
 			error : function() {
-				alert("Failed to add record in db");
+				alert("Failed to add measure in db");
 				reloadBody();
 			}
 		});
@@ -101,7 +101,7 @@
 				reloadBody();
 			},
 			error : function() {
-				alert("Failed to delete record with id " + getElementValueById("del_input"));
+				alert("Failed to delete measure with id " + getElementValueById("del_input"));
 				reloadBody();
 			}
 		});
