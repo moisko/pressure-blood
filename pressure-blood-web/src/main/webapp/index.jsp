@@ -188,7 +188,7 @@
 	<nav>
 		<h3>
 			<span>Hello ${pageContext.request.remoteUser}</span>
-			<a id="logout" href="/pressure-blood-web/LogoutServlet">(Logout)</a>
+			<a id="logout" href="/pressure-blood-web/LogoutServlet">Logout</a>
 		</h3>
 	</nav>
 	<div class="center">
