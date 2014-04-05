@@ -98,12 +98,11 @@
 			data : "id=" + getElementValueById("del_input"),
 			dataType : "json",
 			success : function(json) {
-				alert(json.message);
+				// alert(json.message);
 				reloadBody();
 			},
 			error : function() {
-				alert("Error occurred while deleting record with id "
-						+ getElementValueById("del_input"));
+				alert("Failed to delete record with id " + getElementValueById("del_input"));
 				reloadBody();
 			}
 		});
