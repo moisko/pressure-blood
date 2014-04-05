@@ -228,7 +228,7 @@
 			<input id="dbp_input" name="dbp_input" type="number" min="0" max="300" maxlength="3" size="3" class="required">
 
 			<label class="control-label" for="datetime_picker">DATETIME*: </label>
-			<input id="datetimepicker" type="text" size="10">
+			<input id="datetimepicker" type="text" size="12">
 
 			<label for="hand">HAND: </label>
 			<select id="hand" name="hand">
