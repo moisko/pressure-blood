@@ -162,7 +162,8 @@
 		$("#measuresTable").dataTable();
 
 		$("#datetimepicker").datetimepicker({
-			format: "d.m.Y H:i"
+			format: "d.m.Y H:i",
+			step: 5
 		});
 
 		$("#addMeasureForm").submit(function(event) {
