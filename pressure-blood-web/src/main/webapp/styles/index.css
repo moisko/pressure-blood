@@ -5,9 +5,16 @@
 	padding: 50px;
 }
 
-.user-info {
+nav {
 	position: absolute;
-	left : 85%;
-	top: 0;
 	left: 85%;
+	top: 0;
+}
+
+#logout {
+	margin: 30px;
+}
+
+#addMeasure {
+	margin-top: 40px;
 }

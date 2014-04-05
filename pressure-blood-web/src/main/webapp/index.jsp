@@ -184,12 +184,12 @@
 </script>
 </head>
 <body onload="reloadBody()">
-	<div class="user-info">
+	<nav>
 		<h3>
-			Hello ${pageContext.request.remoteUser}
-			<a href="/pressure-blood-web/LogoutServlet">(Logout)</a>
+			<span>Hello ${pageContext.request.remoteUser}</span>
+			<a id="logout" href="/pressure-blood-web/LogoutServlet">(Logout)</a>
 		</h3>
-	</div>
+	</nav>
 	<div class="center">
 		<div id="measures">
 			<table id="measuresTable" border="1">
