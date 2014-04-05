@@ -98,7 +98,6 @@
 			data : "id=" + getElementValueById("del_input"),
 			dataType : "json",
 			success : function(json) {
-				// alert(json.message);
 				reloadBody();
 			},
 			error : function() {
