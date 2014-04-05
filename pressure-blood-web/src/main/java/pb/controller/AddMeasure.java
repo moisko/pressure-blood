@@ -63,8 +63,7 @@ public class AddMeasure extends HttpServlet {
 		public Date deserialize(JsonElement json, Type typeOfT,
 				JsonDeserializationContext context) throws JsonParseException {
 			String datetimeString = json.getAsString();
-			SimpleDateFormat formatter = new SimpleDateFormat(
-					"MMM d yyyy H:mm aaa");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy H:mm");
 			Date datetime = null;
 			try {
 				datetime = formatter.parse(datetimeString);

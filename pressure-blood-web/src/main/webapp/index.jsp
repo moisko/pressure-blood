@@ -10,17 +10,11 @@
 <link rel="stylesheet" type="text/css" href="styles/jquery.datetimepicker.css">
 <script src="scripts/jquery-1.10.2.js"></script>
 <script src="scripts/jquery.validate.js"></script>
-<script src="scripts/moment.js"></script>
 <script src="scripts/jquery.dataTables.js"></script>
 <script src="scripts/jquery.datetimepicker.js"></script>
 <script src = "scripts/Html.js"></script>
 <script type="text/javascript"></script>
 <script>
-
-	var parseDate = function(datetime) {
-		var datetime = moment(datetime).format("lll");
-		return datetime;
-	};
 
 	var getElementValueById = function(elementId) {
 		var elementValue = document.getElementById(elementId).value;
@@ -81,7 +75,7 @@
 					"sbp" : getSBP(),
 					"dbp" : getDBP()
 				},
-				"datetime" : parseDate(getDatetime()),
+				"datetime" : getDatetime(),
 				"hand" : getHand(),
 				"pulse" : getPulse()
 			}),
@@ -228,14 +222,13 @@
 		<h2>Add measure</h2>
 		<form id="addMeasure" action="">
 			<label class="control-label" for="sbp_input">SBP*: </label>
-			<input id="sbp_input" name="sbp_input" type="number" min="0" max="300" class="required">
+			<input id="sbp_input" name="sbp_input" type="number" min="0" max="300" maxlength="3" size="3" class="required">
 
 			<label class="control-label" for="dbp_input">DBP*: </label>
-			<input id="dbp_input" name="dbp_input" type="number" min="0" max="300" class="required">
+			<input id="dbp_input" name="dbp_input" type="number" min="0" max="300" maxlength="3" size="3" class="required">
 
 			<label class="control-label" for="datetime_picker">DATETIME*: </label>
-			<!-- input id="datetime_picker" name="datetime_picker" type="datetime-local" class="required" -->
-			<input id="datetimepicker" type="text">
+			<input id="datetimepicker" type="text" size="10">
 
 			<label for="hand">HAND: </label>
 			<select id="hand" name="hand">
@@ -244,7 +237,7 @@
 			</select>
 
 			<label for="pulse_input">PULSE: </label>
-			<input id="pulse_input" name="pulse_input" type="number" min="0" max="300">
+			<input id="pulse_input" name="pulse_input" type="number" min="0" max="300" maxlength="3" size="3">
 
 			<button id="add_button" type="submit">Add measure</button>
 		</form>
