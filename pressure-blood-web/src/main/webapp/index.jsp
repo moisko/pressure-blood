@@ -8,10 +8,12 @@
 <link rel="stylesheet" type="text/css" href="styles/index.css">
 <link rel="stylesheet" type="text/css" href="styles/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="styles/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="styles/jquery-ui-1.10.3.custom.css">
 <script src="scripts/jquery-1.10.2.js"></script>
 <script src="scripts/jquery.validate.js"></script>
 <script src="scripts/jquery.dataTables.js"></script>
 <script src="scripts/jquery.datetimepicker.js"></script>
+<script src="scripts/jquery-ui-1.10.3.custom.js"></script>
 <script src = "scripts/Html.js"></script>
 <script type="text/javascript"></script>
 <script>
@@ -100,7 +102,7 @@
 				reloadBody();
 			},
 			error : function() {
-				alert("Error occured while deleting record with id "
+				alert("Error occurred while deleting record with id "
 						+ getElementValueById("del_input"));
 				reloadBody();
 			}
@@ -108,7 +110,7 @@
 	};
 
 	var validateAddMeasureForm = function() {
-		$("#addMeasure").validate({
+		$("#addMeasureForm").validate({
 			rules: {
 				sbp_input: {
 					required: true
@@ -133,7 +135,7 @@
 	};
 
 	var validateDeleteMeasureForm = function() {
-		$("#deleteMeasure").validate({
+		$("#deleteMeasureForm").validate({
 			rules: {
 				required: true
 			},
@@ -150,11 +152,11 @@
 	};
 
 	var isAddMeasureFormValid = function() {
-		return $("#addMeasure").valid();
+		return $("#addMeasureForm").valid();
 	};
 
 	var isDeleteMeasureFormValid = function() {
-		return $("#deleteMeasure").valid();
+		return $("#deleteMeasureForm").valid();
 	};
 
 	// When the browser is ready ...
@@ -165,7 +167,7 @@
 			format: "d.m.Y H:i"
 		});
 
-		$("#addMeasure").submit(function(event) {
+		$("#addMeasureForm").submit(function(event) {
 			validateAddMeasureForm();
 			if(isAddMeasureFormValid()) {
 				addMeasure();
@@ -173,7 +175,7 @@
 			event.preventDefault();
 		});
 
-		$("#deleteMeasure").submit(function(event) {
+		$("#deleteMeasureForm").submit(function(event) {
 			validateDeleteMeasureForm();
 			if(isDeleteMeasureFormValid()) {
 				deleteMeasure();
@@ -219,35 +221,39 @@
 			</tbody>
 		</table>
 
-		<h2>Add measure</h2>
-		<form id="addMeasure" action="">
-			<label class="control-label" for="sbp_input">SBP*: </label>
-			<input id="sbp_input" name="sbp_input" type="number" min="0" max="300" maxlength="3" size="3" class="required">
+		<div id="addMeasure">
+			<h2>Add measure</h2>
+			<form id="addMeasureForm" action="">
+				<label class="control-label" for="sbp_input">SBP*: </label>
+				<input id="sbp_input" name="sbp_input" type="number" min="0" max="300" maxlength="3" size="3" class="required">
 
-			<label class="control-label" for="dbp_input">DBP*: </label>
-			<input id="dbp_input" name="dbp_input" type="number" min="0" max="300" maxlength="3" size="3" class="required">
+				<label class="control-label" for="dbp_input">DBP*: </label>
+				<input id="dbp_input" name="dbp_input" type="number" min="0" max="300" maxlength="3" size="3" class="required">
 
-			<label class="control-label" for="datetimepicker">DATETIME*: </label>
-			<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
+				<label class="control-label" for="datetimepicker">DATETIME*: </label>
+				<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
 
-			<label for="hand">HAND: </label>
-			<select id="hand" name="hand">
-				<option value="LEFT_HAND">Left hand</option>
-				<option value="RIGHT_HAND">Right hand</option>
-			</select>
+				<label for="hand">HAND: </label>
+				<select id="hand" name="hand">
+					<option value="LEFT_HAND">Left hand</option>
+					<option value="RIGHT_HAND">Right hand</option>
+				</select>
 
-			<label for="pulse_input">PULSE: </label>
-			<input id="pulse_input" name="pulse_input" type="number" min="0" max="300" maxlength="3" size="3">
+				<label for="pulse_input">PULSE: </label>
+				<input id="pulse_input" name="pulse_input" type="number" min="0" max="300" maxlength="3" size="3">
 
-			<button id="add_button" type="submit">Add measure</button>
-		</form>
+				<button id="add_button" type="submit">Add measure</button>
+			</form>
+		</div>
 
-		<h2>Delete measure</h2>
-		<form id="deleteMeasure" action="">
-			<label for="del_input">ID*: </label>
-			<input id="del_input" name="del_input" type="number" min="1" class="required error">
-			<button id="del_button" type="submit">Delete measure</button>
-		</form>
+		<div id="deleteMeasure">
+			<h2>Delete measure</h2>
+			<form id="deleteMeasureForm" action="">
+				<label for="del_input">ID*: </label>
+				<input id="del_input" name="del_input" type="number" min="1" class="required error">
+				<button id="del_button" type="submit">Delete measure</button>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
