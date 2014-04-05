@@ -167,7 +167,7 @@
 
 		$("#datetimepicker").datetimepicker({
 			format: "d.m.Y H:i",
-			step: 5
+			step: 10
 		});
 
 		$("#addMeasureForm").submit(function(event) {
@@ -189,12 +189,14 @@
 </script>
 </head>
 <body onload="reloadBody()">
-	<nav>
-		<h3>
-			<span>Hello ${pageContext.request.remoteUser}</span>
-			<a id="logout" href="/pressure-blood-web/LogoutServlet">Logout</a>
-		</h3>
-	</nav>
+	<div class="userInfo">
+		<nav>
+			<h3>
+				<span>Hello ${pageContext.request.remoteUser}</span>
+				<a id="logout" href="/pressure-blood-web/LogoutServlet">Logout</a>
+			</h3>
+		</nav>
+	</div>
 	<div class="center">
 		<div id="measures">
 			<table id="measuresTable" border="1">
