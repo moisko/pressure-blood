@@ -7,10 +7,12 @@
 <title>Pressure Blood App</title>
 <link rel="stylesheet" type="text/css" href="styles/index.css">
 <link rel="stylesheet" type="text/css" href="styles/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="styles/jquery.datetimepicker.css">
 <script src="scripts/jquery-1.10.2.js"></script>
 <script src="scripts/jquery.validate.js"></script>
 <script src="scripts/moment.js"></script>
 <script src="scripts/jquery.dataTables.js"></script>
+<script src="scripts/jquery.datetimepicker.js"></script>
 <script src = "scripts/Html.js"></script>
 <script type="text/javascript"></script>
 <script>
@@ -47,7 +49,7 @@
 	};
 
 	var getDatetime = function() {
-		var datetime = getElementValueById("datetime_picker");
+		var datetime = getElementValueById("datetimepicker");
 		if (!datetime) {
 			throw new Error("[" + datetime
 					+ "] is not a valid value for datetime");
@@ -165,6 +167,10 @@
 	$(function() {
 		$("#measuresTable").dataTable();
 
+		$("#datetimepicker").datetimepicker({
+			format: "d.m.Y H:i"
+		});
+
 		$("#addMeasure").submit(function(event) {
 			validateAddMeasureForm();
 			if(isAddMeasureFormValid()) {
@@ -186,12 +192,12 @@
 <body onload="reloadBody()">
 	<div class="user-info">
 		<h3>
-			${pageContext.request.remoteUser}
-			<a href="/pressure-blood-web/LogoutServlet">Logout</a>
+			Hello ${pageContext.request.remoteUser}
+			<a href="/pressure-blood-web/LogoutServlet">(Logout)</a>
 		</h3>
 	</div>
 	<div class="center">
-		<table id="measuresTable" border="1" class="dataTable">
+		<table id="measuresTable" border="1">
 			<thead>
 				<tr>
 					<th colspan="6">${measurements.size()} Measures</th>
@@ -228,7 +234,8 @@
 			<input id="dbp_input" name="dbp_input" type="number" min="0" max="300" class="required">
 
 			<label class="control-label" for="datetime_picker">DATETIME*: </label>
-			<input id="datetime_picker" name="datetime_picker" type="datetime-local" class="required">
+			<!-- input id="datetime_picker" name="datetime_picker" type="datetime-local" class="required" -->
+			<input id="datetimepicker" type="text">
 
 			<label for="hand">HAND: </label>
 			<select id="hand" name="hand">
