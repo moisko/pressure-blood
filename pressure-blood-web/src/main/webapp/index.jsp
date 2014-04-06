@@ -232,10 +232,10 @@
 			<h2>Add measure</h2>
 			<form id="addMeasureForm" action="">
 				<label class="control-label" for="sbp">SBP*: </label>
-				<input id="sbp" name="sbp" type="number" min="0" max="300" size="3" class="required">
+				<input id="sbp" name="sbp" type="number" min="0" max="300" class="required">
 
 				<label class="control-label" for="dbp">DBP*: </label>
-				<input id="dbp" name="dbp" type="number" min="0" max="300" size="3" class="required">
+				<input id="dbp" name="dbp" type="number" min="0" max="300" class="required">
 
 				<label class="control-label" for="datetimepicker">DATETIME*: </label>
 				<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
@@ -247,7 +247,7 @@
 				</select>
 
 				<label for="pulse">PULSE: </label>
-				<input id="pulse" name="pulse" type="number" min="0" max="300" size="3">
+				<input id="pulse" name="pulse" type="number" min="0" max="300">
 
 				<button type="submit">Add measure</button>
 			</form>
