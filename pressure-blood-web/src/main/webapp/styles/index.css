@@ -18,3 +18,23 @@ nav {
 #addMeasure {
 	margin-top: 40px;
 }
+
+#sbpMeasure,#dbpMeasure,#datetime,#handSelector,#pulseMeasure,#addMeasureButton {
+	display: inline;
+}
+
+#sbp,#dbp,#pulse {
+	width: 50px;
+}
+
+#datetimepicker {
+	width: 150px;
+}
+
+#measureId,#deleteMeasureButton {
+	display: inline;
+}
+
+#del {
+	width: 150px;
+}

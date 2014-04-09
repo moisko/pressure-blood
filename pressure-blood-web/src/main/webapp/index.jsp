@@ -231,34 +231,50 @@
 		<div id="addMeasure">
 			<h2>Add measure</h2>
 			<form id="addMeasureForm" action="">
-				<label class="control-label" for="sbp">SBP*: </label>
-				<input id="sbp" name="sbp" type="number" min="0" max="300" size="3" class="required">
+				<div id="sbpMeasure">
+					<label for="sbp">SBP*: </label>
+					<input id="sbp" name="sbp" type="number" min="0" max="300" size="3" class="required">
+				</div>
 
-				<label class="control-label" for="dbp">DBP*: </label>
-				<input id="dbp" name="dbp" type="number" min="0" max="300" size="3" class="required">
+				<div id="dbpMeasure">
+					<label for="dbp">DBP*: </label>
+					<input id="dbp" name="dbp" type="number" min="0" max="300" size="3" class="required">
+				</div>
 
-				<label class="control-label" for="datetimepicker">DATETIME*: </label>
-				<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
+				<div id="datetime">
+					<label for="datetimepicker">DATETIME*: </label>
+					<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
+				</div>
 
-				<label for="hand">HAND: </label>
-				<select id="hand" name="hand">
-					<option value="LEFT_HAND">Left hand</option>
-					<option value="RIGHT_HAND">Right hand</option>
-				</select>
+				<div id="handSelector">
+					<label for="hand">HAND: </label>
+					<select id="hand" name="hand">
+						<option value="LEFT_HAND">Left hand</option>
+						<option value="RIGHT_HAND">Right hand</option>
+					</select>
+				</div>
 
-				<label for="pulse">PULSE: </label>
-				<input id="pulse" name="pulse" type="number" min="0" max="300" size="3">
+				<div id="pulseMeasure">
+					<label for="pulse">PULSE: </label>
+					<input id="pulse" name="pulse" type="number" min="0" max="300" size="3">
+				</div>
 
-				<button type="submit">Add measure</button>
+				<div id="addMeasureButton">
+					<button type="submit">Add measure</button>
+				</div>
 			</form>
 		</div>
 
 		<div id="deleteMeasure">
 			<h2>Delete measure</h2>
 			<form id="deleteMeasureForm" action="">
-				<label for="del">ID*: </label>
-				<input id="del" name="del" type="number" min="1" class="required">
-				<button type="submit">Delete measure</button>
+				<div id="measureId">
+					<label for="del">ID*: </label>
+					<input id="del" name="del" type="number" min="1" class="required">
+				</div>
+				<div id="deleteMeasureButton">
+					<button type="submit">Delete measure</button>
+				</div>
 			</form>
 		</div>
 	</div>
