@@ -95,7 +95,7 @@
 		$.ajax({
 			type : "POST",
 			url : "/pressure-blood-web/DeleteMeasure",
-			data : "id=" + getElementValueById("del"),
+			data : "id=" + getElementValueById("id"),
 			dataType : "json",
 			success : function(json) {
 				var status = json.status;
@@ -267,8 +267,8 @@
 			<h2>Delete measure</h2>
 			<form id="deleteMeasureForm" action="">
 				<div id="measureId">
-					<label for="del">ID*: </label>
-					<input id="del" name="del" type="number" min="1" class="required">
+					<label for="id">ID*: </label>
+					<input id="id" name="id" type="number" min="1" class="required">
 				</div>
 				<div id="deleteMeasureButton">
 					<button type="submit">Delete measure</button>
