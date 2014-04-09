@@ -105,7 +105,7 @@
 				reloadBody();
 			},
 			error : function() {
-				alert("Failed to delete measure with id " + getElementValueById("del"));
+				alert("Failed to delete measure with id " + getElementValueById("id"));
 				reloadBody();
 			}
 		});
