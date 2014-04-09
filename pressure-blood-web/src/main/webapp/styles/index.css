@@ -5,14 +5,10 @@
 	padding: 50px;
 }
 
-nav {
+.userInfo {
 	position: absolute;
-	left: 85%;
-	top: 0;
-}
-
-#logout {
-	margin: 30px;
+	left: 90%;
+	margin-top: 20px;
 }
 
 #addMeasure {
