@@ -15,12 +15,10 @@ var Measure = {
 				"pulse" : parseInt($("#pulse").val())
 			}),
 			success : function() {
-				// reloadBody();
 				window.location = "/pressure-blood-web/GetMeasures";
 			},
 			error : function() {
 				alert("Failed to add measure in db");
-				// reloadBody();
 				window.location = "/pressure-blood-web/GetMeasures";
 			}
 		});
@@ -40,7 +38,6 @@ var Measure = {
 			},
 			error : function() {
 				alert("Failed to delete measure with id " + $("#id").val());
-				// reloadBody();
 				window.location = "/pressure-blood-web/GetMeasures";
 			}
 		});

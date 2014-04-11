@@ -9,13 +9,16 @@
 <link rel="stylesheet" type="text/css" href="styles/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="styles/jquery.datetimepicker.css">
 <link rel="stylesheet" type="text/css" href="styles/jquery-ui-1.10.3.custom.css">
+
 <script src="scripts/jquery-1.10.2.js"></script>
 <script src="scripts/jquery.validate.js"></script>
 <script src="scripts/jquery.dataTables.js"></script>
 <script src="scripts/jquery.datetimepicker.js"></script>
 <script src="scripts/jquery-ui-1.10.3.custom.js"></script>
+
 <script src = "scripts/Html.js"></script>
 <script src = "scripts/Measure.js"></script>
+
 <script type="text/javascript"></script>
 <script>
 
