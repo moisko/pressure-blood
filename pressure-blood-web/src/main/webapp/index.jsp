@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="styles/jquery/jquery.datetimepicker.css">
 <link rel="stylesheet" type="text/css" href="styles/jquery/jquery-ui-1.10.3.custom.css">
 
-<link rel="stylesheet" type="text/css" href="styles/index.css">
+<link rel="stylesheet" type="text/css" href="styles/pb/index.css">
 
 <script src="scripts/jquery/jquery-1.10.2.js"></script>
 <script src="scripts/jquery/jquery.validate.js"></script>
@@ -18,7 +18,7 @@
 <script src="scripts/jquery/jquery.datetimepicker.js"></script>
 <script src="scripts/jquery/jquery-ui-1.10.3.custom.js"></script>
 
-<script src = "scripts/Measure.js"></script>
+<script src = "scripts/pb/Measure.js"></script>
 
 <script type="text/javascript"></script>
 <script>
