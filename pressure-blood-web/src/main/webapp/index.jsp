@@ -5,16 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Pressure Blood App</title>
-<link rel="stylesheet" type="text/css" href="styles/index.css">
-<link rel="stylesheet" type="text/css" href="styles/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="styles/jquery.datetimepicker.css">
-<link rel="stylesheet" type="text/css" href="styles/jquery-ui-1.10.3.custom.css">
 
-<script src="scripts/jquery-1.10.2.js"></script>
-<script src="scripts/jquery.validate.js"></script>
-<script src="scripts/jquery.dataTables.js"></script>
-<script src="scripts/jquery.datetimepicker.js"></script>
-<script src="scripts/jquery-ui-1.10.3.custom.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/jquery/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="styles/jquery/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="styles/jquery/jquery-ui-1.10.3.custom.css">
+
+<link rel="stylesheet" type="text/css" href="styles/index.css">
+
+<script src="scripts/jquery/jquery-1.10.2.js"></script>
+<script src="scripts/jquery/jquery.validate.js"></script>
+<script src="scripts/jquery/jquery.dataTables.js"></script>
+<script src="scripts/jquery/jquery.datetimepicker.js"></script>
+<script src="scripts/jquery/jquery-ui-1.10.3.custom.js"></script>
 
 <script src = "scripts/Measure.js"></script>
 
