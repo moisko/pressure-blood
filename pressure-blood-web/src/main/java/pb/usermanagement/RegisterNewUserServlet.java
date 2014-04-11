@@ -41,7 +41,12 @@ public class RegisterNewUserServlet extends HttpServlet {
 			}
 			String json = gson.toJson(jsonResponse);
 			writer.write(json);
-		} catch (ServletException | IllegalArgumentException e) {
+		} catch (ServletException e) {
+			JsonResponse jsonResponse = new JsonResponse(
+					JsonResponse.Status.ERROR, e.getMessage());
+			String json = gson.toJson(jsonResponse);
+			writer.write(json);
+		} catch (IllegalArgumentException e) {
 			JsonResponse jsonResponse = new JsonResponse(
 					JsonResponse.Status.ERROR, e.getMessage());
 			String json = gson.toJson(jsonResponse);

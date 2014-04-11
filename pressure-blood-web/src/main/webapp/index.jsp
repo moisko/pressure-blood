@@ -15,150 +15,13 @@
 <script src="scripts/jquery.datetimepicker.js"></script>
 <script src="scripts/jquery-ui-1.10.3.custom.js"></script>
 <script src = "scripts/Html.js"></script>
+<script src = "scripts/Measure.js"></script>
 <script type="text/javascript"></script>
 <script>
-
-	var getElementValueById = function(elementId) {
-		var elementValue = document.getElementById(elementId).value;
-		return elementValue;
-	};
 
 	var reloadBody = function() {
 		var html = new Html();
 		html.reloadBody("/pressure-blood-web/GetMeasures");
-	};
-
-	var getSBP = function() {
-		var sbp = getElementValueById("sbp");
-		if (!sbp) {
-			throw new Error("[" + datetime + "] is not a valid value for sbp");
-		}
-		return sbp;
-	};
-
-	var getDBP = function() {
-		var dbp = getElementValueById("dbp");
-		if (!dbp) {
-			throw new Error("[" + datetime + "] is not a valid value for dbp");
-		}
-		return dbp;
-	};
-
-	var getDatetime = function() {
-		var datetime = getElementValueById("datetimepicker");
-		if (!datetime) {
-			throw new Error("[" + datetime
-					+ "] is not a valid value for datetime");
-		}
-		return datetime;
-	};
-
-	var getHand = function() {
-		var hand = $("#hand").val();
-		return hand;
-	};
-
-	var getPulse = function() {
-		var pulse = $("#pulse").val();
-		if (!pulse) {
-			pulse = 0;
-		}
-		return pulse;
-	};
-
-	var addMeasure = function() {
-		$.ajax({
-			url : "/pressure-blood-web/AddMeasure",
-			type : "PUT",
-			dataType : "html",
-			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({
-				"pressureBlood" : {
-					"sbp" : getSBP(),
-					"dbp" : getDBP()
-				},
-				"datetime" : getDatetime(),
-				"hand" : getHand(),
-				"pulse" : getPulse()
-			}),
-			success : function() {
-				reloadBody();
-			},
-			error : function() {
-				alert("Failed to add measure in db");
-				reloadBody();
-			}
-		});
-	};
-
-	var deleteMeasure = function() {
-		$.ajax({
-			type : "POST",
-			url : "/pressure-blood-web/DeleteMeasure",
-			data : "id=" + getElementValueById("id"),
-			dataType : "json",
-			success : function(json) {
-				var status = json.status;
-				if(status == "MEASURE_NOT_FOUND") {
-					alert(json.message);
-				}
-				reloadBody();
-			},
-			error : function() {
-				alert("Failed to delete measure with id " + getElementValueById("id"));
-				reloadBody();
-			}
-		});
-	};
-
-	var validateAddMeasureForm = function() {
-		$("#addMeasureForm").validate({
-			rules: {
-				sbp: {
-					required: true
-				},
-				dbp: {
-					required: true
-				},
-				datetimepicker: {
-					required: true
-				}
-			},
-			errorPlacement: function(error, element) {},
-			highlight: function(element, errorClass, validClass) {
-				var label = $("label[for='" + element.id + "']");
-				$(label).css("color", "red");
-			},
-			unhighlight: function(element, errorClass, validClass) {
-				var label = $("label[for='" + element.id + "']");
-				$(label).css("color", "black");
-			}
-		});
-	};
-
-	var validateDeleteMeasureForm = function() {
-		$("#deleteMeasureForm").validate({
-			rules: {
-				required: true
-			},
-			errorPlacement: function(error, element) {},
-			highlight: function(element, errorClass, validClass) {
-				var label = $("label[for='" + element.id + "']");
-				$(label).css("color", "red");
-			},
-			unhighlight: function(element, errorClass, validClass) {
-				var label = $("label[for='" + element.id + "']");
-				$(label).css("color", "black");
-			}
-		});
-	};
-
-	var isAddMeasureFormValid = function() {
-		return $("#addMeasureForm").valid();
-	};
-
-	var isDeleteMeasureFormValid = function() {
-		return $("#deleteMeasureForm").valid();
 	};
 
 	// When the browser is ready ...
@@ -166,22 +29,22 @@
 		$("#measuresTable").dataTable();
 
 		$("#datetimepicker").datetimepicker({
-			format: "d.m.Y H:i",
-			step: 10
+			format : "d.m.Y H:i",
+			step : 10
 		});
 
 		$("#addMeasureForm").submit(function(event) {
-			validateAddMeasureForm();
-			if(isAddMeasureFormValid()) {
-				addMeasure();
+			Measure.validateAddMeasureForm();
+			if (Measure.isAddMeasureFormValid()) {
+				Measure.addMeasure();
 			}
 			event.preventDefault();
 		});
 
 		$("#deleteMeasureForm").submit(function(event) {
-			validateDeleteMeasureForm();
-			if(isDeleteMeasureFormValid()) {
-				deleteMeasure();
+			Measure.validateDeleteMeasureForm();
+			if (Measure.isDeleteMeasureFormValid()) {
+				Measure.deleteMeasure();
 			}
 			event.preventDefault();
 		});

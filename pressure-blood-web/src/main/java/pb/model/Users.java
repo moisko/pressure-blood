@@ -51,7 +51,7 @@ public class Users implements Serializable {
 			throw new IllegalArgumentException(
 					"The entered email address is not valid");
 		}
-		List<UserRoles> userRoles = new ArrayList<>();
+		List<UserRoles> userRoles = new ArrayList<UserRoles>();
 		for (UserRoles.Role role : UserRoles.Role.values()) {
 			String roleName = role.getRoleName();
 			UserRoles userRole = new UserRoles(username, roleName);
