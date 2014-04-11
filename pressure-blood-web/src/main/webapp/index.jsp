@@ -21,7 +21,6 @@
 
 <script type="text/javascript"></script>
 <script>
-
 	var reloadBody = function() {
 		var html = new Html();
 		html.reloadBody("/pressure-blood-web/GetMeasures");
