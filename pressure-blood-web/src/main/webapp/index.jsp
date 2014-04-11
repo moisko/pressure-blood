@@ -16,14 +16,18 @@
 <script src="scripts/jquery.datetimepicker.js"></script>
 <script src="scripts/jquery-ui-1.10.3.custom.js"></script>
 
-<script src = "scripts/Html.js"></script>
 <script src = "scripts/Measure.js"></script>
 
 <script type="text/javascript"></script>
 <script>
 	var reloadBody = function() {
-		var html = new Html();
-		html.reloadBody("/pressure-blood-web/GetMeasures");
+		$.ajax({
+			url : "/pressure-blood-web/GetMeasures",
+			context : document.body,
+			success : function(s) {
+				$(this).html(s);
+			}
+		});
 	};
 
 	// When the browser is ready ...
