@@ -136,7 +136,7 @@
 			<h2>Delete measure</h2>
 			<form id="deleteMeasureForm" action="">
 				<div id="measureId">
-					<label for="id">ID*: </label>
+					<label for="id">ID*:</label>
 					<input id="id" name="id" type="number" min="1" class="required">
 				</div>
 				<div id="deleteMeasureButton">
