@@ -19,8 +19,6 @@
 <script src="scripts/jquery/jquery-ui-1.10.3.custom.js"></script>
 
 <script src = "scripts/pb/Measure.js"></script>
-
-<script type="text/javascript"></script>
 <script>
 	var reloadBody = function() {
 		$.ajax({
