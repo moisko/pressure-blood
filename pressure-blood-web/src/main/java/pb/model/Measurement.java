@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQuery(name = "findAllMeasurementsByUsername", query = "SELECT m FROM Measurement m WHERE m.user.username = :username")
+@NamedQuery(name = "findAllMeasuresByUsername", query = "SELECT m FROM Measurement m WHERE m.user.username = :username")
 @Table(name = "MEASUREMENT")
 public class Measurement implements Serializable {
 
