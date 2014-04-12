@@ -7,123 +7,19 @@
 
 <script src="scripts/jquery/jquery-1.10.2.js"></script>
 <script src="scripts/jquery/jquery.validate.js"></script>
+
+<script src="scripts/pb/Register.js"></script>
 <script>
-
-	var reloadPage = function() {
-		window.location.reload();
-	};
-
-	var getUsername = function() {
-		return $("#username").val();
-	}
-
-	var getPassword1 = function() {
-		return $("#password1").val();
-	}
-
-	var getPassword2 = function() {
-		return $("#password2").val();
-	}
-
-	var getEmail = function() {
-		return $("#email").val();
-	}
-
-	var registerUser = function() {
-		$.ajax({
-			url : "/pressure-blood-web/RegisterNewUserServlet",
-			type : "POST",
-			dataType : "json",
-			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({
-				"username" : getUsername(),
-				"password1" : getPassword1(),
-				"password2" : getPassword2(),
-				"email" : getEmail()
-			}),
-			success : function(json) {
-				var status = json.status;
-				switch (status) {
-					case "SUCCESS" :
-						window.location.href = "/pressure-blood-web/GetMeasures";
-						break;
-					case "EXISTS":
-					case "ERROR":
-						alert(json.message);
-						reloadPage();
-						break;
-				}
-			},
-			error : function(json) {
-				alert(json.responseJSON.message);
-				reloadPage();
-			}
-		});
-	};
-
-	var validateRegisterForm = function() {
-		$("#registerForm").validate({
-			rules: {
-				username: {
-					required: true,
-					minlength: 2
-				},
-				password1: {
-					required: true,
-					minlength: 4
-				},
-				password2: {
-					required: true,
-					minlength: 4,
-					equalTo: "#password1"
-				},
-				email: {
-					required: true,
-					email: true
-				}
-			},
-			messages: {
-				username: {
-					required: "Username is required",
-					minlength: $.format("At least {0} characters required")
-				},
-				password1: {
-					required: "Password is required",
-					minlength: $.format("At least {0} characters required")
-				},
-				password2: {
-					required: "Confirm password is required",
-					minlength: $.format("At least {0} characters required")
-				},
-				email: {
-					required: "Email is required",
-					email: $.format("Email is not valid")
-				}
-			},
-			highlight: function(element, errorClass, validClass) {
-				$(element).addClass(errorClass).removeClass(validClass);
-			},
-			unhighlight: function(element, errorClass, validClass) {
-				$(element).removeClass(errorClass).addClass(validClass);
-			}
-		});
-	};
-
-	var isRegisterFormValid = function() {
-		return $("#registerForm").valid();
-	};
-
 	// When the browser is ready
 	$(function() {
 		$("#registerForm").submit(function(event) {
-			validateRegisterForm();
-			if(isRegisterFormValid()) {
-				registerUser();
+			Register.validateRegisterForm();
+			if (Register.isRegisterFormValid()) {
+				Register.registerUser();
 			}
 			event.preventDefault();
 		});
 	});
-
 </script>
 </head>
 <body>
