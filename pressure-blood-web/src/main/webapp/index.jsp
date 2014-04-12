@@ -101,22 +101,22 @@
 			<h2>Add measure</h2>
 			<form id="addMeasureForm" action="">
 				<div id="sbpMeasure">
-					<label for="sbp">SBP*: </label>
+					<label for="sbp">SBP*:</label>
 					<input id="sbp" name="sbp" type="number" min="0" max="300" size="3" class="required">
 				</div>
 
 				<div id="dbpMeasure">
-					<label for="dbp">DBP*: </label>
+					<label for="dbp">DBP*:</label>
 					<input id="dbp" name="dbp" type="number" min="0" max="300" size="3" class="required">
 				</div>
 
 				<div id="datetime">
-					<label for="datetimepicker">DATETIME*: </label>
+					<label for="datetimepicker">DATETIME*:</label>
 					<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
 				</div>
 
 				<div id="handSelector">
-					<label for="hand">HAND: </label>
+					<label for="hand">HAND:</label>
 					<select id="hand" name="hand">
 						<option value="LEFT_HAND">Left hand</option>
 						<option value="RIGHT_HAND">Right hand</option>
@@ -124,7 +124,7 @@
 				</div>
 
 				<div id="pulseMeasure">
-					<label for="pulse">PULSE: </label>
+					<label for="pulse">PULSE:</label>
 					<input id="pulse" name="pulse" type="number" min="0" max="300" size="3">
 				</div>
 
