@@ -66,7 +66,7 @@
 	</div>
 	<div class="center">
 		<div id="measures">
-			<table id="measuresTable" border="1">
+			<table id="measuresTable" border="1" class="display">
 				<thead>
 					<tr>
 						<th colspan="6">${measurements.size()} Measures</th>
