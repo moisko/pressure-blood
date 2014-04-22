@@ -16,21 +16,26 @@
 fieldset {
 	border: 1px solid black;
 	float: left;
-	width: 60%;
+	width: 65%;
 }
 
 label {
 	float: left;
-	width: 45%;
-	margin-right: 0.5em;
-	padding-top: 0.2em;
+	width: 50%;
+	margin-right : 0.5em;
+	padding-top : 0.2em;
 	text-align: left;
+}
+
+input {
+	width: 180px;
 }
 
 button {
 	float: right;
+	margin-right: 10px;
 }
 
-form {
-	width: 510px;
+a {
+	float: left;
 }
