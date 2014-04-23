@@ -8,7 +8,6 @@
 
 <link rel="stylesheet" type="text/css" href="styles/jquery/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="styles/jquery/jquery.datetimepicker.css">
-<link rel="stylesheet" type="text/css" href="styles/jquery/jquery-ui-1.10.3.custom.css">
 
 <link rel="stylesheet" type="text/css" href="styles/pb/index.css">
 
@@ -16,7 +15,6 @@
 <script src="scripts/jquery/jquery.validate.js"></script>
 <script src="scripts/jquery/jquery.dataTables.js"></script>
 <script src="scripts/jquery/jquery.datetimepicker.js"></script>
-<script src="scripts/jquery/jquery-ui-1.10.3.custom.js"></script>
 
 <script src = "scripts/pb/Measure.js"></script>
 <script>
