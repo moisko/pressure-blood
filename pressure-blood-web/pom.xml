@@ -24,7 +24,7 @@
 
 	<properties>
 		<junit.version>4.11</junit.version>
-		<jdk.version>1.7</jdk.version>
+		<jdk.version>1.6</jdk.version>
 	</properties>
 
 	<dependencies>
