@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+<meta charset="UTF-8">
+<title>Angular Example</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.6/angular.min.js"></script>
+<script src="scripts/angular/MeasuresCtrl.js"></script>
+</head>
+<body>
+	<div ng-controller="MeasuresCtrl">
+		<table border="1">
+			<thead>
+				<tr>
+					<th colspan="6">{{size()}} Measures</th>
+				</tr>
+				<tr>
+					<th>ID</th>
+					<th>TIME</th>
+					<th>SBP</th>
+					<th>DBP</th>
+					<th>HAND</th>
+					<th>PULSE</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="measure in measures">
+					<td>{{measure.id}}</td>
+					<td>{{measure.datetime}}</td>
+					<td>{{measure.pressureBlood.sbp}}</td>
+					<td>{{measure.pressureBlood.dbp}}</td>
+					<td>{{measure.hand}}</td>
+					<td>{{measure.pulse}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
