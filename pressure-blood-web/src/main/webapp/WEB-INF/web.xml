@@ -33,9 +33,11 @@
 			<role-name>Member</role-name>
 			<role-name>Admin</role-name>
 		</auth-constraint>
+		<!--
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
+		-->
 	</security-constraint>
 
 	<login-config>
