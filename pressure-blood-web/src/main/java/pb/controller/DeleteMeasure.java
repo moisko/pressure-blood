@@ -31,12 +31,12 @@ public class DeleteMeasure extends HttpServlet {
 		EntityManager em = (EntityManager) getServletContext().getAttribute(
 				"em");
 		Users user = em.find(Users.class, request.getRemoteUser());
-		String recordId = request.getParameter("id");
+		String measureId = request.getParameter("id");
 		Measurement measurement = em.find(Measurement.class,
-				Long.parseLong(recordId));
+				Long.parseLong(measureId));
 		if (measurement == null) {
 			jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
-					"Measure with id " + recordId + " not found");
+					"Measure with id " + measureId + " not found");
 		} else {
 			String username = user.getUsername();
 			if (measurement.getUser().getUsername().equals(username)) {
@@ -44,11 +44,11 @@ public class DeleteMeasure extends HttpServlet {
 				em.remove(measurement);
 				em.getTransaction().commit();
 				jsonResponse = new JsonResponse(Status.MEASURE_FOUND,
-						"Measure with id " + recordId
+						"Measure with id " + measureId
 								+ " successfully deleted from db");
 			} else {
 				jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
-						"Measure with id " + recordId + " not found");
+						"Measure with id " + measureId + " not found");
 			}
 		}
 		PrintWriter writer = response.getWriter();
