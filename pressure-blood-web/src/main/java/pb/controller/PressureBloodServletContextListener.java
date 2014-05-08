@@ -1,6 +1,5 @@
 package pb.controller;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletContext;
@@ -15,20 +14,17 @@ public class PressureBloodServletContextListener implements
 	private static final String PERSISTENCE_UNIT_NAME = "PressureBlood";
 
 	private EntityManagerFactory emf;
-	private EntityManager em;
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-		em = emf.createEntityManager();
 		ServletContext sc = event.getServletContext();
-		sc.setAttribute("em", em);
+		sc.setAttribute("emf", emf);
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 		emf.close();
-		em.close();
 	}
 
 }

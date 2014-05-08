@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,15 +27,20 @@ public class GetMeasures extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
-		EntityManager em = (EntityManager) getServletContext().getAttribute(
-				"em");
-		Users user = em.find(Users.class, request.getRemoteUser());
-		Query q = em.createNamedQuery("findAllMeasuresByUsername");
-		q.setParameter("username", user.getUsername());
-		List<Measurement> measurements = q.getResultList();
-		request.setAttribute("measurements", measurements);
-		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-		view.forward(request, response);
+		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
+				.getAttribute("emf");
+		EntityManager em = emf.createEntityManager();
+		try {
+			Users user = em.find(Users.class, request.getRemoteUser());
+			Query q = em.createNamedQuery("findAllMeasuresByUsername");
+			q.setParameter("username", user.getUsername());
+			List<Measurement> measurements = q.getResultList();
+			request.setAttribute("measurements", measurements);
+			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+			view.forward(request, response);
+		} finally {
+			em.close();
+		}
 	}
 
 }

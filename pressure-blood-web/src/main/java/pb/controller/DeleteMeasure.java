@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import pb.controller.JsonResponse.Status;
 import pb.model.Measurement;
-import pb.model.Users;
 
 import com.google.gson.Gson;
 
@@ -28,29 +29,41 @@ public class DeleteMeasure extends HttpServlet {
 
 		JsonResponse jsonResponse = null;
 
-		EntityManager em = (EntityManager) getServletContext().getAttribute(
-				"em");
-		Users user = em.find(Users.class, request.getRemoteUser());
+		String username = request.getRemoteUser();
 		String measureId = request.getParameter("id");
-		Measurement measurement = em.find(Measurement.class,
-				Long.parseLong(measureId));
-		if (measurement == null) {
-			jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
-					"Measure with id " + measureId + " not found");
-		} else {
-			String username = user.getUsername();
-			if (measurement.getUser().getUsername().equals(username)) {
-				em.getTransaction().begin();
-				em.remove(measurement);
-				em.getTransaction().commit();
-				jsonResponse = new JsonResponse(Status.MEASURE_FOUND,
-						"Measure with id " + measureId
-								+ " successfully deleted from db");
-			} else {
+		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
+				.getAttribute("emf");
+		EntityManager em = emf.createEntityManager();
+		try {
+			Measurement measure = em.find(Measurement.class,
+					Long.parseLong(measureId));
+			if (measure == null) {
 				jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
-						"Measure with id " + measureId + " not found");
+						"Measure with id " + measureId + " not found", null);
+			} else {
+				if (measure.getUser().getUsername().equals(username)) {
+					EntityTransaction et = em.getTransaction();
+					try {
+						et.begin();
+						em.remove(measure);
+						et.commit();
+					} finally {
+						if (et.isActive()) {
+							et.rollback();
+						}
+					}
+					jsonResponse = new JsonResponse(Status.MEASURE_FOUND,
+							"Measure with id " + measureId
+									+ " successfully deleted from db", null);
+				} else {
+					jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
+							"Measure with id " + measureId + " not found", null);
+				}
 			}
+		} finally {
+			em.close();
 		}
+
 		PrintWriter writer = response.getWriter();
 		try {
 			Gson gson = new Gson();

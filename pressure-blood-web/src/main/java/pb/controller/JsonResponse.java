@@ -23,14 +23,16 @@ public class JsonResponse implements Serializable {
 
 	private Status status;
 	private String message;
+	private Exception cause;
 
 	public JsonResponse() {
 
 	}
 
-	public JsonResponse(Status status, String message) {
+	public JsonResponse(Status status, String message, Exception cause) {
 		this.status = status;
 		this.message = message;
+		this.cause = cause;
 	}
 
 	public Status getStatus() {
@@ -47,6 +49,14 @@ public class JsonResponse implements Serializable {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public Exception getCause() {
+		return cause;
+	}
+
+	public void setCause(Exception cause) {
+		this.cause = cause;
 	}
 
 }

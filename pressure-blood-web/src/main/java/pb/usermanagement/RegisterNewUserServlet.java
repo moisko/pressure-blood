@@ -43,12 +43,12 @@ public class RegisterNewUserServlet extends HttpServlet {
 			writer.write(json);
 		} catch (ServletException e) {
 			JsonResponse jsonResponse = new JsonResponse(
-					JsonResponse.Status.ERROR, e.getMessage());
+					JsonResponse.Status.ERROR, e.getMessage(), e);
 			String json = gson.toJson(jsonResponse);
 			writer.write(json);
 		} catch (IllegalArgumentException e) {
 			JsonResponse jsonResponse = new JsonResponse(
-					JsonResponse.Status.ERROR, e.getMessage());
+					JsonResponse.Status.ERROR, e.getMessage(), e);
 			String json = gson.toJson(jsonResponse);
 			writer.write(json);
 		} finally {
@@ -69,10 +69,11 @@ public class RegisterNewUserServlet extends HttpServlet {
 			em.persist(user);
 			em.getTransaction().commit();
 			jsonResponse = new JsonResponse(JsonResponse.Status.SUCCESS,
-					"User " + user.getUsername() + " successfully registered");
+					"User " + user.getUsername() + " successfully registered",
+					null);
 		} else {
 			jsonResponse = new JsonResponse(JsonResponse.Status.EXISTS, "User "
-					+ user.getUsername() + " already exists");
+					+ user.getUsername() + " already exists", null);
 		}
 		return jsonResponse;
 	}

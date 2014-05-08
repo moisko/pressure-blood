@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,13 +46,25 @@ public class AddMeasure extends HttpServlet {
 					new DatetimeDeserializer());
 			Gson gson = gsonBuilder.create();
 			Measurement measurement = gson.fromJson(br, Measurement.class);
-			EntityManager em = (EntityManager) getServletContext()
-					.getAttribute("em");
+			EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
+					.getAttribute("emf");
+			EntityManager em = emf.createEntityManager();
 			Users user = em.find(Users.class, request.getRemoteUser());
 			measurement.setUser(user);
-			em.getTransaction().begin();
-			em.persist(measurement);
-			em.getTransaction().commit();
+			try {
+				EntityTransaction et = em.getTransaction();
+				try {
+					et.begin();
+					em.persist(measurement);
+					et.commit();
+				} finally {
+					if (et.isActive()) {
+						et.rollback();
+					}
+				}
+			} finally {
+				em.close();
+			}
 		} finally {
 			if (br != null) {
 				br.close();
