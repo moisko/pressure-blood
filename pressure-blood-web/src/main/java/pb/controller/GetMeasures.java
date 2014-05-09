@@ -34,8 +34,8 @@ public class GetMeasures extends HttpServlet {
 			Users user = em.find(Users.class, request.getRemoteUser());
 			Query q = em.createNamedQuery("findAllMeasuresByUsername");
 			q.setParameter("username", user.getUsername());
-			List<Measurement> measurements = q.getResultList();
-			request.setAttribute("measurements", measurements);
+			List<Measurement> measures = q.getResultList();
+			request.setAttribute("measures", measures);
 			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);
 		} finally {

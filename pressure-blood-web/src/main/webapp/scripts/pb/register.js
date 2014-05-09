@@ -1,4 +1,4 @@
-var Register = {
+var register = {
 		registerUser : function() {
 			$.ajax({
 				url : "/pressure-blood-web/RegisterNewUserServlet",
@@ -31,7 +31,7 @@ var Register = {
 			});
 		},
 		validateRegisterForm : function() {
-			$("#registerForm").validate({
+			$("#register-form").validate({
 				rules: {
 					username: {
 						required: true,
@@ -78,6 +78,6 @@ var Register = {
 			});
 		},
 		isRegisterFormValid : function() {
-			return $("#registerForm").valid();
+			return $("#register-form").valid();
 		}
 }

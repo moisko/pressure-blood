@@ -1,25 +1,25 @@
-.center {
+#main {
 	width: 55%;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 50px;
 }
 
-.userInfo {
+#user-info {
 	position: absolute;
 	left: 90%;
 	margin-top: 20px;
 }
 
-#addMeasure {
+#add-measure {
 	margin-top: 40px;
 }
 
-#sbpMeasure,#dbpMeasure,#datetime,#handSelector,#pulseMeasure,#addMeasureButton {
+#sbp-measure,#dbp-measure,#datetime,#handSelector,#pulse-measure,#add-measure-button {
 	display: inline;
 }
 
-#sbp,#dbp,#pulse {
+#sbp-input,#dbp-input,#pulse-input {
 	width: 50px;
 }
 
@@ -27,10 +27,10 @@
 	width: 150px;
 }
 
-#measureId,#deleteMeasureButton {
+#measure-id,#delete-measure-button {
 	display: inline;
 }
 
-#id {
+#measure-id-input {
 	width: 150px;
 }

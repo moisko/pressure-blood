@@ -16,7 +16,7 @@
 <script src="scripts/jquery/jquery.dataTables.js"></script>
 <script src="scripts/jquery/jquery.datetimepicker.js"></script>
 
-<script src = "scripts/pb/Measure.js"></script>
+<script src = "scripts/pb/measure.js"></script>
 <script>
 	var reloadBody = function() {
 		$.ajax({
@@ -30,25 +30,25 @@
 
 	// When the browser is ready ...
 	$(function() {
-		$("#measuresTable").dataTable();
+		$("#measures-table").dataTable();
 
 		$("#datetimepicker").datetimepicker({
 			format : "d.m.Y H:i",
 			step : 10
 		});
 
-		$("#addMeasureForm").submit(function(event) {
-			Measure.validateAddMeasureForm();
-			if (Measure.isAddMeasureFormValid()) {
-				Measure.addMeasure();
+		$("#add-measure-form").submit(function(event) {
+			measure.validateAddMeasureForm();
+			if (measure.isAddMeasureFormValid()) {
+				measure.addMeasure();
 			}
 			event.preventDefault();
 		});
 
-		$("#deleteMeasureForm").submit(function(event) {
-			Measure.validateDeleteMeasureForm();
-			if (Measure.isDeleteMeasureFormValid()) {
-				Measure.deleteMeasure();
+		$("#delete-measure-form").submit(function(event) {
+			measure.validateDeleteMeasureForm();
+			if (measure.isDeleteMeasureFormValid()) {
+				measure.deleteMeasure();
 			}
 			event.preventDefault();
 		});
@@ -56,18 +56,18 @@
 </script>
 </head>
 <body onload="reloadBody()">
-	<div class="userInfo">
+	<div id="user-info">
 		<nav>
 			<span>${pageContext.request.remoteUser}</span> |
 			<a href="/pressure-blood-web/LogoutServlet">logout</a>
 		</nav>
 	</div>
-	<div class="center">
+	<div id="main">
 		<div id="measures">
-			<table id="measuresTable" border="1" class="display">
+			<table id="measures-table" border="1" class="display">
 				<thead>
 					<tr>
-						<th colspan="6">${measurements.size()} Measures</th>
+						<th colspan="6">${measures.size()} Measures</th>
 					</tr>
 					<tr>
 						<th>ID</th>
@@ -79,31 +79,31 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="measurement" items="${measurements}">
+					<c:forEach var="measure" items="${measures}">
 						<tr>
-							<td>${measurement.id}</td>
-							<td>${measurement.datetime}</td>
-							<td>${measurement.pressureBlood.sbp}</td>
-							<td>${measurement.pressureBlood.dbp}</td>
-							<td>${measurement.hand}</td>
-							<td>${measurement.pulse}</td>
+							<td>${measure.id}</td>
+							<td>${measure.datetime}</td>
+							<td>${measure.pressureBlood.sbp}</td>
+							<td>${measure.pressureBlood.dbp}</td>
+							<td>${measure.hand}</td>
+							<td>${measure.pulse}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 
-		<div id="addMeasure">
+		<div id="add-measure">
 			<h2>Add measure</h2>
-			<form id="addMeasureForm" action="">
-				<div id="sbpMeasure">
-					<label for="sbp">SBP*:</label>
-					<input id="sbp" name="sbp" type="number" min="0" max="300" size="3" class="required">
+			<form id="add-measure-form" action="">
+				<div id="sbp-measure">
+					<label for="sbp-input">SBP*:</label>
+					<input id="sbp-input" name="sbp-input" type="number" min="0" max="300" size="3" class="required">
 				</div>
 
-				<div id="dbpMeasure">
-					<label for="dbp">DBP*:</label>
-					<input id="dbp" name="dbp" type="number" min="0" max="300" size="3" class="required">
+				<div id="dbp-measure">
+					<label for="dbp-input">DBP*:</label>
+					<input id="dbp-input" name="dbp-input" type="number" min="0" max="300" size="3" class="required">
 				</div>
 
 				<div id="datetime">
@@ -119,25 +119,25 @@
 					</select>
 				</div>
 
-				<div id="pulseMeasure">
-					<label for="pulse">PULSE:</label>
-					<input id="pulse" name="pulse" type="number" min="0" max="300" size="3">
+				<div id="pulse-measure">
+					<label for="pulse-input">PULSE:</label>
+					<input id="pulse-input" name="pulse-input" type="number" min="0" max="300" size="3">
 				</div>
 
-				<div id="addMeasureButton">
+				<div id="add-measure-button">
 					<button type="submit">Add measure</button>
 				</div>
 			</form>
 		</div>
 
-		<div id="deleteMeasure">
+		<div id="delete-measure">
 			<h2>Delete measure</h2>
-			<form id="deleteMeasureForm" action="">
-				<div id="measureId">
-					<label for="id">ID*:</label>
-					<input id="id" name="id" type="number" min="1" class="required">
+			<form id="delete-measure-form" action="">
+				<div id="measure-id">
+					<label for="measure-id-input">ID*:</label>
+					<input id="measure-id-input" name="measure-id-input" type="number" min="1" class="required">
 				</div>
-				<div id="deleteMeasureButton">
+				<div id="delete-measure-button">
 					<button type="submit">Delete measure</button>
 				</div>
 			</form>

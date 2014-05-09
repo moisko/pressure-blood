@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,19 +63,31 @@ public class RegisterNewUserServlet extends HttpServlet {
 
 	private JsonResponse registerUser(Users user) {
 		JsonResponse jsonResponse = null;
-		EntityManager em = (EntityManager) getServletContext().getAttribute(
-				"em");
-		Users userFromDb = em.find(Users.class, user.getUsername());
-		if (userFromDb == null) {
-			em.getTransaction().begin();
-			em.persist(user);
-			em.getTransaction().commit();
-			jsonResponse = new JsonResponse(JsonResponse.Status.SUCCESS,
-					"User " + user.getUsername() + " successfully registered",
-					null);
-		} else {
-			jsonResponse = new JsonResponse(JsonResponse.Status.EXISTS, "User "
-					+ user.getUsername() + " already exists", null);
+		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
+				.getAttribute("emf");
+		EntityManager em = emf.createEntityManager();
+		try {
+			Users userFromDb = em.find(Users.class, user.getUsername());
+			if (userFromDb == null) {
+				EntityTransaction et = em.getTransaction();
+				try {
+					et.begin();
+					em.persist(user);
+					et.commit();
+				} finally {
+					if (et.isActive()) {
+						et.rollback();
+					}
+				}
+				jsonResponse = new JsonResponse(JsonResponse.Status.SUCCESS,
+						"User " + user.getUsername()
+								+ " successfully registered", null);
+			} else {
+				jsonResponse = new JsonResponse(JsonResponse.Status.EXISTS,
+						"User " + user.getUsername() + " already exists", null);
+			}
+		} finally {
+			em.close();
 		}
 		return jsonResponse;
 	}

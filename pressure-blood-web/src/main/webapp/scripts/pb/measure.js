@@ -1,4 +1,4 @@
-var Measure = {
+var measure = {
 	addMeasure : function() {
 		$.ajax({
 			url : "/pressure-blood-web/AddMeasure",
@@ -7,12 +7,12 @@ var Measure = {
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({
 				"pressureBlood" : {
-					"sbp" : parseInt($("#sbp").val()),
-					"dbp" : parseInt($("#dbp").val())
+					"sbp" : parseInt($("#sbp-input").val()),
+					"dbp" : parseInt($("#dbp-input").val())
 				},
 				"datetime" : $("#datetimepicker").val(),
 				"hand" : $("#hand").val(),
-				"pulse" : parseInt($("#pulse").val())
+				"pulse" : parseInt($("#pulse-input").val())
 			}),
 			success : function() {
 				window.location = "/pressure-blood-web/GetMeasures";
@@ -27,7 +27,7 @@ var Measure = {
 		$.ajax({
 			type : "POST",
 			url : "/pressure-blood-web/DeleteMeasure",
-			data : "id=" + $("#id").val(),
+			data : "id=" + $("#measure-id-input").val(),
 			dataType : "json",
 			success : function(json) {
 				var status = json.status;
@@ -37,13 +37,13 @@ var Measure = {
 				reloadBody();
 			},
 			error : function() {
-				alert("Failed to delete measure with id " + $("#id").val());
+				alert("Failed to delete measure with id " + $("#measure-id-input").val());
 				window.location = "/pressure-blood-web/GetMeasures";
 			}
 		});
 	},
 	validateAddMeasureForm : function() {
-		$("#addMeasureForm").validate({
+		$("#add-measure-form").validate({
 			rules: {
 				sbp: {
 					required: true
@@ -67,7 +67,7 @@ var Measure = {
 		});
 	},
 	validateDeleteMeasureForm : function() {
-		$("#deleteMeasureForm").validate({
+		$("#delete-measure-form").validate({
 			rules: {
 				required: true
 			},
@@ -83,9 +83,9 @@ var Measure = {
 		});
 	},
 	isAddMeasureFormValid : function() {
-		return $("#addMeasureForm").valid();
+		return $("#add-measure-form").valid();
 	},
 	isDeleteMeasureFormValid : function() {
-		return $("#deleteMeasureForm").valid();
+		return $("#delete-measure-form").valid();
 	}
 };
