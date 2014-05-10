@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @NamedQuery(name = "findAllMeasuresByUsername", query = "SELECT m FROM Measurement m WHERE m.user.username = :username")
 @Table(name = "MEASUREMENT")
@@ -26,11 +28,16 @@ public class Measurement implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Expose
 	private Long id;
+	@Expose
 	private Date datetime;
+	@Expose
 	private PressureBlood pressureBlood;
 	private Users user;
+	@Expose
 	private Hand hand = Hand.LEFT_HAND;
+	@Expose
 	private Integer pulse;
 
 	@Column(name = "TIME", nullable = false)

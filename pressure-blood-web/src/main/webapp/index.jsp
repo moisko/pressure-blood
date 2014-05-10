@@ -71,22 +71,22 @@
 					</tr>
 					<tr>
 						<th>ID</th>
-						<th>TIME</th>
 						<th>SBP</th>
 						<th>DBP</th>
 						<th>HAND</th>
 						<th>PULSE</th>
+						<th>DATE AND TIME</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="measure" items="${measures}">
 						<tr>
 							<td>${measure.id}</td>
-							<td>${measure.datetime}</td>
 							<td>${measure.pressureBlood.sbp}</td>
 							<td>${measure.pressureBlood.dbp}</td>
 							<td>${measure.hand}</td>
 							<td>${measure.pulse}</td>
+							<td>${measure.datetime}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -106,11 +106,6 @@
 					<input id="dbp-input" name="dbp-input" type="number" min="0" max="300" size="3" class="required">
 				</div>
 
-				<div id="datetime">
-					<label for="datetimepicker">DATETIME*:</label>
-					<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
-				</div>
-
 				<div id="handSelector">
 					<label for="hand">HAND:</label>
 					<select id="hand" name="hand">
@@ -122,6 +117,11 @@
 				<div id="pulse-measure">
 					<label for="pulse-input">PULSE:</label>
 					<input id="pulse-input" name="pulse-input" type="number" min="0" max="300" size="3">
+				</div>
+				
+				<div id="datetime">
+					<label for="datetimepicker">DATE AND TIME*:</label>
+					<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
 				</div>
 
 				<div id="add-measure-button">

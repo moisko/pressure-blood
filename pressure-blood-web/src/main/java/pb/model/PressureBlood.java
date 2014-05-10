@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name = "PRESSUREBLOOD")
 public class PressureBlood implements Serializable {
@@ -17,7 +19,9 @@ public class PressureBlood implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	@Expose
 	private Integer sbp;
+	@Expose
 	private Integer dbp;
 	private Measurement measurement;
 
