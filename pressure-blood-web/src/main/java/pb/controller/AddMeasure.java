@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pb.model.Measurement;
+import pb.model.PressureBlood;
 import pb.model.Users;
 
 import com.google.gson.Gson;
@@ -46,6 +47,7 @@ public class AddMeasure extends HttpServlet {
 					new DatetimeDeserializer());
 			Gson gson = gsonBuilder.create();
 			Measurement measurement = gson.fromJson(br, Measurement.class);
+			validateMeasureArguments(measurement);
 			EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 					.getAttribute("emf");
 			EntityManager em = emf.createEntityManager();
@@ -85,6 +87,35 @@ public class AddMeasure extends HttpServlet {
 				throw new JsonParseException(e.getMessage(), e);
 			}
 			return datetime;
+		}
+	}
+
+	private void validateMeasureArguments(Measurement measure) {
+		PressureBlood pb = measure.getPressureBlood();
+		Integer sbp = pb.getSbp();
+		if (sbp == null) {
+			throw new IllegalArgumentException("SBP value not set");
+		} else if (sbp <= 0) {
+			throw new IllegalArgumentException(
+					"SBP value must be greater than or qeual to 0");
+		}
+		Integer dbp = pb.getDbp();
+		if (dbp == null) {
+			throw new IllegalArgumentException("DBP value not set");
+		} else if (dbp < 0) {
+			throw new IllegalArgumentException(
+					"DBP value must be greater than or qeual to 0");
+		}
+		Integer pulse = measure.getPulse();
+		if (pulse == null) {
+			throw new IllegalArgumentException("Pulse value not set");
+		} else if (pulse < 0) {
+			throw new IllegalArgumentException(
+					"Pulse value must be greater than or qeual to 0");
+		}
+		Date datetime = measure.getDatetime();
+		if (datetime == null) {
+			throw new IllegalArgumentException("Datetime value not set");
 		}
 	}
 
