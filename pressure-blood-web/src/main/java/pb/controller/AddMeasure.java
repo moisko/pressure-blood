@@ -47,7 +47,7 @@ public class AddMeasure extends HttpServlet {
 					new DatetimeDeserializer());
 			Gson gson = gsonBuilder.create();
 			Measurement measurement = gson.fromJson(br, Measurement.class);
-			validateMeasureArguments(measurement);
+			validateMeasure(measurement);
 			EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 					.getAttribute("emf");
 			EntityManager em = emf.createEntityManager();
@@ -90,7 +90,7 @@ public class AddMeasure extends HttpServlet {
 		}
 	}
 
-	private void validateMeasureArguments(Measurement measure) {
+	private void validateMeasure(Measurement measure) {
 		PressureBlood pb = measure.getPressureBlood();
 		Integer sbp = pb.getSbp();
 		if (sbp == null) {
