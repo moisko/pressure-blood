@@ -31,6 +31,7 @@ public class DeleteMeasure extends HttpServlet {
 
 		String username = request.getRemoteUser();
 		String measureId = request.getParameter("id");
+		validateMeasureId(measureId);
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute("emf");
 		EntityManager em = emf.createEntityManager();
@@ -71,6 +72,18 @@ public class DeleteMeasure extends HttpServlet {
 			writer.write(json);
 		} finally {
 			writer.close();
+		}
+	}
+
+	private void validateMeasureId(String measureId) {
+		try {
+			Integer id = Integer.parseInt(measureId);
+			if (id < 1) {
+				throw new IllegalArgumentException(
+						"Measure ID value must be greater than or equal to 1");
+			}
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Measure ID value not a number");
 		}
 	}
 
