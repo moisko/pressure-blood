@@ -77,7 +77,7 @@ public class DeleteMeasure extends HttpServlet {
 
 	private void validateMeasureId(String measureId) {
 		try {
-			Integer id = Integer.parseInt(measureId);
+			Long id = Long.parseLong(measureId);
 			if (id < 1) {
 				throw new IllegalArgumentException(
 						"Measure ID value must be greater than or equal to 1");
