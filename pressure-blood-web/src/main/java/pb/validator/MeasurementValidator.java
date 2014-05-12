@@ -15,6 +15,9 @@ public class MeasurementValidator {
 		} else if (sbp <= 0) {
 			throw new IllegalArgumentException(
 					"SBP value must be greater than or qeual to 0");
+		} else if (sbp > 300) {
+			throw new IllegalArgumentException(
+					"SBP value must be less than or qeual to 300");
 		}
 		Integer dbp = pb.getDbp();
 		if (dbp == null) {
@@ -22,6 +25,9 @@ public class MeasurementValidator {
 		} else if (dbp < 0) {
 			throw new IllegalArgumentException(
 					"DBP value must be greater than or qeual to 0");
+		} else if (dbp > 300) {
+			throw new IllegalArgumentException(
+					"DBP value must be less than or qeual to 300");
 		}
 		Integer pulse = measure.getPulse();
 		if (pulse == null) {
