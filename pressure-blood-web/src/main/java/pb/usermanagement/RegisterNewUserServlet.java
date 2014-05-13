@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import pb.controller.JsonResponse;
 import pb.model.Users;
 import pb.model.UsersDTO;
+import pb.validator.UserValidator;
 
 import com.google.gson.Gson;
 
@@ -37,6 +38,7 @@ public class RegisterNewUserServlet extends HttpServlet {
 					request.getInputStream()));
 			UsersDTO userDTO = gson.fromJson(br, UsersDTO.class);
 			Users user = new Users(userDTO);
+			UserValidator.validateUser(user);
 			JsonResponse jsonResponse = registerUser(user);
 			if (jsonResponse.getStatus().equals(JsonResponse.Status.SUCCESS)) {
 				request.login(user.getUsername(), user.getPassword());
