@@ -3,9 +3,6 @@ package pb.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pb.controller.JsonResponse.Status;
-import pb.model.Measurement;
-import pb.validator.MeasurementValidator;
+import pb.db.PressureBloodDAO;
 
 import com.google.gson.Gson;
 
@@ -26,51 +22,28 @@ public class DeleteMeasure extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 		response.setContentType("application/json");
 
-		JsonResponse jsonResponse = null;
+		String id = request.getParameter("id");
+		String remoteUser = request.getRemoteUser();
 
-		String username = request.getRemoteUser();
-		String measureId = request.getParameter("id");
-		MeasurementValidator.validateMeasureId(measureId);
-		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
-				.getAttribute("emf");
-		EntityManager em = emf.createEntityManager();
-		try {
-			Measurement measure = em.find(Measurement.class,
-					Long.parseLong(measureId));
-			if (measure == null) {
-				jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
-						"Measure with id " + measureId + " not found", null);
-			} else {
-				if (measure.getUser().getUsername().equals(username)) {
-					EntityTransaction et = em.getTransaction();
-					try {
-						et.begin();
-						em.remove(measure);
-						et.commit();
-					} finally {
-						if (et.isActive()) {
-							et.rollback();
-						}
-					}
-					jsonResponse = new JsonResponse(Status.MEASURE_FOUND,
-							"Measure with id " + measureId
-									+ " successfully deleted from db", null);
-				} else {
-					jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
-							"Measure with id " + measureId + " not found", null);
-				}
-			}
-		} finally {
-			em.close();
+		PressureBloodDAO pbDao = new PressureBloodDAO(getServletContext());
+		long measureId = pbDao.deleteMeasure(id, remoteUser);
+		JsonResponse jsonResponse = null;
+		if (measureId == 0L) {
+			jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
+					"Measure with id " + id + " not found", null);
+		} else {
+			jsonResponse = new JsonResponse(Status.MEASURE_FOUND,
+					"Measure with id " + id + " successfully deleted from db",
+					null);
 		}
 
 		PrintWriter writer = response.getWriter();
 		try {
 			Gson gson = new Gson();
-			String json = gson.toJson(jsonResponse);
-			writer.write(json);
+			writer.write(gson.toJson(jsonResponse));
 		} finally {
 			writer.close();
 		}

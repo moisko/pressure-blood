@@ -3,23 +3,20 @@ package pb.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pb.db.PressureBloodDAO;
 import pb.model.Measurement;
-import pb.model.Users;
-import pb.validator.MeasurementValidator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,7 +33,10 @@ public class AddMeasure extends HttpServlet {
 	@Override
 	protected void doPut(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+
+		response.setContentType("application/json");
+
+		String remoteUSer = request.getRemoteUser();
 
 		BufferedReader br = null;
 		try {
@@ -45,27 +45,18 @@ public class AddMeasure extends HttpServlet {
 			GsonBuilder gsonBuilder = new GsonBuilder();
 			gsonBuilder.registerTypeAdapter(Date.class,
 					new DatetimeDeserializer());
+			gsonBuilder.excludeFieldsWithoutExposeAnnotation();
 			Gson gson = gsonBuilder.create();
+
 			Measurement measure = gson.fromJson(br, Measurement.class);
-			MeasurementValidator.validateMeasure(measure);
-			EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
-					.getAttribute("emf");
-			EntityManager em = emf.createEntityManager();
-			Users user = em.find(Users.class, request.getRemoteUser());
-			measure.setUser(user);
+			PressureBloodDAO pbDao = new PressureBloodDAO(getServletContext());
+			pbDao.addMeasure(measure, remoteUSer);
+
+			PrintWriter writer = response.getWriter();
 			try {
-				EntityTransaction et = em.getTransaction();
-				try {
-					et.begin();
-					em.persist(measure);
-					et.commit();
-				} finally {
-					if (et.isActive()) {
-						et.rollback();
-					}
-				}
+				writer.write(gson.toJson(measure));
 			} finally {
-				em.close();
+				writer.close();
 			}
 		} finally {
 			if (br != null) {

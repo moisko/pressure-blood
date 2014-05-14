@@ -19,7 +19,11 @@ var measure = {
 			},
 			error : function(xhr, status) {
 				alert("Failed to add measure in dbs. Server returned status code " + xhr.status);
-				window.location = "/pressure-blood-web/o.getMeasures";
+
+				$("#sbp-input").val("");
+				$("#dbp-input").val("");
+				$("#datetimepicker").val("");
+				$("#pulse-input").val("");
 			}
 		});
 	},
@@ -31,14 +35,18 @@ var measure = {
 			dataType : "json",
 			success : function(json) {
 				var status = json.status;
-				if(status == "MEASURE_NOT_FOUND") {
+				if(status === "MEASURE_NOT_FOUND") {
 					alert(json.message);
+
+					$("#measure-id-input").val("");
+				} else if(status === "MEASURE_FOUND") {
+					reloadBody();
 				}
-				reloadBody();
 			},
 			error : function() {
 				alert("Failed to delete measure with id " + $("#measure-id-input").val());
-				window.location = "/pressure-blood-web/o.getMeasures";
+
+				$("#measure-id-input").val("");
 			}
 		});
 	},
