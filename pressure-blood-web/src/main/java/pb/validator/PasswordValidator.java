@@ -9,4 +9,13 @@ public class PasswordValidator {
 		}
 		return false;
 	}
+	
+	public static void validateUserPassword(String password){
+		if (password == null) {
+			throw new IllegalArgumentException("Password value not set");
+		} else if (password.length() < 4) {
+			throw new IllegalArgumentException(
+					"Password value must be greater than or qeual to 4");
+		}
+	}
 }

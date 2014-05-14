@@ -13,12 +13,7 @@ public class UserValidator {
 					"Username value must be greater than or qeual to 2");
 		}
 		String password = user.getPassword();
-		if (password == null) {
-			throw new IllegalArgumentException("Password value not set");
-		} else if (password.length() < 4) {
-			throw new IllegalArgumentException(
-					"Password value must be greater than or qeual to 4");
-		}
+		PasswordValidator.validateUserPassword(password);
 		String email = user.getEmail();
 		if (email == null) {
 			throw new IllegalArgumentException("Email value not set");
