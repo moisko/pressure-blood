@@ -17,8 +17,8 @@ var measure = {
 			success : function() {
 				window.location = "/pressure-blood-web/o.getMeasures";
 			},
-			error : function() {
-				alert("Failed to add measure in db");
+			error : function(xhr, status) {
+				alert("Failed to add measure in dbs. Server returned status code " + xhr.status);
 				window.location = "/pressure-blood-web/o.getMeasures";
 			}
 		});
