@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import pb.model.Measurement;
 import pb.model.Users;
 
-@WebServlet("/GetMeasures")
+@WebServlet("/o.getMeasures")
 public class GetMeasures extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

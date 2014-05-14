@@ -18,7 +18,7 @@ import pb.validator.MeasurementValidator;
 
 import com.google.gson.Gson;
 
-@WebServlet("/DeleteMeasure")
+@WebServlet("/o.deleteMeasure")
 public class DeleteMeasure extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

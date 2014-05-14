@@ -20,7 +20,7 @@
 <script>
 	var reloadBody = function() {
 		$.ajax({
-			url : "/pressure-blood-web/GetMeasures",
+			url : "/pressure-blood-web/o.getMeasures",
 			context : document.body,
 			success : function(s) {
 				$(this).html(s);
@@ -59,7 +59,7 @@
 	<div id="user-info">
 		<nav>
 			<span>${pageContext.request.remoteUser}</span> |
-			<a href="/pressure-blood-web/LogoutServlet">logout</a>
+			<a href="/pressure-blood-web/o.logout">logout</a>
 		</nav>
 	</div>
 	<div id="main">

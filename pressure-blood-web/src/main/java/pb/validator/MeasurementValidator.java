@@ -29,13 +29,6 @@ public class MeasurementValidator {
 			throw new IllegalArgumentException(
 					"DBP value must be less than or qeual to 300");
 		}
-		Integer pulse = measure.getPulse();
-		if (pulse == null) {
-			throw new IllegalArgumentException("Pulse value not set");
-		} else if (pulse < 0) {
-			throw new IllegalArgumentException(
-					"Pulse value must be greater than or qeual to 0");
-		}
 		Date datetime = measure.getDatetime();
 		if (datetime == null) {
 			throw new IllegalArgumentException("Datetime value not set");

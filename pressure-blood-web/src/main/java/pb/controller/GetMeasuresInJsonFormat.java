@@ -19,7 +19,7 @@ import pb.model.Users;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-@WebServlet("/GetMeasuresInJsonFormat")
+@WebServlet("/o.getMeasauresInJsonFormat")
 public class GetMeasuresInJsonFormat extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

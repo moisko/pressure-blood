@@ -1,7 +1,7 @@
 var register = {
 		registerUser : function() {
 			$.ajax({
-				url : "/pressure-blood-web/RegisterNewUserServlet",
+				url : "/pressure-blood-web/o.registerUser",
 				type : "POST",
 				dataType : "json",
 				contentType : "application/json; charset=utf-8",
@@ -15,7 +15,7 @@ var register = {
 					var status = json.status;
 					switch (status) {
 						case "SUCCESS" :
-							window.location.href = "/pressure-blood-web/GetMeasures";
+							window.location.href = "/pressure-blood-web/o.getMeasures";
 							break;
 						case "EXISTS":
 						case "ERROR":

@@ -1,7 +1,7 @@
 var measure = {
 	addMeasure : function() {
 		$.ajax({
-			url : "/pressure-blood-web/AddMeasure",
+			url : "/pressure-blood-web/o.addMeasure",
 			type : "PUT",
 			dataType : "html",
 			contentType : "application/json; charset=utf-8",
@@ -15,18 +15,18 @@ var measure = {
 				"pulse" : parseInt($("#pulse-input").val())
 			}),
 			success : function() {
-				window.location = "/pressure-blood-web/GetMeasures";
+				window.location = "/pressure-blood-web/o.getMeasures";
 			},
 			error : function() {
 				alert("Failed to add measure in db");
-				window.location = "/pressure-blood-web/GetMeasures";
+				window.location = "/pressure-blood-web/o.getMeasures";
 			}
 		});
 	},
 	deleteMeasure : function() {
 		$.ajax({
 			type : "POST",
-			url : "/pressure-blood-web/DeleteMeasure",
+			url : "/pressure-blood-web/o.deleteMeasure",
 			data : "id=" + $("#measure-id-input").val(),
 			dataType : "json",
 			success : function(json) {
@@ -38,7 +38,7 @@ var measure = {
 			},
 			error : function() {
 				alert("Failed to delete measure with id " + $("#measure-id-input").val());
-				window.location = "/pressure-blood-web/GetMeasures";
+				window.location = "/pressure-blood-web/o.getMeasures";
 			}
 		});
 	},

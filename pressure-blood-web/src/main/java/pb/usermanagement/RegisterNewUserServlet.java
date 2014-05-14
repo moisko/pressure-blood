@@ -21,7 +21,7 @@ import pb.validator.UserValidator;
 
 import com.google.gson.Gson;
 
-@WebServlet("/RegisterNewUserServlet")
+@WebServlet("/o.registerUser")
 public class RegisterNewUserServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
