@@ -40,7 +40,7 @@ var measure = {
 
 					$("#measure-id-input").val("");
 				} else if(status === "MEASURE_FOUND") {
-					reloadBody();
+					getMeasures();
 				}
 			},
 			error : function() {

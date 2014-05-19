@@ -18,7 +18,7 @@
 
 <script src = "scripts/pb/measure.js"></script>
 <script>
-	var reloadBody = function() {
+	var getMeasures = function() {
 		$.ajax({
 			url : "/pressure-blood-web/o.getMeasures",
 			context : document.body,
@@ -55,7 +55,7 @@
 	});
 </script>
 </head>
-<body onload="reloadBody()">
+<body onload="getMeasures()">
 	<div id="user-info">
 		<nav>
 			<span>${pageContext.request.remoteUser}</span> |

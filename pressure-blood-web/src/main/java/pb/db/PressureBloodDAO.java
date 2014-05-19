@@ -69,10 +69,13 @@ public class PressureBloodDAO {
 		Measurement measure = em.find(Measurement.class,
 				Long.parseLong(measureId));
 		try {
+			// if the entity does not exist
 			if (measure == null) {
 				return 0L;
 			} else {
-				if (measure.getUser().getUsername().equals(remoteUser)) {
+				// if the entity exists but does not belong to the current user
+				String measureUsername = measure.getUser().getUsername();
+				if (measureUsername.equals(remoteUser)) {
 					EntityTransaction et = em.getTransaction();
 					try {
 						et.begin();
