@@ -15,7 +15,7 @@ var measure = {
 				"pulse" : parseInt($("#pulse-input").val())
 			}),
 			success : function() {
-				window.location = "/pressure-blood-web/o.getMeasures";
+				getMeasures();
 			},
 			error : function(xhr, status) {
 				alert("Failed to add measure in db. Server returned status code " + xhr.status);
@@ -35,13 +35,13 @@ var measure = {
 			dataType : "json",
 			success : function(json) {
 				var status = json.status;
-				if(status === "MEASURE_NOT_FOUND") {
+				if(status === "MEASURE_FOUND") {
+					getMeasures();
+				} else if(status === "MEASURE_NOT_FOUND") {
 					alert(json.message);
 
 					$("#measure-id-input").val("");
-				} else if(status === "MEASURE_FOUND") {
-					getMeasures();
-				}
+				} 
 			},
 			error : function() {
 				alert("Failed to delete measure with id " + $("#measure-id-input").val());

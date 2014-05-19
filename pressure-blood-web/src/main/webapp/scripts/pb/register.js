@@ -15,18 +15,26 @@ var register = {
 					var status = json.status;
 					switch (status) {
 						case "SUCCESS" :
-							window.location.href = "/pressure-blood-web/o.getMeasures";
+							window.location.href = "/pressure-blood-web/index.jsp";
 							break;
 						case "EXISTS":
 						case "ERROR":
 							alert(json.message);
-							window.location.reload();
+
+							$("#username").val("");
+							$("#password1").val("");
+							$("#password2").val("");
+							$("#email").val("");
 							break;
 					}
 				},
 				error : function(json) {
 					alert(json.responseJSON.message);
-					window.location.reload();
+
+					$("#username").val("");
+					$("#password1").val("");
+					$("#password2").val("");
+					$("#email").val("");
 				}
 			});
 		},

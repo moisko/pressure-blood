@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pb.controller.JsonResponse;
+import pb.controller.JsonResponse.Status;
 import pb.model.Users;
 import pb.model.UsersDTO;
 import pb.validator.UserValidator;
@@ -40,19 +41,19 @@ public class RegisterNewUserServlet extends HttpServlet {
 			Users user = new Users(userDTO);
 			UserValidator.validateUser(user);
 			JsonResponse jsonResponse = registerUser(user);
-			if (jsonResponse.getStatus().equals(JsonResponse.Status.SUCCESS)) {
+			if (jsonResponse.getStatus().equals(Status.SUCCESS)) {
 				request.login(user.getUsername(), user.getPassword());
 			}
 			String json = gson.toJson(jsonResponse);
 			writer.write(json);
 		} catch (ServletException e) {
-			JsonResponse jsonResponse = new JsonResponse(
-					JsonResponse.Status.ERROR, e.getMessage(), e);
+			JsonResponse jsonResponse = new JsonResponse(Status.ERROR,
+					e.getMessage(), e);
 			String json = gson.toJson(jsonResponse);
 			writer.write(json);
 		} catch (IllegalArgumentException e) {
-			JsonResponse jsonResponse = new JsonResponse(
-					JsonResponse.Status.ERROR, e.getMessage(), e);
+			JsonResponse jsonResponse = new JsonResponse(Status.ERROR,
+					e.getMessage(), e);
 			String json = gson.toJson(jsonResponse);
 			writer.write(json);
 		} finally {
@@ -81,12 +82,11 @@ public class RegisterNewUserServlet extends HttpServlet {
 						et.rollback();
 					}
 				}
-				jsonResponse = new JsonResponse(JsonResponse.Status.SUCCESS,
-						"User " + user.getUsername()
-								+ " successfully registered", null);
+				jsonResponse = new JsonResponse(Status.SUCCESS, "User "
+						+ user.getUsername() + " successfully registered", null);
 			} else {
-				jsonResponse = new JsonResponse(JsonResponse.Status.EXISTS,
-						"User " + user.getUsername() + " already exists", null);
+				jsonResponse = new JsonResponse(Status.EXISTS, "User "
+						+ user.getUsername() + " already exists", null);
 			}
 		} finally {
 			em.close();
