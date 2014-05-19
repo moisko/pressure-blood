@@ -3,6 +3,7 @@ package pb.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +27,9 @@ public class GetMeasures extends HttpServlet {
 
 		String remoteUSer = request.getRemoteUser();
 
-		PressureBloodDAO pbDao = new PressureBloodDAO(getServletContext());
+		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
+				.getAttribute("emf");
+		PressureBloodDAO pbDao = new PressureBloodDAO(emf);
 		List<Measurement> measures = pbDao.getMeasures(remoteUSer);
 		request.setAttribute("measures", measures);
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");

@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import javax.servlet.ServletContext;
 
 import pb.model.Measurement;
 import pb.model.Users;
@@ -14,16 +13,14 @@ import pb.validator.MeasurementValidator;
 
 public class PressureBloodDAO {
 
-	private final ServletContext servletContext;
+	private final EntityManagerFactory emf;
 
-	public PressureBloodDAO(ServletContext servletContext) {
-		this.servletContext = servletContext;
+	public PressureBloodDAO(EntityManagerFactory emf) {
+		this.emf = emf;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Measurement> getMeasures(String remoteUser) {
-		EntityManagerFactory emf = (EntityManagerFactory) servletContext
-				.getAttribute("emf");
 		EntityManager em = emf.createEntityManager();
 		try {
 			Users user = em.find(Users.class, remoteUser);
@@ -39,8 +36,6 @@ public class PressureBloodDAO {
 	public void addMeasure(Measurement measure, String remoteUser) {
 		MeasurementValidator.validateMeasure(measure);
 
-		EntityManagerFactory emf = (EntityManagerFactory) servletContext
-				.getAttribute("emf");
 		EntityManager em = emf.createEntityManager();
 		Users user = em.find(Users.class, remoteUser);
 		measure.setUser(user);
@@ -63,8 +58,6 @@ public class PressureBloodDAO {
 	public long deleteMeasure(String measureId, String remoteUser) {
 		MeasurementValidator.validateMeasureId(measureId);
 
-		EntityManagerFactory emf = (EntityManagerFactory) servletContext
-				.getAttribute("emf");
 		EntityManager em = emf.createEntityManager();
 		Measurement measure = em.find(Measurement.class,
 				Long.parseLong(measureId));

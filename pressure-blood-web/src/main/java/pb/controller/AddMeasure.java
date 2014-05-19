@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +50,9 @@ public class AddMeasure extends HttpServlet {
 			Gson gson = gsonBuilder.create();
 
 			Measurement measure = gson.fromJson(br, Measurement.class);
-			PressureBloodDAO pbDao = new PressureBloodDAO(getServletContext());
+			EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
+					.getAttribute("emf");
+			PressureBloodDAO pbDao = new PressureBloodDAO(emf);
 			pbDao.addMeasure(measure, remoteUSer);
 
 			PrintWriter writer = response.getWriter();
