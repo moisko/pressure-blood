@@ -34,3 +34,7 @@
 #measure-id-input {
 	width: 150px;
 }
+
+#measures-table td {
+	text-align: center;
+}
