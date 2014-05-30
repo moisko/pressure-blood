@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Pressure Blood App</title>
 
-<link rel="stylesheet" type="text/css" href="styles/jquery/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="styles/jquery/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="styles/jquery/jquery.datetimepicker.css">
 
 <link rel="stylesheet" type="text/css" href="styles/pb/index.css">
