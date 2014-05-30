@@ -22,10 +22,10 @@
 
 	<security-constraint>
 		<web-resource-collection>
-			<web-resource-name>Update PB database</web-resource-name>
+			<web-resource-name>PB protected resources</web-resource-name>
+			<url-pattern>/index.jsp</url-pattern>
 			<url-pattern>/o.addMeasure</url-pattern>
 			<url-pattern>/o.getMeasures</url-pattern>
-			<url-pattern>/o.getMeasuresInJsonFormat</url-pattern>
 			<url-pattern>/o.deleteMeasure</url-pattern>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>

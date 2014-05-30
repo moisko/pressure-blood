@@ -2,7 +2,6 @@ package pb.usermanagement;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,17 +16,8 @@ public class LogoutServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
 		request.logout();
-		request.getSession().invalidate();
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 
 }

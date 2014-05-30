@@ -1,5 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,26 +9,18 @@
 
 <link rel="stylesheet" type="text/css" href="styles/pb/index.css">
 
-<script src="scripts/jquery/jquery-1.10.2.js"></script>
-<script src="scripts/jquery/jquery.validate.js"></script>
-<script src="scripts/jquery/jquery.dataTables.js"></script>
+<script src="scripts/jquery/jquery-1.11.1.min.js"></script>
+<script src="scripts/jquery/jquery.validate.min.js"></script>
+<script src="scripts/jquery/jquery.dataTables.min.js"></script>
 <script src="scripts/jquery/jquery.datetimepicker.js"></script>
 
 <script src = "scripts/pb/measure.js"></script>
 <script>
-	var getMeasures = function() {
-		$.ajax({
-			url : "/pressure-blood-web/o.getMeasures",
-			context : document.body,
-			success : function(s) {
-				$(this).html(s);
-			}
-		});
-	};
-
 	// When the browser is ready ...
 	$(function() {
-		$("#measures-table").dataTable();
+		var measuresTable = $("#measures-table").dataTable();
+
+		measure.initMeasuresTable(measuresTable);
 
 		$("#datetimepicker").datetimepicker({
 			format : "d.m.Y H:i",
@@ -40,7 +30,7 @@
 		$("#add-measure-form").submit(function(event) {
 			measure.validateAddMeasureForm();
 			if (measure.isAddMeasureFormValid()) {
-				measure.addMeasure();
+				measure.addMeasure(measuresTable);
 			}
 			event.preventDefault();
 		});
@@ -48,14 +38,14 @@
 		$("#delete-measure-form").submit(function(event) {
 			measure.validateDeleteMeasureForm();
 			if (measure.isDeleteMeasureFormValid()) {
-				measure.deleteMeasure();
+				measure.deleteMeasure(measuresTable);
 			}
 			event.preventDefault();
 		});
 	});
 </script>
 </head>
-<body onload="getMeasures()">
+<body>
 	<div id="user-info">
 		<nav>
 			<span>${pageContext.request.remoteUser}</span> |
@@ -64,10 +54,10 @@
 	</div>
 	<div id="main">
 		<div id="measures">
-			<table id="measures-table" border="1" class="display">
+			<table id="measures-table">
 				<thead>
 					<tr>
-						<th colspan="6">${measures.size()} Measures</th>
+						<th colspan="6">Measures</th>
 					</tr>
 					<tr>
 						<th>ID</th>
@@ -79,16 +69,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="measure" items="${measures}">
-						<tr>
-							<td>${measure.id}</td>
-							<td>${measure.pressureBlood.sbp}</td>
-							<td>${measure.pressureBlood.dbp}</td>
-							<td>${measure.hand}</td>
-							<td>${measure.pulse}</td>
-							<td>${measure.datetime}</td>
-						</tr>
-					</c:forEach>
 				</tbody>
 			</table>
 		</div>

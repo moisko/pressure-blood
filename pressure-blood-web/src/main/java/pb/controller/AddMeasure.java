@@ -37,8 +37,6 @@ public class AddMeasure extends HttpServlet {
 
 		response.setContentType("application/json");
 
-		String remoteUSer = request.getRemoteUser();
-
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new InputStreamReader(
@@ -53,11 +51,12 @@ public class AddMeasure extends HttpServlet {
 			EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 					.getAttribute("emf");
 			PressureBloodDAO pbDao = new PressureBloodDAO(emf);
-			pbDao.addMeasure(measure, remoteUSer);
+			pbDao.addMeasure(measure, request.getRemoteUser());
 
 			PrintWriter writer = response.getWriter();
 			try {
-				writer.write(gson.toJson(measure));
+				String json = gson.toJson(measure);
+				writer.write(json);
 			} finally {
 				writer.close();
 			}
@@ -74,13 +73,12 @@ public class AddMeasure extends HttpServlet {
 				JsonDeserializationContext context) throws JsonParseException {
 			String datetimeString = json.getAsString();
 			SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy H:mm");
-			Date datetime = null;
 			try {
-				datetime = formatter.parse(datetimeString);
+				Date datetime = formatter.parse(datetimeString);
+				return datetime;
 			} catch (ParseException e) {
 				throw new JsonParseException(e.getMessage(), e);
 			}
-			return datetime;
 		}
 	}
 

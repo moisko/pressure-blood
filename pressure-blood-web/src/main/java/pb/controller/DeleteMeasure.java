@@ -1,7 +1,6 @@
 package pb.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
@@ -10,44 +9,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pb.controller.JsonResponse.Status;
 import pb.db.PressureBloodDAO;
-
-import com.google.gson.Gson;
 
 @WebServlet("/o.deleteMeasure")
 public class DeleteMeasure extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	private static final String MEASURE_ID = "id";
+
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		response.setContentType("application/json");
+		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
+				.getAttribute("emf");
 
-		String id = request.getParameter("id");
-		String remoteUser = request.getRemoteUser();
-
-		EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
 		PressureBloodDAO pbDao = new PressureBloodDAO(emf);
-		long measureId = pbDao.deleteMeasure(id, remoteUser);
-		JsonResponse jsonResponse = null;
-		if (measureId == 0L) {
-			jsonResponse = new JsonResponse(Status.MEASURE_NOT_FOUND,
-					"Measure with id " + id + " not found", null);
-		} else {
-			jsonResponse = new JsonResponse(Status.MEASURE_FOUND,
-					"Measure with id " + id + " successfully deleted from db",
-					null);
-		}
 
-		PrintWriter writer = response.getWriter();
-		try {
-			Gson gson = new Gson();
-			writer.write(gson.toJson(jsonResponse));
-		} finally {
-			writer.close();
+		boolean measureDeleted = pbDao.deleteMeasure(
+				request.getParameter(MEASURE_ID), request.getRemoteUser());
+
+		setStatusCode(response, measureDeleted);
+	}
+
+	private void setStatusCode(HttpServletResponse response,
+			boolean measureDeleted) {
+		if (measureDeleted) {
+			response.setStatus(HttpServletResponse.SC_OK);
+		} else {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		}
 	}
 
