@@ -1,39 +1,4 @@
 var measure = {
-	initMeasuresTable : function(measuresTable) {
-		$.get("/pressure-blood-web/o.getMeasures", function(json) {
-			$.each(json, function(index, object) {
-				var measure = json[index];
-				measuresTable.fnAddData([ getId(measure),
-							getSbp(measure),
-							getDbp(measure),
-							getHand(measure),
-							getPulse(measure),
-							getDatetime(measure) ]);
-			});
-		});
-		getId = function(measure) {
-			return measure.id;
-		};
-		getSbp = function(measure) {
-			return measure.pressureBlood.sbp;
-		};
-		getDbp = function(measure) {
-			return measure.pressureBlood.dbp;
-		};
-		getHand = function(measure) {
-			return measure.hand;
-		};
-		getPulse = function(measure) {
-			var pulse = measure.pulse;
-			if(!pulse) {
-				pulse = "";
-			}
-			return pulse;
-		};
-		getDatetime = function(measure) {
-			return measure.datetime;
-		};
-	},
 	addMeasure : function(measuresTable) {
 		$.ajax({
 			url : "/pressure-blood-web/o.addMeasure",
@@ -51,12 +16,12 @@ var measure = {
 			}),
 			success : function(json) {
 				var measure = json;
-				measuresTable.fnAddData([ getId(measure),
-							getSbp(measure),
+				measuresTable.fnAddData([ getSbp(measure),
 							getDbp(measure),
 							getHand(measure),
 							getPulse(measure),
-							getDatetime(measure) ]);
+							getDatetime(measure),
+							getRemoveLink(measure) ]);
 
 				$("#sbp-input").val("");
 				$("#dbp-input").val("");
@@ -94,25 +59,27 @@ var measure = {
 		getDatetime = function(measure) {
 			return measure.datetime;
 		};
+		getRemoveLink = function(measure) {
+			var removeLink = "<a id=\"" + measure.id + "\" href=\"\">Delete measure</a>";
+			return removeLink;
+		};
 	},
-	deleteMeasure : function(measuresTable) {
+	deleteMeasure : function(measuresTable, rowToDelete, id) {
 		$.ajax({
 			type : "POST",
 			url : "/pressure-blood-web/o.deleteMeasure",
-			data : "id=" + $("#measure-id-input").val(),
+			data : "id=" + id,
 			statusCode : {
 				200 : function(response) {
-					window.location.reload();
+					measuresTable.fnDeleteRow(rowToDelete);
 				},
 				404 : function(resposne) {
 					alert("Measure with id " + $("#measure-id-input").val()
 							+ " not found");
-					$("#measure-id-input").val("");
 				},
 				500 : function(response) {
 					alert("Failed to delete measure with id "
 							+ $("#measure-id-input").val());
-					$("#measure-id-input").val("");
 				}
 			}
 		});

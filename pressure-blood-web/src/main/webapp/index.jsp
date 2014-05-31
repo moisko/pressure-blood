@@ -15,12 +15,20 @@
 <script src="scripts/jquery/jquery.datetimepicker.js"></script>
 
 <script src = "scripts/pb/measure.js"></script>
+<script src="scripts/pb/measuresTable.js"></script>
 <script>
 	// When the browser is ready ...
 	$(function() {
 		var measuresTable = $("#measures-table").dataTable();
 
-		measure.initMeasuresTable(measuresTable);
+		pbMeasuresTable.initMeasuresTable(measuresTable);
+
+		$("#measures-table").delegate("tbody tr td a", "click", function(event) {
+			var id = $(this).attr("id");
+			var rowToDelete = $(this).parent().parent();
+			measure.deleteMeasure(measuresTable, rowToDelete, id);
+			event.preventDefault();
+		});
 
 		$("#datetimepicker").datetimepicker({
 			format : "d.m.Y H:i",
@@ -60,12 +68,12 @@
 						<th colspan="6">Measures</th>
 					</tr>
 					<tr>
-						<th>ID</th>
 						<th>SBP</th>
 						<th>DBP</th>
 						<th>HAND</th>
 						<th>PULSE</th>
 						<th>DATE AND TIME</th>
+						<th>DELETE</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -106,19 +114,6 @@
 
 				<div id="add-measure-button">
 					<button type="submit">Add measure</button>
-				</div>
-			</form>
-		</div>
-
-		<div id="delete-measure">
-			<h2>Delete measure</h2>
-			<form id="delete-measure-form" action="">
-				<div id="measure-id">
-					<label for="measure-id-input">ID*:</label>
-					<input id="measure-id-input" name="measure-id-input" type="number" min="1" class="required">
-				</div>
-				<div id="delete-measure-button">
-					<button type="submit">Delete measure</button>
 				</div>
 			</form>
 		</div>

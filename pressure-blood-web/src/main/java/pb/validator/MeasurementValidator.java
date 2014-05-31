@@ -12,7 +12,7 @@ public class MeasurementValidator {
 		Integer sbp = pb.getSbp();
 		if (sbp == null) {
 			throw new IllegalArgumentException("SBP value not set");
-		} else if (sbp <= 0) {
+		} else if (sbp < 0) {
 			throw new IllegalArgumentException(
 					"SBP value must be greater than or qeual to 0");
 		} else if (sbp > 300) {
