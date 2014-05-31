@@ -43,13 +43,6 @@
 			event.preventDefault();
 		});
 
-		$("#delete-measure-form").submit(function(event) {
-			measure.validateDeleteMeasureForm();
-			if (measure.isDeleteMeasureFormValid()) {
-				measure.deleteMeasure(measuresTable);
-			}
-			event.preventDefault();
-		});
 	});
 </script>
 </head>
