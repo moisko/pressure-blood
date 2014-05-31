@@ -42,7 +42,6 @@
 			}
 			event.preventDefault();
 		});
-
 	});
 </script>
 </head>
