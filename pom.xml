@@ -5,7 +5,7 @@
   <groupId>pb</groupId>
   <artifactId>pressure-blood</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
 
   <name>pressure-blood</name>
 
