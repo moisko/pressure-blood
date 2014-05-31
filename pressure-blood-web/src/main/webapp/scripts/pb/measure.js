@@ -109,27 +109,7 @@ var measure = {
 			}
 		});
 	},
-	validateDeleteMeasureForm : function() {
-		$("#delete-measure-form").validate({
-			rules : {
-				required : true
-			},
-			errorPlacement : function(error, element) {
-			},
-			highlight : function(element, errorClass, validClass) {
-				var label = $("label[for='" + element.id + "']");
-				$(label).css("color", "red");
-			},
-			unhighlight : function(element, errorClass, validClass) {
-				var label = $("label[for='" + element.id + "']");
-				$(label).css("color", "black");
-			}
-		});
-	},
 	isAddMeasureFormValid : function() {
 		return $("#add-measure-form").valid();
-	},
-	isDeleteMeasureFormValid : function() {
-		return $("#delete-measure-form").valid();
 	}
 };
