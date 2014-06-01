@@ -24,9 +24,11 @@
 		pbMeasuresTable.initMeasuresTable(measuresTable);
 
 		$("#measures-table").delegate("tbody tr td a", "click", function(event) {
-			var id = $(this).attr("id");
-			var rowToDelete = $(this).parent().parent();
-			measure.deleteMeasure(measuresTable, rowToDelete, id);
+			if(confirm("Are you sure you want to delete this measure") == true) {
+				var id = $(this).attr("id");
+				var rowToDelete = $(this).parent().parent();
+				measure.deleteMeasure(measuresTable, rowToDelete, id);
+			}
 			event.preventDefault();
 		});
 
