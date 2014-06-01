@@ -54,7 +54,7 @@
 	</div>
 	<div id="main">
 		<div id="measures">
-			<table id="measures-table">
+			<table id="measures-table" border="1">
 				<thead>
 					<tr>
 						<th colspan="6">Measures</th>
