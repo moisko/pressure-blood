@@ -7,12 +7,12 @@ var measure = {
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({
 				"pressureBlood" : {
-					"sbp" : parseInt($("#sbp-input").val()),
-					"dbp" : parseInt($("#dbp-input").val())
+					"sbp" : parseInt($("#sbp").val()),
+					"dbp" : parseInt($("#dbp").val())
 				},
 				"datetime" : $("#datetimepicker").val(),
 				"hand" : $("#hand").val(),
-				"pulse" : parseInt($("#pulse-input").val())
+				"pulse" : parseInt($("#pulse").val())
 			}),
 			success : function(json) {
 				var measure = json;
@@ -23,23 +23,20 @@ var measure = {
 							getDatetime(measure),
 							getRemoveLink(measure) ]);
 
-				$("#sbp-input").val("");
-				$("#dbp-input").val("");
-				$("#pulse-input").val("");
+				$("#sbp").val("");
+				$("#dbp").val("");
+				$("#pulse").val("");
 				$("#datetimepicker").val("");
 			},
 			error : function(xhr, status) {
 				alert("Failed to add measure in db. Server returned status code " + xhr.status);
 
-				$("#sbp-input").val("");
-				$("#dbp-input").val("");
+				$("#sbp").val("");
+				$("#dbp").val("");
+				$("#pulse").val("");
 				$("#datetimepicker").val("");
-				$("#pulse-input").val("");
 			}
 		});
-		getId = function(measure) {
-			return measure.id;
-		};		
 		getSbp = function(measure) {
 			return measure.pressureBlood.sbp;
 		};
@@ -88,10 +85,19 @@ var measure = {
 		$("#add-measure-form").validate({
 			rules : {
 				sbp : {
-					required : true
+					required : true,
+					min : 0,
+					max : 300
 				},
 				dbp : {
-					required : true
+					required : true,
+					min : 0,
+					max : 300
+				},
+				pulse : {
+					required : false,
+					min : 0,
+					max : 300
 				},
 				datetimepicker : {
 					required : true

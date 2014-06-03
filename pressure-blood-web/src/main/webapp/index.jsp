@@ -79,13 +79,13 @@
 			<h2>Add measure</h2>
 			<form id="add-measure-form" action="">
 				<div id="sbp-measure">
-					<label for="sbp-input">SBP*:</label>
-					<input id="sbp-input" name="sbp-input" type="number" min="0" max="300" size="3" class="required">
+					<label for="sbp">SBP*:</label>
+					<input id="sbp" name="sbp" type="number" min="0" max="300" size="3" class="required">
 				</div>
 
 				<div id="dbp-measure">
-					<label for="dbp-input">DBP*:</label>
-					<input id="dbp-input" name="dbp-input" type="number" min="0" max="300" size="3" class="required">
+					<label for="dbp">DBP*:</label>
+					<input id="dbp" name="dbp" type="number" min="0" max="300" size="3" class="required">
 				</div>
 
 				<div id="handSelector">
@@ -97,8 +97,8 @@
 				</div>
 
 				<div id="pulse-measure">
-					<label for="pulse-input">PULSE:</label>
-					<input id="pulse-input" name="pulse-input" type="number" min="0" max="300" size="3">
+					<label for="pulse">PULSE:</label>
+					<input id="pulse" name="pulse" type="number" min="0" max="300" size="3">
 				</div>
 				
 				<div id="datetime">

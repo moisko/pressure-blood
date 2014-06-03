@@ -19,7 +19,7 @@
 	display: inline;
 }
 
-#sbp-input,#dbp-input,#pulse-input {
+#sbp,#dbp,#pulse {
 	width: 50px;
 }
 
