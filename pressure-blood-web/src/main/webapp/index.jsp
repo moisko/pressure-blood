@@ -19,7 +19,12 @@
 <script>
 	// When the browser is ready ...
 	$(function() {
-		var measuresTable = $("#measures-table").dataTable();
+		var measuresTable = $("#measures-table").dataTable({
+			"aoColumnDefs" : [{
+				"bSortable" : false,
+				"aTargets" : ["no-sort"]
+			}]
+		});
 
 		pbMeasuresTable.initMeasuresTable(measuresTable);
 
@@ -67,7 +72,7 @@
 						<th>HAND</th>
 						<th>PULSE</th>
 						<th>DATE AND TIME</th>
-						<th>DELETE</th>
+						<th class="no-sort">DELETE</th>
 					</tr>
 				</thead>
 				<tbody>
