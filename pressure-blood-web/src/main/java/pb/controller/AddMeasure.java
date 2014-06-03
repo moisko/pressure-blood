@@ -51,7 +51,11 @@ public class AddMeasure extends HttpServlet {
 			EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 					.getAttribute("emf");
 			PressureBloodDAO pbDao = new PressureBloodDAO(emf);
-			pbDao.addMeasure(measure, request.getRemoteUser());
+			try {
+				pbDao.addMeasure(measure, request.getRemoteUser());
+			} catch (IllegalArgumentException e) {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
+			}
 
 			PrintWriter writer = response.getWriter();
 			try {

@@ -43,7 +43,7 @@ public class MeasurementValidator {
 						"Measure ID value must be greater than or equal to 1");
 			}
 		} catch (NumberFormatException ex) {
-			throw new IllegalArgumentException("Measure ID value not a number");
+			throw new IllegalArgumentException("Measure ID value is not a number");
 		}
 	}
 }

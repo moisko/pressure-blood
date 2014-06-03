@@ -27,10 +27,15 @@ public class DeleteMeasure extends HttpServlet {
 
 		PressureBloodDAO pbDao = new PressureBloodDAO(emf);
 
-		boolean measureDeleted = pbDao.deleteMeasure(
-				request.getParameter(MEASURE_ID), request.getRemoteUser());
+		try {
+			boolean measureDeleted = pbDao.deleteMeasure(
+					request.getParameter(MEASURE_ID), request.getRemoteUser());
+			setStatusCode(response, measureDeleted);
+		} catch (IllegalArgumentException e) {
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+					e.getMessage());
+		}
 
-		setStatusCode(response, measureDeleted);
 	}
 
 	private void setStatusCode(HttpServletResponse response,

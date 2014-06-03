@@ -32,12 +32,9 @@ public class GetMeasures extends HttpServlet {
 
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute("emf");
-
 		List<Measurement> measures = findAllMeasuresByUsername(emf,
 				request.getRemoteUser());
-
 		String json = toJson(measures);
-
 		sendJsonResponse(response, json);
 	}
 

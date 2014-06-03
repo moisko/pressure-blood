@@ -29,7 +29,7 @@ var measure = {
 				$("#datetimepicker").val("");
 			},
 			error : function(xhr, status) {
-				alert("Failed to add measure in db. Server returned status code " + xhr.status);
+				alert("Failed to add measure.\nServer returned: " + xhr.statusText);
 
 				$("#sbp").val("");
 				$("#dbp").val("");
@@ -66,18 +66,11 @@ var measure = {
 			type : "POST",
 			url : "/pressure-blood-web/o.deleteMeasure",
 			data : "id=" + id,
-			statusCode : {
-				200 : function(response) {
-					measuresTable.fnDeleteRow(rowToDelete);
-				},
-				404 : function(resposne) {
-					alert("Measure with id " + $("#measure-id-input").val()
-							+ " not found");
-				},
-				500 : function(response) {
-					alert("Failed to delete measure with id "
-							+ $("#measure-id-input").val());
-				}
+			success : function() {
+				measuresTable.fnDeleteRow(rowToDelete);
+			},
+			error : function(xhr, status) {
+				alert("Failed to delete measure.\nServer returned: " + xhr.statusText);
 			}
 		});
 	},
