@@ -5,18 +5,15 @@ import java.io.IOException;
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pb.db.PressureBloodDAO;
+import pb.db.MeasureDAO;
 
 @WebServlet("/o.deleteMeasure")
-public class DeleteMeasure extends HttpServlet {
+public class DeleteMeasure extends PressureBloodBaseServlet {
 
 	private static final long serialVersionUID = 1L;
-
-	private static final String MEASURE_ID = "id";
 
 	@Override
 	protected void doPost(HttpServletRequest request,
@@ -25,26 +22,13 @@ public class DeleteMeasure extends HttpServlet {
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute("emf");
 
-		PressureBloodDAO pbDao = new PressureBloodDAO(emf);
+		String username = getUsernameFromHttpRequest(request);
 
-		try {
-			boolean measureDeleted = pbDao.deleteMeasure(
-					request.getParameter(MEASURE_ID), request.getRemoteUser());
-			setStatusCode(response, measureDeleted);
-		} catch (IllegalArgumentException e) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-					e.getMessage());
-		}
+		MeasureDAO pbDao = new MeasureDAO(emf, username);
 
-	}
+		String measureId = getMeasureIdFromHttpRequest(request);
 
-	private void setStatusCode(HttpServletResponse response,
-			boolean measureDeleted) {
-		if (measureDeleted) {
-			response.setStatus(HttpServletResponse.SC_OK);
-		} else {
-			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-		}
+		pbDao.deleteMeasure(measureId);
 	}
 
 }

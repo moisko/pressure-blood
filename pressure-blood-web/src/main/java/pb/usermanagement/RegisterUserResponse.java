@@ -1,11 +1,11 @@
-package pb.controller;
+package pb.usermanagement;
 
 import java.io.Serializable;
 
-public class JsonResponse implements Serializable {
+public class RegisterUserResponse implements Serializable {
 
 	public enum Status {
-		SUCCESS("success"), ERROR("error"), EXISTS("exists");
+		SUCCESS("success"), EXISTS("exists");
 
 		private String status;
 
@@ -22,16 +22,14 @@ public class JsonResponse implements Serializable {
 
 	private Status status;
 	private String message;
-	private Exception cause;
 
-	public JsonResponse() {
+	public RegisterUserResponse() {
 
 	}
 
-	public JsonResponse(Status status, String message, Exception cause) {
+	public RegisterUserResponse(Status status, String message) {
 		this.status = status;
 		this.message = message;
-		this.cause = cause;
 	}
 
 	public Status getStatus() {
@@ -48,14 +46,6 @@ public class JsonResponse implements Serializable {
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	public Exception getCause() {
-		return cause;
-	}
-
-	public void setCause(Exception cause) {
-		this.cause = cause;
 	}
 
 }

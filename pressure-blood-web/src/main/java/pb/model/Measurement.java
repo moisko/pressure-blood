@@ -77,7 +77,7 @@ public class Measurement implements Serializable {
 		return user;
 	}
 
-	public void setUser(Users user) {
+	private void setUser(Users user) {
 		this.user = user;
 	}
 
@@ -97,6 +97,14 @@ public class Measurement implements Serializable {
 
 	public void setPulse(Integer pulse) {
 		this.pulse = pulse;
+	}
+
+	public boolean belongsToUser(String username) {
+		return user.getUsername().equals(username);
+	}
+
+	public void attachUser(Users user) {
+		setUser(user);
 	}
 
 }

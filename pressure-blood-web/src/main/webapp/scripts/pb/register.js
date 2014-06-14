@@ -18,7 +18,6 @@ var register = {
 							window.location.href = "/pressure-blood-web/index.jsp";
 							break;
 						case "EXISTS":
-						case "ERROR":
 							alert(json.message);
 
 							$("#username").val("");
