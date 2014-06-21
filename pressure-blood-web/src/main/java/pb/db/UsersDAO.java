@@ -22,7 +22,7 @@ public class UsersDAO {
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
-			if (em.find(Users.class, username) == null) {
+			if (!userExistsInDb(em, username)) {
 				registerUserToDb(em, user);
 				return new RegisterUserResponse(Status.SUCCESS, "User "
 						+ username + " successfully registered");
@@ -32,6 +32,11 @@ public class UsersDAO {
 		} finally {
 			em.close();
 		}
+	}
+
+	private boolean userExistsInDb(EntityManager em, String username) {
+		boolean userExists = em.find(Users.class, username) != null;
+		return userExists;
 	}
 
 	private void registerUserToDb(EntityManager em, Users user) {
