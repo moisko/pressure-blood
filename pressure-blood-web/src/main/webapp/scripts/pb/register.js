@@ -27,8 +27,8 @@ var register = {
 							break;
 					}
 				},
-				error : function(json) {
-					alert(json.responseJSON.message);
+				error : function(xhr, status) {
+					alertl("Failed to register user.\nServer returned " + xhr.status);
 
 					$("#username").val("");
 					$("#password1").val("");
