@@ -20,11 +20,11 @@ public class MeasureDAO {
 		this.emf = emf;
 	}
 
-	public List<Measurement> getAllMeasuresForUser(String username) {
+	public List<Measurement> getAllMeasuresForUserWithUsername(String username) {
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
-			List<Measurement> measures = getAllMeasuresForUserFromDb(em,
+			List<Measurement> measures = getAllMeasuresForUserWithUsernameFromDb(em,
 					username);
 			return measures;
 		} finally {
@@ -47,7 +47,7 @@ public class MeasureDAO {
 		}
 	}
 
-	public void deleteMeasure(String measureId) {
+	public void deleteMeasureWithId(String measureId) {
 		MeasurementValidator.validateMeasureId(measureId);
 		EntityManager em = emf.createEntityManager();
 		try {
@@ -74,7 +74,7 @@ public class MeasureDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	private List<Measurement> getAllMeasuresForUserFromDb(EntityManager em,
+	private List<Measurement> getAllMeasuresForUserWithUsernameFromDb(EntityManager em,
 			String username) {
 		Query q = em.createNamedQuery("findAllMeasuresByUsername");
 		q.setParameter("username", username);
