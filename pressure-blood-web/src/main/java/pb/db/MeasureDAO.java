@@ -32,7 +32,7 @@ public class MeasureDAO {
 		}
 	}
 
-	public void addMeasureForUser(Measurement measure, String username) {
+	public void addMeasureForUserWithUsername(Measurement measure, String username) {
 		MeasurementValidator.validateMeasure(measure);
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
