@@ -9,8 +9,8 @@ public class PasswordValidator {
 		}
 		return false;
 	}
-	
-	public static void validateUserPassword(String password){
+
+	public static void validateUserPassword(String password) {
 		if (password == null) {
 			throw new IllegalArgumentException("Password value not set");
 		} else if (password.length() < 4) {

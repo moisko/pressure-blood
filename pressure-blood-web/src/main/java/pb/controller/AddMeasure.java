@@ -29,9 +29,9 @@ public class AddMeasure extends PressureBloodBaseServlet {
 
 		String username = getUsernameFromHttpRequest(request);
 
-		MeasureDAO pbDao = new MeasureDAO(emf, username);
+		MeasureDAO pbDao = new MeasureDAO(emf);
 
-		pbDao.addMeasure(measure);
+		pbDao.addMeasureForUser(measure, username);
 
 		serializeMeasureToJson(response, measure);
 	}

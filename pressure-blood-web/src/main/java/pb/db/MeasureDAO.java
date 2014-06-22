@@ -16,29 +16,28 @@ public class MeasureDAO {
 
 	private final EntityManagerFactory emf;
 
-	private final String username;
-
-	public MeasureDAO(EntityManagerFactory emf, String username) {
+	public MeasureDAO(EntityManagerFactory emf) {
 		this.emf = emf;
-		UserValidator.validateUsername(username);
-		this.username = username;
 	}
 
-	public List<Measurement> getMeasures() {
+	public List<Measurement> getAllMeasuresForUser(String username) {
+		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
-			List<Measurement> measures = findAllMeasuresFromDb(em);
+			List<Measurement> measures = getAllMeasuresForUserFromDb(em,
+					username);
 			return measures;
 		} finally {
 			em.close();
 		}
 	}
 
-	public void addMeasure(Measurement measure) {
+	public void addMeasureForUser(Measurement measure, String username) {
 		MeasurementValidator.validateMeasure(measure);
+		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
-			Users user = findUserByUsername(em);
+			Users user = findUserByUsernameFromDb(em, username);
 			if (user != null) {
 				measure.attachUser(user);
 				addMeasureToDb(em, measure);
@@ -52,21 +51,22 @@ public class MeasureDAO {
 		MeasurementValidator.validateMeasureId(measureId);
 		EntityManager em = emf.createEntityManager();
 		try {
-			Measurement measure = findMeasureById(em, measureId);
+			Measurement measure = findMeasureByIdFromDb(em, measureId);
 			if (measure != null) {
-				deleteMeasureFromDb(em, measure);
+				String username = measure.getUsername();
+				deleteMeasureByUsernameFromDb(em, measure, username);
 			}
 		} finally {
 			em.close();
 		}
 	}
 
-	private Users findUserByUsername(EntityManager em) {
+	private Users findUserByUsernameFromDb(EntityManager em, String username) {
 		Users user = em.find(Users.class, username);
 		return user;
 	}
 
-	private Measurement findMeasureById(EntityManager em, String measureId) {
+	private Measurement findMeasureByIdFromDb(EntityManager em, String measureId) {
 		Measurement measure = em.find(Measurement.class,
 				Long.parseLong(measureId));
 		return measure;
@@ -74,7 +74,8 @@ public class MeasureDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	private List<Measurement> findAllMeasuresFromDb(EntityManager em) {
+	private List<Measurement> getAllMeasuresForUserFromDb(EntityManager em,
+			String username) {
 		Query q = em.createNamedQuery("findAllMeasuresByUsername");
 		q.setParameter("username", username);
 		List<Measurement> measures = q.getResultList();
@@ -94,7 +95,8 @@ public class MeasureDAO {
 		}
 	}
 
-	private void deleteMeasureFromDb(EntityManager em, Measurement measure) {
+	private void deleteMeasureByUsernameFromDb(EntityManager em, Measurement measure,
+			String username) {
 		if (measure.belongsToUser(username)) {
 			EntityTransaction et = em.getTransaction();
 			try {

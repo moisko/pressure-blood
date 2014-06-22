@@ -81,6 +81,10 @@ public class Measurement implements Serializable {
 		this.user = user;
 	}
 
+	public String getUsername() {
+		return this.user.getUsername();
+	}
+
 	@Enumerated(EnumType.STRING)
 	public Hand getHand() {
 		return hand;
