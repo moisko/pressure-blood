@@ -30,8 +30,8 @@ public class UserValidator {
 		if (email == null) {
 			throw new IllegalArgumentException("Email value not set");
 		} else {
-			boolean emailValida = EmailValidator.validate(email);
-			if (!emailValida) {
+			boolean emailValid = EmailValidator.validate(email);
+			if (!emailValid) {
 				throw new IllegalArgumentException("Email " + email
 						+ " is not valid");
 			}
