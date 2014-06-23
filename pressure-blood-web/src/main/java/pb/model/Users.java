@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import pb.validator.EmailValidator;
 import pb.validator.PasswordValidator;
+import pb.validator.UserValidator;
 
 @Entity
 @Table(name = "USERS")
@@ -33,10 +34,7 @@ public class Users implements Serializable {
 
 	public Users(UsersDTO userDTO) {
 		this.username = userDTO.getUsername();
-		if (username == null || username.isEmpty()) {
-			throw new IllegalArgumentException(
-					"The entered username is not valid");
-		}
+		UserValidator.validateUsername(username);
 		if (PasswordValidator.isPasswordEqualToConfirmedPassword(
 				userDTO.getPassword1(), userDTO.getPassword2())) {
 			this.password = userDTO.getPassword1();
