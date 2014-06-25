@@ -30,7 +30,8 @@ public class GetMeasures extends PressureBloodBaseServlet {
 
 		MeasureDAO measureDAO = new MeasureDAO(emf);
 
-		List<Measurement> measures = measureDAO.getAllMeasuresForUserWithUsername(username);
+		List<Measurement> measures = measureDAO
+				.getAllMeasuresForUserWithUsername(username);
 
 		serializeMeasuresToJson(response, measures);
 	}

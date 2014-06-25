@@ -24,15 +24,16 @@ public class MeasureDAO {
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
-			List<Measurement> measures = getAllMeasuresForUserWithUsernameFromDb(em,
-					username);
+			List<Measurement> measures = getAllMeasuresForUserWithUsernameFromDb(
+					em, username);
 			return measures;
 		} finally {
 			em.close();
 		}
 	}
 
-	public void addMeasureForUserWithUsername(Measurement measure, String username) {
+	public void addMeasureForUserWithUsername(Measurement measure,
+			String username) {
 		MeasurementValidator.validateMeasure(measure);
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
@@ -74,8 +75,8 @@ public class MeasureDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	private List<Measurement> getAllMeasuresForUserWithUsernameFromDb(EntityManager em,
-			String username) {
+	private List<Measurement> getAllMeasuresForUserWithUsernameFromDb(
+			EntityManager em, String username) {
 		Query q = em.createNamedQuery("findAllMeasuresByUsername");
 		q.setParameter("username", username);
 		List<Measurement> measures = q.getResultList();
@@ -95,8 +96,8 @@ public class MeasureDAO {
 		}
 	}
 
-	private void deleteMeasureByUsernameFromDb(EntityManager em, Measurement measure,
-			String username) {
+	private void deleteMeasureByUsernameFromDb(EntityManager em,
+			Measurement measure, String username) {
 		if (measure.belongsToUser(username)) {
 			EntityTransaction et = em.getTransaction();
 			try {
