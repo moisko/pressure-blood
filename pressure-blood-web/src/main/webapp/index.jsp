@@ -15,24 +15,64 @@
 <script src="scripts/jquery/jquery.datetimepicker.js"></script>
 
 <script src = "scripts/pb/measure.js"></script>
-<script src="scripts/pb/measuresTable.js"></script>
 <script>
+
+	var initMeasuresTable = function(measuresTable) {
+		$.get("/pressure-blood-web/o.getMeasures", function(json) {
+			$.each(json, function(index, value) {
+				var measure = value;
+				measuresTable.fnAddData([	getSbp(measure),
+											getDbp(measure),
+											getHand(measure),
+											getPulse(measure),
+											getDatetime(measure),
+											getRemoveLink(measure)	]);
+			});
+		});
+		getId = function(measure) {
+			return measure.id;
+		};
+		getSbp = function(measure) {
+			return measure.pressureBlood.sbp;
+		};
+		getDbp = function(measure) {
+			return measure.pressureBlood.dbp;
+		};
+		getHand = function(measure) {
+			return measure.hand;
+		};
+		getPulse = function(measure) {
+			var pulse = measure.pulse;
+			if (!pulse) {
+				pulse = "";
+			}
+			return pulse;
+		};
+		getDatetime = function(measure) {
+			return measure.datetime;
+		};
+		getRemoveLink = function(measure) {
+			var removeLink = "<a id=\"" + measure.id + "\" href=\"\">Delete measure</a>";
+			return removeLink;
+		}
+	}
+
 	// When the browser is ready ...
 	$(function() {
 		var measuresTable = $("#measures-table").dataTable({
-			"aoColumnDefs" : [{
+			"aoColumnDefs" : [ {
 				"bSortable" : false,
-				"aTargets" : ["no-sort"]
-			}]
+				"aTargets" : [ "no-sort" ]
+			} ]
 		});
 
-		pbMeasuresTable.initMeasuresTable(measuresTable);
+		initMeasuresTable(measuresTable);
 
 		$("#measures-table").delegate("tbody tr td a", "click", function(event) {
-			if(confirm("Are you sure you want to delete this measure") == true) {
-				var id = $(this).attr("id");
+			if (confirm("Are you sure you want to delete this measure") == true) {
+				var measureId = $(this).attr("id");
 				var rowToDelete = $(this).parent().parent();
-				measure.deleteMeasure(measuresTable, rowToDelete, id);
+				measure.deleteMeasure(measuresTable, rowToDelete, measureId);
 			}
 			event.preventDefault();
 		});
