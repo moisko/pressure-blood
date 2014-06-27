@@ -48,7 +48,7 @@ var measure = {
 		};
 		getPulse = function(measure) {
 			var pulse = measure.pulse;
-			if(!pulse) {
+			if(_.isUndefined(pulse)) {
 				pulse = "";
 			}
 			return pulse;
