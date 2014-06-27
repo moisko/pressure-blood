@@ -13,6 +13,8 @@
 <script src="scripts/jquery/jquery.validate.min.js"></script>
 <script src="scripts/jquery/jquery.dataTables.min.js"></script>
 <script src="scripts/jquery/jquery.datetimepicker.js"></script>
+<script src="scripts/underscore/underscore-min.js"></script>
+<script src="scripts/underscore/underscore-min.map"></script>
 
 <script src = "scripts/pb/measure.js"></script>
 <script>
@@ -43,7 +45,7 @@
 		};
 		getPulse = function(measure) {
 			var pulse = measure.pulse;
-			if (!pulse) {
+			if (_.isUndefined(pulse)) {
 				pulse = "";
 			}
 			return pulse;
