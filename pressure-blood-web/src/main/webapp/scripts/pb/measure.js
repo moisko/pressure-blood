@@ -17,11 +17,11 @@ var measure = {
 			success : function(json) {
 				var measure = json;
 				measuresTable.fnAddData([	getSbp(measure),
-							getDbp(measure),
-							getHand(measure),
-							getPulse(measure),
-							getDatetime(measure),
-							getRemoveLink(measure)	]);
+											getDbp(measure),
+											getHand(measure),
+											getPulse(measure),
+											getDatetime(measure),
+											getRemoveLink(measure)	]);
 
 				$("#sbp").val("");
 				$("#dbp").val("");

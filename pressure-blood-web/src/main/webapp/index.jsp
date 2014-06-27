@@ -18,7 +18,6 @@
 
 <script src = "scripts/pb/measure.js"></script>
 <script>
-
 	var initMeasuresTable = function(measuresTable) {
 		$.get("/pressure-blood-web/o.getMeasures", function(json) {
 			$.each(json, function(index, value) {
