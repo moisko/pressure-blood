@@ -32,6 +32,8 @@ public class PressureBloodBaseServlet extends HttpServlet {
 
 	private static final String MEASURE_ID_PARAM = "id";
 
+	private static final String DATETIME_PATTERN = "dd.MM.yyyy H:mm";
+
 	protected String getUsernameFromHttpRequest(HttpServletRequest request) {
 		String username = request.getRemoteUser();
 		return username;
@@ -118,12 +120,20 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		}
 	}
 
+	private Gson createGsonInstanceWithTypeAdapter() {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Date.class, new DatetimeDeserializer());
+		gsonBuilder.excludeFieldsWithoutExposeAnnotation();
+		Gson gson = gsonBuilder.create();
+		return gson;
+	}
+
 	private class DatetimeDeserializer implements JsonDeserializer<Date> {
 		@Override
 		public Date deserialize(JsonElement json, Type typeOfT,
 				JsonDeserializationContext context) throws JsonParseException {
 			String datetimeString = json.getAsString();
-			SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy H:mm");
+			SimpleDateFormat formatter = new SimpleDateFormat(DATETIME_PATTERN);
 			try {
 				Date datetime = formatter.parse(datetimeString);
 				return datetime;
@@ -131,14 +141,6 @@ public class PressureBloodBaseServlet extends HttpServlet {
 				throw new JsonParseException(e.getMessage(), e);
 			}
 		}
-	}
-
-	private Gson createGsonInstanceWithTypeAdapter() {
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(Date.class, new DatetimeDeserializer());
-		gsonBuilder.excludeFieldsWithoutExposeAnnotation();
-		Gson gson = gsonBuilder.create();
-		return gson;
 	}
 
 }
