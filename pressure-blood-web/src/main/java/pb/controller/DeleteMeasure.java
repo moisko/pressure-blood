@@ -22,11 +22,11 @@ public class DeleteMeasure extends PressureBloodBaseServlet {
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute("emf");
 
-		MeasureDAO pbDao = new MeasureDAO(emf);
+		MeasureDAO measureDao = new MeasureDAO(emf);
 
 		String measureId = getMeasureIdFromHttpRequest(request);
 
-		pbDao.deleteMeasureWithId(measureId);
+		measureDao.deleteMeasureWithId(measureId);
 	}
 
 }
