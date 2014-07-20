@@ -134,7 +134,7 @@
 					<input id="dbp" name="dbp" type="number" min="0" max="300" size="3" class="required">
 				</div>
 
-				<div id="handSelector">
+				<div id="hand-selector">
 					<label for="hand">HAND:</label>
 					<select id="hand" name="hand">
 						<option value="LEFT_HAND">Left hand</option>
