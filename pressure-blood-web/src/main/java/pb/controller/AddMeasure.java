@@ -22,12 +22,12 @@ public class AddMeasure extends PressureBloodBaseServlet {
 
 		response.setContentType("application/json");
 
-		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
-				.getAttribute("emf");
-
 		Measurement measure = getMeasureFromHttpRequest(request);
 
 		String username = getUsernameFromHttpRequest(request);
+
+		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
+				.getAttribute("emf");
 
 		MeasureDAO measureDao = new MeasureDAO(emf);
 

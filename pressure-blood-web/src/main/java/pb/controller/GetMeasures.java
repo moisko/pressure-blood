@@ -26,9 +26,9 @@ public class GetMeasures extends PressureBloodBaseServlet {
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute("emf");
 
-		String username = getUsernameFromHttpRequest(request);
-
 		MeasureDAO measureDao = new MeasureDAO(emf);
+
+		String username = getUsernameFromHttpRequest(request);
 
 		List<Measurement> measures = measureDao
 				.getAllMeasuresForUserWithUsername(username);
