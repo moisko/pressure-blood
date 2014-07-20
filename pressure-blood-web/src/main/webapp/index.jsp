@@ -19,9 +19,8 @@
 <script src = "scripts/pb/measure.js"></script>
 <script>
 	var initMeasuresTable = function(measuresTable) {
-		$.get("/pressure-blood-web/o.getMeasures", function(json) {
-			$.each(json, function(index, value) {
-				var measure = value;
+		$.get("/pressure-blood-web/o.getMeasures", function(measures) {
+			$.each(measures, function(index, measure) {
 				measuresTable.fnAddData([	getSbp(measure),
 											getDbp(measure),
 											getHand(measure),
