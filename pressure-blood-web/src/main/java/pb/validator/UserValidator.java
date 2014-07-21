@@ -2,6 +2,9 @@ package pb.validator;
 
 import pb.model.Users;
 
+import static pb.validator.PasswordValidator.*;
+import static pb.validator.EmailValidator.*;
+
 public class UserValidator {
 
 	public static void validateUser(Users user) {
@@ -11,7 +14,7 @@ public class UserValidator {
 		validateUsername(username);
 
 		String password = user.getPassword();
-		PasswordValidator.validateUserPassword(password);
+		validateUserPassword(password);
 
 		String email = user.getEmail();
 		validateEmail(email);
@@ -30,7 +33,7 @@ public class UserValidator {
 		if (email == null) {
 			throw new IllegalArgumentException("Email value not set");
 		} else {
-			boolean emailValid = EmailValidator.validate(email);
+			boolean emailValid = isEmailValid(email);
 			if (!emailValid) {
 				throw new IllegalArgumentException("Email " + email
 						+ " is not valid");

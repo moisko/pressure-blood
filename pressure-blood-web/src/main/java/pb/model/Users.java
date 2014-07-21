@@ -43,7 +43,7 @@ public class Users implements Serializable {
 			throw new IllegalArgumentException(
 					"The entered password is not the same as the confirmed one");
 		}
-		if (EmailValidator.validate(userDTO.getEmail())) {
+		if (EmailValidator.isEmailValid(userDTO.getEmail())) {
 			this.email = userDTO.getEmail();
 		} else {
 			throw new IllegalArgumentException(
