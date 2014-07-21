@@ -14,8 +14,7 @@ var measure = {
 				"hand" : $("#hand").val(),
 				"pulse" : parseInt($("#pulse").val())
 			}),
-			success : function(json) {
-				var measure = json;
+			success : function(measure) {
 				measuresTable.fnAddData([	getSbp(measure),
 											getDbp(measure),
 											getHand(measure),
