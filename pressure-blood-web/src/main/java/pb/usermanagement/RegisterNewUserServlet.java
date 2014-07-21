@@ -31,7 +31,7 @@ public class RegisterNewUserServlet extends PressureBloodBaseServlet {
 
 		RegisterUserResponse registerUserResponse = usersDAO.registerUser(user);
 
-		serializeObject(response, registerUserResponse);
+		serializeUserRegistrationStatusToJson(response, registerUserResponse);
 	}
 
 }

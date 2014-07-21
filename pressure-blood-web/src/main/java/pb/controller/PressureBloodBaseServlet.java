@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import pb.model.Measurement;
 import pb.model.Users;
 import pb.model.UsersDTO;
+import pb.usermanagement.RegisterUserResponse;
 import pb.validator.UserValidator;
 
 import com.google.gson.Gson;
@@ -80,12 +81,14 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		}
 	}
 
-	protected void serializeObject(HttpServletResponse response, Object object)
+	protected void serializeUserRegistrationStatusToJson(
+			HttpServletResponse response,
+			RegisterUserResponse registerUserResponse)
 			throws IOException {
 		PrintWriter writer = response.getWriter();
 		try {
 			Gson gson = new Gson();
-			String json = gson.toJson(object);
+			String json = gson.toJson(registerUserResponse);
 			writer.write(json);
 		} finally {
 			writer.close();
