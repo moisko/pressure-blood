@@ -22,6 +22,9 @@ var measure = {
 											getDatetime(measure),
 											getRemoveLink(measure)	]);
 
+				$("#statistics").show();
+				drawChart();
+
 				$("#sbp").val("");
 				$("#dbp").val("");
 				$("#pulse").val("");
@@ -59,6 +62,26 @@ var measure = {
 			var removeLink = "<a id=\"" + measure.id + "\" href=\"\">Delete measure</a>";
 			return removeLink;
 		};
+		drawChart = function() {
+			var json = getData();
+			addColumnNames(json);
+			var data = new google.visualization.arrayToDataTable($.parseJSON(JSON.stringify(json)));
+			var chart = new google.visualization.ColumnChart(document.getElementById("column-chart"));
+			chart.draw(data);
+		};
+		getData = function() {
+			var jsonData = $.ajax({
+				url : "/pressure-blood-web/o.getMeasuresForDataVizualisation",
+				dataType : "json",
+				async : false
+			}).responseText;
+			var json = JSON.parse(jsonData);
+			return json;
+		};
+		addColumnNames = function(json) {
+			var columnNames = [ "Datetime", "SBP", "DBP" ];
+			json.unshift(columnNames);
+		};
 	},
 	deleteMeasure : function(measuresTable, rowToDelete, id) {
 		$.ajax({
@@ -67,11 +90,36 @@ var measure = {
 			data : "id=" + id,
 			success : function() {
 				measuresTable.fnDeleteRow(rowToDelete);
+				var json = getData();
+				if(!_.isEmpty(json)) {
+					drawChart(json);
+				} else {
+					$("#statistics").hide();
+				}
 			},
 			error : function(xhr, status) {
 				alert("Failed to delete measure.\nServer returned: " + xhr.statusText);
 			}
 		});
+		drawChart = function(json) {
+			addColumnNames(json);
+			var data = new google.visualization.arrayToDataTable($.parseJSON(JSON.stringify(json)));
+			var chart = new google.visualization.ColumnChart(document.getElementById("column-chart"));
+			chart.draw(data);
+		};
+		getData = function() {
+			var jsonData = $.ajax({
+				url : "/pressure-blood-web/o.getMeasuresForDataVizualisation",
+				dataType : "json",
+				async : false
+			}).responseText;
+			var json = JSON.parse(jsonData);
+			return json;
+		};
+		addColumnNames = function(json) {
+			var columnNames = [ "Datetime", "SBP", "DBP" ];
+			json.unshift(columnNames);
+		};
 	},
 	validateAddMeasureForm : function() {
 		$("#add-measure-form").validate({

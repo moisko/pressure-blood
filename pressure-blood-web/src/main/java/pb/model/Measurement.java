@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,7 +23,9 @@ import javax.persistence.TemporalType;
 import com.google.gson.annotations.Expose;
 
 @Entity
-@NamedQuery(name = "findAllMeasuresByUsername", query = "SELECT m FROM Measurement m WHERE m.user.username = :username")
+@NamedQueries({
+		@NamedQuery(name = "findAllMeasuresByUsername", query = "SELECT m FROM Measurement m WHERE m.user.username = :username"),
+		@NamedQuery(name = "findAllMeasuresForDataVisualization", query = "SELECT m.datetime, m.pressureBlood.sbp, m.pressureBlood.dbp FROM Measurement m WHERE m.user.username = :username") })
 @Table(name = "MEASUREMENT")
 public class Measurement implements Serializable {
 

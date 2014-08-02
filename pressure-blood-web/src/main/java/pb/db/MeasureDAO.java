@@ -32,6 +32,18 @@ public class MeasureDAO {
 		}
 	}
 
+	public List<Measurement> getAllMeasuresForDataVisualization(String username) {
+		UserValidator.validateUsername(username);
+		EntityManager em = emf.createEntityManager();
+		try {
+			List<Measurement> measures = getAllMeasuresForDataVisualizationFromDb(
+					em, username);
+			return measures;
+		} finally {
+			em.close();
+		}
+	}
+
 	public void addMeasureForUserWithUsername(Measurement measure,
 			String username) {
 		MeasurementValidator.validateMeasure(measure);
@@ -78,6 +90,15 @@ public class MeasureDAO {
 	private List<Measurement> getAllMeasuresForUserWithUsernameFromDb(
 			EntityManager em, String username) {
 		Query q = em.createNamedQuery("findAllMeasuresByUsername");
+		q.setParameter("username", username);
+		List<Measurement> measures = q.getResultList();
+		return measures;
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<Measurement> getAllMeasuresForDataVisualizationFromDb(
+			EntityManager em, String username) {
+		Query q = em.createNamedQuery("findAllMeasuresForDataVisualization");
 		q.setParameter("username", username);
 		List<Measurement> measures = q.getResultList();
 		return measures;

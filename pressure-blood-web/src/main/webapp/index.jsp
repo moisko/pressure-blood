@@ -16,6 +16,8 @@
 <script src="scripts/underscore/underscore-min.js"></script>
 <script src="scripts/underscore/underscore-min.map"></script>
 
+<script src="https://www.google.com/jsapi"></script>
+
 <script src = "scripts/pb/measure.js"></script>
 <script>
 	var initMeasuresTable = function(measuresTable) {
@@ -55,9 +57,33 @@
 			var removeLink = "<a id=\"" + measure.id + "\" href=\"\">Delete measure</a>";
 			return removeLink;
 		}
-	}
+	};
+
+	var drawChart = function(json) {
+		addColumnNames(json);
+		var data = new google.visualization.arrayToDataTable($.parseJSON(JSON.stringify(json)));
+		var chart = new google.visualization.ColumnChart(document.getElementById("column-chart"));
+		chart.draw(data);
+	};
+
+	var getData = function() {
+		var jsonData = $.ajax({
+			url : "/pressure-blood-web/o.getMeasuresForDataVizualisation",
+			dataType : "json",
+			async : false
+		}).responseText;
+		var json = JSON.parse(jsonData);
+		return json;
+	};
+
+	var addColumnNames = function(json) {
+		var columnNames = [ "Datetime", "SBP", "DBP" ];
+		json.unshift(columnNames);
+	};
 
 	// When the browser is ready ...
+	google.load("visualization", "1", {packages : [ "corechart" ]});
+	google.setOnLoadCallback(function() {
 	$(function() {
 		var measuresTable = $("#measures-table").dataTable({
 			"aoColumnDefs" : [ {
@@ -67,6 +93,13 @@
 		});
 
 		initMeasuresTable(measuresTable);
+
+		var json = getData();
+		if(!_.isEmpty(json)) {
+			drawChart(json);
+		} else {
+			$("#statistics").hide();
+		}
 
 		$("#measures-table").delegate("tbody tr td a", "click", function(event) {
 			if (confirm("Are you sure you want to delete this measure") == true) {
@@ -89,6 +122,7 @@
 			}
 			event.preventDefault();
 		});
+	});
 	});
 </script>
 </head>
@@ -155,6 +189,11 @@
 					<button type="submit">Add measure</button>
 				</div>
 			</form>
+		</div>
+		<br />
+		<div id="statistics">
+			<h2>Statistics</h2>
+			<div id="column-chart" style="width: 900px; height: 500px;"></div>
 		</div>
 	</div>
 </body>
