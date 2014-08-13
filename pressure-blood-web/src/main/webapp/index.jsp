@@ -62,7 +62,7 @@
 	var drawChart = function(json) {
 		addColumnNames(json);
 		var data = new google.visualization.arrayToDataTable($.parseJSON(JSON.stringify(json)));
-		var chart = new google.visualization.ColumnChart(document.getElementById("column-chart"));
+		var chart = new google.visualization.ColumnChart($("#column-chart").get(0));
 		chart.draw(data);
 	};
 
