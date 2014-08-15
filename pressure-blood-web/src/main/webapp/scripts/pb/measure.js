@@ -7,12 +7,12 @@ var measure = {
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({
 				"pressureBlood" : {
-					"sbp" : parseInt($("#sbp").val()),
-					"dbp" : parseInt($("#dbp").val())
+					"sbp" : parseInt($("#sbp").val(), 10),
+					"dbp" : parseInt($("#dbp").val(), 10)
 				},
 				"datetime" : $("#datetimepicker").val(),
 				"hand" : $("#hand").val(),
-				"pulse" : parseInt($("#pulse").val())
+				"pulse" : parseInt($("#pulse").val(), 10)
 			}),
 			success : function(measure) {
 				measuresTable.fnAddData([	getSbp(measure),
