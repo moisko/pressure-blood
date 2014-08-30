@@ -84,45 +84,45 @@
 	// When the browser is ready ...
 	google.load("visualization", "1", {packages : [ "corechart" ]});
 	google.setOnLoadCallback(function() {
-	$(function() {
-		var measuresTable = $("#measures-table").dataTable({
-			"aoColumnDefs" : [ {
-				"bSortable" : false,
-				"aTargets" : [ "no-sort" ]
-			} ]
-		});
+		$(function() {
+			var measuresTable = $("#measures-table").dataTable({
+					"aoColumnDefs" : [ {
+					"bSortable" : false,
+					"aTargets" : [ "no-sort" ]
+				} ]
+			});
 
-		initMeasuresTable(measuresTable);
+			initMeasuresTable(measuresTable);
 
-		var json = getData();
-		if(!_.isEmpty(json)) {
-			drawChart(json);
-		} else {
-			$("#statistics").hide();
-		}
-
-		$("#measures-table").delegate("tbody tr td a", "click", function(event) {
-			if (confirm("Are you sure you want to delete this measure") == true) {
-				var measureId = $(this).attr("id");
-				var rowToDelete = $(this).parent().parent();
-				measure.deleteMeasure(measuresTable, rowToDelete, measureId);
+			var json = getData();
+			if(!_.isEmpty(json)) {
+				drawChart(json);
+			} else {
+				$("#statistics").hide();
 			}
-			event.preventDefault();
-		});
 
-		$("#datetimepicker").datetimepicker({
-			format : "d.m.Y H:i",
-			step : 10
-		});
+			$("#measures-table").delegate("tbody tr td a", "click", function(event) {
+				if (confirm("Are you sure you want to delete this measure") == true) {
+					var measureId = $(this).attr("id");
+					var rowToDelete = $(this).parent().parent();
+					measure.deleteMeasure(measuresTable, rowToDelete, measureId);
+				}
+				event.preventDefault();
+			});
 
-		$("#add-measure-form").submit(function(event) {
-			measure.validateAddMeasureForm();
-			if (measure.isAddMeasureFormValid()) {
-				measure.addMeasure(measuresTable);
-			}
-			event.preventDefault();
+			$("#datetimepicker").datetimepicker({
+				format : "d.m.Y H:i",
+				step : 10
+			});
+
+			$("#add-measure-form").submit(function(event) {
+				measure.validateAddMeasureForm();
+				if (measure.isAddMeasureFormValid()) {
+					measure.addMeasure(measuresTable);
+				}
+				event.preventDefault();
+			});
 		});
-	});
 	});
 </script>
 </head>
