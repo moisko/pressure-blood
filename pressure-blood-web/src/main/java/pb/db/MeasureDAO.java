@@ -60,7 +60,7 @@ public class MeasureDAO {
 		}
 	}
 
-	public void deleteMeasureWithId(String measureId) {
+	public void deleteMeasure(String measureId) {
 		MeasurementValidator.validateMeasureId(measureId);
 		EntityManager em = emf.createEntityManager();
 		try {
