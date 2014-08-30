@@ -86,10 +86,10 @@
 	google.setOnLoadCallback(function() {
 		$(function() {
 			var measuresTable = $("#measures-table").dataTable({
-					"aoColumnDefs" : [ {
+					"aoColumnDefs" : [{
 					"bSortable" : false,
 					"aTargets" : [ "no-sort" ]
-				} ]
+				}]
 			});
 
 			initMeasuresTable(measuresTable);
