@@ -18,8 +18,8 @@ public class UsersDAO {
 	}
 
 	public RegisterUserResponse registerUser(Users user) {
+		UserValidator.validateUser(user);
 		String username = user.getUsername();
-		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
 			if (!userExistsInDb(em, username)) {
