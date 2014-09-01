@@ -1,3 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+	String username = request.getRemoteUser();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +60,7 @@
 		getRemoveLink = function(measure) {
 			var removeLink = "<a id=\"" + measure.id + "\" href=\"\">Delete measure</a>";
 			return removeLink;
-		}
+		};
 	};
 
 	var drawChart = function(json) {
@@ -129,7 +133,7 @@
 <body>
 	<div id="user-info">
 		<nav>
-			<span>${pageContext.request.remoteUser}</span> |
+			<span><%= username %></span> |
 			<a href="/pressure-blood-web/o.logout">logout</a>
 		</nav>
 	</div>

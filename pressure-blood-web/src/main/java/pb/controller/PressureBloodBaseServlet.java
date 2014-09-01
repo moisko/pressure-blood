@@ -18,7 +18,6 @@ import pb.model.Measurement;
 import pb.model.Users;
 import pb.model.UsersDTO;
 import pb.usermanagement.RegisterUserResponse;
-import pb.validator.UserValidator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,7 +48,6 @@ public class PressureBloodBaseServlet extends HttpServlet {
 			Gson gson = new Gson();
 			UsersDTO userDTO = gson.fromJson(br, UsersDTO.class);
 			Users user = new Users(userDTO);
-			UserValidator.validateUser(user);
 			return user;
 		} finally {
 			if (br != null) {
