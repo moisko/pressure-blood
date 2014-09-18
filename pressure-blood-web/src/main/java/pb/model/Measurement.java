@@ -25,7 +25,7 @@ import com.google.gson.annotations.Expose;
 @Entity
 @NamedQueries({
 		@NamedQuery(name = "findAllMeasuresByUsername", query = "SELECT m FROM Measurement m WHERE m.user.username = :username"),
-		@NamedQuery(name = "findAllMeasuresForDataVisualization", query = "SELECT m.datetime, m.pressureBlood.sbp, m.pressureBlood.dbp FROM Measurement m WHERE m.user.username = :username") })
+		@NamedQuery(name = "findAllMeasuresForDataVisualization", query = "SELECT m.datetime, m.pressureBlood.sbp, m.pressureBlood.dbp FROM Measurement m WHERE m.user.username = :username ORDER BY m.datetime") })
 @Table(name = "MEASUREMENT")
 public class Measurement implements Serializable {
 

@@ -9,6 +9,7 @@
 	position: absolute;
 	left: 90%;
 	margin-top: 20px;
+	font-size: 25px;
 }
 
 #add-measure {
@@ -29,4 +30,9 @@
 
 #measures-table td {
 	text-align: center;
+}
+
+#column-chart {
+	width: 900px;
+	height: 500px;
 }

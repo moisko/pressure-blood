@@ -90,10 +90,11 @@
 	google.setOnLoadCallback(function() {
 		$(function() {
 			var measuresTable = $("#measures-table").dataTable({
-					"aoColumnDefs" : [{
+				"aoColumnDefs" : [{
 					"bSortable" : false,
-					"aTargets" : [ "no-sort" ]
-				}]
+					"aTargets" : [ "delete-column" ]
+				}],
+				"order" : [[ 4, "asc" ]]
 			});
 
 			initMeasuresTable(measuresTable);
@@ -145,12 +146,12 @@
 						<th colspan="6">Measures</th>
 					</tr>
 					<tr>
-						<th>SBP</th>
-						<th>DBP</th>
-						<th>HAND</th>
-						<th>PULSE</th>
-						<th>DATE AND TIME</th>
-						<th class="no-sort">DELETE</th>
+						<th class="sbp-column">SBP</th>
+						<th class="dbp-column">DBP</th>
+						<th class="hand-column">HAND</th>
+						<th class="pulse-column">PULSE</th>
+						<th class="datetime-column">DATE AND TIME</th>
+						<th class="delete-column">DELETE</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -197,7 +198,7 @@
 		<br />
 		<div id="statistics">
 			<h2>Statistics</h2>
-			<div id="column-chart" style="width: 900px; height: 500px;"></div>
+			<div id="column-chart"></div>
 		</div>
 	</div>
 </body>
