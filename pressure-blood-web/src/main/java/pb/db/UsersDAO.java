@@ -19,9 +19,9 @@ public class UsersDAO {
 
 	public RegisterUserResponse registerUser(Users user) {
 		UserValidator.validateUser(user);
-		String username = user.getUsername();
 		EntityManager em = emf.createEntityManager();
 		try {
+			String username = user.getUsername();
 			if (!userExistsInDb(em, username)) {
 				registerUserToDb(em, user);
 				return new RegisterUserResponse(Status.SUCCESS, "User "

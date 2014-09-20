@@ -35,6 +35,7 @@ public class Users implements Serializable {
 	public Users(UsersDTO userDTO) {
 		this.username = userDTO.getUsername();
 		UserValidator.validateUsername(username);
+		
 		if (PasswordValidator.isPasswordEqualToConfirmedPassword(
 				userDTO.getPassword1(), userDTO.getPassword2())) {
 			this.password = userDTO.getPassword1();
@@ -43,7 +44,6 @@ public class Users implements Serializable {
 			throw new IllegalArgumentException(
 					"The entered password is not the same as the confirmed one");
 		}
-
 		PasswordValidator.validateUserPassword(userDTO.getPassword1());
 
 		if (EmailValidator.isEmailValid(userDTO.getEmail())) {
@@ -52,6 +52,7 @@ public class Users implements Serializable {
 			throw new IllegalArgumentException(
 					"The entered email address is not valid");
 		}
+
 		List<UserRoles> userRoles = new ArrayList<UserRoles>();
 		for (UserRoles.Role role : UserRoles.Role.values()) {
 			String roleName = role.getRoleName();
