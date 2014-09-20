@@ -22,7 +22,7 @@ public class MeasureDAO {
 		this.emf = emf;
 	}
 
-	public List<Measurement> getAllMeasuresForUserWithUsername(String username) {
+	public List<Measurement> getAllMeasuresForUser(String username) {
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {

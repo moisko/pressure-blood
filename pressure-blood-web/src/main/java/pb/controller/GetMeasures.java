@@ -30,8 +30,7 @@ public class GetMeasures extends PressureBloodBaseServlet {
 
 		String username = getUsernameFromHttpRequest(request);
 
-		List<Measurement> measures = measureDao
-				.getAllMeasuresForUserWithUsername(username);
+		List<Measurement> measures = measureDao.getAllMeasuresForUser(username);
 
 		serializeMeasuresToJson(response, measures);
 	}
