@@ -67,7 +67,7 @@ public class MeasureDAO {
 		return false;
 	}
 
-	public void deleteMeasure(String measureId) {
+	public boolean deleteMeasure(String measureId) {
 		MeasurementValidator.validateMeasureId(measureId);
 		EntityManager em = emf.createEntityManager();
 		try {
@@ -75,10 +75,12 @@ public class MeasureDAO {
 			if (measure != null) {
 				String username = measure.getUsername();
 				deleteMeasureByUsernameFromDb(em, measure, username);
+				return true;
 			}
 		} finally {
 			em.close();
 		}
+		return false;
 	}
 
 	private long getUserRecordsCount(String username) {
