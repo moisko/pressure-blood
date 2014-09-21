@@ -3,7 +3,6 @@ package pb.controller;
 import java.io.IOException;
 
 import javax.persistence.EntityManagerFactory;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -28,9 +27,7 @@ public class AddMeasure extends PressureBloodBaseServlet {
 
 		String username = getUsernameFromHttpRequest(request);
 
-		ServletContext servletContext = getServletContext();
-
-		EntityManagerFactory emf = (EntityManagerFactory) servletContext
+		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute("emf");
 
 		int maxRecords = Integer.parseInt(getInitParameter("maxRecords"));
