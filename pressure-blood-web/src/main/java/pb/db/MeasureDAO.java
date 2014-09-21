@@ -74,16 +74,21 @@ public class MeasureDAO {
 		}
 	}
 
-	public long findUserRecordsCountFromDb(String username) {
+	public long getUserRecordsCount(String username) {
 		EntityManager em = emf.createEntityManager();
 		try {
-			Query q = em.createNamedQuery("findUserMeasuresCount");
-			q.setParameter("username", username);
-			long userRecords = (Long) q.getSingleResult();
+			long userRecords = getUserRecordsCountFromDb(em, username);
 			return userRecords;
 		} finally {
 			em.close();
 		}
+	}
+
+	private long getUserRecordsCountFromDb(EntityManager em, String username) {
+		Query q = em.createNamedQuery("getMeasuresCount");
+		q.setParameter("username", username);
+		long userRecords = (Long) q.getSingleResult();
+		return userRecords;
 	}
 
 	private Users findUserByUsernameFromDb(EntityManager em, String username) {
