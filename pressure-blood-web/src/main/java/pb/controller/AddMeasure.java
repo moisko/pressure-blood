@@ -35,10 +35,7 @@ public class AddMeasure extends PressureBloodBaseServlet {
 
 		MeasureDAO measureDAO = new MeasureDAO(emf);
 		long maxRecords = Long.parseLong(getInitParameter("maxRecords"));
-		long userRecords = measureDAO.getUserRecordsCount(username);
-		if (userRecords < maxRecords) {
-			measureDAO.addMeasureForUser(measure, username);
-
+		if (measureDAO.addMeasureForUser(measure, username, maxRecords)) {
 			serializeMeasureToJson(response, measure);
 		}
 	}

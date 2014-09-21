@@ -45,19 +45,26 @@ public class MeasureDAO {
 		}
 	}
 
-	public void addMeasureForUser(Measurement measure, String username) {
+	public boolean addMeasureForUser(Measurement measure, String username,
+			long maxRecords) {
 		MeasurementValidator.validateMeasure(measure);
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
 			Users user = findUserByUsernameFromDb(em, username);
+			long userRecords = getUserRecordsCount(username);
+			if (userRecords > maxRecords) {
+				return false;
+			}
 			if (user != null) {
 				measure.attachUser(user);
 				addMeasureToDb(em, measure);
+				return true;
 			}
 		} finally {
 			em.close();
 		}
+		return false;
 	}
 
 	public void deleteMeasure(String measureId) {
@@ -74,7 +81,7 @@ public class MeasureDAO {
 		}
 	}
 
-	public long getUserRecordsCount(String username) {
+	private long getUserRecordsCount(String username) {
 		EntityManager em = emf.createEntityManager();
 		try {
 			long userRecords = getUserRecordsCountFromDb(em, username);
