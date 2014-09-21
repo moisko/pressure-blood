@@ -14,12 +14,13 @@ import pb.validator.UserValidator;
 
 public class MeasureDAO {
 
-	private static final int MAX_RESULTS = 10;
-
 	private final EntityManagerFactory emf;
 
-	public MeasureDAO(EntityManagerFactory emf) {
+	private final int maxRecords;
+
+	public MeasureDAO(EntityManagerFactory emf, int maxRecords) {
 		this.emf = emf;
+		this.maxRecords = maxRecords;
 	}
 
 	public List<Measurement> getAllMeasuresForUser(String username) {
@@ -45,8 +46,7 @@ public class MeasureDAO {
 		}
 	}
 
-	public boolean addMeasureForUser(Measurement measure, String username,
-			long maxRecords) {
+	public boolean addMeasureForUser(Measurement measure, String username) {
 		MeasurementValidator.validateMeasure(measure);
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
@@ -107,7 +107,7 @@ public class MeasureDAO {
 			String username) {
 		Query q = em.createNamedQuery("findAllMeasuresByUsername");
 		q.setParameter("username", username);
-		q.setMaxResults(MAX_RESULTS);
+		q.setMaxResults(maxRecords);
 		List<Measurement> measures = q.getResultList();
 		return measures;
 	}
@@ -117,7 +117,7 @@ public class MeasureDAO {
 			EntityManager em, String username) {
 		Query q = em.createNamedQuery("findAllMeasuresForDataVisualization");
 		q.setParameter("username", username);
-		q.setMaxResults(MAX_RESULTS);
+		q.setMaxResults(maxRecords);
 		List<Measurement> measures = q.getResultList();
 		return measures;
 	}

@@ -33,9 +33,9 @@ public class AddMeasure extends PressureBloodBaseServlet {
 		EntityManagerFactory emf = (EntityManagerFactory) servletContext
 				.getAttribute("emf");
 
-		MeasureDAO measureDAO = new MeasureDAO(emf);
-		long maxRecords = Long.parseLong(getInitParameter("maxRecords"));
-		if (measureDAO.addMeasureForUser(measure, username, maxRecords)) {
+		int maxRecords = Integer.parseInt(getInitParameter("maxRecords"));
+		MeasureDAO measureDAO = new MeasureDAO(emf, maxRecords);
+		if (measureDAO.addMeasureForUser(measure, username)) {
 			serializeMeasureToJson(response, measure);
 		}
 	}

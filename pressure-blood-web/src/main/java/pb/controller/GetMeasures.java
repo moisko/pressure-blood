@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import pb.db.MeasureDAO;
 import pb.model.Measurement;
 
-@WebServlet(urlPatterns = { "/o.getMeasures" })
+@WebServlet(urlPatterns = { "/o.getMeasures" }, initParams = { @WebInitParam(name = "maxRecords", value = "10") })
 public class GetMeasures extends PressureBloodBaseServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -26,7 +27,9 @@ public class GetMeasures extends PressureBloodBaseServlet {
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute("emf");
 
-		MeasureDAO measureDAO = new MeasureDAO(emf);
+		int maxRecords = Integer.parseInt(getInitParameter("maxRecords"));
+
+		MeasureDAO measureDAO = new MeasureDAO(emf, maxRecords);
 
 		String username = getUsernameFromHttpRequest(request);
 
