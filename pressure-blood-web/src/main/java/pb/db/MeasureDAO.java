@@ -52,7 +52,7 @@ public class MeasureDAO {
 		EntityManager em = emf.createEntityManager();
 		try {
 			Users user = findUserByUsernameFromDb(em, username);
-			long userRecords = getUserRecordsCount(username);
+			long userRecords = getUserRecordsCountFromDb(em, username);
 			if (userRecords > maxRecords) {
 				return false;
 			}
@@ -81,16 +81,6 @@ public class MeasureDAO {
 			em.close();
 		}
 		return false;
-	}
-
-	private long getUserRecordsCount(String username) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			long userRecords = getUserRecordsCountFromDb(em, username);
-			return userRecords;
-		} finally {
-			em.close();
-		}
 	}
 
 	private long getUserRecordsCountFromDb(EntityManager em, String username) {
