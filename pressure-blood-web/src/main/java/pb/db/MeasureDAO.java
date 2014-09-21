@@ -53,7 +53,7 @@ public class MeasureDAO {
 		try {
 			Users user = findUserByUsernameFromDb(em, username);
 			long userRecords = getUserRecordsCountFromDb(em, username);
-			if (userRecords > maxRecords) {
+			if (userRecords >= maxRecords) {
 				return false;
 			}
 			if (user != null) {
