@@ -45,8 +45,7 @@ public class MeasureDAO {
 		}
 	}
 
-	public void addMeasureForUserWithUsername(Measurement measure,
-			String username) {
+	public void addMeasureForUser(Measurement measure, String username) {
 		MeasurementValidator.validateMeasure(measure);
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
@@ -70,6 +69,18 @@ public class MeasureDAO {
 				String username = measure.getUsername();
 				deleteMeasureByUsernameFromDb(em, measure, username);
 			}
+		} finally {
+			em.close();
+		}
+	}
+
+	public long findUserRecordsCountFromDb(String username) {
+		EntityManager em = emf.createEntityManager();
+		try {
+			Query q = em.createNamedQuery("findUserMeasuresCount");
+			q.setParameter("username", username);
+			long userRecords = (Long) q.getSingleResult();
+			return userRecords;
 		} finally {
 			em.close();
 		}

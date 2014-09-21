@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import pb.db.MeasureDAO;
 import pb.model.Measurement;
 
-@WebServlet("/o.getMeasures")
+@WebServlet(urlPatterns = { "/o.getMeasures" })
 public class GetMeasures extends PressureBloodBaseServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -26,11 +26,11 @@ public class GetMeasures extends PressureBloodBaseServlet {
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute("emf");
 
-		MeasureDAO measureDao = new MeasureDAO(emf);
+		MeasureDAO measureDAO = new MeasureDAO(emf);
 
 		String username = getUsernameFromHttpRequest(request);
 
-		List<Measurement> measures = measureDao.getAllMeasuresForUser(username);
+		List<Measurement> measures = measureDAO.getAllMeasuresForUser(username);
 
 		serializeMeasuresToJson(response, measures);
 	}

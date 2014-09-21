@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pb.db.MeasureDAO;
 
-@WebServlet("/o.deleteMeasure")
+@WebServlet(urlPatterns = { "/o.deleteMeasure" })
 public class DeleteMeasure extends PressureBloodBaseServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -22,11 +22,11 @@ public class DeleteMeasure extends PressureBloodBaseServlet {
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute("emf");
 
-		MeasureDAO measureDao = new MeasureDAO(emf);
+		MeasureDAO measureDAO = new MeasureDAO(emf);
 
 		String measureId = getMeasureIdFromHttpRequest(request);
 
-		measureDao.deleteMeasure(measureId);
+		measureDAO.deleteMeasure(measureId);
 	}
 
 }
