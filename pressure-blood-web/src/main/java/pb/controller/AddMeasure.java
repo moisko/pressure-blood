@@ -35,7 +35,7 @@ public class AddMeasure extends PressureBloodBaseServlet {
 		if (measureDAO.addMeasureForUser(measure, username)) {
 			serializeMeasureToJson(response, measure);
 		} else {
-			String message = "You have reached the maximum number of "
+			String message = "You have reached the maximum allowed number of "
 					+ maxRecords + " measures.";
 			sendResponseMessage(response, message);
 		}
