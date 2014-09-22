@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -81,8 +82,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 
 	protected void serializeUserRegistrationStatusToJson(
 			HttpServletResponse response,
-			RegisterUserResponse registerUserResponse)
-			throws IOException {
+			RegisterUserResponse registerUserResponse) throws IOException {
 		PrintWriter writer = response.getWriter();
 		try {
 			Gson gson = new Gson();
@@ -118,6 +118,19 @@ public class PressureBloodBaseServlet extends HttpServlet {
 			writer.write(json);
 		} finally {
 			writer.close();
+		}
+	}
+
+	protected void sendResponseMessage(HttpServletResponse response, String message)
+			throws IOException {
+		Writer writer = response.getWriter();
+		try {
+			writer.write(message);
+			writer.flush();
+		} finally {
+			if (writer != null) {
+				writer.close();
+			}
 		}
 	}
 

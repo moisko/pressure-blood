@@ -31,7 +31,7 @@ var measure = {
 				$("#datetimepicker").val("");
 			},
 			error : function(xhr, status) {
-				alert("Failed to add measure.\nServer returned: " + xhr.statusText);
+				alert("Failed to add measure.\nServer returned: " + xhr.responseText);
 
 				$("#sbp").val("");
 				$("#dbp").val("");
