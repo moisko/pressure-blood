@@ -37,9 +37,9 @@ public class PressureBloodBaseServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String MEASURE_ID_PARAM = "id";
+	private static final String MEASURE_ID = "id";
 
-	private static final String DATETIME_PATTERN = "dd.MM.yyyy H:mm";
+	private static final String PATTERN = "dd.MM.yyyy H:mm";
 
 	protected String getUsernameFromHttpRequest(HttpServletRequest request) {
 		String username = request.getRemoteUser();
@@ -64,7 +64,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 	}
 
 	protected String getMeasureIdFromHttpRequest(HttpServletRequest request) {
-		String measureId = request.getParameter(MEASURE_ID_PARAM);
+		String measureId = request.getParameter(MEASURE_ID);
 		return measureId;
 	}
 
@@ -153,7 +153,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		public Date deserialize(JsonElement json, Type typeOfT,
 				JsonDeserializationContext context) throws JsonParseException {
 			String datetimeString = json.getAsString();
-			SimpleDateFormat formatter = new SimpleDateFormat(DATETIME_PATTERN);
+			SimpleDateFormat formatter = new SimpleDateFormat(PATTERN);
 			try {
 				Date datetime = formatter.parse(datetimeString);
 				return datetime;

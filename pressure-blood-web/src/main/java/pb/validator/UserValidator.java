@@ -8,13 +8,13 @@ import static pb.validator.EmailValidator.*;
 public class UserValidator {
 
 	public static void validateUser(Users user) {
-		ensureUserInstanceNotNull(user);
+		ensureNotNull(user, "User instance is null");
 
 		String username = user.getUsername();
 		validateUsername(username);
 
 		String password = user.getPassword();
-		validateUserPassword(password);
+		validatePassword(password);
 
 		String email = user.getEmail();
 		validateEmail(email);
@@ -25,7 +25,7 @@ public class UserValidator {
 			throw new IllegalArgumentException("Username value not set");
 		} else if (username.length() < 2) {
 			throw new IllegalArgumentException(
-					"Username value must be greater than or qeual to 2");
+					"Username value must be more than two characters");
 		}
 	}
 
@@ -33,17 +33,16 @@ public class UserValidator {
 		if (email == null) {
 			throw new IllegalArgumentException("Email value not set");
 		} else {
-			boolean emailValid = isEmailValid(email);
-			if (!emailValid) {
+			if (!isEmailValid(email)) {
 				throw new IllegalArgumentException("Email " + email
 						+ " is not valid");
 			}
 		}
 	}
 
-	private static void ensureUserInstanceNotNull(Users user) {
-		if (user == null) {
-			throw new IllegalArgumentException("User instance is null");
+	private static void ensureNotNull(Object object, String errorMessage) {
+		if (object == null) {
+			throw new IllegalArgumentException(errorMessage);
 		}
 	}
 }

@@ -8,18 +8,16 @@ import pb.model.PressureBlood;
 public class MeasurementValidator {
 
 	public static void validateMeasure(Measurement measure) {
-		ensureMeasureInstanceNotNull(measure);
+		ensureNotNull(measure, "Measure instance is null");
 
 		PressureBlood pb = measure.getPressureBlood();
-
 		Integer sbp = pb.getSbp();
 		validateSbp(sbp);
-
 		Integer dbp = pb.getDbp();
 		validateDbp(dbp);
 
 		Date datetime = measure.getDatetime();
-		ensureDatetimeNotNull(datetime);
+		ensureNotNull(datetime, "Datetime value not set");
 	}
 
 	public static void validateMeasureId(String measureId) {
@@ -62,15 +60,9 @@ public class MeasurementValidator {
 		}
 	}
 
-	private static void ensureDatetimeNotNull(Date datetime) {
-		if (datetime == null) {
-			throw new IllegalArgumentException("Datetime value not set");
-		}
-	}
-
-	private static void ensureMeasureInstanceNotNull(Measurement measure) {
-		if (measure == null) {
-			throw new IllegalArgumentException("Measure instance is null");
+	private static void ensureNotNull(Object object, String errorMessage) {
+		if (object == null) {
+			throw new IllegalArgumentException(errorMessage);
 		}
 	}
 
