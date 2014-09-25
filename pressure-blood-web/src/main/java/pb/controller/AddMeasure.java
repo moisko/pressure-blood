@@ -31,12 +31,17 @@ public class AddMeasure extends PressureBloodBaseServlet {
 				.getAttribute("emf");
 
 		int maxRecords = Integer.parseInt(getInitParameter("maxRecords"));
+
 		MeasureDAO measureDAO = new MeasureDAO(emf, maxRecords);
+
 		if (measureDAO.addMeasureForUser(measure, username)) {
 			serializeMeasureToJson(response, measure);
 		} else {
 			String message = "You have reached the maximum allowed number of "
 					+ maxRecords + " measures.";
+
+			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+
 			sendResponseMessage(response, message);
 		}
 	}
