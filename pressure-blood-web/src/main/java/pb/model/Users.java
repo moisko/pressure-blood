@@ -35,7 +35,7 @@ public class Users implements Serializable {
 	public Users(UsersDTO userDTO) {
 		this.username = userDTO.getUsername();
 		UserValidator.validateUsername(username);
-		
+
 		if (PasswordValidator.isPasswordEqualToConfirmedPassword(
 				userDTO.getPassword(), userDTO.getConfirmedPassword())) {
 			this.password = userDTO.getPassword();
@@ -54,12 +54,9 @@ public class Users implements Serializable {
 		}
 
 		List<UserRoles> userRoles = new ArrayList<UserRoles>();
-		for (UserRoles.Role role : UserRoles.Role.values()) {
-			String roleName = role.getRoleName();
-			UserRoles userRole = new UserRoles(username, roleName);
-			userRoles.add(userRole);
-		}
-		this.userRoles = userRoles;
+		assignGuestRole(userRoles, username);
+		assignMemberRole(userRoles, username);
+		this.userRoles = new ArrayList<UserRoles>(userRoles);
 	}
 
 	@Id
@@ -168,6 +165,18 @@ public class Users implements Serializable {
 		return "Users [username=" + username + ", password=" + password
 				+ ", email=" + email + ", measurements=" + measurements
 				+ ", userRoles=" + userRoles + "]";
+	}
+
+	private void assignGuestRole(List<UserRoles> userRoles, String username) {
+		String roleName = UserRoles.Role.GUEST.getRoleName();
+		UserRoles guestRole = new UserRoles(username, roleName);
+		userRoles.add(guestRole);
+	}
+
+	private void assignMemberRole(List<UserRoles> userRoles, String username) {
+		String roleName = UserRoles.Role.MEMBER.getRoleName();
+		UserRoles membertRole = new UserRoles(username, roleName);
+		userRoles.add(membertRole);
 	}
 
 }

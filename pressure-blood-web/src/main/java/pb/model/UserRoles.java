@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class UserRoles implements Serializable {
 
 	public enum Role {
-		GUEST("Guest"), MEMBER("Member");
+		GUEST("Guest"), MEMBER("Member"), ADMIN("Admin");
 
 		private String roleName;
 
