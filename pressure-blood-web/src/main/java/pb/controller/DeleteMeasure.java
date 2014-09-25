@@ -20,7 +20,7 @@ public class DeleteMeasure extends PressureBloodBaseServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
-				.getAttribute("emf");
+				.getAttribute(EMF);
 
 		MeasureDAO measureDAO = new MeasureDAO(emf, 1);
 

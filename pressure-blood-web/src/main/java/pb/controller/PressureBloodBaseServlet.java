@@ -29,6 +29,12 @@ import com.google.gson.JsonParseException;
 
 public class PressureBloodBaseServlet extends HttpServlet {
 
+	protected static final String MAX_RECORDS = "maxRecords";
+
+	protected static final String MEDIA_TYPE_APPLICATION_JSON = "application/json";
+
+	protected static final String EMF = "emf";
+
 	private static final long serialVersionUID = 1L;
 
 	private static final String MEASURE_ID_PARAM = "id";
@@ -121,8 +127,8 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		}
 	}
 
-	protected void sendResponseMessage(HttpServletResponse response, String message)
-			throws IOException {
+	protected void sendResponseMessage(HttpServletResponse response,
+			String message) throws IOException {
 		Writer writer = response.getWriter();
 		try {
 			writer.write(message);

@@ -21,16 +21,16 @@ public class AddMeasure extends PressureBloodBaseServlet {
 	protected void doPut(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		response.setContentType("application/json");
+		response.setContentType(MEDIA_TYPE_APPLICATION_JSON);
 
 		Measurement measure = getMeasureFromHttpRequest(request);
 
 		String username = getUsernameFromHttpRequest(request);
 
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
-				.getAttribute("emf");
+				.getAttribute(EMF);
 
-		int maxRecords = Integer.parseInt(getInitParameter("maxRecords"));
+		int maxRecords = Integer.parseInt(getInitParameter(MAX_RECORDS));
 
 		MeasureDAO measureDAO = new MeasureDAO(emf, maxRecords);
 

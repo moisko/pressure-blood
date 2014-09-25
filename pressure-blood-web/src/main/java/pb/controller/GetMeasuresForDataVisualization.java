@@ -21,12 +21,12 @@ public class GetMeasuresForDataVisualization extends PressureBloodBaseServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("application/json");
+		response.setContentType(MEDIA_TYPE_APPLICATION_JSON);
 
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
-				.getAttribute("emf");
+				.getAttribute(EMF);
 
-		int maxRecords = Integer.parseInt(getInitParameter("maxRecords"));
+		int maxRecords = Integer.parseInt(getInitParameter(MAX_RECORDS));
 
 		MeasureDAO measureDAO = new MeasureDAO(emf, maxRecords);
 
