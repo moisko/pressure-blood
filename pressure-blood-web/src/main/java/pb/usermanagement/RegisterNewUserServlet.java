@@ -20,10 +20,10 @@ public class RegisterNewUserServlet extends PressureBloodBaseServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		response.setContentType("application/json");
+		response.setContentType(MEDIA_TYPE_APPLICATION_JSON);
 
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
-				.getAttribute("emf");
+				.getAttribute(EMF);
 
 		UsersDAO usersDAO = new UsersDAO(emf);
 
