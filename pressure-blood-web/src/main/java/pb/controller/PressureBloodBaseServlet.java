@@ -74,9 +74,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		try {
 			br = new BufferedReader(new InputStreamReader(
 					request.getInputStream()));
-
 			Gson gson = createGsonInstanceWithTypeAdapter();
-
 			Measurement measure = gson.fromJson(br, Measurement.class);
 			return measure;
 		} finally {
@@ -95,7 +93,9 @@ public class PressureBloodBaseServlet extends HttpServlet {
 			String json = gson.toJson(registerUserResponse);
 			writer.write(json);
 		} finally {
-			writer.close();
+			if (writer != null) {
+				writer.close();
+			}
 		}
 	}
 
@@ -104,12 +104,12 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		try {
 			Gson gson = createGsonInstanceWithTypeAdapter();
-
 			String json = gson.toJson(measures);
-
 			writer.write(json);
 		} finally {
-			writer.close();
+			if (writer != null) {
+				writer.close();
+			}
 		}
 	}
 
@@ -118,12 +118,12 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		try {
 			Gson gson = createGsonInstanceWithTypeAdapter();
-
 			String json = gson.toJson(measure);
-
 			writer.write(json);
 		} finally {
-			writer.close();
+			if (writer != null) {
+				writer.close();
+			}
 		}
 	}
 
