@@ -27,7 +27,8 @@ public class UserValidator {
 			throw new IllegalArgumentException("Username value not set");
 		} else if (username.length() < MIN_USERNAME_CHARACTERS) {
 			throw new IllegalArgumentException(
-					"Username value must be more than two characters");
+					"Username value must be more than "
+							+ MIN_USERNAME_CHARACTERS + " characters");
 		}
 	}
 
