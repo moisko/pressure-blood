@@ -7,6 +7,14 @@ import pb.model.PressureBlood;
 
 public class MeasurementValidator {
 
+	private static final int MIN_SBP_VALUE = 0;
+
+	private static final int MAX_SBP_VALDUE = 300;
+
+	private static final int MIN_DBP_VALUE = 0;
+
+	private static final int MAX_DBP_VALUE = 300;
+
 	public static void validateMeasure(Measurement measure) {
 		ensureNotNull(measure, "Measure instance is null");
 
@@ -39,24 +47,26 @@ public class MeasurementValidator {
 	private static void validateSbp(Integer sbp) {
 		if (sbp == null) {
 			throw new IllegalArgumentException("SBP value not set");
-		} else if (sbp < 0) {
+		} else if (sbp < MIN_SBP_VALUE) {
 			throw new IllegalArgumentException(
-					"SBP value must be greater than or qeual to 0");
-		} else if (sbp > 300) {
+					"SBP value must be greater than or qeual to "
+							+ MIN_SBP_VALUE);
+		} else if (sbp > MAX_SBP_VALDUE) {
 			throw new IllegalArgumentException(
-					"SBP value must be less than or qeual to 300");
+					"SBP value must be less than or qeual to " + MAX_SBP_VALDUE);
 		}
 	}
 
 	private static void validateDbp(Integer dbp) {
 		if (dbp == null) {
 			throw new IllegalArgumentException("DBP value not set");
-		} else if (dbp < 0) {
+		} else if (dbp < MIN_DBP_VALUE) {
 			throw new IllegalArgumentException(
-					"DBP value must be greater than or qeual to 0");
-		} else if (dbp > 300) {
+					"DBP value must be greater than or qeual to "
+							+ MIN_DBP_VALUE);
+		} else if (dbp > MAX_DBP_VALUE) {
 			throw new IllegalArgumentException(
-					"DBP value must be less than or qeual to 300");
+					"DBP value must be less than or qeual to " + MAX_DBP_VALUE);
 		}
 	}
 

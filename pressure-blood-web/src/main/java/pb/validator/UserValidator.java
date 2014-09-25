@@ -7,6 +7,8 @@ import static pb.validator.EmailValidator.*;
 
 public class UserValidator {
 
+	private static final int MIN_USERNAME_CHARACTERS = 2;
+
 	public static void validateUser(Users user) {
 		ensureNotNull(user, "User instance is null");
 
@@ -23,7 +25,7 @@ public class UserValidator {
 	public static void validateUsername(String username) {
 		if (username == null) {
 			throw new IllegalArgumentException("Username value not set");
-		} else if (username.length() < 2) {
+		} else if (username.length() < MIN_USERNAME_CHARACTERS) {
 			throw new IllegalArgumentException(
 					"Username value must be more than two characters");
 		}
