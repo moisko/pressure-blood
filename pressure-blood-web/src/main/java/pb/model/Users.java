@@ -37,14 +37,14 @@ public class Users implements Serializable {
 		UserValidator.validateUsername(username);
 		
 		if (PasswordValidator.isPasswordEqualToConfirmedPassword(
-				userDTO.getPassword1(), userDTO.getPassword2())) {
-			this.password = userDTO.getPassword1();
+				userDTO.getPassword(), userDTO.getConfirmedPassword())) {
+			this.password = userDTO.getPassword();
 			// this.password = DigestUtils.sha512Hex(userDTO.getPassword1());
 		} else {
 			throw new IllegalArgumentException(
 					"The entered password is not the same as the confirmed one");
 		}
-		PasswordValidator.validatePassword(userDTO.getPassword1());
+		PasswordValidator.validatePassword(userDTO.getPassword());
 
 		if (EmailValidator.isEmailValid(userDTO.getEmail())) {
 			this.email = userDTO.getEmail();

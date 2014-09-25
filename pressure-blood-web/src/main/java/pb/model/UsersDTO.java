@@ -3,19 +3,19 @@ package pb.model;
 public class UsersDTO {
 
 	private String username;
-	private String password1;
-	private String password2;
+	private String password;
+	private String confirmedPassword;
 	private String email;
 
 	public UsersDTO() {
 
 	}
 
-	public UsersDTO(String username, String password1, String password2,
+	public UsersDTO(String username, String password, String confirmedPassword,
 			String email) {
 		this.username = username;
-		this.password1 = password1;
-		this.password2 = password2;
+		this.password = password;
+		this.confirmedPassword = confirmedPassword;
 		this.email = email;
 	}
 
@@ -27,20 +27,20 @@ public class UsersDTO {
 		this.username = username;
 	}
 
-	public String getPassword1() {
-		return password1;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPassword1(String password1) {
-		this.password1 = password1;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getPassword2() {
-		return password2;
+	public String getConfirmedPassword() {
+		return confirmedPassword;
 	}
 
-	public void setPassword2(String password2) {
-		this.password2 = password2;
+	public void setConfirmedPassword(String confirmedPassword) {
+		this.confirmedPassword = confirmedPassword;
 	}
 
 	public String getEmail() {
