@@ -51,11 +51,11 @@ public class MeasureDAO {
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
-			Users user = findUserByUsernameFromDb(em, username);
 			long userRecords = getUserRecordsCountFromDb(em, username);
 			if (userRecords >= maxRecords) {
 				return false;
 			}
+			Users user = findUserByUsernameFromDb(em, username);
 			if (user != null) {
 				measure.attachUser(user);
 				addMeasureToDb(em, measure);
@@ -99,7 +99,6 @@ public class MeasureDAO {
 		Measurement measure = em.find(Measurement.class,
 				Long.parseLong(measureId));
 		return measure;
-
 	}
 
 	@SuppressWarnings("unchecked")
