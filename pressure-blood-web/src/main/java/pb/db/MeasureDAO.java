@@ -1,6 +1,7 @@
 package pb.db;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,6 +14,9 @@ import pb.validator.MeasurementValidator;
 import pb.validator.UserValidator;
 
 public class MeasureDAO {
+
+	private static final Logger LOGGER = Logger.getLogger(MeasureDAO.class
+			.getName());
 
 	private final EntityManagerFactory emf;
 
@@ -28,6 +32,9 @@ public class MeasureDAO {
 		EntityManager em = emf.createEntityManager();
 		try {
 			List<Measurement> measures = getAllMeasuresFromDb(em, username);
+
+			LOGGER.info(measures.size() + " retrieved from db");
+
 			return measures;
 		} finally {
 			em.close();
@@ -40,6 +47,9 @@ public class MeasureDAO {
 		try {
 			List<Measurement> measures = getAllMeasuresForDataVisualizationFromDb(
 					em, username);
+
+			LOGGER.info(measures.size() + " retireved from db");
+
 			return measures;
 		} finally {
 			em.close();
@@ -52,14 +62,22 @@ public class MeasureDAO {
 		EntityManager em = emf.createEntityManager();
 		try {
 			long userRecords = getUserRecordsCountFromDb(em, username);
-			if (userRecords >= maxRecords) {
-				return false;
-			}
-			Users user = findUserByUsernameFromDb(em, username);
-			if (user != null) {
-				measure.attachUser(user);
-				addMeasureToDb(em, measure);
-				return true;
+
+			LOGGER.info("User '" + username + "' has " + userRecords
+					+ " records in db");
+
+			if (userRecords <= maxRecords) {
+				Users user = findUserByUsernameFromDb(em, username);
+				if (user != null) {
+					measure.attachUser(user);
+
+					addMeasureToDb(em, measure);
+
+					LOGGER.info("Measure " + measure + " for user '" + username
+							+ "' successfully added to db");
+
+					return true;
+				}
 			}
 		} finally {
 			em.close();
@@ -74,7 +92,12 @@ public class MeasureDAO {
 			Measurement measure = findMeasureByIdFromDb(em, measureId);
 			if (measure != null) {
 				String username = measure.getUsername();
+
 				deleteMeasureByUsernameFromDb(em, measure, username);
+
+				LOGGER.info("Measure fo user '" + username + "' with id "
+						+ measureId + " successfully deleted from db");
+
 				return true;
 			}
 		} finally {

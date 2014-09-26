@@ -143,7 +143,7 @@
 			<table id="measures-table" class="display" border="1">
 				<thead>
 					<tr>
-						<th colspan="6">Measures</th>
+						<th class="measures-header" colspan="6">Measures</th>
 					</tr>
 					<tr>
 						<th class="sbp-column">SBP</th>

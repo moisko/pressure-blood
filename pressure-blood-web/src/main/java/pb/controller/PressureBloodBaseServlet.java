@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -138,6 +139,18 @@ public class PressureBloodBaseServlet extends HttpServlet {
 				writer.close();
 			}
 		}
+	}
+
+	protected void info(Logger logger, String message) {
+		logger.info(message);
+	}
+
+	protected void warning(Logger logger, String message) {
+		logger.warning(message);
+	}
+
+	protected void error(Logger logger, String message) {
+		logger.severe(message);
 	}
 
 	private Gson createGsonInstanceWithTypeAdapter() {

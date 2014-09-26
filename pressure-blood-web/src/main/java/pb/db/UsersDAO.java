@@ -1,5 +1,7 @@
 package pb.db;
 
+import java.util.logging.Logger;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -10,6 +12,9 @@ import pb.usermanagement.RegisterUserResponse.Status;
 import pb.validator.UserValidator;
 
 public class UsersDAO {
+
+	private static final Logger LOGGER = Logger.getLogger(UsersDAO.class
+			.getName());
 
 	private final EntityManagerFactory emf;
 
@@ -22,8 +27,15 @@ public class UsersDAO {
 		EntityManager em = emf.createEntityManager();
 		try {
 			String username = user.getUsername();
+
+			LOGGER.info("Checking if user '" + username
+					+ "' already exists in db");
+
 			if (!userExistsInDb(em, username)) {
 				registerUserToDb(em, user);
+
+				LOGGER.info("User '" + username + "' successfully registered");
+
 				return new RegisterUserResponse(Status.SUCCESS, "User "
 						+ username + " successfully registered");
 			}
