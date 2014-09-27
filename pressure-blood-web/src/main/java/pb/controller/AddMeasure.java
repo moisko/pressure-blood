@@ -1,7 +1,6 @@
 package pb.controller;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
@@ -17,9 +16,6 @@ import pb.model.Measurement;
 public class AddMeasure extends PressureBloodBaseServlet {
 
 	private static final long serialVersionUID = 1L;
-
-	private static final Logger LOGGER = Logger.getLogger(AddMeasure.class
-			.getName());
 
 	@Override
 	protected void doPut(HttpServletRequest request,
@@ -41,10 +37,6 @@ public class AddMeasure extends PressureBloodBaseServlet {
 		if (measureDAO.addMeasureForUser(measure, username)) {
 			serializeMeasureToJson(response, measure);
 		} else {
-			error(LOGGER, "[" + username + "] "
-					+ "has reached the maximum allowed number of " + maxRecords
-					+ " measures");
-
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 
 			String message = "You have reached the maximum allowed number of "

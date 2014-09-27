@@ -80,6 +80,10 @@ public class MeasureDAO {
 
 					return true;
 				}
+			} else {
+				LOGGER.info("[" + username + "] "
+						+ "has reached the maximum allowed number of "
+						+ maxRecords + " measures");
 			}
 		} finally {
 			em.close();
