@@ -33,7 +33,8 @@ public class MeasureDAO {
 		try {
 			List<Measurement> measures = getAllMeasuresFromDb(em, username);
 
-			LOGGER.info(measures.size() + " retrieved from db");
+			LOGGER.info("[" + username + "] " + measures.size()
+					+ " retrieved from db");
 
 			return measures;
 		} finally {
@@ -48,7 +49,8 @@ public class MeasureDAO {
 			List<Measurement> measures = getAllMeasuresForDataVisualizationFromDb(
 					em, username);
 
-			LOGGER.info(measures.size() + " retireved from db");
+			LOGGER.info("[" + username + "] " + measures.size()
+					+ " retireved from db");
 
 			return measures;
 		} finally {
@@ -63,7 +65,7 @@ public class MeasureDAO {
 		try {
 			long userRecords = getUserRecordsCountFromDb(em, username);
 
-			LOGGER.info("User '" + username + "' has " + userRecords
+			LOGGER.info("[" + username + "] " + "has " + userRecords
 					+ " records in db");
 
 			if (userRecords <= maxRecords) {
@@ -73,8 +75,8 @@ public class MeasureDAO {
 
 					addMeasureToDb(em, measure);
 
-					LOGGER.info("Measure " + measure + " for user '" + username
-							+ "' successfully added to db");
+					LOGGER.info("[" + username + "] " + "Measure " + measure
+							+ " successfully added to db");
 
 					return true;
 				}
@@ -95,8 +97,8 @@ public class MeasureDAO {
 
 				deleteMeasureByUsernameFromDb(em, measure, username);
 
-				LOGGER.info("Measure fo user '" + username + "' with id "
-						+ measureId + " successfully deleted from db");
+				LOGGER.info("[" + username + "] " + "Measure " + measure
+						+ " successfully deleted from db");
 
 				return true;
 			}
