@@ -46,97 +46,65 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		return username;
 	}
 
-	protected Users getUserFromHttpRequest(HttpServletRequest request)
-			throws IOException {
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new InputStreamReader(
-					request.getInputStream()));
-			Gson gson = new Gson();
-			UsersDTO userDTO = gson.fromJson(br, UsersDTO.class);
-			Users user = new Users(userDTO);
-			return user;
-		} finally {
-			if (br != null) {
-				br.close();
-			}
-		}
-	}
-
 	protected String getMeasureIdFromHttpRequest(HttpServletRequest request) {
 		String measureId = request.getParameter(MEASURE_ID);
 		return measureId;
 	}
 
+	protected Users getUserFromHttpRequest(HttpServletRequest request)
+			throws IOException {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(
+				request.getInputStream()))) {
+			Gson gson = new Gson();
+			UsersDTO userDTO = gson.fromJson(br, UsersDTO.class);
+			Users user = new Users(userDTO);
+			return user;
+		}
+	}
+
 	protected Measurement getMeasureFromHttpRequest(HttpServletRequest request)
 			throws IOException {
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new InputStreamReader(
-					request.getInputStream()));
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(
+				request.getInputStream()));) {
 			Gson gson = createGsonInstanceWithTypeAdapter();
 			Measurement measure = gson.fromJson(br, Measurement.class);
 			return measure;
-		} finally {
-			if (br != null) {
-				br.close();
-			}
 		}
 	}
 
 	protected void serializeUserRegistrationStatusToJson(
 			HttpServletResponse response,
 			RegisterUserResponse registerUserResponse) throws IOException {
-		PrintWriter writer = response.getWriter();
-		try {
+		try (PrintWriter writer = response.getWriter()) {
 			Gson gson = new Gson();
 			String json = gson.toJson(registerUserResponse);
 			writer.write(json);
-		} finally {
-			if (writer != null) {
-				writer.close();
-			}
 		}
 	}
 
 	protected void serializeMeasuresToJson(HttpServletResponse response,
 			List<Measurement> measures) throws IOException {
-		PrintWriter writer = response.getWriter();
-		try {
+		try (PrintWriter writer = response.getWriter()) {
 			Gson gson = createGsonInstanceWithTypeAdapter();
 			String json = gson.toJson(measures);
 			writer.write(json);
-		} finally {
-			if (writer != null) {
-				writer.close();
-			}
 		}
 	}
 
 	protected void serializeMeasureToJson(HttpServletResponse response,
 			Measurement measure) throws IOException {
-		PrintWriter writer = response.getWriter();
-		try {
+		try (PrintWriter writer = response.getWriter()) {
 			Gson gson = createGsonInstanceWithTypeAdapter();
 			String json = gson.toJson(measure);
 			writer.write(json);
-		} finally {
-			if (writer != null) {
-				writer.close();
-			}
 		}
 	}
 
 	protected void sendResponseMessage(HttpServletResponse response,
 			String message) throws IOException {
-		Writer writer = response.getWriter();
-		try {
+		try (Writer writer = response.getWriter()) {
 			writer.write(message);
 			writer.flush();
-		} finally {
-			if (writer != null) {
-				writer.close();
-			}
 		}
 	}
 

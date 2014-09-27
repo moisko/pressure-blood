@@ -33,7 +33,7 @@ public class MeasureDAO extends BaseDAO {
 					maxRecords);
 
 			info(LOGGER, "[" + username + "] " + measures.size()
-					+ " retrieved from db");
+					+ " measures retrieved from db");
 
 			return measures;
 		} finally {
@@ -49,7 +49,7 @@ public class MeasureDAO extends BaseDAO {
 					em, username, maxRecords);
 
 			info(LOGGER, "[" + username + "] " + measures.size()
-					+ " retireved from db");
+					+ " measures retireved from db");
 
 			return measures;
 		} finally {
