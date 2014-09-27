@@ -141,18 +141,6 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		}
 	}
 
-	protected void info(Logger logger, String message) {
-		logger.info(message);
-	}
-
-	protected void warning(Logger logger, String message) {
-		logger.warning(message);
-	}
-
-	protected void error(Logger logger, String message) {
-		logger.severe(message);
-	}
-
 	private Gson createGsonInstanceWithTypeAdapter() {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Date.class, new DatetimeDeserializer());
