@@ -115,11 +115,4 @@ public class Measurement implements Serializable {
 		setUser(user);
 	}
 
-	@Override
-	public String toString() {
-		return "Measurement [id=" + id + ", datetime=" + datetime
-				+ ", pressureBlood=" + pressureBlood + ", user=" + user
-				+ ", hand=" + hand + ", pulse=" + pulse + "]";
-	}
-
 }

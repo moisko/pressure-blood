@@ -159,13 +159,6 @@ public class Users implements Serializable {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Users [username=" + username + ", password=" + password
-				+ ", email=" + email + ", measurements=" + measurements
-				+ ", userRoles=" + userRoles + "]";
-	}
-
 	private void assignGuestRole(List<UserRoles> userRoles, String username) {
 		String roleName = UserRoles.Role.GUEST.getRoleName();
 		UserRoles guestRole = new UserRoles(username, roleName);
