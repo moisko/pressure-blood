@@ -25,7 +25,7 @@
 
 	<properties>
 		<junit.version>4.11</junit.version>
-		<jdk.version>1.6</jdk.version>
+		<jdk.version>1.7</jdk.version>
 		<javax.servelt.api.version>3.0.1</javax.servelt.api.version>
 		<jsp.api.version>2.0</jsp.api.version>
 		<eclipse.link.version>2.5.0-RC1</eclipse.link.version>
