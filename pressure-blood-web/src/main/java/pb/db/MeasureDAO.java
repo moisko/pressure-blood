@@ -110,5 +110,4 @@ public class MeasureDAO extends BaseDAO {
 		}
 		return false;
 	}
-
 }
