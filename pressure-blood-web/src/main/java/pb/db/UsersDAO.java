@@ -11,7 +11,7 @@ import pb.usermanagement.RegisterUserResponse;
 import pb.usermanagement.RegisterUserResponse.Status;
 import pb.validator.UserValidator;
 
-public class UsersDAO {
+public class UsersDAO extends BaseDAO {
 
 	private static final Logger LOGGER = Logger.getLogger(UsersDAO.class
 			.getName());
@@ -28,13 +28,13 @@ public class UsersDAO {
 		try {
 			String username = user.getUsername();
 
-			LOGGER.info("Checking if user '" + username
+			info(LOGGER, "Checking if user '" + username
 					+ "' already exists in db");
 
 			if (!userExistsInDb(em, username)) {
 				registerUserToDb(em, user);
 
-				LOGGER.info("User '" + username + "' successfully registered");
+				info(LOGGER, "[" + username + "] " + "successfully registered");
 
 				return new RegisterUserResponse(Status.SUCCESS, "User "
 						+ username + " successfully registered");

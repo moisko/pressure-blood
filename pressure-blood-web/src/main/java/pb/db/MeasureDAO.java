@@ -13,7 +13,7 @@ import pb.model.Users;
 import pb.validator.MeasurementValidator;
 import pb.validator.UserValidator;
 
-public class MeasureDAO {
+public class MeasureDAO extends BaseDAO {
 
 	private static final Logger LOGGER = Logger.getLogger(MeasureDAO.class
 			.getName());
@@ -33,7 +33,7 @@ public class MeasureDAO {
 		try {
 			List<Measurement> measures = getAllMeasuresFromDb(em, username);
 
-			LOGGER.info("[" + username + "] " + measures.size()
+			info(LOGGER, "[" + username + "] " + measures.size()
 					+ " retrieved from db");
 
 			return measures;
@@ -49,7 +49,7 @@ public class MeasureDAO {
 			List<Measurement> measures = getAllMeasuresForDataVisualizationFromDb(
 					em, username);
 
-			LOGGER.info("[" + username + "] " + measures.size()
+			info(LOGGER, "[" + username + "] " + measures.size()
 					+ " retireved from db");
 
 			return measures;
@@ -65,7 +65,7 @@ public class MeasureDAO {
 		try {
 			long userRecords = getUserRecordsCountFromDb(em, username);
 
-			LOGGER.info("[" + username + "] " + "has " + userRecords
+			info(LOGGER, "[" + username + "] " + "has " + userRecords
 					+ " records in db");
 
 			if (userRecords <= maxRecords) {
@@ -75,13 +75,13 @@ public class MeasureDAO {
 
 					addMeasureToDb(em, measure);
 
-					LOGGER.info("[" + username + "] " + "Measure " + measure
+					info(LOGGER, "[" + username + "] " + "Measure " + measure
 							+ " successfully added to db");
 
 					return true;
 				}
 			} else {
-				LOGGER.info("[" + username + "] "
+				info(LOGGER, "[" + username + "] "
 						+ "has reached the maximum allowed number of "
 						+ maxRecords + " measures");
 			}
@@ -101,7 +101,7 @@ public class MeasureDAO {
 
 				deleteMeasureByUsernameFromDb(em, measure, username);
 
-				LOGGER.info("[" + username + "] " + "Measure " + measure
+				info(LOGGER, "[" + username + "] " + "Measure " + measure
 						+ " successfully deleted from db");
 
 				return true;
