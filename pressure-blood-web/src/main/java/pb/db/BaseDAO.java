@@ -115,5 +115,4 @@ public class BaseDAO {
 	protected void error(Logger logger, String message) {
 		logger.severe(message);
 	}
-
 }
