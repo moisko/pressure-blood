@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 
 import pb.model.Users;
 import pb.usermanagement.RegisterUserResponse;
@@ -46,21 +45,4 @@ public class UsersDAO extends BaseDAO {
 		}
 	}
 
-	private boolean userExistsInDb(EntityManager em, String username) {
-		boolean userExists = em.find(Users.class, username) != null;
-		return userExists;
-	}
-
-	private void registerUserToDb(EntityManager em, Users user) {
-		EntityTransaction et = em.getTransaction();
-		try {
-			et.begin();
-			em.persist(user);
-			et.commit();
-		} finally {
-			if (et.isActive()) {
-				et.rollback();
-			}
-		}
-	}
 }

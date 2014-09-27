@@ -5,8 +5,6 @@ import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 
 import pb.model.Measurement;
 import pb.model.Users;
@@ -31,7 +29,8 @@ public class MeasureDAO extends BaseDAO {
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
-			List<Measurement> measures = getAllMeasuresFromDb(em, username);
+			List<Measurement> measures = getAllMeasuresFromDb(em, username,
+					maxRecords);
 
 			info(LOGGER, "[" + username + "] " + measures.size()
 					+ " retrieved from db");
@@ -47,7 +46,7 @@ public class MeasureDAO extends BaseDAO {
 		EntityManager em = emf.createEntityManager();
 		try {
 			List<Measurement> measures = getAllMeasuresForDataVisualizationFromDb(
-					em, username);
+					em, username, maxRecords);
 
 			info(LOGGER, "[" + username + "] " + measures.size()
 					+ " retireved from db");
@@ -110,73 +109,6 @@ public class MeasureDAO extends BaseDAO {
 			em.close();
 		}
 		return false;
-	}
-
-	private long getUserRecordsCountFromDb(EntityManager em, String username) {
-		Query q = em.createNamedQuery("getMeasuresCount");
-		q.setParameter("username", username);
-		long userRecords = (Long) q.getSingleResult();
-		return userRecords;
-	}
-
-	private Users findUserByUsernameFromDb(EntityManager em, String username) {
-		Users user = em.find(Users.class, username);
-		return user;
-	}
-
-	private Measurement findMeasureByIdFromDb(EntityManager em, String measureId) {
-		Measurement measure = em.find(Measurement.class,
-				Long.parseLong(measureId));
-		return measure;
-	}
-
-	@SuppressWarnings("unchecked")
-	private List<Measurement> getAllMeasuresFromDb(EntityManager em,
-			String username) {
-		Query q = em.createNamedQuery("findAllMeasuresByUsername");
-		q.setParameter("username", username);
-		q.setMaxResults(maxRecords);
-		List<Measurement> measures = q.getResultList();
-		return measures;
-	}
-
-	@SuppressWarnings("unchecked")
-	private List<Measurement> getAllMeasuresForDataVisualizationFromDb(
-			EntityManager em, String username) {
-		Query q = em.createNamedQuery("findAllMeasuresForDataVisualization");
-		q.setParameter("username", username);
-		q.setMaxResults(maxRecords);
-		List<Measurement> measures = q.getResultList();
-		return measures;
-	}
-
-	private void addMeasureToDb(EntityManager em, Measurement measure) {
-		EntityTransaction et = em.getTransaction();
-		try {
-			et.begin();
-			em.persist(measure);
-			et.commit();
-		} finally {
-			if (et.isActive()) {
-				et.rollback();
-			}
-		}
-	}
-
-	private void deleteMeasureByUsernameFromDb(EntityManager em,
-			Measurement measure, String username) {
-		if (measure.belongsToUser(username)) {
-			EntityTransaction et = em.getTransaction();
-			try {
-				et.begin();
-				em.remove(measure);
-				et.commit();
-			} finally {
-				if (et.isActive()) {
-					et.rollback();
-				}
-			}
-		}
 	}
 
 }
