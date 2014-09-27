@@ -63,4 +63,10 @@ public class PressureBlood implements Serializable {
 		this.measurement = measurement;
 	}
 
+	@Override
+	public String toString() {
+		return "PressureBlood [id=" + id + ", sbp=" + sbp + ", dbp=" + dbp
+				+ ", measurement=" + measurement + "]";
+	}
+
 }
