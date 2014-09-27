@@ -39,7 +39,6 @@ public class Users implements Serializable {
 		if (PasswordValidator.isPasswordEqualToConfirmedPassword(
 				userDTO.getPassword(), userDTO.getConfirmedPassword())) {
 			this.password = userDTO.getPassword();
-			// this.password = DigestUtils.sha512Hex(userDTO.getPassword1());
 		} else {
 			throw new IllegalArgumentException(
 					"The entered password is not the same as the confirmed one");
