@@ -67,18 +67,20 @@ public class MeasureDAO extends BaseDAO {
 			info(LOGGER, "[" + username + "] " + "has " + userRecords
 					+ " records in db");
 
-			if (userRecords <= maxRecords) {
-				Users user = findUserByUsernameFromDb(em, username);
-				if (user != null) {
-					measure.attachUser(user);
+			if (userRecords > maxRecords) {
+				return false;
+			}
 
-					addMeasureToDb(em, measure);
+			Users user = findUserByUsernameFromDb(em, username);
+			if (user != null) {
+				measure.attachUser(user);
 
-					info(LOGGER, "[" + username + "] " + "Measure " + measure
-							+ " successfully added to db");
+				addMeasureToDb(em, measure);
 
-					return true;
-				}
+				info(LOGGER, "[" + username + "] " + "Measure " + measure
+						+ " successfully added to db");
+
+				return true;
 			} else {
 				info(LOGGER, "[" + username + "] "
 						+ "has reached the maximum allowed number of "
