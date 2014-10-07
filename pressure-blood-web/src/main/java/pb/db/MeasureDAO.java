@@ -67,7 +67,7 @@ public class MeasureDAO extends BaseDAO {
 			info(LOGGER, "[" + username + "] " + "has " + userRecords
 					+ " records in db");
 
-			if (userRecords > maxRecords) {
+			if (userRecords >= maxRecords) {
 				return false;
 			}
 
