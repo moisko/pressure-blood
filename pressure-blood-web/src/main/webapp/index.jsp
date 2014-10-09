@@ -198,8 +198,6 @@
 		<br />
 		<div id="statistics">
 			<h2>Statistics</h2>
-			<button id="previous">Previous</button>
-			<button id="next">Next</button>
 			<div id="column-chart"></div>
 		</div>
 	</div>
