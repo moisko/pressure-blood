@@ -33,13 +33,16 @@ public class UsersDAO extends BaseDAO {
 			if (!userExistsInDb(em, username)) {
 				registerUserToDb(em, user);
 
-				info(LOGGER, "[" + username + "] " + "successfully registered");
+				info(LOGGER, "[" + username + "] " + " successfully registered");
 
 				return new RegisterUserResponse(Status.SUCCESS, "User "
 						+ username + " successfully registered");
+			} else {
+				info(LOGGER, "[" + username + "] " + " already registered");
+
+				return new RegisterUserResponse(Status.EXISTS, "User "
+						+ username + " already exists");
 			}
-			return new RegisterUserResponse(Status.EXISTS, "User " + username
-					+ " already exists");
 		} finally {
 			em.close();
 		}
