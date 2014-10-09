@@ -7,8 +7,8 @@ var register = {
 				contentType : "application/json; charset=utf-8",
 				data : JSON.stringify({
 					"username" : $("#username").val(),
-					"password1" : $("#password1").val(),
-					"password2" : $("#password2").val(),
+					"password" : $("#password").val(),
+					"confirmedPassword" : $("#confirmedPassword").val(),
 					"email" : $("#email").val()
 				}),
 				success : function(json) {
@@ -21,8 +21,8 @@ var register = {
 							alert(json.message);
 
 							$("#username").val("");
-							$("#password1").val("");
-							$("#password2").val("");
+							$("#password").val("");
+							$("#confirmedPassword").val("");
 							$("#email").val("");
 							break;
 					}
@@ -31,8 +31,8 @@ var register = {
 					alertl("Failed to register user.\nServer returned " + xhr.status);
 
 					$("#username").val("");
-					$("#password1").val("");
-					$("#password2").val("");
+					$("#password").val("");
+					$("#confirmedPassword").val("");
 					$("#email").val("");
 				}
 			});
@@ -63,11 +63,11 @@ var register = {
 						required: "Username is required",
 						minlength: $.format("At least {0} characters required")
 					},
-					password1: {
+					password: {
 						required: "Password is required",
 						minlength: $.format("At least {0} characters required")
 					},
-					password2: {
+					confirmedPassword: {
 						required: "Confirm password is required",
 						minlength: $.format("At least {0} characters required")
 					},

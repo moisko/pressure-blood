@@ -40,8 +40,10 @@ public class Users implements Serializable {
 				userDTO.getPassword(), userDTO.getConfirmedPassword())) {
 			this.password = userDTO.getPassword();
 		} else {
-			throw new IllegalArgumentException(
-					"The entered password is not the same as the confirmed one");
+			throw new IllegalArgumentException("The entered password "
+					+ userDTO.getPassword()
+					+ " is not the same as the confirmed one "
+					+ userDTO.getConfirmedPassword());
 		}
 		PasswordValidator.validatePassword(userDTO.getPassword());
 
