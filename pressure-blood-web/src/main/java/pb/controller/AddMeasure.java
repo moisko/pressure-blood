@@ -23,16 +23,16 @@ public class AddMeasure extends PressureBloodBaseServlet {
 
 		response.setContentType(MEDIA_TYPE_APPLICATION_JSON);
 
-		Measurement measure = getMeasureFromHttpRequest(request);
-
-		String username = getUsernameFromHttpRequest(request);
-
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute(EMF);
 
 		int maxRecords = Integer.parseInt(getInitParameter(MAX_RECORDS));
 
 		MeasureDAO measureDAO = new MeasureDAO(emf, maxRecords);
+
+		Measurement measure = getMeasureFromHttpRequest(request);
+
+		String username = getUsernameFromHttpRequest(request);
 
 		if (measureDAO.addMeasureForUser(measure, username)) {
 			serializeMeasureToJson(response, measure);
