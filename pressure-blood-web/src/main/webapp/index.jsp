@@ -23,94 +23,32 @@
 <script src="https://www.google.com/jsapi"></script>
 
 <script src = "scripts/pb/measure.js"></script>
+<script src = "scripts/pb/statistics.js"></script>
+<script src = "scripts/pb/measuresTable.js"></script>
 <script>
-	var initMeasuresTable = function(measuresTable) {
-		$.get("/pressure-blood-web/o.getMeasures", function(measures) {
-			$.each(measures, function(index, measure) {
-				measuresTable.fnAddData([	getSbp(measure),
-											getDbp(measure),
-											getHand(measure),
-											getPulse(measure),
-											getDatetime(measure),
-											getRemoveLink(measure)	]);
-			});
-		});
-		getId = function(measure) {
-			return measure.id;
-		};
-		getSbp = function(measure) {
-			return measure.pressureBlood.sbp;
-		};
-		getDbp = function(measure) {
-			return measure.pressureBlood.dbp;
-		};
-		getHand = function(measure) {
-			return measure.hand;
-		};
-		getPulse = function(measure) {
-			var pulse = measure.pulse;
-			if (_.isUndefined(pulse)) {
-				pulse = "";
-			}
-			return pulse;
-		};
-		getDatetime = function(measure) {
-			return measure.datetime;
-		};
-		getRemoveLink = function(measure) {
-			var removeLink = "<a id=\"" + measure.id + "\" href=\"\">Delete measure</a>";
-			return removeLink;
-		};
-	};
-
-	var drawChart = function(json) {
-		addColumnNames(json);
-		var data = new google.visualization.arrayToDataTable($.parseJSON(JSON.stringify(json)));
-		var chart = new google.visualization.ColumnChart($("#column-chart").get(0));
-		chart.draw(data);
-	};
-
-	var getData = function() {
-		var jsonData = $.ajax({
-			url : "/pressure-blood-web/o.getMeasuresForDataVizualisation",
-			dataType : "json",
-			async : false
-		}).responseText;
-		var json = JSON.parse(jsonData);
-		return json;
-	};
-
-	var addColumnNames = function(json) {
-		var columnNames = [ "Datetime", "SBP", "DBP" ];
-		json.unshift(columnNames);
-	};
-
 	// When the browser is ready ...
 	google.load("visualization", "1", {packages : [ "corechart" ]});
 	google.setOnLoadCallback(function() {
 		$(function() {
-			var measuresTable = $("#measures-table").dataTable({
+			// Measures table
+
+			var dataTable = $("#measures-table").dataTable({
 				"aoColumnDefs" : [{
 					"bSortable" : false,
 					"aTargets" : [ "delete-column" ]
 				}],
 				"order" : [[ 4, "asc" ]]
 			});
+			// Fill dataTable with measures
+			measuresTable.getMeasures(dataTable);
 
-			initMeasuresTable(measuresTable);
-
-			var json = getData();
-			if(!_.isEmpty(json)) {
-				drawChart(json);
-			} else {
-				$("#statistics").hide();
-			}
+			// Add measure
 
 			$("#measures-table").delegate("tbody tr td a", "click", function(event) {
 				if (confirm("Are you sure you want to delete this measure") == true) {
 					var measureId = $(this).attr("id");
 					var rowToDelete = $(this).parent().parent();
-					measure.deleteMeasure(measuresTable, rowToDelete, measureId);
+					measure.deleteMeasure(dataTable, rowToDelete, measureId);
 				}
 				event.preventDefault();
 			});
@@ -123,8 +61,27 @@
 			$("#add-measure-form").submit(function(event) {
 				measure.validateAddMeasureForm();
 				if (measure.isAddMeasureFormValid()) {
-					measure.addMeasure(measuresTable);
+					measure.addMeasure(dataTable);
 				}
+				event.preventDefault();
+			});
+
+			// Statistics
+
+			var json = statistics.getData();
+			if(!_.isEmpty(json)) {
+				statistics.drawChart(json);
+			} else {
+				$("#statistics").hide();
+			}
+
+			$("#previous").click(function(event) {
+				statistics.previous();
+				event.preventDefault();
+			});
+
+			$("#next").click(function(event) {
+				statistics.next();
 				event.preventDefault();
 			});
 		});
@@ -198,6 +155,8 @@
 		<br />
 		<div id="statistics">
 			<h2>Statistics</h2>
+			<!-- button id="previous">Previous</button -->
+			<!-- button id="next">Next</button -->
 			<div id="column-chart"></div>
 		</div>
 	</div>

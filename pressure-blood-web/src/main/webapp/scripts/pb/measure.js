@@ -1,5 +1,5 @@
 var measure = {
-	addMeasure : function(measuresTable) {
+	addMeasure : function(dataTable) {
 		$.ajax({
 			url : "/pressure-blood-web/o.addMeasure",
 			type : "PUT",
@@ -15,7 +15,7 @@ var measure = {
 				"pulse" : parseInt($("#pulse").val(), 10)
 			}),
 			success : function(measure) {
-				measuresTable.fnAddData([	getSbp(measure),
+				dataTable.fnAddData([	getSbp(measure),
 											getDbp(measure),
 											getHand(measure),
 											getPulse(measure),
@@ -83,13 +83,13 @@ var measure = {
 			json.unshift(columnNames);
 		};
 	},
-	deleteMeasure : function(measuresTable, rowToDelete, id) {
+	deleteMeasure : function(dataTable, rowToDelete, id) {
 		$.ajax({
 			type : "POST",
 			url : "/pressure-blood-web/o.deleteMeasure",
 			data : "id=" + id,
 			success : function() {
-				measuresTable.fnDeleteRow(rowToDelete);
+				dataTable.fnDeleteRow(rowToDelete);
 				var json = getData();
 				if(!_.isEmpty(json)) {
 					drawChart(json);
