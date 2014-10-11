@@ -22,7 +22,8 @@
 
 <script src="https://www.google.com/jsapi"></script>
 
-<script src = "scripts/pb/measure.js"></script>
+<script src = "scripts/pb/measureForm.js"></script>
+<script src = "scripts/pb/registerForm.js"></script>
 <script src = "scripts/pb/statistics.js"></script>
 <script src = "scripts/pb/measuresTable.js"></script>
 <script>
@@ -32,15 +33,15 @@
 		$(function() {
 			// Measures table
 
-			var dataTable = $("#measures-table").dataTable({
+			var dataTables = $("#measures-table").dataTable({
 				"aoColumnDefs" : [{
 					"bSortable" : false,
 					"aTargets" : [ "delete-column" ]
 				}],
 				"order" : [[ 4, "asc" ]]
 			});
-			// Fill dataTable with measures
-			measuresTable.getMeasures(dataTable);
+
+			measuresTable.populateMeasuresTable(dataTables);
 
 			// Add measure
 
@@ -48,7 +49,7 @@
 				if (confirm("Are you sure you want to delete this measure") == true) {
 					var measureId = $(this).attr("id");
 					var rowToDelete = $(this).parent().parent();
-					measure.deleteMeasure(dataTable, rowToDelete, measureId);
+					measuresTable.deleteMeasure(dataTables, rowToDelete, measureId);
 				}
 				event.preventDefault();
 			});
@@ -59,9 +60,9 @@
 			});
 
 			$("#add-measure-form").submit(function(event) {
-				measure.validateAddMeasureForm();
-				if (measure.isAddMeasureFormValid()) {
-					measure.addMeasure(dataTable);
+				measureForm.validateAddMeasureForm();
+				if (measureForm.isAddMeasureFormValid()) {
+					measuresTable.addMeasure(dataTables);
 				}
 				event.preventDefault();
 			});
@@ -75,15 +76,16 @@
 				$("#statistics").hide();
 			}
 
-			$("#previous").click(function(event) {
+			$("#previous-stat").click(function(event) {
 				statistics.previous();
 				event.preventDefault();
 			});
 
-			$("#next").click(function(event) {
+			$("#next-stat").click(function(event) {
 				statistics.next();
 				event.preventDefault();
 			});
+
 		});
 	});
 </script>
@@ -155,8 +157,6 @@
 		<br />
 		<div id="statistics">
 			<h2>Statistics</h2>
-			<!-- button id="previous">Previous</button -->
-			<!-- button id="next">Next</button -->
 			<div id="column-chart"></div>
 		</div>
 	</div>

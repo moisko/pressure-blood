@@ -17,13 +17,5 @@ var statistics = {
 		addColumnNames : function(json) {
 			var columnNames = [ "Datetime", "SBP", "DBP" ];
 			json.unshift(columnNames);
-		},
-		previous : function() {
-			// TODO
-			console.log("prev clicked");
-		},
-		next : function() {
-			// TODO
-			console.log("next clicked");
 		}
 };

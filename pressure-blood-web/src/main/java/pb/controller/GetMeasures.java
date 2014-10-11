@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import pb.db.MeasureDAO;
 import pb.model.Measurement;
 
-@WebServlet(urlPatterns = { "/o.getMeasures" }, initParams = { @WebInitParam(name = "maxRecords", value = "10") })
+@WebServlet(urlPatterns = { "/o.getMeasures" }, initParams = { @WebInitParam(name = "maxRecords", value = "20") })
 public class GetMeasures extends PressureBloodBaseServlet {
 
 	private static final long serialVersionUID = 1L;
