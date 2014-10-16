@@ -31,7 +31,7 @@
 	google.load("visualization", "1", {packages : [ "corechart" ]});
 	google.setOnLoadCallback(function() {
 		$(function() {
-			// Measures table
+			// Measures table init
 
 			var dataTables = $("#measures-table").dataTable({
 				"aoColumnDefs" : [{
@@ -40,6 +40,8 @@
 				}],
 				"order" : [[ 4, "asc" ]]
 			});
+
+			// Measures table populate
 
 			measuresTable.populateMeasuresTable(dataTables);
 
