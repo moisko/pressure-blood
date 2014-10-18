@@ -78,16 +78,6 @@
 				$("#statistics").hide();
 			}
 
-			$("#previous-stat").click(function(event) {
-				statistics.previous();
-				event.preventDefault();
-			});
-
-			$("#next-stat").click(function(event) {
-				statistics.next();
-				event.preventDefault();
-			});
-
 		});
 	});
 </script>
