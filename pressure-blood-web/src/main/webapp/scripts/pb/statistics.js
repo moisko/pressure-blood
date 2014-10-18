@@ -1,8 +1,8 @@
 var statistics = {
-		drawChart : function(json) {
+		drawChart : function(measuresArray) {
 			addColumnNames = function() {
 				var columnNames = [ "Datetime", "SBP", "DBP" ];
-				json.unshift(columnNames);
+				measuresArray.unshift(columnNames);
 			};
 
 			createAndPopulateDataTable = function(json) {
@@ -14,9 +14,9 @@ var statistics = {
 				chart.draw(data);
 			};
 
-			addColumnNames(json);
+			addColumnNames(measuresArray);
 
-			var data = createAndPopulateDataTable(json);
+			var data = createAndPopulateDataTable(measuresArray);
 
 			drawChart(data);
 		}
