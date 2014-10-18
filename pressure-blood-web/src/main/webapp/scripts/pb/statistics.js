@@ -4,7 +4,7 @@ var statistics = {
 				var columnNames = [ "Datetime", "SBP", "DBP" ];
 				json.unshift(columnNames);
 			};
-			createAndPopulateDataFromJson = function(json) {
+			createAndPopulateDataTable = function(json) {
 				return new google.visualization.arrayToDataTable(json);
 			};
 			drawChart = function(data) {
@@ -12,7 +12,7 @@ var statistics = {
 				chart.draw(data);
 			};
 			addColumnNames(json);
-			var data = createAndPopulateDataFromJson(json);
+			var data = createAndPopulateDataTable(json);
 			drawChart(data);
 		},
 		getDataAsJson : function() {
