@@ -15,9 +15,9 @@ var statistics = {
 			var data = createAndPopulateDataTable(json);
 			drawChart(data);
 		},
-		getDataAsJson : function() {
+		getDataAsJson : function(requestUrl) {
 			var text = $.ajax({
-				url : "/pressure-blood-web/o.getMeasuresForDataVizualisation",
+				url : requestUrl,
 				dataType : "json",
 				async : false
 			}).responseText;

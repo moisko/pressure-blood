@@ -71,7 +71,7 @@
 
 			// Statistics
 
-			var json = statistics.getDataAsJson();
+			var json = statistics.getDataAsJson("/pressure-blood-web/o.getMeasuresForDataVizualisation");
 			if(!_.isEmpty(json)) {
 				statistics.drawChart(json);
 			} else {
