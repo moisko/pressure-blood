@@ -71,7 +71,7 @@
 
 			// Statistics
 
-			var json = statistics.getData();
+			var json = statistics.getDataAsJson();
 			if(!_.isEmpty(json)) {
 				statistics.drawChart(json);
 			} else {

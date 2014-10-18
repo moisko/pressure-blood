@@ -4,18 +4,24 @@ var statistics = {
 				var columnNames = [ "Datetime", "SBP", "DBP" ];
 				json.unshift(columnNames);
 			};
+			createAndPopulateDataFromJson = function(json) {
+				return new google.visualization.arrayToDataTable(json);
+			};
+			drawChart = function(data) {
+				var chart = new google.visualization.ColumnChart($("#column-chart").get(0));
+				chart.draw(data);
+			};
 			addColumnNames(json);
-			var data = new google.visualization.arrayToDataTable($.parseJSON(JSON.stringify(json)));
-			var chart = new google.visualization.ColumnChart($("#column-chart").get(0));
-			chart.draw(data);
+			var data = createAndPopulateDataFromJson(json);
+			drawChart(data);
 		},
-		getData : function() {
-			var jsonData = $.ajax({
+		getDataAsJson : function() {
+			var text = $.ajax({
 				url : "/pressure-blood-web/o.getMeasuresForDataVizualisation",
 				dataType : "json",
 				async : false
 			}).responseText;
-			var json = JSON.parse(jsonData);
+			var json = JSON.parse(text);
 			return json;
 		}
 };
