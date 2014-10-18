@@ -19,14 +19,5 @@ var statistics = {
 			var data = createAndPopulateDataTable(json);
 
 			drawChart(data);
-		},
-		getDataAsJson : function(requestUrl) {
-			var text = $.ajax({
-				url : requestUrl,
-				dataType : "json",
-				async : false
-			}).responseText;
-			var json = JSON.parse(text);
-			return json;
 		}
 };

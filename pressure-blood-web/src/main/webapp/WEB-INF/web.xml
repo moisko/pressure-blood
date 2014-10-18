@@ -26,7 +26,6 @@
 			<url-pattern>/index.jsp</url-pattern>
 			<url-pattern>/o.addMeasure</url-pattern>
 			<url-pattern>/o.getMeasures</url-pattern>
-			<url-pattern>/o.getMeasuresForDataVizualisation</url-pattern>
 			<url-pattern>/o.deleteMeasure</url-pattern>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>

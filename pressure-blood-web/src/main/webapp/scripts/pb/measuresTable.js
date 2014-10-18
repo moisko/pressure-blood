@@ -1,6 +1,8 @@
 var measuresTable = {
 		populateMeasuresTable : function(dataTables) {
 			$.get("/pressure-blood-web/o.getMeasures", function(measures) {
+				var measuresArray = [measures.length];
+
 				$.each(measures, function(index, measure) {
 					dataTables.fnAddData([	getSbp(measure),
 												getDbp(measure),
@@ -8,7 +10,13 @@ var measuresTable = {
 												getPulse(measure),
 												getDatetime(measure),
 												getRemoveLink(measure)	]);
+
+					measuresArray[index] = [getDatetime(measure), getSbp(measure), getDbp(measure)];
 				});
+
+				// Statistics
+
+				drawStatisticsChart(measuresArray);
 			});
 			getId = function(measure) {
 				return measure.id;
@@ -35,6 +43,13 @@ var measuresTable = {
 			getRemoveLink = function(measure) {
 				var removeLink = "<a id=\"" + measure.id + "\" href=\"\">Delete measure</a>";
 				return removeLink;
+			};
+			drawStatisticsChart = function(measuresArray) {
+				if(!_.isEmpty(measuresArray)) {
+					statistics.drawChart(measuresArray);
+				} else {
+					$("#statistics").hide();
+				}
 			};
 		},
 		addMeasure : function(dataTables) {
