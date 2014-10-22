@@ -9,14 +9,14 @@
 <script src="scripts/jquery/jquery.validate.min.js"></script>
 
 <script src="scripts/pb/register.js"></script>
-<script src="scripts/pb/registerForm.js"></script>
+<script src="scripts/pb/register-form.js"></script>
 <script>
 	// When the browser is ready ...
 	$(function() {
 		$("#register-form").submit(function(event) {
-			registerForm.validateRegisterForm();
-			if (registerForm.isRegisterFormValid()) {
-				register.registerUser();
+			RegisterForm.validateRegisterForm();
+			if (RegisterForm.isRegisterFormValid()) {
+				Register.registerUser();
 			}
 			event.preventDefault();
 		});

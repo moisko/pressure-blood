@@ -1,4 +1,4 @@
-var registerForm = {
+var RegisterForm = {
 		validateRegisterForm : function() {
 			$("#register-form").validate({
 				rules: {

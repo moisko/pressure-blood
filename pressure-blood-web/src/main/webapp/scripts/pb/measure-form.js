@@ -1,4 +1,4 @@
-var measureForm = {
+var MeasureForm = {
 	validateAddMeasureForm : function() {
 		$("#add-measure-form").validate({
 			rules : {

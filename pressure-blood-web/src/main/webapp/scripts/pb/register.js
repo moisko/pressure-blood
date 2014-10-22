@@ -1,4 +1,4 @@
-var register = {
+var Register = {
 		registerUser : function() {
 			$.ajax({
 				url : "/pressure-blood-web/o.registerUser",

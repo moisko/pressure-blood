@@ -22,15 +22,26 @@
 
 <script src="https://www.google.com/jsapi"></script>
 
-<script src = "scripts/pb/measureForm.js"></script>
-<script src = "scripts/pb/registerForm.js"></script>
+<script src = "scripts/pb/measure-form.js"></script>
+<script src = "scripts/pb/register-form.js"></script>
 <script src = "scripts/pb/statistics.js"></script>
-<script src = "scripts/pb/measuresTable.js"></script>
+<script src = "scripts/pb/measures-table.js"></script>
+<script src = "scripts/pb/pb-measure.js"></script>
+<script src = "scripts/adt/dictionary.js"></script>
 <script>
 	// When the browser is ready ...
 	google.load("visualization", "1", {packages : [ "corechart" ]});
 	google.setOnLoadCallback(function() {
 		$(function() {
+
+			// Hide statistics header
+
+			statistics.hideStatisticsHeader();
+
+			// Create dictionary for holding all masures
+
+			var dictionary = new Dictionary();
+
 			// Measures table init
 
 			var dataTables = $("#measures-table").dataTable({
@@ -41,9 +52,9 @@
 				"order" : [[ 4, "asc" ]]
 			});
 
-			// Measures table populate
+			// Populate measures table
 
-			measuresTable.populateMeasuresTable(dataTables);
+			MeasuresTable.populateMeasuresTable(dataTables, dictionary);
 
 			// Add measure
 
@@ -51,7 +62,7 @@
 				if (confirm("Are you sure you want to delete this measure") == true) {
 					var measureId = $(this).attr("id");
 					var rowToDelete = $(this).parent().parent();
-					measuresTable.deleteMeasure(dataTables, rowToDelete, measureId);
+					MeasuresTable.deleteMeasure(dataTables, rowToDelete, measureId, dictionary);
 				}
 				event.preventDefault();
 			});
@@ -62,13 +73,12 @@
 			});
 
 			$("#add-measure-form").submit(function(event) {
-				measureForm.validateAddMeasureForm();
-				if (measureForm.isAddMeasureFormValid()) {
-					measuresTable.addMeasure(dataTables);
+				MeasureForm.validateAddMeasureForm();
+				if (MeasureForm.isAddMeasureFormValid()) {
+					MeasuresTable.addMeasure(dataTables, dictionary);
 				}
 				event.preventDefault();
 			});
-
 		});
 	});
 </script>

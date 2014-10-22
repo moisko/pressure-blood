@@ -43,16 +43,6 @@ public class BaseDAO {
 		return measures;
 	}
 
-	@SuppressWarnings("unchecked")
-	protected List<Measurement> getAllMeasuresForDataVisualizationFromDb(
-			EntityManager em, String username, int maxRecords) {
-		Query q = em.createNamedQuery("findAllMeasuresForDataVisualization");
-		q.setParameter("username", username);
-		q.setMaxResults(maxRecords);
-		List<Measurement> measures = q.getResultList();
-		return measures;
-	}
-
 	protected void addMeasureToDb(EntityManager em, Measurement measure) {
 		EntityTransaction et = em.getTransaction();
 		try {

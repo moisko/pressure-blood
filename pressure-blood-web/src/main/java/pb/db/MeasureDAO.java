@@ -41,22 +41,6 @@ public class MeasureDAO extends BaseDAO {
 		}
 	}
 
-	public List<Measurement> getAllMeasuresForDataVisualization(String username) {
-		UserValidator.validateUsername(username);
-		EntityManager em = emf.createEntityManager();
-		try {
-			List<Measurement> measures = getAllMeasuresForDataVisualizationFromDb(
-					em, username, maxRecords);
-
-			info(LOGGER, "[" + username + "] " + measures.size()
-					+ " measures retireved from db");
-
-			return measures;
-		} finally {
-			em.close();
-		}
-	}
-
 	public boolean addMeasureForUser(Measurement measure, String username) {
 		MeasurementValidator.validateMeasure(measure);
 		UserValidator.validateUsername(username);
