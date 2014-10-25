@@ -34,9 +34,9 @@
 	google.setOnLoadCallback(function() {
 		$(function() {
 
-			// Hide statistics header
+			// Hide Statistics header
 
-			statistics.hideStatisticsHeader();
+			Statistics.hideStatisticsHeader();
 
 			// Create dictionary for holding all masures
 

@@ -35,5 +35,11 @@ var MeasureForm = {
 	},
 	isAddMeasureFormValid : function() {
 		return $("#add-measure-form").valid();
+	},
+	clear : function() {
+		$("#sbp").val("");
+		$("#dbp").val("");
+		$("#pulse").val("");
+		$("#datetimepicker").val("");
 	}
 };

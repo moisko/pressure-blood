@@ -1,4 +1,4 @@
-var statistics = {
+var Statistics = {
 	drawChart : function(measuresData) {
 		var data = new google.visualization.arrayToDataTable(measuresData);
 

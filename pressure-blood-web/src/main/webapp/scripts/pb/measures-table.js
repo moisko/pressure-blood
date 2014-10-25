@@ -10,10 +10,10 @@ var MeasuresTable = {
 			// Statistics
 
 			if (!_.isEmpty(measures)) {
-				statistics.showStatisticsHeader();
 				var data = dictionary.toDataTable();
 				data.unshift([ "Datetime", "SBP", "DBP" ]);
-				statistics.drawChart(data);
+				Statistics.showStatisticsHeader();
+				Statistics.drawChart(data);
 			}
 		});
 	},
@@ -33,30 +33,30 @@ var MeasuresTable = {
 				"pulse" : parseInt($("#pulse").val(), 10)
 			}),
 			success : function(measure) {
+				// Add row to measures table
+
 				MeasuresTable.addRow(dataTables, measure);
+
+				// Add measure to dictionary
 
 				dictionary.add(PbMeasure.getId(measure), measure);
 
 				// Statistics
 
-				statistics.showStatisticsHeader();
 				var data = dictionary.toDataTable();
 				data.unshift([ "Datetime", "SBP", "DBP" ]);
-				statistics.drawChart(data);
+				Statistics.showStatisticsHeader();
+				Statistics.drawChart(data);
 
-				$("#sbp").val("");
-				$("#dbp").val("");
-				$("#pulse").val("");
-				$("#datetimepicker").val("");
+				// Clear form
+
+				MeasureForm.clear();
 			},
 			error : function(xhr, status) {
 				alert("Failed to add measure.\nServer returned: "
 						+ xhr.responseText);
 
-				$("#sbp").val("");
-				$("#dbp").val("");
-				$("#pulse").val("");
-				$("#datetimepicker").val("");
+				MeasureForm.clear();
 			}
 		});
 	},
@@ -74,9 +74,9 @@ var MeasuresTable = {
 				var data = dictionary.toDataTable();
 				if (!_.isEmpty(data)) {
 					data.unshift([ "Datetime", "SBP", "DBP" ]);
-					statistics.drawChart(data);
+					Statistics.drawChart(data);
 				} else {
-					statistics.hideStatisticsHeader();
+					Statistics.hideStatisticsHeader();
 				}
 			},
 			error : function(xhr, status) {
