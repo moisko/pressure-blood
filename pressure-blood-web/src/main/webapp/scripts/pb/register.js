@@ -11,14 +11,14 @@ var Register = {
 				"confirmedPassword" : RegisterForm.getConfirmedPassword(),
 				"email" : RegisterForm.getEmail()
 			}),
-			success : function(json) {
-				var status = json.status;
+			success : function(userRegistration) {
+				var status = userRegistration.status;
 				switch (status) {
 				case "SUCCESS":
 					window.location.href = "/pressure-blood-web/index.jsp";
 					break;
 				case "EXISTS":
-					alert(json.message);
+					alert(userRegistration.message);
 
 					RegisterForm.clear();
 

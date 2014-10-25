@@ -77,8 +77,8 @@ public class PressureBloodBaseServlet extends HttpServlet {
 			RegisterUserResponse registerUserResponse) throws IOException {
 		try (PrintWriter writer = response.getWriter()) {
 			Gson gson = new Gson();
-			String json = gson.toJson(registerUserResponse);
-			writer.write(json);
+			String userRegistration = gson.toJson(registerUserResponse);
+			writer.write(userRegistration);
 		}
 	}
 
