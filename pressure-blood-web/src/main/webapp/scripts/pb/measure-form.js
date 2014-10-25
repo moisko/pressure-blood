@@ -41,5 +41,20 @@ var MeasureForm = {
 		$("#dbp").val("");
 		$("#pulse").val("");
 		$("#datetimepicker").val("");
+	},
+	getSbp : function() {
+		return $("#sbp").val();
+	},
+	getDbp : function() {
+		return $("#dbp").val();
+	},
+	getDatetime : function() {
+		return $("#datetimepicker").val();
+	},
+	getHand : function() {
+		return $("#hand").val();
+	},
+	getPulse : function() {
+		return $("#pulse").val();
 	}
 };

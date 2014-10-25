@@ -25,12 +25,12 @@ var MeasuresTable = {
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({
 				"pressureBlood" : {
-					"sbp" : parseInt($("#sbp").val(), 10),
-					"dbp" : parseInt($("#dbp").val(), 10)
+					"sbp" : parseInt(MeasureForm.getSbp(), 10),
+					"dbp" : parseInt(MeasureForm.getDbp(), 10)
 				},
-				"datetime" : $("#datetimepicker").val(),
-				"hand" : $("#hand").val(),
-				"pulse" : parseInt($("#pulse").val(), 10)
+				"datetime" : MeasureForm.getDatetime(),
+				"hand" : MeasureForm.getHand(),
+				"pulse" : parseInt(MeasureForm.getPulse(), 10)
 			}),
 			success : function(measure) {
 				// Add row to measures table
