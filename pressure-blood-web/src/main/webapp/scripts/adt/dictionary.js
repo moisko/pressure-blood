@@ -1,27 +1,20 @@
 function Dictionary() {
 	this.datastore = [];
-	this.add = add;
-	this.find = find;
-	this.remove = remove;
-	this.toDataTable = toDataTable;
-	this.clear = clear;
-	this.count = count;
-	this.isEmpty = isEmpty;
 }
 
-function add(key, value) {
+Dictionary.prototype.add = function(key, value) {
 	this.datastore[key] = value;
 }
 
-function find(key) {
+Dictionary.prototype.find = function(key) {
 	return this.datastore[key];
 }
 
-function remove(key) {
+Dictionary.prototype.remove = function(key) {
 	delete this.datastore[key];
 }
 
-function toDataTable() {
+Dictionary.prototype.toDataTable = function() {
 	var data = [];
 	this.datastore.forEach(function(measure) {
 		data.push([ PbMeasure.getDatetime(measure), PbMeasure.getSbp(measure),
@@ -30,13 +23,13 @@ function toDataTable() {
 	return data.sort();
 }
 
-function clear() {
+Dictionary.prototype.clear = function() {
 	this.datastore.forEach(function(measure) {
 		delete this.datastore[measure.id];
 	});
 }
 
-function count() {
+Dictionary.prototype.count = function() {
 	var n = 0;
 	this.datastore.forEach(function(measure) {
 		++n;
@@ -44,6 +37,6 @@ function count() {
 	return n;
 }
 
-function isEmpty() {
-	return this.count() == 0;
+Dictionary.prototype.isEmpty = function() {
+	return count() == 0;
 }

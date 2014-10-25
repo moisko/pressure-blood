@@ -52,9 +52,11 @@
 				"order" : [[ 4, "asc" ]]
 			});
 
+			var measuresTable = new MeasuresTable(dataTables, dictionary);
+
 			// Populate measures table
 
-			MeasuresTable.populateMeasuresTable(dataTables, dictionary);
+			measuresTable.populateMeasuresTable();
 
 			// Add measure
 
@@ -62,7 +64,7 @@
 				if (confirm("Are you sure you want to delete this measure") == true) {
 					var measureId = $(this).attr("id");
 					var tableRow = $(this).parent().parent();
-					MeasuresTable.deleteMeasure(dataTables, dictionary, tableRow, measureId);
+					measuresTable.deleteMeasure(tableRow, measureId);
 				}
 				event.preventDefault();
 			});
@@ -75,7 +77,7 @@
 			$("#add-measure-form").submit(function(event) {
 				MeasureForm.validateAddMeasureForm();
 				if (MeasureForm.isAddMeasureFormValid()) {
-					MeasuresTable.addMeasure(dataTables, dictionary);
+					measuresTable.addMeasure(dataTables, dictionary);
 				}
 				event.preventDefault();
 			});
