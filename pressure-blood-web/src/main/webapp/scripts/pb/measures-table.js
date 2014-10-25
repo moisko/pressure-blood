@@ -60,11 +60,11 @@ var MeasuresTable = {
 			}
 		});
 	},
-	deleteMeasure : function(dataTables, rowToDelete, id, dictionary) {
+	deleteMeasure : function(dataTables, rowToDelete, measureId, dictionary) {
 		$.ajax({
 			type : "POST",
 			url : "/pressure-blood-web/o.deleteMeasure",
-			data : "id=" + id,
+			data : "id=" + measureId,
 			success : function(id) {
 				// Delete row from measures table
 
