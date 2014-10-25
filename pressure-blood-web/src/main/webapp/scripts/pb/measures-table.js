@@ -7,7 +7,6 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 	var dataTablesRef = this.dataTables;
 	var dictionaryRef = this.dictionary;
 	$.get("/pressure-blood-web/o.getMeasures", function(measures) {
-
 		$.each(measures, function(index, measure) {
 			dataTablesRef.fnAddData([ PbMeasure.getSbp(measure),
 					PbMeasure.getDbp(measure), PbMeasure.getHand(measure),
