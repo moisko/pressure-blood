@@ -66,11 +66,16 @@ var MeasuresTable = {
 			url : "/pressure-blood-web/o.deleteMeasure",
 			data : "id=" + id,
 			success : function(id) {
+				// Delete row from measures table
+
 				MeasuresTable.deleteRow(dataTables, rowToDelete);
+
+				// Remove measure from dictionary
+
+				dictionary.remove(_.values(id));
 
 				// Statistics
 
-				dictionary.remove(_.values(id));
 				var data = dictionary.toDataTable();
 				if (!_.isEmpty(data)) {
 					data.unshift([ "Datetime", "SBP", "DBP" ]);
