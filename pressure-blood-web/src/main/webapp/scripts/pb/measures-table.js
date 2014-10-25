@@ -10,10 +10,10 @@ var MeasuresTable = {
 			// Statistics
 
 			if (!_.isEmpty(measures)) {
-				var data = dictionary.toDataTable();
-				data.unshift([ "Datetime", "SBP", "DBP" ]);
+				var measuresData = dictionary.toDataTable();
+				measuresData.unshift([ "Datetime", "SBP", "DBP" ]);
 				Statistics.showStatisticsHeader();
-				Statistics.drawChart(data);
+				Statistics.drawChart(measuresData);
 			}
 		});
 	},
@@ -43,10 +43,10 @@ var MeasuresTable = {
 
 				// Statistics
 
-				var data = dictionary.toDataTable();
-				data.unshift([ "Datetime", "SBP", "DBP" ]);
+				var measuresData = dictionary.toDataTable();
+				measuresData.unshift([ "Datetime", "SBP", "DBP" ]);
 				Statistics.showStatisticsHeader();
-				Statistics.drawChart(data);
+				Statistics.drawChart(measuresData);
 
 				// Clear form
 
@@ -76,10 +76,10 @@ var MeasuresTable = {
 
 				// Statistics
 
-				var data = dictionary.toDataTable();
-				if (!_.isEmpty(data)) {
-					data.unshift([ "Datetime", "SBP", "DBP" ]);
-					Statistics.drawChart(data);
+				var measuresData = dictionary.toDataTable();
+				if (!_.isEmpty(measuresData)) {
+					measuresData.unshift([ "Datetime", "SBP", "DBP" ]);
+					Statistics.drawChart(measuresData);
 				} else {
 					Statistics.hideStatisticsHeader();
 				}
