@@ -110,3 +110,7 @@ MeasuresTable.prototype.deleteMeasure = function(tableRow, measureId) {
 		}
 	});
 }
+
+MeasuresTable.prototype.getMeasuresCount = function() {
+	return this.dataTables.fnGetData().length;
+}
