@@ -24,8 +24,8 @@ function remove(key) {
 function toDataTable() {
 	var data = [];
 	this.datastore.forEach(function(measure) {
-		data.push([ measure.datetime, measure.pressureBlood.sbp,
-				measure.pressureBlood.dbp ]);
+		data.push([ PbMeasure.getDatetime(measure), PbMeasure.getSbp(measure),
+				PbMeasure.getDbp(measure) ]);
 	});
 	return data.sort();
 }
