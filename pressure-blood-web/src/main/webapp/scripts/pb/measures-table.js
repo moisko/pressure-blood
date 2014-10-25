@@ -60,7 +60,7 @@ var MeasuresTable = {
 			}
 		});
 	},
-	deleteMeasure : function(dataTables, rowToDelete, measureId, dictionary) {
+	deleteMeasure : function(dataTables, dictionary, tableRow, measureId) {
 		$.ajax({
 			type : "POST",
 			url : "/pressure-blood-web/o.deleteMeasure",
@@ -68,7 +68,7 @@ var MeasuresTable = {
 			success : function(id) {
 				// Delete row from measures table
 
-				MeasuresTable.deleteRow(dataTables, rowToDelete);
+				MeasuresTable.deleteRow(dataTables, tableRow);
 
 				// Remove measure from dictionary
 
@@ -96,7 +96,7 @@ var MeasuresTable = {
 				PbMeasure.getPulse(measure), PbMeasure.getDatetime(measure),
 				PbMeasure.getRemoveLink(measure) ]);
 	},
-	deleteRow : function(dataTables, rowToDelete) {
-		dataTables.fnDeleteRow(rowToDelete);
+	deleteRow : function(dataTables, tableRow) {
+		dataTables.fnDeleteRow(tableRow);
 	}
 };

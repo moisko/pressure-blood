@@ -61,8 +61,8 @@
 			$("#measures-table").delegate("tbody tr td a", "click", function(event) {
 				if (confirm("Are you sure you want to delete this measure") == true) {
 					var measureId = $(this).attr("id");
-					var rowToDelete = $(this).parent().parent();
-					MeasuresTable.deleteMeasure(dataTables, rowToDelete, measureId, dictionary);
+					var tableRow = $(this).parent().parent();
+					MeasuresTable.deleteMeasure(dataTables, dictionary, tableRow, measureId);
 				}
 				event.preventDefault();
 			});
