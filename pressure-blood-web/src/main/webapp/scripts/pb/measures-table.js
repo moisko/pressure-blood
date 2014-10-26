@@ -81,7 +81,7 @@ MeasuresTable.prototype.addMeasure = function() {
 MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 	var dataTablesRef = this.dataTables;
 	var dictionaryRef = this.dictionary;
-	var getMeasureIdFromTableRow = this.getMeasuresIdFromTableRow;
+	var getMeasureIdFromTableRow = this.getMeasureIdFromTableRow;
 	$.ajax({
 		type : "POST",
 		url : "/pressure-blood-web/o.deleteMeasure",
@@ -116,6 +116,6 @@ MeasuresTable.prototype.getMeasuresCount = function() {
 	return this.dataTables.fnGetData().length;
 }
 
-MeasuresTable.prototype.getMeasuresIdFromTableRow = function(tableRow) {
+MeasuresTable.prototype.getMeasureIdFromTableRow = function(tableRow) {
 	return tableRow.find("td a").attr("id");
 }
