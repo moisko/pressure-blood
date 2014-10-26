@@ -76,7 +76,7 @@ public class MeasureDAO extends BaseDAO {
 		return false;
 	}
 
-	public boolean deleteMeasure(String measureId) {
+	public void deleteMeasure(String measureId) {
 		MeasurementValidator.validateMeasureId(measureId);
 		EntityManager em = emf.createEntityManager();
 		try {
@@ -88,13 +88,10 @@ public class MeasureDAO extends BaseDAO {
 
 				info(LOGGER, "[" + username + "] " + "Measure " + measure
 						+ " successfully deleted from db");
-
-				return true;
 			}
 		} finally {
 			em.close();
 		}
-		return false;
 	}
 
 }

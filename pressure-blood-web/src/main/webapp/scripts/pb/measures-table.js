@@ -78,21 +78,22 @@ MeasuresTable.prototype.addMeasure = function() {
 	});
 }
 
-MeasuresTable.prototype.deleteMeasure = function(tableRow, measureId) {
+MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 	var dataTablesRef = this.dataTables;
 	var dictionaryRef = this.dictionary;
+	var getMeasureIdFromTableRow = this.getMeasuresIdFromTableRow;
 	$.ajax({
 		type : "POST",
 		url : "/pressure-blood-web/o.deleteMeasure",
-		data : "id=" + measureId,
-		success : function(id) {
+		data : "id=" + getMeasureIdFromTableRow(tableRow),
+		success : function() {
 			// Delete row from measures table
 
 			dataTablesRef.fnDeleteRow(tableRow);
 
 			// Remove measure from dictionary
 
-			dictionaryRef.remove(_.values(id));
+			dictionaryRef.remove(getMeasureIdFromTableRow(tableRow));
 
 			// Statistics
 
@@ -113,4 +114,8 @@ MeasuresTable.prototype.deleteMeasure = function(tableRow, measureId) {
 
 MeasuresTable.prototype.getMeasuresCount = function() {
 	return this.dataTables.fnGetData().length;
+}
+
+MeasuresTable.prototype.getMeasuresIdFromTableRow = function(tableRow) {
+	return tableRow.find("td a").attr("id");
 }

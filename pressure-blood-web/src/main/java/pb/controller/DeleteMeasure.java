@@ -19,8 +19,6 @@ public class DeleteMeasure extends PressureBloodBaseServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		response.setContentType(MEDIA_TYPE_APPLICATION_JSON);
-
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute(EMF);
 
@@ -28,10 +26,6 @@ public class DeleteMeasure extends PressureBloodBaseServlet {
 
 		String measureId = getMeasureIdFromHttpRequest(request);
 
-		if (measureDAO.deleteMeasure(measureId)) {
-			sendResponseMessage(response,
-					"{\"id\" : " + Long.parseLong(measureId) + "}");
-		}
+		measureDAO.deleteMeasure(measureId);
 	}
-
 }
