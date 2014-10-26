@@ -52,28 +52,26 @@ public class MeasureDAO extends BaseDAO {
 					+ " records in db");
 
 			if (userRecords >= maxRecords) {
+				info(LOGGER, "[" + username + "] "
+						+ "has reached the maximum allowed number of "
+						+ maxRecords + " measures");
+
 				return false;
 			}
 
 			Users user = findUserByUsernameFromDb(em, username);
-			if (user != null) {
-				measure.attachUser(user);
 
-				addMeasureToDb(em, measure);
+			measure.attachUser(user);
 
-				info(LOGGER, "[" + username + "] " + "Measure " + measure
-						+ " successfully added to db");
+			addMeasureToDb(em, measure);
 
-				return true;
-			} else {
-				info(LOGGER, "[" + username + "] "
-						+ "has reached the maximum allowed number of "
-						+ maxRecords + " measures");
-			}
+			info(LOGGER, "[" + username + "] " + "Measure " + measure
+					+ " successfully added to db");
+
+			return true;
 		} finally {
 			em.close();
 		}
-		return false;
 	}
 
 	public void deleteMeasure(String measureId) {
