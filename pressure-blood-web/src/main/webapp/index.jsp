@@ -22,6 +22,8 @@
 
 <script src="https://www.google.com/jsapi"></script>
 
+<script src = "scripts/moment/moment.js"></script>
+
 <script src = "scripts/pb/measure-form.js"></script>
 <script src = "scripts/pb/register-form.js"></script>
 <script src = "scripts/pb/statistics.js"></script>
@@ -45,10 +47,13 @@
 			// Measures table init
 
 			var dataTables = $("#measures-table").dataTable({
-				"aoColumnDefs" : [{
-					"bSortable" : false,
-					"aTargets" : [ "delete-column" ]
-				}],
+				"aoColumnDefs" : [
+					{"aTargets" : [ "datetime-column" ], "mRender" : function(datetime) {
+							return moment(new Date(datetime)).format("YYYY-MM-DD HH:mm:ss"); 
+						}
+					},
+					{"aTargets" : [ "delete-column" ], "bSortable" : false}
+				],
 				"order" : [[ 4, "asc" ]]
 			});
 
