@@ -49,7 +49,7 @@
 			var dataTables = $("#measures-table").dataTable({
 				"aoColumnDefs" : [
 					{"aTargets" : [ "datetime-column" ], "mRender" : function(datetime) {
-							return moment(new Date(datetime)).format("YYYY-MM-DD HH:mm:ss"); 
+							return moment(new Date(datetime)).format("MMM D, YYYY HH:mm:ss");
 						}
 					},
 					{"aTargets" : [ "delete-column" ], "bSortable" : false}
