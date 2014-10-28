@@ -20,7 +20,11 @@ Dictionary.prototype.toDataTable = function() {
 		data.push([ PbMeasure.getDatetime(measure), PbMeasure.getSbp(measure),
 				PbMeasure.getDbp(measure) ]);
 	});
-	return data.sort();
+	return data.sort(function(a, b) {
+		var datetimeA = new Date(a[0]);
+		var datetimeB = new Date(b[0]);
+		return datetimeA - datetimeB;
+	});
 }
 
 Dictionary.prototype.clear = function() {
