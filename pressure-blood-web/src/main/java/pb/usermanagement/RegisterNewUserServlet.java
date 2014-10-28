@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import pb.controller.PressureBloodBaseServlet;
 import pb.db.UsersDAO;
 import pb.model.Users;
+import pb.usermanagement.RegisterUserResponse.Status;
 
 @WebServlet("/o.registerUser")
 public class RegisterNewUserServlet extends PressureBloodBaseServlet {
@@ -30,6 +31,9 @@ public class RegisterNewUserServlet extends PressureBloodBaseServlet {
 		Users user = getUserFromHttpRequest(request);
 
 		RegisterUserResponse registerUserResponse = usersDAO.registerUser(user);
+		if (Status.SUCCESS.equals(registerUserResponse.getStatus())) {
+			request.login(user.getUsername(), user.getPassword());
+		}
 
 		serializeUserRegistrationStatusToJson(response, registerUserResponse);
 	}
