@@ -17,7 +17,7 @@ Dictionary.prototype.remove = function(key) {
 Dictionary.prototype.toDataTable = function() {
 	var data = [];
 	this.datastore.forEach(function(measure) {
-		data.push([ moment(new Date(PbMeasure.getDatetime(measure))).format("MMM D, YYYY HH:mm:ss"),
+		data.push([ moment(new Date(PbMeasure.getDatetime(measure))).format("DD.MM.YYYY HH:mm:ss"),
 					PbMeasure.getSbp(measure),
 					PbMeasure.getDbp(measure) ]);
 	});
