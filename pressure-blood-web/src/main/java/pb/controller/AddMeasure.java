@@ -26,7 +26,7 @@ public class AddMeasure extends PressureBloodBaseServlet {
 		EntityManagerFactory emf = (EntityManagerFactory) getServletContext()
 				.getAttribute(EMF);
 
-		int maxRecords = Integer.parseInt(getInitParameter(MAX_RECORDS));
+		int maxRecords = Integer.parseInt(getInitParameter(PARAM_MAX_RECORDS));
 
 		MeasureDAO measureDAO = new MeasureDAO(emf, maxRecords);
 
