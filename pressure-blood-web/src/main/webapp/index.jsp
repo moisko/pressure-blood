@@ -54,6 +54,9 @@
 					},
 					{"aTargets" : [ "delete-column" ], "bSortable" : false}
 				],
+				"fnHeaderCallback" : function(nHead, aData, iStart, iEnd, aiDisplay) {
+					nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Measures";
+				},
 				"order" : [[ 4, "asc" ]]
 			});
 
@@ -101,7 +104,7 @@
 			<table id="measures-table" class="display" border="1">
 				<thead>
 					<tr>
-						<th class="measures-header" colspan="6">Measures</th>
+						<th class="measures-header" colspan="6"/>
 					</tr>
 					<tr>
 						<th class="sbp-column">SBP</th>
