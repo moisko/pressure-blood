@@ -22,8 +22,6 @@
 
 <script src="https://www.google.com/jsapi"></script>
 
-<script src = "scripts/moment/moment.js"></script>
-
 <script src = "scripts/pb/measure-form.js"></script>
 <script src = "scripts/pb/register-form.js"></script>
 <script src = "scripts/pb/statistics.js"></script>
@@ -48,8 +46,14 @@
 
 			var dataTables = $("#measures-table").dataTable({
 				"aoColumnDefs" : [
-					{"aTargets" : [ "datetime-column" ], "mRender" : function(datetime) {
-							return moment(new Date(datetime)).format("DD.MM.YYYY HH:mm:ss");
+					{"aTargets" : [ "datetime-column" ], "mRender" : function(datetimeInMillis) {
+							var oDate = new Date(datetimeInMillis);
+							var date = oDate.getDate();
+							var month = oDate.getMonth();
+							var fullYear = oDate.getFullYear();
+							var hh = oDate.getHours();
+							var mm = oDate.getMinutes();
+							return fullYear + "/" + month + "/" + date + " " + hh + ":" + mm;
 						}
 					},
 					{"aTargets" : [ "delete-column" ], "bSortable" : false}
@@ -57,18 +61,35 @@
 				"fnHeaderCallback" : function(nHead, aData, iStart, iEnd, aiDisplay) {
 					nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Measures";
 				},
-				"order" : [[ 4, "asc" ]]
+				"order" : [[ 4, "asc" ]],
+				"bStateSave" : true
 			});
 
-			var measuresTable = new MeasuresTable(dataTables, dictionary);
-
-			// Populate measures table
-
+			var measuresTable = new MeasuresTable(dataTables, dictionary, 0);
 			measuresTable.populateMeasuresTable();
 
-			// Add measure
+			dataTables.on("page.dt", function(event, oSettings) {
+				var pageNumber = Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength);
 
-			$("#measures-table").delegate("tbody tr td a", "click", function(event) {
+				// Upadet measures table page number
+				measuresTable.pageNumber = pageNumber;
+
+				var beginIndex = pageNumber * 10;
+				var endIndex = beginIndex + 10;
+				if(endIndex > dictionary.count()) {
+					endIndex = dictionary.count();
+				}
+
+				// Statistics
+				var chartData = dictionary.toChartData().splice(beginIndex, endIndex);
+				chartData.unshift([ "Datetime", "SBP", "DBP" ]);
+				Statistics.showStatisticsHeader();
+				Statistics.drawChart(chartData);
+
+				event.preventDefault();
+			});
+
+			dataTables.delegate("tbody tr td a", "click", function(event) {
 				if (confirm("Are you sure you want to delete this measure") == true) {
 					var tableRow = $(this).parent().parent();
 					measuresTable.deleteMeasure(tableRow);
@@ -77,7 +98,7 @@
 			});
 
 			$("#datetimepicker").datetimepicker({
-				format : "d.m.Y H:i",
+				// format : "Y-m-d H:i",
 				step : 10
 			});
 

@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +24,9 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 public class PressureBloodBaseServlet extends HttpServlet {
 
@@ -38,8 +39,6 @@ public class PressureBloodBaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String PARAM_MEASURE_ID = "id";
-
-	private static final String DATETIME_PATTERN = "dd.MM.yyyy H:mm";
 
 	protected String getUsernameFromHttpRequest(HttpServletRequest request) {
 		String username = request.getRemoteUser();
@@ -111,6 +110,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 	private Gson createGsonInstanceWithTypeAdapter() {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Date.class, new DatetimeDeserializer());
+		gsonBuilder.registerTypeAdapter(Date.class, new DatetimeSerializer());
 		gsonBuilder.excludeFieldsWithoutExposeAnnotation();
 		Gson gson = gsonBuilder.create();
 		return gson;
@@ -120,14 +120,16 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		@Override
 		public Date deserialize(JsonElement json, Type typeOfT,
 				JsonDeserializationContext context) throws JsonParseException {
-			String datetimeString = json.getAsString();
-			SimpleDateFormat formatter = new SimpleDateFormat(DATETIME_PATTERN);
-			try {
-				Date datetime = formatter.parse(datetimeString);
-				return datetime;
-			} catch (ParseException e) {
-				throw new JsonParseException(e.getMessage(), e);
-			}
+			Date datetime = new Date(json.getAsLong());
+			return datetime;
+		}
+	}
+
+	private class DatetimeSerializer implements JsonSerializer<Date> {
+		@Override
+		public JsonElement serialize(Date date, Type type,
+				JsonSerializationContext context) {
+			return date == null ? null : new JsonPrimitive(date.getTime());
 		}
 	}
 

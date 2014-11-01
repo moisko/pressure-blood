@@ -1,29 +1,46 @@
-function MeasuresTable(dataTables, dictionary) {
+function MeasuresTable(dataTables, dictionary, pageNumber) {
 	this.dataTables = dataTables;
 	this.dictionary = dictionary;
+	this.pageNumber = pageNumber;
 }
 
 MeasuresTable.prototype.populateMeasuresTable = function() {
-	var dataTablesRef = this.dataTables;
 	var dictionaryRef = this.dictionary;
+	var dataTablesRef = this.dataTables;
+	var pageNumberRef = this.pageNumber;
 	$.get("/pressure-blood-web/o.getMeasures", function(measures) {
-		$.each(measures, function(index, measure) {
-			dataTablesRef.fnAddData([ PbMeasure.getSbp(measure),
-					PbMeasure.getDbp(measure), PbMeasure.getHand(measure),
-					PbMeasure.getPulse(measure),
-					PbMeasure.getDatetime(measure),
-					PbMeasure.getRemoveLink(measure) ]);
+		// Dictionary
 
-			dictionaryRef.add(PbMeasure.getId(measure), measure);
+		dictionaryRef.addAll(measures);
+
+		// Measures table
+
+		var measuresData = dictionaryRef.toMeasuresData();
+		$.each(measuresData, function(index, measureData) {
+			dataTablesRef.fnAddData(measuresData[index]);
 		});
 
 		// Statistics
+		function calculateBeginIndex() {
+			return pageNumberRef * 10;
+		};
+
+		function calculateEndIndex() {
+			var endIndex = calculateBeginIndex() + 10;
+			if (endIndex > dictionaryRef.count()) {
+				endIndex = dictionaryRef.count();
+			}
+			return endIndex;
+		};
 
 		if (!_.isEmpty(measures)) {
-			var measuresData = dictionaryRef.toDataTable();
-			measuresData.unshift([ "Datetime", "SBP", "DBP" ]);
+			var beginIndex = calculateBeginIndex();
+			var endIndex = calculateEndIndex();
+			var chartData = dictionaryRef.toChartData().splice(beginIndex,
+					endIndex);
+			chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 			Statistics.showStatisticsHeader();
-			Statistics.drawChart(measuresData);
+			Statistics.drawChart(chartData);
 		}
 	});
 }
@@ -31,6 +48,7 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 MeasuresTable.prototype.addMeasure = function() {
 	var dataTablesRef = this.dataTables;
 	var dictionaryRef = this.dictionary;
+	var pageNumberRef = this.pageNumber;
 	$.ajax({
 		url : "/pressure-blood-web/o.addMeasure",
 		type : "PUT",
@@ -41,7 +59,7 @@ MeasuresTable.prototype.addMeasure = function() {
 				"sbp" : parseInt(MeasureForm.getSbp(), 10),
 				"dbp" : parseInt(MeasureForm.getDbp(), 10)
 			},
-			"datetime" : MeasureForm.getDatetime(),
+			"datetime" : new Date(Date.parse(MeasureForm.getDatetime())).getTime(),
 			"hand" : MeasureForm.getHand(),
 			"pulse" : parseInt(MeasureForm.getPulse(), 10)
 		}),
@@ -60,10 +78,24 @@ MeasuresTable.prototype.addMeasure = function() {
 
 			// Statistics
 
-			var measuresData = dictionaryRef.toDataTable();
-			measuresData.unshift([ "Datetime", "SBP", "DBP" ]);
+			function calculateBeginIndex() {
+				return pageNumberRef * 10;
+			};
+
+			function calculateEndIndex() {
+				var endIndex = calculateBeginIndex() + 10;
+				if (endIndex > dictionaryRef.count()) {
+					endIndex = dictionaryRef.count();
+				}
+				return endIndex;
+			};
+
+			var beginIndex = calculateBeginIndex();
+			var endIndex = calculateEndIndex();
+			var chartData = dictionaryRef.toChartData().splice(beginIndex, endIndex);
+			chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 			Statistics.showStatisticsHeader();
-			Statistics.drawChart(measuresData);
+			Statistics.drawChart(chartData);
 
 			// Clear form
 
@@ -81,6 +113,7 @@ MeasuresTable.prototype.addMeasure = function() {
 MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 	var dataTablesRef = this.dataTables;
 	var dictionaryRef = this.dictionary;
+	var pageNumberRef = this.pageNumber;
 	var getMeasureIdFromTableRow = this.getMeasureIdFromTableRow;
 	$.ajax({
 		type : "POST",
@@ -97,10 +130,28 @@ MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 
 			// Statistics
 
-			var measuresData = dictionaryRef.toDataTable();
-			if (!_.isEmpty(measuresData)) {
-				measuresData.unshift([ "Datetime", "SBP", "DBP" ]);
-				Statistics.drawChart(measuresData);
+			function calculateBeginIndex() {
+				return pageNumberRef * 10;
+			};
+
+			function calculateEndIndex() {
+				var endIndex = calculateBeginIndex() + 10;
+				if (endIndex > dictionaryRef.count()) {
+					endIndex = dictionaryRef.count();
+				}
+				return endIndex;
+			};
+
+			var endIndex = calculateEndIndex();
+			if((endIndex % 10) == 0) {
+				beginIndex = endIndex - 10;
+			} else {
+				var beginIndex = calculateBeginIndex();
+			}
+			var chartData = dictionaryRef.toChartData().splice(beginIndex, endIndex);
+			if (!_.isEmpty(chartData)) {
+				chartData.unshift([ "Datetime", "SBP", "DBP" ]);
+				Statistics.drawChart(chartData);
 			} else {
 				Statistics.hideStatisticsHeader();
 			}
