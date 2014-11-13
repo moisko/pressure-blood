@@ -64,6 +64,7 @@
 				"order" : [[ 4, "asc" ]],
 				"bStateSave" : true
 			});
+			// dataTables.fnStandingRedraw();
 
 			var measuresTable = new MeasuresTable(dataTables, dictionary, 0);
 			measuresTable.populateMeasuresTable();
