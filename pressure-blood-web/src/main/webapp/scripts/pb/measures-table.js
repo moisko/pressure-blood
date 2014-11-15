@@ -18,8 +18,8 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 		if (!_.isEmpty(measures)) {
 			var beginIndex = this.calculateBeginIndex();
 			var endIndex = this.calculateEndIndex();
-			var chartData = this.getDictionary().toChartData().splice(beginIndex,
-					endIndex);
+			var chartData = this.getDictionary().toChartData().splice(
+					beginIndex, endIndex);
 			chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 			Statistics.showStatisticsHeader();
 			Statistics.drawChart(chartData);
@@ -38,18 +38,20 @@ MeasuresTable.prototype.addMeasure = function() {
 				"sbp" : parseInt(MeasureForm.getSbp(), 10),
 				"dbp" : parseInt(MeasureForm.getDbp(), 10)
 			},
-			"datetime" : new Date(Date.parse(MeasureForm.getDatetime())).getTime(),
+			"datetime" : new Date(Date.parse(MeasureForm.getDatetime()))
+					.getTime(),
 			"hand" : MeasureForm.getHand(),
 			"pulse" : parseInt(MeasureForm.getPulse(), 10)
 		}),
 		success : $.proxy(function(measure) {
 			// Add row to measures table
 
-			this.getDataTables().fnAddData([ PbMeasure.getSbp(measure),
-					PbMeasure.getDbp(measure), PbMeasure.getHand(measure),
-					PbMeasure.getPulse(measure),
-					PbMeasure.getDatetime(measure),
-					PbMeasure.getRemoveLink(measure) ]);
+			this.getDataTables().fnAddData(
+					[ PbMeasure.getSbp(measure), PbMeasure.getDbp(measure),
+							PbMeasure.getHand(measure),
+							PbMeasure.getPulse(measure),
+							PbMeasure.getDatetime(measure),
+							PbMeasure.getRemoveLink(measure) ]);
 
 			// Add measure to dictionary
 
@@ -59,7 +61,8 @@ MeasuresTable.prototype.addMeasure = function() {
 
 			var beginIndex = this.calculateBeginIndex();
 			var endIndex = this.calculateEndIndex();
-			var chartData = this.getDictionary().toChartData().splice(beginIndex, endIndex);
+			var chartData = this.getDictionary().toChartData().splice(
+					beginIndex, endIndex);
 			chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 			Statistics.showStatisticsHeader();
 			Statistics.drawChart(chartData);
@@ -96,12 +99,8 @@ MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 
 			var beginIndex = this.calculateBeginIndex();
 			var endIndex = this.calculateEndIndex();
-//			if((endIndex % 10) == 0) {
-//				beginIndex = endIndex - 10;
-//			} else {
-//				var beginIndex = this.calculateBeginIndex();
-//			}
-			var chartData = this.getDictionary().toChartData().splice(beginIndex, endIndex);
+			var chartData = this.getDictionary().toChartData().splice(
+					beginIndex, endIndex);
 			if (!_.isEmpty(chartData)) {
 				chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 				Statistics.drawChart(chartData);
@@ -117,11 +116,11 @@ MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 }
 
 MeasuresTable.prototype.calculateBeginIndex = function() {
-	return this.pageNumber * 10;
+	return 0;
 }
 
 MeasuresTable.prototype.calculateEndIndex = function() {
-	var endIndex = this.calculateBeginIndex() + 10;
+	var endIndex = 10;
 	if (endIndex > this.dictionary.count()) {
 		endIndex = this.dictionary.count();
 	}
@@ -131,7 +130,7 @@ MeasuresTable.prototype.calculateEndIndex = function() {
 MeasuresTable.prototype.addMeasuresData = function() {
 	var measuresData = this.dictionary.toMeasuresData();
 	var index;
-	for(index = 0; index < measuresData.length; index++) {
+	for (index = 0; index < measuresData.length; index++) {
 		this.dataTables.fnAddData(measuresData[index]);
 	}
 }
