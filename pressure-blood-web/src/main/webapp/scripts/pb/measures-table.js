@@ -99,7 +99,7 @@ MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 //			if((endIndex % 10) == 0) {
 //				beginIndex = endIndex - 10;
 //			} else {
-//				var beginIndex = calculateBeginIndex();
+//				var beginIndex = this.calculateBeginIndex();
 //			}
 			var chartData = this.getDictionary().toChartData().splice(beginIndex, endIndex);
 			if (!_.isEmpty(chartData)) {
