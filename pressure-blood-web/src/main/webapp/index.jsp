@@ -73,7 +73,7 @@
 				var pageNumber = Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength);
 
 				// Upadet measures table page number
-				measuresTable.pageNumber = pageNumber;
+				measuresTable.setPageNumber(pageNumber);
 
 				var beginIndex = pageNumber * 10;
 				var endIndex = beginIndex + 10;

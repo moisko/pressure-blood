@@ -2,7 +2,7 @@ function Dictionary() {
 	this.datastore = [];
 }
 
-Dictionary.prototype.addAll = function(measures) {
+Dictionary.prototype.init = function(measures) {
 	var datastoreRef = this.datastore;
 	measures.forEach(function(measure) {
 		datastoreRef[PbMeasure.getId(measure)] = measure;

@@ -5,50 +5,29 @@ function MeasuresTable(dataTables, dictionary, pageNumber) {
 }
 
 MeasuresTable.prototype.populateMeasuresTable = function() {
-	var dictionaryRef = this.dictionary;
-	var dataTablesRef = this.dataTables;
-	var pageNumberRef = this.pageNumber;
-	$.get("/pressure-blood-web/o.getMeasures", function(measures) {
+	$.get("/pressure-blood-web/o.getMeasures", $.proxy(function(measures) {
 		// Dictionary
 
-		dictionaryRef.addAll(measures);
+		this.getDictionary().init(measures);
 
 		// Measures table
 
-		var measuresData = dictionaryRef.toMeasuresData();
-		$.each(measuresData, function(index, measureData) {
-			dataTablesRef.fnAddData(measuresData[index]);
-		});
+		this.addMeasuresData();
 
 		// Statistics
-		function calculateBeginIndex() {
-			return pageNumberRef * 10;
-		};
-
-		function calculateEndIndex() {
-			var endIndex = calculateBeginIndex() + 10;
-			if (endIndex > dictionaryRef.count()) {
-				endIndex = dictionaryRef.count();
-			}
-			return endIndex;
-		};
-
 		if (!_.isEmpty(measures)) {
-			var beginIndex = calculateBeginIndex();
-			var endIndex = calculateEndIndex();
-			var chartData = dictionaryRef.toChartData().splice(beginIndex,
+			var beginIndex = this.calculateBeginIndex();
+			var endIndex = this.calculateEndIndex();
+			var chartData = this.getDictionary().toChartData().splice(beginIndex,
 					endIndex);
 			chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 			Statistics.showStatisticsHeader();
 			Statistics.drawChart(chartData);
 		}
-	});
+	}, this));
 }
 
 MeasuresTable.prototype.addMeasure = function() {
-	var dataTablesRef = this.dataTables;
-	var dictionaryRef = this.dictionary;
-	var pageNumberRef = this.pageNumber;
 	$.ajax({
 		url : "/pressure-blood-web/o.addMeasure",
 		type : "PUT",
@@ -63,10 +42,10 @@ MeasuresTable.prototype.addMeasure = function() {
 			"hand" : MeasureForm.getHand(),
 			"pulse" : parseInt(MeasureForm.getPulse(), 10)
 		}),
-		success : function(measure) {
+		success : $.proxy(function(measure) {
 			// Add row to measures table
 
-			dataTablesRef.fnAddData([ PbMeasure.getSbp(measure),
+			this.getDataTables().fnAddData([ PbMeasure.getSbp(measure),
 					PbMeasure.getDbp(measure), PbMeasure.getHand(measure),
 					PbMeasure.getPulse(measure),
 					PbMeasure.getDatetime(measure),
@@ -74,25 +53,13 @@ MeasuresTable.prototype.addMeasure = function() {
 
 			// Add measure to dictionary
 
-			dictionaryRef.add(PbMeasure.getId(measure), measure);
+			this.getDictionary().add(PbMeasure.getId(measure), measure);
 
 			// Statistics
 
-			function calculateBeginIndex() {
-				return pageNumberRef * 10;
-			};
-
-			function calculateEndIndex() {
-				var endIndex = calculateBeginIndex() + 10;
-				if (endIndex > dictionaryRef.count()) {
-					endIndex = dictionaryRef.count();
-				}
-				return endIndex;
-			};
-
-			var beginIndex = calculateBeginIndex();
-			var endIndex = calculateEndIndex();
-			var chartData = dictionaryRef.toChartData().splice(beginIndex, endIndex);
+			var beginIndex = this.calculateBeginIndex();
+			var endIndex = this.calculateEndIndex();
+			var chartData = this.getDictionary().toChartData().splice(beginIndex, endIndex);
 			chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 			Statistics.showStatisticsHeader();
 			Statistics.drawChart(chartData);
@@ -100,7 +67,7 @@ MeasuresTable.prototype.addMeasure = function() {
 			// Clear form
 
 			MeasureForm.clear();
-		},
+		}, this),
 		error : function(xhr, status) {
 			alert("Failed to add measure.\nServer returned: "
 					+ xhr.responseText);
@@ -111,56 +78,62 @@ MeasuresTable.prototype.addMeasure = function() {
 }
 
 MeasuresTable.prototype.deleteMeasure = function(tableRow) {
-	var dataTablesRef = this.dataTables;
-	var dictionaryRef = this.dictionary;
-	var pageNumberRef = this.pageNumber;
-	var getMeasureIdFromTableRow = this.getMeasureIdFromTableRow;
 	$.ajax({
 		type : "POST",
 		url : "/pressure-blood-web/o.deleteMeasure",
-		data : "id=" + getMeasureIdFromTableRow(tableRow),
-		success : function() {
+		data : "id=" + this.getMeasureIdFromTableRow(tableRow),
+		success : $.proxy(function() {
 			// Delete row from measures table
 
-			dataTablesRef.fnDeleteRow(tableRow);
+			this.getDataTables().fnDeleteRow(tableRow);
 
 			// Remove measure from dictionary
 
-			dictionaryRef.remove(getMeasureIdFromTableRow(tableRow));
+			var measureId = this.getMeasureIdFromTableRow(tableRow);
+			this.getDictionary().remove(measureId);
 
 			// Statistics
 
-			function calculateBeginIndex() {
-				return pageNumberRef * 10;
-			};
-
-			function calculateEndIndex() {
-				var endIndex = calculateBeginIndex() + 10;
-				if (endIndex > dictionaryRef.count()) {
-					endIndex = dictionaryRef.count();
-				}
-				return endIndex;
-			};
-
-			var endIndex = calculateEndIndex();
-			if((endIndex % 10) == 0) {
-				beginIndex = endIndex - 10;
-			} else {
-				var beginIndex = calculateBeginIndex();
-			}
-			var chartData = dictionaryRef.toChartData().splice(beginIndex, endIndex);
+			var beginIndex = this.calculateBeginIndex();
+			var endIndex = this.calculateEndIndex();
+//			if((endIndex % 10) == 0) {
+//				beginIndex = endIndex - 10;
+//			} else {
+//				var beginIndex = calculateBeginIndex();
+//			}
+			var chartData = this.getDictionary().toChartData().splice(beginIndex, endIndex);
 			if (!_.isEmpty(chartData)) {
 				chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 				Statistics.drawChart(chartData);
 			} else {
 				Statistics.hideStatisticsHeader();
 			}
-		},
+		}, this),
 		error : function(xhr, status) {
 			alert("Failed to delete measure.\nServer returned: "
 					+ xhr.statusText);
 		}
 	});
+}
+
+MeasuresTable.prototype.calculateBeginIndex = function() {
+	return this.pageNumber * 10;
+}
+
+MeasuresTable.prototype.calculateEndIndex = function() {
+	var endIndex = this.calculateBeginIndex() + 10;
+	if (endIndex > this.dictionary.count()) {
+		endIndex = this.dictionary.count();
+	}
+	return endIndex;
+}
+
+MeasuresTable.prototype.addMeasuresData = function() {
+	var measuresData = this.dictionary.toMeasuresData();
+	var index;
+	for(index = 0; index < measuresData.length; index++) {
+		this.dataTables.fnAddData(measuresData[index]);
+	}
 }
 
 MeasuresTable.prototype.getMeasuresCount = function() {
@@ -169,4 +142,20 @@ MeasuresTable.prototype.getMeasuresCount = function() {
 
 MeasuresTable.prototype.getMeasureIdFromTableRow = function(tableRow) {
 	return tableRow.find("td a").attr("id");
+}
+
+MeasuresTable.prototype.getDataTables = function() {
+	return this.dataTables;
+}
+
+MeasuresTable.prototype.getDictionary = function() {
+	return this.dictionary;
+}
+
+MeasuresTable.prototype.getPageNumber = function() {
+	return this.pageNumber;
+}
+
+MeasuresTable.prototype.setPageNumber = function(pageNumber) {
+	this.pageNumber = pageNumber;
 }
