@@ -24,21 +24,11 @@ Dictionary.prototype.remove = function(key) {
 Dictionary.prototype.toChartData = function() {
 	var chartData = [];
 	this.datastore.forEach(function(measure) {
-		var oDate = new Date(measure.datetime);
-		var date = oDate.getDate();
-		var month = oDate.getMonth();
-		var fullYear = oDate.getFullYear();
-		var hh = oDate.getHours();
-		var mm = oDate.getMinutes();
-		var formattedDatetime = fullYear + "/" + month + "/" + date + " " + hh
-				+ ":" + mm;
-		chartData.push([ formattedDatetime, PbMeasure.getSbp(measure),
-				PbMeasure.getDbp(measure) ]);
+		chartData.push([ PbMeasure.getDatetime(measure),
+				PbMeasure.getSbp(measure), PbMeasure.getDbp(measure) ]);
 	});
 	return chartData.sort(function(a, b) {
-		var dateA = new Date(a[0]);
-		var dateB = new Date(b[0]);
-		return dateA - dateB;
+		return a[0] - b[0];
 	});
 }
 

@@ -20,7 +20,6 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 			var endIndex = this.calculateEndIndex();
 			var chartData = this.getDictionary().toChartData().splice(
 					beginIndex, endIndex);
-			chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 			Statistics.showStatisticsHeader();
 			Statistics.drawChart(chartData);
 		}
@@ -63,7 +62,6 @@ MeasuresTable.prototype.addMeasure = function() {
 			var endIndex = this.calculateEndIndex();
 			var chartData = this.getDictionary().toChartData().splice(
 					beginIndex, endIndex);
-			chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 			Statistics.showStatisticsHeader();
 			Statistics.drawChart(chartData);
 
@@ -102,7 +100,6 @@ MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 			var chartData = this.getDictionary().toChartData().splice(
 					beginIndex, endIndex);
 			if (!_.isEmpty(chartData)) {
-				chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 				Statistics.drawChart(chartData);
 			} else {
 				Statistics.hideStatisticsHeader();

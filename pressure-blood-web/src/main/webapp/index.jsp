@@ -49,11 +49,11 @@
 					{"aTargets" : [ "datetime-column" ], "mRender" : function(datetimeInMillis) {
 							var oDate = new Date(datetimeInMillis);
 							var date = oDate.getDate();
-							var month = oDate.getMonth();
+							var month = oDate.getMonth();// January is 0
 							var fullYear = oDate.getFullYear();
 							var hh = oDate.getHours();
 							var mm = oDate.getMinutes();
-							return fullYear + "/" + month + "/" + date + " " + hh + ":" + mm;
+							return date + "/" + month + "/" + fullYear + " " + hh + ":" + mm;
 						}
 					},
 					{"aTargets" : [ "delete-column" ], "bSortable" : false}
@@ -64,7 +64,6 @@
 				"order" : [[ 4, "asc" ]],
 				"bStateSave" : true
 			});
-			// dataTables.fnStandingRedraw();
 
 			var measuresTable = new MeasuresTable(dataTables, dictionary, 0);
 			measuresTable.populateMeasuresTable();
