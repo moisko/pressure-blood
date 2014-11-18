@@ -27,6 +27,7 @@
 <script src = "scripts/pb/statistics.js"></script>
 <script src = "scripts/pb/measures-table.js"></script>
 <script src = "scripts/pb/pb-measure.js"></script>
+<script src = "scripts/pb/datetime.js"></script>
 <script src = "scripts/adt/dictionary.js"></script>
 <script>
 	// When the browser is ready ...
@@ -49,7 +50,7 @@
 					{"aTargets" : [ "datetime-column" ], "mRender" : function(datetimeInMillis) {
 							var oDate = new Date(datetimeInMillis);
 							var date = oDate.getDate();
-							var month = oDate.getMonth();// January is 0
+							var month = oDate.getMonth();
 							var fullYear = oDate.getFullYear();
 							var hh = oDate.getHours();
 							var mm = oDate.getMinutes();
@@ -60,9 +61,7 @@
 				],
 				"fnHeaderCallback" : function(nHead, aData, iStart, iEnd, aiDisplay) {
 					nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Measures";
-				},
-				"order" : [[ 4, "asc" ]],
-				"bStateSave" : true
+				}
 			});
 
 			var measuresTable = new MeasuresTable(dataTables, dictionary, 0);
@@ -98,7 +97,7 @@
 			});
 
 			$("#datetimepicker").datetimepicker({
-				// format : "Y-m-d H:i",
+				format : "d/m/Y H:i",
 				step : 10
 			});
 

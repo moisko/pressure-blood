@@ -8,11 +8,12 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 	$.get("/pressure-blood-web/o.getMeasures", $.proxy(function(measures) {
 		// Dictionary
 
-		this.getDictionary().init(measures);
+		this.getDictionary().initDictionary(measures);
 
 		// Measures table
 
-		this.addMeasuresData();
+		var measuresData = this.getDictionary().toMeasuresData();
+		this.setMeasuresData(measuresData);
 
 		// Statistics
 		if (!_.isEmpty(measures)) {
@@ -26,6 +27,15 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 	}, this));
 }
 
+MeasuresTable.prototype.setMeasuresData = function(measuresData) {
+	var index;
+	for (index = 0; index < measuresData.length; index++) {
+		console.log("Adding measure with datetime " + measuresData[index][4]
+				+ " and sbp = " + measuresData[index][0]);
+		this.dataTables.fnAddData(measuresData[index]);
+	}
+}
+
 MeasuresTable.prototype.addMeasure = function() {
 	$.ajax({
 		url : "/pressure-blood-web/o.addMeasure",
@@ -37,8 +47,7 @@ MeasuresTable.prototype.addMeasure = function() {
 				"sbp" : parseInt(MeasureForm.getSbp(), 10),
 				"dbp" : parseInt(MeasureForm.getDbp(), 10)
 			},
-			"datetime" : new Date(Date.parse(MeasureForm.getDatetime()))
-					.getTime(),
+			"datetime" : MeasureForm.getDatetime(),
 			"hand" : MeasureForm.getHand(),
 			"pulse" : parseInt(MeasureForm.getPulse(), 10)
 		}),
@@ -122,14 +131,6 @@ MeasuresTable.prototype.calculateEndIndex = function() {
 		endIndex = this.dictionary.count();
 	}
 	return endIndex;
-}
-
-MeasuresTable.prototype.addMeasuresData = function() {
-	var measuresData = this.dictionary.toMeasuresData();
-	var index;
-	for (index = 0; index < measuresData.length; index++) {
-		this.dataTables.fnAddData(measuresData[index]);
-	}
 }
 
 MeasuresTable.prototype.getMeasuresCount = function() {

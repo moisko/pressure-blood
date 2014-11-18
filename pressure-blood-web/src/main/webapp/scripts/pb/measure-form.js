@@ -49,7 +49,8 @@ var MeasureForm = {
 		return $("#dbp").val();
 	},
 	getDatetime : function() {
-		return $("#datetimepicker").val();
+		var datetimeString = $("#datetimepicker").val();
+		return Datetime.toMillis(datetimeString);
 	},
 	getHand : function() {
 		return $("#hand").val();
@@ -57,4 +58,5 @@ var MeasureForm = {
 	getPulse : function() {
 		return $("#pulse").val();
 	}
+
 };
