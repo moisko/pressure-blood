@@ -87,7 +87,6 @@
 
 				// Statistics
 				var chartData = dictionary.toChartData().splice(beginIndex, endIndex);
-				chartData.unshift([ "Datetime", "SBP", "DBP" ]);
 				Statistics.showStatisticsHeader();
 				Statistics.drawChart(chartData);
 
