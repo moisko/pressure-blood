@@ -50,13 +50,8 @@
 				"aoColumnDefs" : [
 					{"aTargets" : [ "datetime-column" ], 
 					"mRender" : function(datetimeInMillis) {
-									var oDate = new Date(datetimeInMillis);
-									var date = oDate.getDate();
-									var month = oDate.getMonth();
-									var fullYear = oDate.getFullYear();
-									var hh = oDate.getHours();
-									var mm = oDate.getMinutes();
-									return date + "/" + month + "/" + fullYear + " " + hh + ":" + mm;
+									var datetimeString = Datetime.toString(datetimeInMillis);
+									return datetimeString;
 								},
 					"bSortable" : true,
 					"sType" : "date-bg"
