@@ -13,7 +13,10 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 		// Measures table
 
 		var measuresData = this.getDictionary().toMeasuresData();
-		this.setMeasuresData(measuresData);
+		var index;
+		for (index = 0; index < measuresData.length; index++) {
+			this.dataTables.fnAddData(measuresData[index]);
+		}
 
 		// Statistics
 		if (!_.isEmpty(measures)) {
@@ -25,15 +28,6 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 			Statistics.drawChart(chartData);
 		}
 	}, this));
-}
-
-MeasuresTable.prototype.setMeasuresData = function(measuresData) {
-	var index;
-	for (index = 0; index < measuresData.length; index++) {
-		console.log("Adding measure with datetime " + measuresData[index][4]
-				+ " and sbp = " + measuresData[index][0]);
-		this.dataTables.fnAddData(measuresData[index]);
-	}
 }
 
 MeasuresTable.prototype.addMeasure = function() {

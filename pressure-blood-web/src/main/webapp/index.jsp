@@ -29,6 +29,7 @@
 <script src = "scripts/pb/pb-measure.js"></script>
 <script src = "scripts/pb/datetime.js"></script>
 <script src = "scripts/adt/dictionary.js"></script>
+<script src="scripts/pb/date-bg.js"></script>
 <script>
 	// When the browser is ready ...
 	google.load("visualization", "1", {packages : [ "corechart" ]});
@@ -47,17 +48,22 @@
 
 			var dataTables = $("#measures-table").dataTable({
 				"aoColumnDefs" : [
-					{"aTargets" : [ "datetime-column" ], "mRender" : function(datetimeInMillis) {
-							var oDate = new Date(datetimeInMillis);
-							var date = oDate.getDate();
-							var month = oDate.getMonth();
-							var fullYear = oDate.getFullYear();
-							var hh = oDate.getHours();
-							var mm = oDate.getMinutes();
-							return date + "/" + month + "/" + fullYear + " " + hh + ":" + mm;
-						}
+					{"aTargets" : [ "datetime-column" ], 
+					"mRender" : function(datetimeInMillis) {
+									var oDate = new Date(datetimeInMillis);
+									var date = oDate.getDate();
+									var month = oDate.getMonth();
+									var fullYear = oDate.getFullYear();
+									var hh = oDate.getHours();
+									var mm = oDate.getMinutes();
+									return date + "/" + month + "/" + fullYear + " " + hh + ":" + mm;
+								},
+					"bSortable" : true,
+					"sType" : "date-bg"
 					},
-					{"aTargets" : [ "delete-column" ], "bSortable" : false}
+					{"aTargets" : [ "delete-column" ],
+					"bSortable" : false
+					}
 				],
 				"fnHeaderCallback" : function(nHead, aData, iStart, iEnd, aiDisplay) {
 					nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Measures";
