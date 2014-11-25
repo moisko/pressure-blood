@@ -6,10 +6,10 @@ var Statistics = {
 		data.addColumn("number", "DBP");
 		chartData.forEach(function(measureData) {
 			var dateTimeInMillis = measureData[0];
-			var dateTimeString = LocalDateTime.toLocalDateTimeString(dateTimeInMillis);
+			var localDateTimeString = LocalDateTime.toLocalDateTimeString(dateTimeInMillis);
 			var sbp = measureData[1];
 			var dbp = measureData[2];
-			data.addRow([ dateTimeString, sbp, dbp ]);
+			data.addRow([ localDateTimeString, sbp, dbp ]);
 		});
 
 		var chart = new google.visualization.ColumnChart($("#column-chart")
