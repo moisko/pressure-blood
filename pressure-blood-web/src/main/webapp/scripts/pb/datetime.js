@@ -22,7 +22,7 @@ var LocalDateTime = {
 		return dateTimeInMillis.getTime();
 	},
 
-	toString : function(dateTimeInMillis) {
+	toLocalDateTimeString : function(dateTimeInMillis) {
 		var d = new Date(dateTimeInMillis);
 		var date = d.getDate();
 		var month = d.getMonth();
@@ -35,8 +35,8 @@ var LocalDateTime = {
 			return ++m;
 		}
 
-		var dateTimeString = date + "/" + increaseMonth(month) + "/" + fullYear
-				+ " " + hh + ":" + mm;
-		return dateTimeString;
+		var localDateTimeString = date + "/" + increaseMonth(month) + "/"
+				+ fullYear + " " + hh + ":" + mm;
+		return localDateTimeString;
 	}
 }
