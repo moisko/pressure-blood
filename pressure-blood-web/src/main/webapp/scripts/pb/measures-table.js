@@ -13,10 +13,12 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 		// Measures table
 
 		var measuresData = this.getDictionary().toMeasuresData();
-		var index;
-		for (index = 0; index < measuresData.length; index++) {
-			this.dataTables.fnAddData(measuresData[index]);
-		}
+		var dataTablesRef = this.getDataTables();
+		measuresData.forEach(function(measureData) {
+			dataTablesRef.fnAddData([ measureData[0], measureData[1],
+					measureData[2], measureData[3], measureData[4],
+					measureData[5] ]);
+		});
 
 		// Statistics
 		if (!_.isEmpty(measures)) {
