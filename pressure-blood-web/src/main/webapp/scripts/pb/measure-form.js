@@ -50,7 +50,8 @@ var MeasureForm = {
 	},
 	getDatetime : function() {
 		var datetimeString = $("#datetimepicker").val();
-		return Datetime.toMillis(datetimeString);
+		var datetimInMillis = Datetime.toMillis(datetimeString);
+		return datetimInMillis;
 	},
 	getHand : function() {
 		return $("#hand").val();

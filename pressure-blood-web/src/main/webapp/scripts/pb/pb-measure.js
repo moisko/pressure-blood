@@ -19,6 +19,7 @@ var PbMeasure = {
 		return pulse;
 	},
 	getDatetime : function(measure) {
+		var datetimeInMillis = measure.datetime;
 		return measure.datetime;
 	},
 	getRemoveLink : function(measure) {

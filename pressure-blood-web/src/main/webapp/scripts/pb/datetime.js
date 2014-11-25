@@ -12,8 +12,19 @@ var Datetime = {
 		var hh = splittedTime[0];
 		var mm = splittedTime[1];
 
-		var datetime = new Date(year, month, date, hh, mm);
-		return datetime.getTime();
+		var datetimeInMillis = new Date(year, Datetime.decreaseMonth(month),
+				date, hh, mm);
+		return datetimeInMillis.getTime();
+	},
+
+	decreaseMonth : function(month) {
+		var m = parseInt(month, 10);
+		return --m;
+	},
+
+	increaseMonth : function(month) {
+		var m = parseInt(month, 10);
+		return ++m;
 	},
 
 	toString : function(datetimeInMillis) {
@@ -23,8 +34,8 @@ var Datetime = {
 		var fullYear = d.getFullYear();
 		var hh = d.getHours();
 		var mm = d.getMinutes();
-		var datetimeString = date + "/" + month + "/" + fullYear + " " + hh
-				+ ":" + mm;
+		var datetimeString = date + "/" + Datetime.increaseMonth(month) + "/"
+				+ fullYear + " " + hh + ":" + mm;
 		return datetimeString;
 	}
 }
