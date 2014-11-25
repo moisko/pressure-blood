@@ -50,8 +50,8 @@
 				"aoColumnDefs" : [
 					{"aTargets" : [ "datetime-column" ], 
 					"mRender" : function(datetimeInMillis) {
-									var datetimeString = Datetime.toString(datetimeInMillis);
-									return datetimeString;
+									var dateTimeString = LocalDateTime.toString(datetimeInMillis);
+									return dateTimeString;
 								},
 					"bSortable" : true,
 					"sType" : "date-bg"

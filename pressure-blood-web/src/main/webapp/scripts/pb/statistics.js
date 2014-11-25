@@ -5,11 +5,11 @@ var Statistics = {
 		data.addColumn("number", "SBP");
 		data.addColumn("number", "DBP");
 		chartData.forEach(function(measureData) {
-			var datetimeInMillis = measureData[0];
-			var datetimeString = Datetime.toString(datetimeInMillis);
+			var dateTimeInMillis = measureData[0];
+			var dateTimeString = LocalDateTime.toString(dateTimeInMillis);
 			var sbp = measureData[1];
 			var dbp = measureData[2];
-			data.addRow([ datetimeString, sbp, dbp ]);
+			data.addRow([ dateTimeString, sbp, dbp ]);
 		});
 
 		var chart = new google.visualization.ColumnChart($("#column-chart")

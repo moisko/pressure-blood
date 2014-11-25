@@ -1,41 +1,42 @@
-var Datetime = {
-	toMillis : function(datetimeString) {
-		var splittedDatetime = datetimeString.split(" ");
-		var date = splittedDatetime[0];
+var LocalDateTime = {
+	parse : function(dateTimeString) {
+		var splittedLocalDateTime = dateTimeString.split(" ");
+		var date = splittedLocalDateTime[0];
 		var splittedDate = date.split("/");
 		var date = splittedDate[0];
 		var month = splittedDate[1];
 		var year = splittedDate[2];
 
-		var time = splittedDatetime[1];
+		var time = splittedLocalDateTime[1];
 		var splittedTime = time.split(":");
 		var hh = splittedTime[0];
 		var mm = splittedTime[1];
 
-		var datetimeInMillis = new Date(year, Datetime.decreaseMonth(month),
-				date, hh, mm);
-		return datetimeInMillis.getTime();
+		function decreaseMonth(month) {
+			var m = parseInt(month, 10);
+			return --m;
+		}
+
+		var dateTimeInMillis = new Date(year, decreaseMonth(month), date, hh,
+				mm);
+		return dateTimeInMillis.getTime();
 	},
 
-	decreaseMonth : function(month) {
-		var m = parseInt(month, 10);
-		return --m;
-	},
-
-	increaseMonth : function(month) {
-		var m = parseInt(month, 10);
-		return ++m;
-	},
-
-	toString : function(datetimeInMillis) {
-		var d = new Date(datetimeInMillis);
+	toString : function(dateTimeInMillis) {
+		var d = new Date(dateTimeInMillis);
 		var date = d.getDate();
 		var month = d.getMonth();
 		var fullYear = d.getFullYear();
 		var hh = d.getHours();
 		var mm = d.getMinutes();
-		var datetimeString = date + "/" + Datetime.increaseMonth(month) + "/"
-				+ fullYear + " " + hh + ":" + mm;
-		return datetimeString;
+
+		increaseMonth = function(month) {
+			var m = parseInt(month, 10);
+			return ++m;
+		}
+
+		var dateTimeString = date + "/" + increaseMonth(month) + "/" + fullYear
+				+ " " + hh + ":" + mm;
+		return dateTimeString;
 	}
 }
