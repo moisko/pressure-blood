@@ -6,7 +6,7 @@ var Statistics = {
 		data.addColumn("number", "DBP");
 		chartData.forEach(function(measureData) {
 			var dateTimeInMillis = measureData[0];
-			var dateTimeString = LocalDateTime.toString(dateTimeInMillis);
+			var dateTimeString = LocalDateTime.toLocalDateTimeString(dateTimeInMillis);
 			var sbp = measureData[1];
 			var dbp = measureData[2];
 			data.addRow([ dateTimeString, sbp, dbp ]);
