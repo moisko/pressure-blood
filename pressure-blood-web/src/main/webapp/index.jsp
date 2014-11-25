@@ -49,8 +49,8 @@
 			var dataTables = $("#measures-table").dataTable({
 				"aoColumnDefs" : [
 					{"aTargets" : [ "datetime-column" ], 
-					"mRender" : function(datetimeInMillis) {
-									var dateTimeString = LocalDateTime.toString(datetimeInMillis);
+					"mRender" : function(dateTimeInMillis) {
+									var dateTimeString = LocalDateTime.toString(dateTimeInMillis);
 									return dateTimeString;
 								},
 					"bSortable" : true,
