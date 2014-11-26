@@ -43,7 +43,7 @@ MeasuresTable.prototype.addMeasure = function() {
 				"sbp" : parseInt(MeasureForm.getSbp(), 10),
 				"dbp" : parseInt(MeasureForm.getDbp(), 10)
 			},
-			"datetime" : MeasureForm.getDatetime(),
+			"datetime" : LocalDateTime.parse(MeasureForm.getDatetime()),
 			"hand" : MeasureForm.getHand(),
 			"pulse" : parseInt(MeasureForm.getPulse(), 10)
 		}),
