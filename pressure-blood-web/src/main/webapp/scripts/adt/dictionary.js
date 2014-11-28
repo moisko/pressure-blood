@@ -21,6 +21,29 @@ Dictionary.prototype.remove = function(key) {
 	delete this.datastore[key];
 }
 
+Dictionary.prototype.update = function(key, propertyName, propertyValue) {
+	var measure = this.find(key);
+	switch (propertyName) {
+	case "sbp":
+		measure.pressureBlood.sbp = parseInt(propertyValue, 10);
+		break;
+	case "dbp":
+		measure.pressureBlood.dbp = parseInt(propertyValue, 10);
+		break;
+	case "hand":
+		measure.hand = propertyValue;
+		break;
+	case "pulse":
+		measure.pulse = parseInt(propertyValue, 10);
+		break;
+	case "datetime":
+		measure.datetime = LocalDateTime.parse(propertyValue);
+		break;
+	default:
+		break;
+	}
+}
+
 Dictionary.prototype.toChartData = function() {
 	var chartData = [];
 	this.datastore.forEach(function(measure) {

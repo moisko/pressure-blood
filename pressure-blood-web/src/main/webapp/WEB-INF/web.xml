@@ -27,6 +27,7 @@
 			<url-pattern>/o.addMeasure</url-pattern>
 			<url-pattern>/o.getMeasures</url-pattern>
 			<url-pattern>/o.deleteMeasure</url-pattern>
+			<url-pattern>/o.updateMeasure</url-pattern>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>
 			<http-method>PUT</http-method>

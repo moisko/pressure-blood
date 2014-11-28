@@ -2,7 +2,7 @@ package pb.model;
 
 public enum Hand {
 
-	LEFT_HAND("leftHand"), RIGHT_HAND("rightHand");
+	LEFT_HAND("LEFT_HAND"), RIGHT_HAND("RIGHT_HAND");
 
 	private String hand;
 

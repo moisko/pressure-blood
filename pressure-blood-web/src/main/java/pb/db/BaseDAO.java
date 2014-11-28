@@ -1,5 +1,8 @@
 package pb.db;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -7,10 +10,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import pb.model.Hand;
 import pb.model.Measurement;
 import pb.model.Users;
 
 public class BaseDAO {
+
+	public static final SimpleDateFormat FORMATTER = new SimpleDateFormat(
+			"dd/MM/yyyy HH:mm");
+
+	private static final Logger LOGGER = Logger.getLogger(BaseDAO.class
+			.getName());
 
 	// Measures
 
@@ -48,6 +58,49 @@ public class BaseDAO {
 		try {
 			et.begin();
 			em.persist(measure);
+			et.commit();
+		} finally {
+			if (et.isActive()) {
+				et.rollback();
+			}
+		}
+	}
+
+	protected void updateMeasurePropertyInDb(EntityManager em,
+			Measurement measure, String measureProperty, String value) {
+		EntityTransaction et = em.getTransaction();
+		try {
+			et.begin();
+			switch (measureProperty) {
+			case Measurement.SBP:
+				measure.getPressureBlood().setSbp(Integer.parseInt(value));
+				break;
+			case Measurement.DBP:
+				measure.getPressureBlood().setDbp(Integer.parseInt(value));
+				break;
+			case Measurement.HAND:
+				measure.setHand(Hand.valueOf(value));
+				break;
+			case Measurement.PULSE:
+				measure.setPulse(Integer.parseInt(value));
+				break;
+			case Measurement.DATETIME: {
+				try {
+					Date datetime = FORMATTER.parse(value);
+					measure.setDatetime(datetime);
+				} catch (ParseException e) {
+					error(LOGGER, e.getMessage());
+				}
+			}
+				break;
+			default:
+				error(LOGGER, "Measure property " + measureProperty
+						+ " must be one of [" + Measurement.SBP + ", "
+						+ Measurement.DBP + ", " + Measurement.HAND + ", "
+						+ Measurement.PULSE + ", " + Measurement.DATETIME
+						+ "] property values");
+				break;
+			}
 			et.commit();
 		} finally {
 			if (et.isActive()) {

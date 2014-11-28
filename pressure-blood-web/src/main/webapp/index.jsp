@@ -17,6 +17,7 @@
 <script src="scripts/jquery/jquery.validate.min.js"></script>
 <script src="scripts/jquery/jquery.dataTables.min.js"></script>
 <script src="scripts/jquery/jquery.datetimepicker.js"></script>
+<script src="scripts/jquery/jquery.jeditable.mini.js"></script>
 <script src="scripts/underscore/underscore-min.js"></script>
 <script src="scripts/underscore/underscore-min.map"></script>
 
@@ -47,23 +48,83 @@
 			// Measures table init
 
 			var dataTables = $("#measures-table").dataTable({
+				"bServerSide" : false,
+				"bSortClasses" : false,
 				"aoColumnDefs" : [
-					{"aTargets" : [ "datetime-column" ], 
+					{"aTargets" : [5],
+					"bSortable" : false
+					},
+					{"aTargets" : [ "datetime-column" ],
 					"mRender" : function(dateTimeInMillis) {
 									var localDateTimeString = LocalDateTime.toLocalDateTimeString(dateTimeInMillis);
 									return localDateTimeString;
 								},
-					"bSortable" : true,
 					"sType" : "date-bg"
-					},
-					{"aTargets" : [ "delete-column" ],
-					"bSortable" : false
 					}
 				],
 				"fnHeaderCallback" : function(nHead, aData, iStart, iEnd, aiDisplay) {
 					nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Measures";
+				},
+				"fnDrawCallback": function (oSettings) {
+					$("#measures-table tbody tr td:not(.delete)").editable("/pressure-blood-web/o.updateMeasure", {
+						"placeholder" : "Value must be less than or equal to 300",
+						"callback" : function(updatedValue) {
+							var td = this;
+							var id = td.getAttribute("id");
+							var tokens = id.split("_");
+							var measureProperty = tokens[0];
+							var measureId = tokens[1];
+
+							dictionary.update(measureId, measureProperty, updatedValue);
+
+							var beginIndex = 0;
+							var endIndex = 10;
+							if (endIndex > dictionary.count()) {
+								endIndex = dictionary.count();
+							}
+							var chartData = dictionary.toChartData().splice(beginIndex, endIndex);
+							Statistics.drawChart(chartData);
+						}
+					});
+				},
+				"fnRowCallback" : function(nRow, aData, iStart, iEnd, aiDisplay) {
+					var id = $("td a", nRow).attr("id");
+					var tdElements = $("td", nRow);
+					var index;
+					for(index = 0; index < tdElements.length; index++) {
+						var tdElement = tdElements[index];
+						switch (index) {
+						case 0:
+							tdElement.setAttribute("id", "sbp_" + id);
+							tdElement.setAttribute("class", "edit");
+							break;
+						case 1:
+							tdElement.setAttribute("id", "dbp_" + id);
+							tdElement.setAttribute("class", "edit");
+							break;
+						case 2:
+							tdElement.setAttribute("id", "hand_" + id);
+							tdElement.setAttribute("class", "edit");
+							break;
+						case 3:
+							tdElement.setAttribute("id", "pulse_" + id);
+							tdElement.setAttribute("class", "edit");
+							break;
+						case 4:
+							tdElement.setAttribute("id", "datetime_" + id);
+							tdElement.setAttribute("class", "edit");
+							break;
+						case 5:
+							tdElement.setAttribute("class", "delete");
+						default:
+							break;
+						}
+					}
 				}
 			});
+
+			// Sort measures table by datetime column
+			dataTables.fnSort([[ 4, "asc" ]]);
 
 			var measuresTable = new MeasuresTable(dataTables, dictionary, 0);
 			measuresTable.populateMeasuresTable();
@@ -71,7 +132,7 @@
 			dataTables.on("page.dt", function(event, oSettings) {
 				var pageNumber = Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength);
 
-				// Upadet measures table page number
+				// Update measures table page number
 				measuresTable.setPageNumber(pageNumber);
 
 				var beginIndex = pageNumber * 10;

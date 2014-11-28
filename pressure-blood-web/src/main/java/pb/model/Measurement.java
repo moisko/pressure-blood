@@ -30,6 +30,12 @@ import com.google.gson.annotations.Expose;
 @Table(name = "MEASUREMENT")
 public class Measurement implements Serializable {
 
+	public static final String SBP = "sbp";
+	public static final String DBP = "dbp";
+	public static final String HAND = "hand";
+	public static final String PULSE = "pulse";
+	public static final String DATETIME = "datetime";
+
 	private static final long serialVersionUID = 1L;
 
 	@Expose

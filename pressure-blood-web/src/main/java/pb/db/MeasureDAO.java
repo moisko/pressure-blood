@@ -18,14 +18,11 @@ public class MeasureDAO extends BaseDAO {
 
 	private final EntityManagerFactory emf;
 
-	private final int maxRecords;
-
-	public MeasureDAO(EntityManagerFactory emf, int maxRecords) {
+	public MeasureDAO(EntityManagerFactory emf) {
 		this.emf = emf;
-		this.maxRecords = maxRecords;
 	}
 
-	public List<Measurement> getAllMeasuresForUser(String username) {
+	public List<Measurement> getAllMeasuresForUser(String username, int maxRecords) {
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
@@ -41,7 +38,7 @@ public class MeasureDAO extends BaseDAO {
 		}
 	}
 
-	public boolean addMeasureForUser(Measurement measure, String username) {
+	public boolean addMeasureForUser(Measurement measure, String username, int maxRecords) {
 		MeasurementValidator.validateMeasure(measure);
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
@@ -86,6 +83,26 @@ public class MeasureDAO extends BaseDAO {
 
 				info(LOGGER, "[" + username + "] " + "Measure " + measure
 						+ " successfully deleted from db");
+			}
+		} finally {
+			em.close();
+		}
+	}
+
+	public void updateMeasure(String measureId, String measureProperty,
+			String value) {
+		MeasurementValidator.validateMeasureId(measureId);
+		MeasurementValidator.validateMeasureProperty(measureProperty, value);
+		EntityManager em = emf.createEntityManager();
+		try {
+			Measurement measure = findMeasureByIdFromDb(em, measureId);
+			if (measure != null) {
+				updateMeasurePropertyInDb(em, measure, measureProperty, value);
+
+				String username = measure.getUsername();
+
+				info(LOGGER, "[" + username + "] " + "Measure " + measure
+						+ " successfully updated in db");
 			}
 		} finally {
 			em.close();

@@ -29,11 +29,11 @@ public class GetMeasures extends PressureBloodBaseServlet {
 
 		int maxRecords = Integer.parseInt(getInitParameter(PARAM_MAX_RECORDS));
 
-		MeasureDAO measureDAO = new MeasureDAO(emf, maxRecords);
+		MeasureDAO measureDAO = new MeasureDAO(emf);
 
 		String username = getUsernameFromHttpRequest(request);
 
-		List<Measurement> measures = measureDAO.getAllMeasuresForUser(username);
+		List<Measurement> measures = measureDAO.getAllMeasuresForUser(username, maxRecords);
 
 		serializeMeasuresToJson(response, measures);
 	}

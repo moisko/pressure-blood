@@ -28,13 +28,13 @@ public class AddMeasure extends PressureBloodBaseServlet {
 
 		int maxRecords = Integer.parseInt(getInitParameter(PARAM_MAX_RECORDS));
 
-		MeasureDAO measureDAO = new MeasureDAO(emf, maxRecords);
+		MeasureDAO measureDAO = new MeasureDAO(emf);
 
 		Measurement measure = getMeasureFromHttpRequest(request);
 
 		String username = getUsernameFromHttpRequest(request);
 
-		if (measureDAO.addMeasureForUser(measure, username)) {
+		if (measureDAO.addMeasureForUser(measure, username, maxRecords)) {
 			serializeMeasureToJson(response, measure);
 		} else {
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);

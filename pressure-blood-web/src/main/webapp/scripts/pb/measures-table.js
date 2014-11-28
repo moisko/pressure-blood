@@ -22,12 +22,7 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 
 		// Statistics
 		if (!_.isEmpty(measures)) {
-			var beginIndex = this.calculateBeginIndex();
-			var endIndex = this.calculateEndIndex();
-			var chartData = this.getDictionary().toChartData().splice(
-					beginIndex, endIndex);
-			Statistics.showStatisticsHeader();
-			Statistics.drawChart(chartData);
+			this.updateStatisticsChart();
 		}
 	}, this));
 }
@@ -63,12 +58,7 @@ MeasuresTable.prototype.addMeasure = function() {
 
 			// Statistics
 
-			var beginIndex = this.calculateBeginIndex();
-			var endIndex = this.calculateEndIndex();
-			var chartData = this.getDictionary().toChartData().splice(
-					beginIndex, endIndex);
-			Statistics.showStatisticsHeader();
-			Statistics.drawChart(chartData);
+			this.updateStatisticsChart();
 
 			// Clear form
 
@@ -100,21 +90,26 @@ MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 
 			// Statistics
 
-			var beginIndex = this.calculateBeginIndex();
-			var endIndex = this.calculateEndIndex();
-			var chartData = this.getDictionary().toChartData().splice(
-					beginIndex, endIndex);
-			if (!_.isEmpty(chartData)) {
-				Statistics.drawChart(chartData);
-			} else {
-				Statistics.hideStatisticsHeader();
-			}
+			this.updateStatisticsChart();
 		}, this),
 		error : function(xhr, status) {
 			alert("Failed to delete measure.\nServer returned: "
 					+ xhr.statusText);
 		}
 	});
+}
+
+MeasuresTable.prototype.updateStatisticsChart = function() {
+	var beginIndex = this.calculateBeginIndex();
+	var endIndex = this.calculateEndIndex();
+	var chartData = this.getDictionary().toChartData().splice(beginIndex,
+			endIndex);
+	if (!_.isEmpty(chartData)) {
+		Statistics.showStatisticsHeader();
+		Statistics.drawChart(chartData);
+	} else {
+		Statistics.hideStatisticsHeader();
+	}
 }
 
 MeasuresTable.prototype.calculateBeginIndex = function() {
