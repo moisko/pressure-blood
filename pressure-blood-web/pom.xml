@@ -98,7 +98,6 @@
 						</goals>
 						<configuration>
 							<sourceJsFolder>${basedir}/src/main/webapp/scripts/pb</sourceJsFolder>
-							<sourceJsFolder>${basedir}/src/main/webapp/scripts/adt</sourceJsFolder>
 						</configuration>
 					</execution>
 				</executions>
