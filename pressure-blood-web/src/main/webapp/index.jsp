@@ -29,7 +29,7 @@
 <script src = "scripts/pb/measures-table.js"></script>
 <script src = "scripts/pb/pb-measure.js"></script>
 <script src = "scripts/pb/datetime.js"></script>
-<script src = "scripts/adt/dictionary.js"></script>
+<script src = "scripts/pb/dictionary.js"></script>
 <script src="scripts/pb/date-bg.js"></script>
 <script>
 	// When the browser is ready ...
