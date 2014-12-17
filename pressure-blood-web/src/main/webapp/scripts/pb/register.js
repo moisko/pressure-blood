@@ -1,3 +1,4 @@
+/*global $,window,alert,RegisterForm*/
 var Register = {
 	registerUser : function() {
 		$.ajax({
@@ -33,4 +34,4 @@ var Register = {
 			}
 		});
 	}
-}
+};

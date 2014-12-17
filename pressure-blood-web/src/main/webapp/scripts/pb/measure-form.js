@@ -1,3 +1,4 @@
+/*global $*/
 var MeasureForm = {
 	validateAddMeasureForm : function() {
 		$("#add-measure-form").validate({

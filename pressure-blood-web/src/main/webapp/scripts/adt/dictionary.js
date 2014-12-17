@@ -1,3 +1,4 @@
+/*global $,PbMeasure,LocalDateTime*/
 function Dictionary() {
 	this.datastore = [];
 }
@@ -7,19 +8,19 @@ Dictionary.prototype.initDictionary = function(measures) {
 	measures.forEach(function(measure) {
 		datastoreRef[PbMeasure.getId(measure)] = measure;
 	});
-}
+};
 
 Dictionary.prototype.add = function(key, value) {
 	this.datastore[key] = value;
-}
+};
 
 Dictionary.prototype.find = function(key) {
 	return this.datastore[key];
-}
+};
 
 Dictionary.prototype.remove = function(key) {
 	delete this.datastore[key];
-}
+};
 
 Dictionary.prototype.update = function(key, propertyName, propertyValue) {
 	var measure = this.find(key);
@@ -42,7 +43,7 @@ Dictionary.prototype.update = function(key, propertyName, propertyValue) {
 	default:
 		break;
 	}
-}
+};
 
 Dictionary.prototype.toChartData = function() {
 	var chartData = [];
@@ -53,7 +54,7 @@ Dictionary.prototype.toChartData = function() {
 	return chartData.sort(function(a, b) {
 		return a[0] - b[0];
 	});
-}
+};
 
 Dictionary.prototype.toMeasuresData = function() {
 	var measuresData = [];
@@ -66,22 +67,22 @@ Dictionary.prototype.toMeasuresData = function() {
 	return measuresData.sort(function(a, b) {
 		return a[4] - b[4];
 	});
-}
+};
 
 Dictionary.prototype.clear = function() {
 	this.datastore.forEach(function(measure) {
 		delete this.datastore[measure.id];
 	});
-}
+};
 
 Dictionary.prototype.count = function() {
-	var n = 0;
+	var count = 0;
 	this.datastore.forEach(function(measure) {
-		++n;
+		++count;
 	});
-	return n;
-}
+	return count;
+};
 
 Dictionary.prototype.isEmpty = function() {
-	return count() == 0;
-}
+	return this.count() === 0;
+};

@@ -1,19 +1,19 @@
+/*global $,google,LocalDateTime*/
 var Statistics = {
 	drawChart : function(chartData) {
-		var data = new google.visualization.DataTable();
+		var data = new google.visualization.DataTable(),
+		chart = new google.visualization.ColumnChart($("#column-chart").get(0));
+
 		data.addColumn("string", "Datetime");
 		data.addColumn("number", "SBP");
 		data.addColumn("number", "DBP");
 		chartData.forEach(function(measureData) {
-			var dateTimeInMillis = measureData[0];
-			var localDateTimeString = LocalDateTime.toLocalDateTimeString(dateTimeInMillis);
-			var sbp = measureData[1];
-			var dbp = measureData[2];
+			var dateTimeInMillis = measureData[0],
+			localDateTimeString = LocalDateTime.toLocalDateTimeString(dateTimeInMillis),
+			sbp = measureData[1],
+			dbp = measureData[2];
 			data.addRow([ localDateTimeString, sbp, dbp ]);
 		});
-
-		var chart = new google.visualization.ColumnChart($("#column-chart")
-				.get(0));
 
 		chart.draw(data);
 	},

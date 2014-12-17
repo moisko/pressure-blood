@@ -1,3 +1,4 @@
+/*global $,_,alert,MeasureForm,PbMeasure,Statistics,LocalDateTime*/
 function MeasuresTable(dataTables, dictionary, pageNumber) {
 	this.dataTables = dataTables;
 	this.dictionary = dictionary;
@@ -12,8 +13,8 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 
 		// Measures table
 
-		var measuresData = this.getDictionary().toMeasuresData();
-		var dataTablesRef = this.getDataTables();
+		var measuresData = this.getDictionary().toMeasuresData(),
+		dataTablesRef = this.getDataTables();
 		measuresData.forEach(function(measureData) {
 			dataTablesRef.fnAddData([ measureData[0], measureData[1],
 					measureData[2], measureData[3], measureData[4],
@@ -25,7 +26,7 @@ MeasuresTable.prototype.populateMeasuresTable = function() {
 			this.updateStatisticsChart();
 		}
 	}, this));
-}
+};
 
 MeasuresTable.prototype.addMeasure = function() {
 	$.ajax({
@@ -71,7 +72,7 @@ MeasuresTable.prototype.addMeasure = function() {
 			MeasureForm.clear();
 		}
 	});
-}
+};
 
 MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 	$.ajax({
@@ -97,24 +98,23 @@ MeasuresTable.prototype.deleteMeasure = function(tableRow) {
 					+ xhr.statusText);
 		}
 	});
-}
+};
 
 MeasuresTable.prototype.updateStatisticsChart = function() {
-	var beginIndex = this.calculateBeginIndex();
-	var endIndex = this.calculateEndIndex();
-	var chartData = this.getDictionary().toChartData().splice(beginIndex,
-			endIndex);
+	var beginIndex = this.calculateBeginIndex(),
+	endIndex = this.calculateEndIndex(),
+	chartData = this.getDictionary().toChartData().splice(beginIndex, endIndex);
 	if (!_.isEmpty(chartData)) {
 		Statistics.showStatisticsHeader();
 		Statistics.drawChart(chartData);
 	} else {
 		Statistics.hideStatisticsHeader();
 	}
-}
+};
 
 MeasuresTable.prototype.calculateBeginIndex = function() {
 	return 0;
-}
+};
 
 MeasuresTable.prototype.calculateEndIndex = function() {
 	var endIndex = 10;
@@ -122,28 +122,28 @@ MeasuresTable.prototype.calculateEndIndex = function() {
 		endIndex = this.dictionary.count();
 	}
 	return endIndex;
-}
+};
 
 MeasuresTable.prototype.getMeasuresCount = function() {
 	return this.dataTables.fnGetData().length;
-}
+};
 
 MeasuresTable.prototype.getMeasureIdFromTableRow = function(tableRow) {
 	return tableRow.find("td a").attr("id");
-}
+};
 
 MeasuresTable.prototype.getDataTables = function() {
 	return this.dataTables;
-}
+};
 
 MeasuresTable.prototype.getDictionary = function() {
 	return this.dictionary;
-}
+};
 
 MeasuresTable.prototype.getPageNumber = function() {
 	return this.pageNumber;
-}
+};
 
 MeasuresTable.prototype.setPageNumber = function(pageNumber) {
 	this.pageNumber = pageNumber;
-}
+};

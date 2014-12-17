@@ -24,6 +24,7 @@
 	</repositories>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.11</junit.version>
 		<jdk.version>1.7</jdk.version>
 		<javax.servelt.api.version>3.0.1</javax.servelt.api.version>
@@ -85,6 +86,22 @@
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jslint-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jslint</goal>
+						</goals>
+						<configuration>
+							<sourceJsFolder>${basedir}/src/main/webapp/scripts/pb</sourceJsFolder>
+							<sourceJsFolder>${basedir}/src/main/webapp/scripts/adt</sourceJsFolder>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

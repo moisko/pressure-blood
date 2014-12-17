@@ -1,3 +1,4 @@
+/*global _*/
 var PbMeasure = {
 	getId : function(measure) {
 		return measure.id;
