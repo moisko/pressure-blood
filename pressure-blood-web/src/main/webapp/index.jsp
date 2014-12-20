@@ -106,13 +106,23 @@
 							}
 
 							function updateStatistics() {
-								var beginIndex = 0,
-								endIndex = 10,
+
+								function calculateBeginIndex() {
+									var beginIndex = 0;
+									return beginIndex;
+								}
+
+								function calculateEndIndex() {
+									var endIndex = 10;
+									if (endIndex > dictionary.count()) {
+										endIndex = dictionary.count();
+									}
+								}
+
+								var beginIndex = calculateBeginIndex(),
+								endIndex = calculateEndIndex(),
 								chartData = dictionary.toChartData().splice(beginIndex, endIndex);
 
-								if (endIndex > dictionary.count()) {
-									endIndex = dictionary.count();
-								}
 								Statistics.drawChart(chartData);
 							}
 
@@ -178,6 +188,7 @@
 				}
 
 				function updateStatistics(pageNumber) {
+
 					function calculateBeginIndex() {
 						var beginIndex = pageNumber * 10;
 						return beginIndex;
