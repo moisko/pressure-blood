@@ -117,6 +117,7 @@
 									if (endIndex > dictionary.count()) {
 										endIndex = dictionary.count();
 									}
+									return endIndex;
 								}
 
 								var beginIndex = calculateBeginIndex(),
@@ -199,6 +200,7 @@
 						if(endIndex > dictionary.count()) {
 							endIndex = dictionary.count();
 						}
+						return endIndex;
 					}
 
 					var beginIndex = calculateBeginIndex(),
