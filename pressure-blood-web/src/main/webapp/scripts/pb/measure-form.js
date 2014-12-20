@@ -40,6 +40,7 @@ var MeasureForm = {
 	clear : function() {
 		$("#sbp").val("");
 		$("#dbp").val("");
+		$("#hand").val("LEFT_HAND");
 		$("#pulse").val("");
 		$("#datetimepicker").val("");
 	},

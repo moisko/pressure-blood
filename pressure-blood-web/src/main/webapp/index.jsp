@@ -214,6 +214,7 @@
 					var tableRow = $(this).parent().parent();
 					measuresTable.deleteMeasure(tableRow);
 				}
+
 				event.preventDefault();
 			});
 
@@ -227,6 +228,7 @@
 				if (MeasureForm.isAddMeasureFormValid()) {
 					measuresTable.addMeasure(dataTables, dictionary);
 				}
+
 				event.preventDefault();
 			});
 		});
@@ -277,8 +279,8 @@
 				<div id="hand-selector">
 					<label for="hand">HAND:</label>
 					<select id="hand" name="hand">
-						<option value="LEFT_HAND">Left hand</option>
-						<option value="RIGHT_HAND">Right hand</option>
+						<option value="LEFT_HAND">LEFT_HAND</option>
+						<option value="RIGHT_HAND">RIGHT_HAND</option>
 					</select>
 				</div>
 
