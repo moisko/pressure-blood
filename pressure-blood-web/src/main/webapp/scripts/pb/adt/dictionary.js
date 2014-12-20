@@ -26,16 +26,16 @@ Dictionary.prototype.update = function(key, propertyName, propertyValue) {
 	var measure = this.find(key);
 	switch (propertyName) {
 	case "sbp":
-		measure.pressureBlood.sbp = parseInt(propertyValue, 10);
+		measure.pressureBlood.sbp = propertyValue;
 		break;
 	case "dbp":
-		measure.pressureBlood.dbp = parseInt(propertyValue, 10);
+		measure.pressureBlood.dbp = propertyValue;
 		break;
 	case "hand":
 		measure.hand = propertyValue;
 		break;
 	case "pulse":
-		measure.pulse = parseInt(propertyValue, 10);
+		measure.pulse = propertyValue;
 		break;
 	case "datetime":
 		measure.datetime = propertyValue;
