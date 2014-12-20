@@ -85,7 +85,7 @@
 
 							var td = this;
 
-							// Update measures table
+							// Measures table
 
 							var position = dataTables.fnGetPosition(td);
 							var row = position[0];
@@ -158,6 +158,7 @@
 				var pageNumber = Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength);
 
 				// Update measures table page number
+
 				measuresTable.setPageNumber(pageNumber);
 
 				var beginIndex = pageNumber * 10;
@@ -167,6 +168,7 @@
 				}
 
 				// Statistics
+
 				var chartData = dictionary.toChartData().splice(beginIndex, endIndex);
 				Statistics.showStatisticsHeader();
 				Statistics.drawChart(chartData);
