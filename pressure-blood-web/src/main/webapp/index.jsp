@@ -78,7 +78,7 @@
 									break;
 								case 4: // DATETIME column
 									return updatedValue = LocalDateTime.parse(updatedValue);
-								default:
+								default: // HAND column
 									return updatedValue;
 									break;
 								}
@@ -170,23 +170,41 @@
 			measuresTable.populateMeasuresTable();
 
 			dataTables.on("page.dt", function(event, oSettings) {
+
+				function updatePageNumber() {
+					var pageNumber = Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength);
+					measuresTable.setPageNumber(pageNumber);
+					return pageNumber;
+				}
+
+				function updateStatistics(pageNumber) {
+					function calculateBeginIndex() {
+						var beginIndex = pageNumber * 10;
+						return beginIndex;
+					}
+
+					function calculateEndIndex() {
+						var endIndex = beginIndex + 10;
+						if(endIndex > dictionary.count()) {
+							endIndex = dictionary.count();
+						}
+					}
+
+					var beginIndex = calculateBeginIndex(),
+					endIndex = calculateEndIndex(),
+					chartData = dictionary.toChartData().splice(beginIndex, endIndex);
+
+					Statistics.showStatisticsHeader();
+					Statistics.drawChart(chartData);
+				}
+
 				// Update measures table page number
 
-				var pageNumber = Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength);
-
-				measuresTable.setPageNumber(pageNumber);
+				var pageNumber = updatePageNumber();
 
 				// Statistics
 
-				var beginIndex = pageNumber * 10;
-				var endIndex = beginIndex + 10;
-				if(endIndex > dictionary.count()) {
-					endIndex = dictionary.count();
-				}
-
-				var chartData = dictionary.toChartData().splice(beginIndex, endIndex);
-				Statistics.showStatisticsHeader();
-				Statistics.drawChart(chartData);
+				updateStatistics(pageNumber);
 
 				event.preventDefault();
 			});
