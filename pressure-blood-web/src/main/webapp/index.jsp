@@ -68,14 +68,15 @@
 					$("#measures-table tbody tr td:not(.delete)").editable("/pressure-blood-web/o.updateMeasure", {
 						"placeholder" : "Value must be less than or equal to 300",
 						"callback" : function(updatedValue) {
+
 							function convertUpdatedValueToColumnType(column) {
 								switch (column) {
-								case 0:
-								case 1:
-								case 3:
+								case 0: // SBP column
+								case 1: // DBP column
+								case 3: // PULSE column
 									return updatedValue = parseInt(updatedValue, 10);
 									break;
-								case 4:
+								case 4: // DATETIME column
 									return updatedValue = LocalDateTime.parse(updatedValue);
 								default:
 									return updatedValue;
@@ -85,33 +86,47 @@
 
 							var td = this;
 
+							function updateMeasuresTable() {
+								var position = dataTables.fnGetPosition(td),
+								row = position[0],
+								column = position[1],
+								aData = dataTables.fnGetData(row);
+
+								aData[column] = convertUpdatedValueToColumnType(column);
+								dataTables.fnUpdate(aData, row);
+							}
+
+							function updateDictionary() {
+								var id = td.getAttribute("id"),
+								tokens = id.split("_"),
+								measureProperty = tokens[0],
+								measureId = tokens[1];
+
+								dictionary.update(measureId, measureProperty, updatedValue);
+							}
+
+							function updateStatistics() {
+								var beginIndex = 0,
+								endIndex = 10,
+								chartData = dictionary.toChartData().splice(beginIndex, endIndex);
+
+								if (endIndex > dictionary.count()) {
+									endIndex = dictionary.count();
+								}
+								Statistics.drawChart(chartData);
+							}
+
 							// Measures table
 
-							var position = dataTables.fnGetPosition(td);
-							var row = position[0];
-							var column = position[1];
-							var aData = dataTables.fnGetData(row);
-							aData[column] = convertUpdatedValueToColumnType(column);
-							dataTables.fnUpdate(aData, row);
+							updateMeasuresTable();
 
 							// Update dictionary
 
-							var id = td.getAttribute("id");
-							var tokens = id.split("_");
-							var measureProperty = tokens[0];
-							var measureId = tokens[1];
-
-							dictionary.update(measureId, measureProperty, updatedValue);
+							updateDictionary();
 
 							// Statistics
 
-							var beginIndex = 0;
-							var endIndex = 10;
-							if (endIndex > dictionary.count()) {
-								endIndex = dictionary.count();
-							}
-							var chartData = dictionary.toChartData().splice(beginIndex, endIndex);
-							Statistics.drawChart(chartData);
+							updateStatistics();
 						}
 					});
 				},
@@ -155,19 +170,19 @@
 			measuresTable.populateMeasuresTable();
 
 			dataTables.on("page.dt", function(event, oSettings) {
-				var pageNumber = Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength);
-
 				// Update measures table page number
 
+				var pageNumber = Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength);
+
 				measuresTable.setPageNumber(pageNumber);
+
+				// Statistics
 
 				var beginIndex = pageNumber * 10;
 				var endIndex = beginIndex + 10;
 				if(endIndex > dictionary.count()) {
 					endIndex = dictionary.count();
 				}
-
-				// Statistics
 
 				var chartData = dictionary.toChartData().splice(beginIndex, endIndex);
 				Statistics.showStatisticsHeader();
