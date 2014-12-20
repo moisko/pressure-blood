@@ -38,7 +38,7 @@ Dictionary.prototype.update = function(key, propertyName, propertyValue) {
 		measure.pulse = parseInt(propertyValue, 10);
 		break;
 	case "datetime":
-		measure.datetime = LocalDateTime.parse(propertyValue);
+		measure.datetime = propertyValue;
 		break;
 	default:
 		break;

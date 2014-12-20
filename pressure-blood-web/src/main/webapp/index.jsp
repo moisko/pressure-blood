@@ -78,6 +78,7 @@
 									break;
 								case 4: // DATETIME column
 									return updatedValue = LocalDateTime.parse(updatedValue);
+									break;
 								default: // HAND column
 									return updatedValue;
 									break;
