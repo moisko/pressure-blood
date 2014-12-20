@@ -48,8 +48,7 @@
 			// Measures table init
 
 			var dataTables = $("#measures-table").dataTable({
-				"bServerSide" : false,
-				"bSortClasses" : false,
+				"order" : [[ 4, "asc" ]],
 				"aoColumnDefs" : [
 					{"aTargets" : [5],
 					"bSortable" : false
@@ -69,13 +68,42 @@
 					$("#measures-table tbody tr td:not(.delete)").editable("/pressure-blood-web/o.updateMeasure", {
 						"placeholder" : "Value must be less than or equal to 300",
 						"callback" : function(updatedValue) {
+							function convertUpdatedValueToColumnType(column) {
+								switch (column) {
+								case 0:
+								case 1:
+								case 3:
+									return updatedValue = parseInt(updatedValue, 10);
+									break;
+								case 4:
+									return updatedValue = LocalDateTime.parse(updatedValue);
+								default:
+									return updatedValue;
+									break;
+								}
+							}
+
 							var td = this;
+
+							// Update measures table
+
+							var position = dataTables.fnGetPosition(td);
+							var row = position[0];
+							var column = position[1];
+							var aData = dataTables.fnGetData(row);
+							aData[column] = convertUpdatedValueToColumnType(column);
+							dataTables.fnUpdate(aData, row);
+
+							// Update dictionary
+
 							var id = td.getAttribute("id");
 							var tokens = id.split("_");
 							var measureProperty = tokens[0];
 							var measureId = tokens[1];
 
 							dictionary.update(measureId, measureProperty, updatedValue);
+
+							// Statistics
 
 							var beginIndex = 0;
 							var endIndex = 10;
@@ -122,9 +150,6 @@
 					}
 				}
 			});
-
-			// Sort measures table by datetime column
-			dataTables.fnSort([[ 4, "asc" ]]);
 
 			var measuresTable = new MeasuresTable(dataTables, dictionary, 0);
 			measuresTable.populateMeasuresTable();
