@@ -23,14 +23,14 @@
 
 <script src="https://www.google.com/jsapi"></script>
 
-<script src = "scripts/pb/measure-form.js"></script>
-<script src = "scripts/pb/register-form.js"></script>
-<script src = "scripts/pb/statistics.js"></script>
-<script src = "scripts/pb/measures-table.js"></script>
-<script src = "scripts/pb/pb-measure.js"></script>
-<script src = "scripts/pb/datetime.js"></script>
-<script src = "scripts/pb/dictionary.js"></script>
-<script src="scripts/pb/date-bg.js"></script>
+<script src = "scripts/pb/form/measure-form.js"></script>
+<script src = "scripts/pb/form/register-form.js"></script>
+<script src = "scripts/pb/chart/statistics.js"></script>
+<script src = "scripts/pb/table/measures-table.js"></script>
+<script src = "scripts/pb/table/pb-measure.js"></script>
+<script src = "scripts/pb/time/datetime.js"></script>
+<script src= "scripts/pb/time/date-bg.js"></script>
+<script src = "scripts/pb/adt/dictionary.js"></script>
 <script>
 	// When the browser is ready ...
 	google.load("visualization", "1", {packages : [ "corechart" ]});
