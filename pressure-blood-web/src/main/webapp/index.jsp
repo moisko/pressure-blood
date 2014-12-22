@@ -28,6 +28,7 @@
 <script src = "scripts/pb/chart/statistics.js"></script>
 <script src = "scripts/pb/table/measures-table.js"></script>
 <script src = "scripts/pb/table/pb-measure.js"></script>
+<script src = "scripts/pb/table/measure-input.js"></script>
 <script src = "scripts/pb/time/datetime.js"></script>
 <script src= "scripts/pb/time/date-bg.js"></script>
 <script src = "scripts/pb/adt/dictionary.js"></script>
@@ -67,6 +68,8 @@
 				"fnDrawCallback": function (oSettings) {
 					$("#measures-table tbody tr td:not(.delete)").editable("/pressure-blood-web/o.updateMeasure", {
 						"placeholder" : "Value must be less than or equal to 300",
+						"type" : "measure",
+						"onblur" : "submit",
 						"callback" : function(updatedValue) {
 
 							function convertUpdatedValueToColumnType(column) {
@@ -89,9 +92,9 @@
 
 							function updateMeasuresTable() {
 								var position = dataTables.fnGetPosition(td),
-								row = position[0],
-								column = position[1],
-								aData = dataTables.fnGetData(row);
+									row = position[0],
+									column = position[1],
+									aData = dataTables.fnGetData(row);
 
 								aData[column] = convertUpdatedValueToColumnType(column);
 								dataTables.fnUpdate(aData, row);
@@ -99,9 +102,9 @@
 
 							function updateDictionary() {
 								var id = td.getAttribute("id"),
-								tokens = id.split("_"),
-								measureProperty = tokens[0],
-								measureId = tokens[1];
+									tokens = id.split("_"),
+									measureProperty = tokens[0],
+									measureId = tokens[1];
 
 								dictionary.update(measureId, measureProperty, updatedValue);
 							}
@@ -122,8 +125,8 @@
 								}
 
 								var beginIndex = calculateBeginIndex(),
-								endIndex = calculateEndIndex(),
-								chartData = dictionary.toChartData().splice(beginIndex, endIndex);
+									endIndex = calculateEndIndex(),
+									chartData = dictionary.toChartData().splice(beginIndex, endIndex);
 
 								Statistics.drawChart(chartData);
 							}
@@ -205,8 +208,8 @@
 					}
 
 					var beginIndex = calculateBeginIndex(),
-					endIndex = calculateEndIndex(),
-					chartData = dictionary.toChartData().splice(beginIndex, endIndex);
+						endIndex = calculateEndIndex(),
+						chartData = dictionary.toChartData().splice(beginIndex, endIndex);
 
 					Statistics.showStatisticsHeader();
 					Statistics.drawChart(chartData);
