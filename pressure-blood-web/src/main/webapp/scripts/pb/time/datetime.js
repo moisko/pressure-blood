@@ -6,17 +6,17 @@ var LocalDateTime = {
 		}
 
 		var splittedLocalDateTime = dateTimeString.split(" "),
-		localDate = splittedLocalDateTime[0],
-		splittedDate = localDate.split("/"),
-		date = splittedDate[0],
-		month = splittedDate[1],
-		year = splittedDate[2],
+			localDate = splittedLocalDateTime[0],
+			splittedDate = localDate.split("/"),
+			date = splittedDate[0],
+			month = splittedDate[1],
+			year = splittedDate[2],
 
-		time = splittedLocalDateTime[1],
-		splittedTime = time.split(":"),
-		hh = splittedTime[0],
-		mm = splittedTime[1],
-		dateTimeInMillis = new Date(year, decreaseMonth(month), date, hh, mm);
+			time = splittedLocalDateTime[1],
+			splittedTime = time.split(":"),
+			hh = splittedTime[0],
+			mm = splittedTime[1],
+			dateTimeInMillis = new Date(year, decreaseMonth(month), date, hh, mm);
 
 		return dateTimeInMillis.getTime();
 	},
@@ -56,13 +56,13 @@ var LocalDateTime = {
 		}
 
 		var d = new Date(dateTimeInMillis),
-		date = d.getDate(),
-		month = d.getMonth(),
-		fullYear = d.getFullYear(),
+			date = d.getDate(),
+			month = d.getMonth(),
+			fullYear = d.getFullYear(),
 
-		hh = d.getHours(),
-		mm = d.getMinutes(),
-		localDateTimeString = formatDate(date) + "/"
+			hh = d.getHours(),
+			mm = d.getMinutes(),
+			localDateTimeString = formatDate(date) + "/"
 				+ formatMonth(increaseMonth(month)) + "/" + fullYear + " "
 				+ formatHour(hh) + ":" + formatMinute(mm);
 
