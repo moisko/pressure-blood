@@ -28,11 +28,6 @@ $.editable.addInputType("measure", {
 			return measureProperty;
 		}
 
-		function createHiddenInput() {
-			var hiddenInput = "<input type=\"hidden\">";
-			return $(hiddenInput);
-		}
-
 		function createControl(id) {
 			var control,
 				measureProperty = getMeasureProperty(id);
