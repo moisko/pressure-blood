@@ -9,7 +9,7 @@ $.editable.addInputType("measure", {
 				input = "<input id=\"" + id + "\" type=\"number\" min=\"0\" max=\"300\" size=\"3\" class=\"required\">";
 				break;
 			case "text":
-				input = "<input id=\"" + id + "\" type=\"text\" size=\"12\" class=\"required\">";
+				input = "<input id=\"" + id + "\" type=\"text\" size=\"15\" class=\"required\">";
 				break;
 			default:
 				break;
