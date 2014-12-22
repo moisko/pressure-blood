@@ -22,7 +22,8 @@ public class MeasureDAO extends BaseDAO {
 		this.emf = emf;
 	}
 
-	public List<Measurement> getAllMeasuresForUser(String username, int maxRecords) {
+	public List<Measurement> getAllMeasuresForUser(String username,
+			int maxRecords) {
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
@@ -38,7 +39,8 @@ public class MeasureDAO extends BaseDAO {
 		}
 	}
 
-	public boolean addMeasureForUser(Measurement measure, String username, int maxRecords) {
+	public boolean addMeasureForUser(Measurement measure, String username,
+			int maxRecords) {
 		MeasurementValidator.validateMeasure(measure);
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
@@ -82,6 +84,7 @@ public class MeasureDAO extends BaseDAO {
 				deleteMeasureByUsernameFromDb(em, measure, username);
 
 				info(LOGGER, "[" + username + "] " + "Measure " + measure
+						+ " with id " + measureId
 						+ " successfully deleted from db");
 			}
 		} finally {
@@ -101,8 +104,9 @@ public class MeasureDAO extends BaseDAO {
 
 				String username = measure.getUsername();
 
-				info(LOGGER, "[" + username + "] " + "Measure " + measure
-						+ " successfully updated in db");
+				info(LOGGER, "[" + username + "] " + "Measure property "
+						+ measureProperty + " successfully updated with value "
+						+ value + "in db");
 			}
 		} finally {
 			em.close();
