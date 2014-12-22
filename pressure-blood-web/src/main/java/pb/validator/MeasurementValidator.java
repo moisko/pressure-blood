@@ -88,7 +88,13 @@ public class MeasurementValidator {
 			break;
 		case Measurement.PULSE: {
 			if (value != null) {
-				validatePulse(Integer.parseInt(value));
+				try {
+					Integer pulse = Integer.parseInt(value);
+					validatePulse(pulse);
+				} catch (NumberFormatException e) {
+					throw new IllegalArgumentException("Pulse value " + value
+							+ " is not valid", e);
+				}
 			}
 		}
 			break;
