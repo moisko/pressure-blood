@@ -1,4 +1,4 @@
-/*global $,console*/
+/*global $*/
 $.editable.addInputType("measure", {
 	element : function(settings, original) {
 
