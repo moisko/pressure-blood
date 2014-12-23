@@ -84,8 +84,8 @@ public class MeasureDAO extends BaseDAO {
 				deleteMeasureByUsernameFromDb(em, measure, username);
 
 				info(LOGGER, "[" + username + "] " + "Measure " + measure
-						+ " with id " + measureId
-						+ " successfully deleted from db");
+						+ " with id '" + measureId
+						+ "' successfully deleted from db");
 			}
 		} finally {
 			em.close();
@@ -104,9 +104,10 @@ public class MeasureDAO extends BaseDAO {
 
 				String username = measure.getUsername();
 
-				info(LOGGER, "[" + username + "] " + "Measure property "
-						+ measureProperty + " successfully updated with value "
-						+ value + "in db");
+				info(LOGGER, "[" + username + "] " + "Measure property '"
+						+ measureProperty
+						+ "' successfully updated with value '" + value
+						+ "' in db");
 			}
 		} finally {
 			em.close();
