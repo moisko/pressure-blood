@@ -1,0 +1,1703 @@
+Apache Maven 3.0.4 (r1232337; 2012-01-17 10:44:56+0200)
+Maven home: c:\apache-maven-3.0.4
+Java version: 1.7.0, vendor: Oracle Corporation
+Java home: c:\Program Files\Java\jdk1.7.0\jre
+Default locale: en_US, platform encoding: Cp1251
+OS name: "windows 7", version: "6.1", arch: "amd64", family: "windows"
+[INFO] Error stacktraces are turned on.
+[DEBUG] Reading global settings from c:\apache-maven-3.0.4\conf\settings.xml
+[DEBUG] Reading user settings from C:\Users\borko\.m2\settings.xml
+[DEBUG] Using local repository at C:\Users\borko\.m2\repository
+[DEBUG] Using manager EnhancedLocalRepositoryManager with priority 10 for C:\Users\borko\.m2\repository
+[INFO] Scanning for projects...
+[DEBUG] Extension realms for project pb:pressure-blood:pom:1.0.3-SNAPSHOT: (none)
+[DEBUG] Looking up lifecyle mappings for packaging pom from ClassRealm[plexus.core, parent: null]
+[DEBUG] Extension realms for project pb:pressure-blood-web:war:1.0.3-SNAPSHOT: (none)
+[DEBUG] Looking up lifecyle mappings for packaging war from ClassRealm[plexus.core, parent: null]
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] pressure-blood
+[INFO] pressure-blood-web
+[DEBUG] === REACTOR BUILD PLAN ================================================
+[DEBUG] Project: pb:pressure-blood:pom:1.0.3-SNAPSHOT
+[DEBUG] Tasks:   [clean, install]
+[DEBUG] Style:   Regular
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Project: pb:pressure-blood-web:war:1.0.3-SNAPSHOT
+[DEBUG] Tasks:   [clean, install]
+[DEBUG] Style:   Regular
+[DEBUG] =======================================================================
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building pressure-blood 1.0.3-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] === PROJECT BUILD PLAN ================================================
+[DEBUG] Project:       pb:pressure-blood:1.0.3-SNAPSHOT
+[DEBUG] Dependencies (collect): []
+[DEBUG] Dependencies (resolve): []
+[DEBUG] Repositories (dependencies): [central (http://repo.maven.apache.org/maven2, releases)]
+[DEBUG] Repositories (plugins)     : [central (http://repo.maven.apache.org/maven2, releases)]
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-clean-plugin:2.4.1:clean (default-clean)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <directory default-value="${project.build.directory}"/>
+  <excludeDefaultDirectories default-value="false">${clean.excludeDefaultDirectories}</excludeDefaultDirectories>
+  <failOnError default-value="true">${maven.clean.failOnError}</failOnError>
+  <followSymLinks default-value="false">${clean.followSymLinks}</followSymLinks>
+  <outputDirectory default-value="${project.build.outputDirectory}"/>
+  <reportDirectory default-value="${project.reporting.outputDirectory}"/>
+  <skip default-value="false">${clean.skip}</skip>
+  <testOutputDirectory default-value="${project.build.testOutputDirectory}"/>
+  <verbose>${clean.verbose}</verbose>
+</configuration>
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-install-plugin:2.3.1:install (default-install)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <artifact default-value="${project.artifact}"/>
+  <attachedArtifacts default-value="${project.attachedArtifacts}"/>
+  <createChecksum default-value="false">${createChecksum}</createChecksum>
+  <localRepository>${localRepository}</localRepository>
+  <packaging default-value="${project.packaging}"/>
+  <pomFile default-value="${project.file}"/>
+  <updateReleaseInfo default-value="false">${updateReleaseInfo}</updateReleaseInfo>
+</configuration>
+[DEBUG] =======================================================================
+[INFO] 
+[INFO] --- maven-clean-plugin:2.4.1:clean (default-clean) @ pressure-blood ---
+[DEBUG] Created new class realm maven.api
+[DEBUG] Importing foreign packages into class realm maven.api
+[DEBUG]   Imported: org.apache.maven.wagon.events < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.transfer < plexus.core
+[DEBUG]   Imported: org.apache.maven.exception < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.metadata < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.Xpp3Dom < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.collection < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.version < plexus.core
+[DEBUG]   Imported: org.apache.maven.monitor < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.repository < plexus.core
+[DEBUG]   Imported: org.apache.maven.repository < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.resource < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.logging < plexus.core
+[DEBUG]   Imported: org.apache.maven.profiles < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.repository < plexus.core
+[DEBUG]   Imported: org.apache.maven.classrealm < plexus.core
+[DEBUG]   Imported: org.apache.maven.execution < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.artifact < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.spi < plexus.core
+[DEBUG]   Imported: org.apache.maven.reporting < plexus.core
+[DEBUG]   Imported: org.apache.maven.usability < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.container < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.component < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlSerializer < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.authentication < plexus.core
+[DEBUG]   Imported: org.apache.maven.lifecycle < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.classworlds < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.graph < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.settings < plexus.core
+[DEBUG]   Imported: org.codehaus.classworlds < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.impl < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.toolchain < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.deployment < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.observers < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParserException < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParser < plexus.core
+[DEBUG]   Imported: org.apache.maven.configuration < plexus.core
+[DEBUG]   Imported: org.apache.maven.cli < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.installation < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.context < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.authorization < plexus.core
+[DEBUG]   Imported: org.apache.maven.project < plexus.core
+[DEBUG]   Imported: org.apache.maven.rtinfo < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.lifecycle < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.configuration < plexus.core
+[DEBUG]   Imported: org.apache.maven.artifact < plexus.core
+[DEBUG]   Imported: org.apache.maven.model < plexus.core
+[DEBUG]   Imported: org.apache.maven.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.proxy < plexus.core
+[DEBUG]   Imported: org.sonatype.aether.resolution < plexus.core
+[DEBUG]   Imported: org.apache.maven.plugin < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.* < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.personality < plexus.core
+[DEBUG] Populating class realm maven.api
+[DEBUG] org.apache.maven.plugins:maven-clean-plugin:jar:2.4.1:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:2.0.6:compile
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:2.0.5:compile
+[DEBUG] Created new class realm plugin>org.apache.maven.plugins:maven-clean-plugin:2.4.1
+[DEBUG] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-clean-plugin:2.4.1
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.apache.maven.plugins:maven-clean-plugin:2.4.1
+[DEBUG]   Included: org.apache.maven.plugins:maven-clean-plugin:jar:2.4.1
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:2.0.5
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-api:jar:2.0.6
+[DEBUG] Configuring mojo org.apache.maven.plugins:maven-clean-plugin:2.4.1:clean from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-clean-plugin:2.4.1, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[DEBUG] Configuring mojo 'org.apache.maven.plugins:maven-clean-plugin:2.4.1:clean' with basic configurator -->
+[DEBUG]   (f) directory = c:\Users\borko\Git\pressure-blood\target
+[DEBUG]   (f) excludeDefaultDirectories = false
+[DEBUG]   (f) failOnError = true
+[DEBUG]   (f) followSymLinks = false
+[DEBUG]   (f) outputDirectory = c:\Users\borko\Git\pressure-blood\target\classes
+[DEBUG]   (f) reportDirectory = c:\Users\borko\Git\pressure-blood\target\site
+[DEBUG]   (f) skip = false
+[DEBUG]   (f) testOutputDirectory = c:\Users\borko\Git\pressure-blood\target\test-classes
+[DEBUG] -- end configuration --
+[DEBUG] Skipping non-existing directory c:\Users\borko\Git\pressure-blood\target
+[DEBUG] Skipping non-existing directory c:\Users\borko\Git\pressure-blood\target\classes
+[DEBUG] Skipping non-existing directory c:\Users\borko\Git\pressure-blood\target\test-classes
+[DEBUG] Skipping non-existing directory c:\Users\borko\Git\pressure-blood\target\site
+[INFO] 
+[INFO] --- maven-install-plugin:2.3.1:install (default-install) @ pressure-blood ---
+[DEBUG] org.apache.maven.plugins:maven-install-plugin:jar:2.3.1:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-project:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-settings:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-profile:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-plugin-registry:jar:2.0.6:compile
+[DEBUG]       org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1:compile
+[DEBUG]          junit:junit:jar:3.8.1:compile
+[DEBUG]          classworlds:classworlds:jar:1.1-alpha-2:compile
+[DEBUG]    org.apache.maven:maven-model:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-artifact-manager:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-repository-metadata:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-artifact:jar:2.0.6:compile
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:2.0.5:compile
+[DEBUG]    org.codehaus.plexus:plexus-digest:jar:1.0:compile
+[DEBUG] Created new class realm plugin>org.apache.maven.plugins:maven-install-plugin:2.3.1
+[DEBUG] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-install-plugin:2.3.1
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.apache.maven.plugins:maven-install-plugin:2.3.1
+[DEBUG]   Included: org.apache.maven.plugins:maven-install-plugin:jar:2.3.1
+[DEBUG]   Included: junit:junit:jar:3.8.1
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:2.0.5
+[DEBUG]   Included: org.codehaus.plexus:plexus-digest:jar:1.0
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-api:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-project:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-settings:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-profile:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-registry:jar:2.0.6
+[DEBUG]   Excluded: org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1
+[DEBUG]   Excluded: classworlds:classworlds:jar:1.1-alpha-2
+[DEBUG]   Excluded: org.apache.maven:maven-model:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-artifact-manager:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-repository-metadata:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-artifact:jar:2.0.6
+[DEBUG] Configuring mojo org.apache.maven.plugins:maven-install-plugin:2.3.1:install from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-install-plugin:2.3.1, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[DEBUG] Configuring mojo 'org.apache.maven.plugins:maven-install-plugin:2.3.1:install' with basic configurator -->
+[DEBUG]   (f) artifact = pb:pressure-blood:pom:1.0.3-SNAPSHOT
+[DEBUG]   (f) attachedArtifacts = []
+[DEBUG]   (f) createChecksum = false
+[DEBUG]   (f) localRepository =        id: local
+      url: file:///C:/Users/borko/.m2/repository/
+   layout: none
+
+[DEBUG]   (f) packaging = pom
+[DEBUG]   (f) pomFile = c:\Users\borko\Git\pressure-blood\pom.xml
+[DEBUG]   (f) updateReleaseInfo = false
+[DEBUG] -- end configuration --
+[INFO] Installing c:\Users\borko\Git\pressure-blood\pom.xml to C:\Users\borko\.m2\repository\pb\pressure-blood\1.0.3-SNAPSHOT\pressure-blood-1.0.3-SNAPSHOT.pom
+[DEBUG] Writing resolution tracking file C:\Users\borko\.m2\repository\pb\pressure-blood\1.0.3-SNAPSHOT\_maven.repositories
+[DEBUG] Installing pb:pressure-blood:1.0.3-SNAPSHOT/maven-metadata.xml to C:\Users\borko\.m2\repository\pb\pressure-blood\1.0.3-SNAPSHOT\maven-metadata-local.xml
+[DEBUG] Installing pb:pressure-blood/maven-metadata.xml to C:\Users\borko\.m2\repository\pb\pressure-blood\maven-metadata-local.xml
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building pressure-blood-web 1.0.3-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] === PROJECT BUILD PLAN ================================================
+[DEBUG] Project:       pb:pressure-blood-web:1.0.3-SNAPSHOT
+[DEBUG] Dependencies (collect): []
+[DEBUG] Dependencies (resolve): [compile, runtime, test]
+[DEBUG] Repositories (dependencies): [oss.sonatype.org (https://oss.sonatype.org/content/groups/staging, releases+snapshots), central (http://repo.maven.apache.org/maven2, releases)]
+[DEBUG] Repositories (plugins)     : [uglifyjs-maven-plugin (https://raw.github.com/tqh/uglifyjs-maven-plugin/master/repo, releases+snapshots), central (http://repo.maven.apache.org/maven2, releases)]
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-clean-plugin:2.4.1:clean (default-clean)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <directory default-value="${project.build.directory}"/>
+  <excludeDefaultDirectories default-value="false">${clean.excludeDefaultDirectories}</excludeDefaultDirectories>
+  <failOnError default-value="true">${maven.clean.failOnError}</failOnError>
+  <followSymLinks default-value="false">${clean.followSymLinks}</followSymLinks>
+  <outputDirectory default-value="${project.build.outputDirectory}"/>
+  <reportDirectory default-value="${project.reporting.outputDirectory}"/>
+  <skip default-value="false">${clean.skip}</skip>
+  <testOutputDirectory default-value="${project.build.testOutputDirectory}"/>
+  <verbose>${clean.verbose}</verbose>
+</configuration>
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.codehaus.mojo:jslint-maven-plugin:1.0.1:jslint (default)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <adsafe default-value="false"/>
+  <allowOneVarStatementPerFunction default-value="true"/>
+  <assumeABrowser default-value="true"/>
+  <assumeAYahooWidget default-value="false"/>
+  <assumeConsoleAlertEtc default-value="false"/>
+  <assumeRhino default-value="false"/>
+  <assumeWindows default-value="false"/>
+  <disallowBitwiseOperators default-value="true"/>
+  <disallowDanglingUnderbarInIdentifiers default-value="false"/>
+  <disallowIncrAndDecr default-value="false"/>
+  <disallowInsecureCharsInRegExp default-value="true"/>
+  <disallowUndefinedVariables default-value="true"/>
+  <encoding default-value="${project.build.sourceEncoding}">${encoding}</encoding>
+  <failOnIssues default-value="true"/>
+  <maximumNumberOfErrors default-value="50"/>
+  <predefinedVars default-value="false"/>
+  <requireInitialCapsForConstructors default-value="true"/>
+  <requireUseStrict default-value="false"/>
+  <safeSubset default-value="false"/>
+  <sourceJsFolder default-value="${basedir}/src/main/js">C:\Users\borko\Git\pressure-blood\pressure-blood-web/src/main/webapp/scripts/js/pb</sourceJsFolder>
+  <stopOnFirstError default-value="false"/>
+  <strictWhiteSpace default-value="false"/>
+  <strictWhiteSpaceIndentation default-value="4"/>
+  <tolerateCSSWorkarounds default-value="false"/>
+  <tolerateContinuation default-value="false"/>
+  <tolerateDebuggerStatements default-value="false"/>
+  <tolerateES5Syntax default-value="false"/>
+  <tolerateEval default-value="false"/>
+  <tolerateHTMLCase default-value="false"/>
+  <tolerateHTMLEventHandlers default-value="false"/>
+  <tolerateHTMLFragments default-value="false"/>
+  <tolerateInefficientSubscripting default-value="false"/>
+  <tolerateUnfilteredForIn default-value="true"/>
+  <workFolder default-value="${project.build.directory}/JSLintMojo/main"/>
+</configuration>
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-resources-plugin:2.5:resources (default-resources)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <buildFilters default-value="${project.build.filters}"/>
+  <encoding default-value="${project.build.sourceEncoding}">${encoding}</encoding>
+  <escapeString>${maven.resources.escapeString}</escapeString>
+  <escapeWindowsPaths default-value="true">${maven.resources.escapeWindowsPaths}</escapeWindowsPaths>
+  <includeEmptyDirs default-value="false">${maven.resources.includeEmptyDirs}</includeEmptyDirs>
+  <outputDirectory default-value="${project.build.outputDirectory}"/>
+  <overwrite default-value="false">${maven.resources.overwrite}</overwrite>
+  <project default-value="${project}"/>
+  <resources default-value="${project.resources}"/>
+  <session default-value="${session}"/>
+  <supportMultiLineFiltering default-value="false">${maven.resources.supportMultiLineFiltering}</supportMultiLineFiltering>
+  <useBuildFilters default-value="true"/>
+  <useDefaultDelimiters default-value="true"/>
+</configuration>
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-compiler-plugin:3.0:compile (default-compile)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <basedir default-value="${basedir}"/>
+  <buildDirectory default-value="${project.build.directory}"/>
+  <classpathElements default-value="${project.compileClasspathElements}"/>
+  <compileSourceRoots default-value="${project.compileSourceRoots}"/>
+  <compilerId default-value="javac">${maven.compiler.compilerId}</compilerId>
+  <compilerReuseStrategy default-value="${reuseCreated}">${maven.compiler.compilerReuseStrategy}</compilerReuseStrategy>
+  <compilerVersion>${maven.compiler.compilerVersion}</compilerVersion>
+  <debug default-value="true">${maven.compiler.debug}</debug>
+  <debuglevel>${maven.compiler.debuglevel}</debuglevel>
+  <encoding default-value="${project.build.sourceEncoding}">${encoding}</encoding>
+  <executable>${maven.compiler.executable}</executable>
+  <failOnError default-value="true">${maven.compiler.failOnError}</failOnError>
+  <forceJavacCompilerUse default-value="false">${maven.compiler.forceJavacCompilerUse}</forceJavacCompilerUse>
+  <fork default-value="false">${maven.compiler.fork}</fork>
+  <generatedSourcesDirectory default-value="${project.build.directory}/generated-sources/annotations"/>
+  <maxmem>${maven.compiler.maxmem}</maxmem>
+  <meminitial>${maven.compiler.meminitial}</meminitial>
+  <mojoExecution>${mojoExecution}</mojoExecution>
+  <optimize default-value="false">${maven.compiler.optimize}</optimize>
+  <outputDirectory default-value="${project.build.outputDirectory}"/>
+  <projectArtifact default-value="${project.artifact}"/>
+  <showDeprecation default-value="false">${maven.compiler.showDeprecation}</showDeprecation>
+  <showWarnings default-value="false">${maven.compiler.showWarnings}</showWarnings>
+  <skipMultiThreadWarning default-value="false">${maven.compiler.skipMultiThreadWarning}</skipMultiThreadWarning>
+  <source default-value="1.5">1.7</source>
+  <staleMillis default-value="0">${lastModGranularityMs}</staleMillis>
+  <target default-value="1.5">1.7</target>
+  <verbose default-value="false">${maven.compiler.verbose}</verbose>
+  <mavenSession default-value="${session}"/>
+  <session default-value="${session}"/>
+</configuration>
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          net.tqh.plugins:uglifyjs-maven-plugin:1.0:uglify (uglify-js)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <encoding default-value="UTF-8">${encoding}</encoding>
+  <outputDirectory>C:\Users\borko\Git\pressure-blood\pressure-blood-web/src/main/webapp/scripts/pb</outputDirectory>
+  <sourceDirectory>C:\Users\borko\Git\pressure-blood\pressure-blood-web/src/main/webapp/scripts/js/pb</sourceDirectory>
+</configuration>
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-resources-plugin:2.5:testResources (default-testResources)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <buildFilters default-value="${project.build.filters}"/>
+  <encoding default-value="${project.build.sourceEncoding}">${encoding}</encoding>
+  <escapeString>${maven.resources.escapeString}</escapeString>
+  <escapeWindowsPaths default-value="true">${maven.resources.escapeWindowsPaths}</escapeWindowsPaths>
+  <includeEmptyDirs default-value="false">${maven.resources.includeEmptyDirs}</includeEmptyDirs>
+  <outputDirectory>${project.build.testOutputDirectory}</outputDirectory>
+  <overwrite default-value="false">${maven.resources.overwrite}</overwrite>
+  <project default-value="${project}"/>
+  <resources>${project.testResources}</resources>
+  <session default-value="${session}"/>
+  <supportMultiLineFiltering default-value="false">${maven.resources.supportMultiLineFiltering}</supportMultiLineFiltering>
+  <useBuildFilters default-value="true"/>
+  <useDefaultDelimiters default-value="true"/>
+</configuration>
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-compiler-plugin:3.0:testCompile (default-testCompile)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <basedir default-value="${basedir}"/>
+  <buildDirectory default-value="${project.build.directory}"/>
+  <classpathElements default-value="${project.testClasspathElements}"/>
+  <compileSourceRoots default-value="${project.testCompileSourceRoots}"/>
+  <compilerId default-value="javac">${maven.compiler.compilerId}</compilerId>
+  <compilerReuseStrategy default-value="${reuseCreated}">${maven.compiler.compilerReuseStrategy}</compilerReuseStrategy>
+  <compilerVersion>${maven.compiler.compilerVersion}</compilerVersion>
+  <debug default-value="true">${maven.compiler.debug}</debug>
+  <debuglevel>${maven.compiler.debuglevel}</debuglevel>
+  <encoding default-value="${project.build.sourceEncoding}">${encoding}</encoding>
+  <executable>${maven.compiler.executable}</executable>
+  <failOnError default-value="true">${maven.compiler.failOnError}</failOnError>
+  <forceJavacCompilerUse default-value="false">${maven.compiler.forceJavacCompilerUse}</forceJavacCompilerUse>
+  <fork default-value="false">${maven.compiler.fork}</fork>
+  <generatedTestSourcesDirectory default-value="${project.build.directory}/generated-test-sources/test-annotations"/>
+  <maxmem>${maven.compiler.maxmem}</maxmem>
+  <meminitial>${maven.compiler.meminitial}</meminitial>
+  <mojoExecution>${mojoExecution}</mojoExecution>
+  <optimize default-value="false">${maven.compiler.optimize}</optimize>
+  <outputDirectory default-value="${project.build.testOutputDirectory}"/>
+  <showDeprecation default-value="false">${maven.compiler.showDeprecation}</showDeprecation>
+  <showWarnings default-value="false">${maven.compiler.showWarnings}</showWarnings>
+  <skip>${maven.test.skip}</skip>
+  <skipMultiThreadWarning default-value="false">${maven.compiler.skipMultiThreadWarning}</skipMultiThreadWarning>
+  <source default-value="1.5">1.7</source>
+  <staleMillis default-value="0">${lastModGranularityMs}</staleMillis>
+  <target default-value="1.5">1.7</target>
+  <testSource>${maven.compiler.testSource}</testSource>
+  <testTarget>${maven.compiler.testTarget}</testTarget>
+  <verbose default-value="false">${maven.compiler.verbose}</verbose>
+  <mavenSession default-value="${session}"/>
+  <session default-value="${session}"/>
+</configuration>
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-surefire-plugin:2.10:test (default-test)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <argLine>${argLine}</argLine>
+  <basedir default-value="${basedir}"/>
+  <childDelegation default-value="false">${childDelegation}</childDelegation>
+  <classesDirectory default-value="${project.build.outputDirectory}"/>
+  <debugForkedProcess>${maven.surefire.debug}</debugForkedProcess>
+  <disableXmlReport default-value="false">${disableXmlReport}</disableXmlReport>
+  <enableAssertions default-value="true">${enableAssertions}</enableAssertions>
+  <excludedGroups>${excludedGroups}</excludedGroups>
+  <failIfNoTests>${failIfNoTests}</failIfNoTests>
+  <forkMode default-value="once">${forkMode}</forkMode>
+  <forkedProcessTimeoutInSeconds>${surefire.timeout}</forkedProcessTimeoutInSeconds>
+  <groups>${groups}</groups>
+  <junitArtifactName default-value="junit:junit">${junitArtifactName}</junitArtifactName>
+  <jvm>${jvm}</jvm>
+  <localRepository>${localRepository}</localRepository>
+  <objectFactory>${objectFactory}</objectFactory>
+  <parallel>${parallel}</parallel>
+  <parallelMavenExecution default-value="${session.parallel}"/>
+  <perCoreThreadCount default-value="true">${perCoreThreadCount}</perCoreThreadCount>
+  <pluginArtifactMap>${plugin.artifactMap}</pluginArtifactMap>
+  <printSummary default-value="true">${surefire.printSummary}</printSummary>
+  <project default-value="${project}"/>
+  <projectArtifactMap>${project.artifactMap}</projectArtifactMap>
+  <redirectTestOutputToFile default-value="false">${maven.test.redirectTestOutputToFile}</redirectTestOutputToFile>
+  <remoteRepositories>${project.pluginArtifactRepositories}</remoteRepositories>
+  <reportFormat default-value="brief">${surefire.reportFormat}</reportFormat>
+  <reportNameSuffix default-value="">${surefire.reportNameSuffix}</reportNameSuffix>
+  <reportsDirectory default-value="${project.build.directory}/surefire-reports"/>
+  <runOrder default-value="filesystem"/>
+  <session>${session}</session>
+  <skip default-value="false">${maven.test.skip}</skip>
+  <skipExec>${maven.test.skip.exec}</skipExec>
+  <skipTests default-value="false">${skipTests}</skipTests>
+  <test>${test}</test>
+  <testClassesDirectory default-value="${project.build.testOutputDirectory}"/>
+  <testFailureIgnore default-value="false">${maven.test.failure.ignore}</testFailureIgnore>
+  <testNGArtifactName default-value="org.testng:testng">${testNGArtifactName}</testNGArtifactName>
+  <testSourceDirectory default-value="${project.build.testSourceDirectory}"/>
+  <threadCount>${threadCount}</threadCount>
+  <trimStackTrace default-value="true">${trimStackTrace}</trimStackTrace>
+  <useFile default-value="true">${surefire.useFile}</useFile>
+  <useManifestOnlyJar default-value="true">${surefire.useManifestOnlyJar}</useManifestOnlyJar>
+  <useSystemClassLoader default-value="true">${surefire.useSystemClassLoader}</useSystemClassLoader>
+  <useUnlimitedThreads default-value="false">${useUnlimitedThreads}</useUnlimitedThreads>
+  <workingDirectory>${basedir}</workingDirectory>
+</configuration>
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-war-plugin:2.5:war (default-war)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <archiveClasses default-value="false">${archiveClasses}</archiveClasses>
+  <attachClasses default-value="false"/>
+  <cacheFile default-value="${project.build.directory}/war/work/webapp-cache.xml"/>
+  <classesClassifier default-value="classes"/>
+  <classesDirectory default-value="${project.build.outputDirectory}"/>
+  <containerConfigXML>${maven.war.containerConfigXML}</containerConfigXML>
+  <escapeString>${maven.war.escapeString}</escapeString>
+  <escapedBackslashesInFilePath default-value="false">${maven.war.escapedBackslashesInFilePath}</escapedBackslashesInFilePath>
+  <failOnMissingWebXml default-value="true">${failOnMissingWebXml}</failOnMissingWebXml>
+  <filteringDeploymentDescriptors default-value="false">${maven.war.filteringDeploymentDescriptors}</filteringDeploymentDescriptors>
+  <includeEmptyDirectories default-value="false"/>
+  <outputDirectory default-value="${project.build.directory}"/>
+  <primaryArtifact default-value="true">${primaryArtifact}</primaryArtifact>
+  <project default-value="${project}"/>
+  <recompressZippedFiles default-value="true"/>
+  <resourceEncoding default-value="${project.build.sourceEncoding}">${resourceEncoding}</resourceEncoding>
+  <session default-value="${session}"/>
+  <supportMultiLineFiltering default-value="false">${maven.war.supportMultiLineFiltering}</supportMultiLineFiltering>
+  <useCache default-value="false">${useCache}</useCache>
+  <useJvmChmod default-value="true">${maven.war.useJvmChmod}</useJvmChmod>
+  <warName default-value="${project.build.finalName}">${war.warName}</warName>
+  <warSourceDirectory default-value="${basedir}/src/main/webapp"/>
+  <warSourceIncludes default-value="**"/>
+  <webResources>
+    <resource>
+      <directory>C:\Users\borko\Git\pressure-blood\pressure-blood-web/src/main/webapp/scripts/js/pb</directory>
+      <excludes>
+        <exclude>**/*.js</exclude>
+      </excludes>
+    </resource>
+  </webResources>
+  <webXml>${maven.war.webxml}</webXml>
+  <webappDirectory default-value="${project.build.directory}/${project.build.finalName}"/>
+  <workDirectory default-value="${project.build.directory}/war/work"/>
+</configuration>
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-install-plugin:2.3.1:install (default-install)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <artifact default-value="${project.artifact}"/>
+  <attachedArtifacts default-value="${project.attachedArtifacts}"/>
+  <createChecksum default-value="false">${createChecksum}</createChecksum>
+  <localRepository>${localRepository}</localRepository>
+  <packaging default-value="${project.packaging}"/>
+  <pomFile default-value="${project.file}"/>
+  <updateReleaseInfo default-value="false">${updateReleaseInfo}</updateReleaseInfo>
+</configuration>
+[DEBUG] =======================================================================
+[DEBUG] pb:pressure-blood-web:war:1.0.3-SNAPSHOT
+[DEBUG]    junit:junit:jar:4.11:test
+[DEBUG]       org.hamcrest:hamcrest-core:jar:1.3:test
+[DEBUG]    javax.servlet:javax.servlet-api:jar:3.0.1:provided
+[DEBUG]    javax.servlet:jsp-api:jar:2.0:provided
+[DEBUG]    org.eclipse.persistence:eclipselink:jar:2.5.0-RC1:compile
+[DEBUG]       org.eclipse.persistence:javax.persistence:jar:2.1.0-RC1:compile
+[DEBUG]    com.google.code.gson:gson:jar:2.2.4:compile
+[INFO] 
+[INFO] --- maven-clean-plugin:2.4.1:clean (default-clean) @ pressure-blood-web ---
+[DEBUG] org.apache.maven.plugins:maven-clean-plugin:jar:2.4.1:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:2.0.6:compile
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:2.0.5:compile
+[DEBUG] Created new class realm plugin>org.apache.maven.plugins:maven-clean-plugin:2.4.1-1011962207
+[DEBUG] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-clean-plugin:2.4.1-1011962207
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.apache.maven.plugins:maven-clean-plugin:2.4.1-1011962207
+[DEBUG]   Included: org.apache.maven.plugins:maven-clean-plugin:jar:2.4.1
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:2.0.5
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-api:jar:2.0.6
+[DEBUG] Configuring mojo org.apache.maven.plugins:maven-clean-plugin:2.4.1:clean from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-clean-plugin:2.4.1-1011962207, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[DEBUG] Configuring mojo 'org.apache.maven.plugins:maven-clean-plugin:2.4.1:clean' with basic configurator -->
+[DEBUG]   (f) directory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target
+[DEBUG]   (f) excludeDefaultDirectories = false
+[DEBUG]   (f) failOnError = true
+[DEBUG]   (f) followSymLinks = false
+[DEBUG]   (f) outputDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[DEBUG]   (f) reportDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\site
+[DEBUG]   (f) skip = false
+[DEBUG]   (f) testOutputDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\test-classes
+[DEBUG] -- end configuration --
+[INFO] Deleting C:\Users\borko\Git\pressure-blood\pressure-blood-web\target
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\surefire\surefirebooter7523062359092415985.jar
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\surefire\surefire3715792878473349770tmp
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\surefire\surefire3020812737639735228tmp
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\surefire
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT.war
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\web.xml
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\lib\javax.persistence-2.1.0-RC1.jar
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\lib\gson-2.2.4.jar
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\lib\eclipselink-2.5.0-RC1.jar
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\lib
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\validator\UserValidator.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\validator\PasswordValidator.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\validator\MeasurementValidator.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\validator\EmailValidator.class
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\validator
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\usermanagement\RegisterUserResponse.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\usermanagement\RegisterUserResponse$Status.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\usermanagement\RegisterNewUserServlet.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\usermanagement\LogoutServlet.class
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\usermanagement
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\model\UsersDTO.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\model\Users.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\model\UserRolesId.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\model\UserRoles.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\model\UserRoles$Role.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\model\PressureBlood.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\model\Measurement.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\model\Hand.class
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\model
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\db\UsersDAO.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\db\MeasureDAO.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\db\BaseDAO.class
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\db
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\controller\UpdateMeasure.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\controller\PressureBloodServletContextListener.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\controller\PressureBloodBaseServlet.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\controller\PressureBloodBaseServlet$DatetimeSerializer.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\controller\PressureBloodBaseServlet$DatetimeDeserializer.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\controller\PressureBloodBaseServlet$1.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\controller\GetMeasures.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\controller\DeleteMeasure.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\controller\AddMeasure.class
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb\controller
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\pb
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\META-INF\persistence.xml
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes\META-INF
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF\classes
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\WEB-INF
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\pb\registerPage.css
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\pb\loginPage.css
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\pb\index.css
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\pb
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\jquery\jquery.datetimepicker.css
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\jquery\jquery.dataTables.min.css
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\jquery
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\sort_desc_disabled.png
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\sort_desc.png
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\sort_both.png
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\sort_asc_disabled.png
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\sort_asc.png
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\Sorting icons.psd
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\forward_enabled_hover.png
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\forward_enabled.png
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\forward_disabled.png
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\favicon.ico
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\back_enabled_hover.png
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\back_enabled.png
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images\back_disabled.png
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles\images
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\styles
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\underscore\underscore-min.map
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\underscore\underscore-min.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\underscore
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\time\datetime.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\time\date-bg.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\time
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\table\pb-measure.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\table\measures-table.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\table\measure-input.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\table
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\form\register.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\form\register-form.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\form\measure-form.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\form
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\chart\statistics.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\chart
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\adt\dictionary.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb\adt
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\pb
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\time\datetime.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\time\date-bg.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\time
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\table\pb-measure.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\table\measures-table.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\table\measure-input.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\table
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\form\register.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\form\register-form.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\form\measure-form.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\form
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\chart\statistics.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\chart
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\adt\dictionary.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb\adt
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js\pb
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\jquery\jquery.validate.min.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\jquery\jquery.jeditable.mini.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\jquery\jquery.datetimepicker.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\jquery\jquery.dataTables.min.js
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\jquery\jquery-1.11.1.min.js
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts\jquery
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\scripts
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\registerPage.html
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\META-INF\persistence.xml
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\META-INF
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\loginPage.html
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\loginError.html
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT\index.jsp
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\maven-status\maven-compiler-plugin\compile\default-compile\createdFiles.lst
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\maven-status\maven-compiler-plugin\compile\default-compile
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\maven-status\maven-compiler-plugin\compile
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\maven-status\maven-compiler-plugin
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\maven-status
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\maven-archiver\pom.properties
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\maven-archiver
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\JSLintMojo\main\lastModified
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\JSLintMojo\main
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\JSLintMojo
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\generated-sources\annotations
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\generated-sources
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\validator\UserValidator.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\validator\PasswordValidator.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\validator\MeasurementValidator.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\validator\EmailValidator.class
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\validator
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\usermanagement\RegisterUserResponse.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\usermanagement\RegisterUserResponse$Status.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\usermanagement\RegisterNewUserServlet.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\usermanagement\LogoutServlet.class
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\usermanagement
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\model\UsersDTO.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\model\Users.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\model\UserRolesId.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\model\UserRoles.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\model\UserRoles$Role.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\model\PressureBlood.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\model\Measurement.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\model\Hand.class
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\model
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\db\UsersDAO.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\db\MeasureDAO.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\db\BaseDAO.class
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\db
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\controller\UpdateMeasure.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\controller\PressureBloodServletContextListener.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\controller\PressureBloodBaseServlet.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\controller\PressureBloodBaseServlet$DatetimeSerializer.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\controller\PressureBloodBaseServlet$DatetimeDeserializer.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\controller\PressureBloodBaseServlet$1.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\controller\GetMeasures.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\controller\DeleteMeasure.class
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\controller\AddMeasure.class
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb\controller
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\pb
+[INFO] Deleting file C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\META-INF\persistence.xml
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\META-INF
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[INFO] Deleting directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target
+[DEBUG] Skipping non-existing directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[DEBUG] Skipping non-existing directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\test-classes
+[DEBUG] Skipping non-existing directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\site
+[INFO] 
+[INFO] --- jslint-maven-plugin:1.0.1:jslint (default) @ pressure-blood-web ---
+[DEBUG] org.codehaus.mojo:jslint-maven-plugin:jar:1.0.1:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:2.0.1:compile
+[DEBUG]    com.googlecode.jslint4java:jslint4java:jar:1.4.7:compile
+[DEBUG]       rhino:js:jar:1.7R2:compile
+[DEBUG]       com.beust:jcommander:jar:1.15:compile
+[DEBUG]    commons-io:commons-io:jar:1.4:compile
+[DEBUG]    org.sonatype.plexus:plexus-build-api:jar:0.0.4:compile
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:1.5.15:compile
+[DEBUG] Created new class realm plugin>org.codehaus.mojo:jslint-maven-plugin:1.0.1
+[DEBUG] Importing foreign packages into class realm plugin>org.codehaus.mojo:jslint-maven-plugin:1.0.1
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.codehaus.mojo:jslint-maven-plugin:1.0.1
+[DEBUG]   Included: org.codehaus.mojo:jslint-maven-plugin:jar:1.0.1
+[DEBUG]   Included: com.googlecode.jslint4java:jslint4java:jar:1.4.7
+[DEBUG]   Included: rhino:js:jar:1.7R2
+[DEBUG]   Included: com.beust:jcommander:jar:1.15
+[DEBUG]   Included: commons-io:commons-io:jar:1.4
+[DEBUG]   Included: org.sonatype.plexus:plexus-build-api:jar:0.0.4
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:1.5.15
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-api:jar:2.0.1
+[DEBUG] Configuring mojo org.codehaus.mojo:jslint-maven-plugin:1.0.1:jslint from plugin realm ClassRealm[plugin>org.codehaus.mojo:jslint-maven-plugin:1.0.1, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[DEBUG] Configuring mojo 'org.codehaus.mojo:jslint-maven-plugin:1.0.1:jslint' with basic configurator -->
+[DEBUG]   (f) adsafe = false
+[DEBUG]   (s) allowOneVarStatementPerFunction = true
+[DEBUG]   (s) assumeABrowser = true
+[DEBUG]   (s) assumeAYahooWidget = false
+[DEBUG]   (s) assumeConsoleAlertEtc = false
+[DEBUG]   (s) assumeRhino = false
+[DEBUG]   (s) assumeWindows = false
+[DEBUG]   (s) disallowBitwiseOperators = true
+[DEBUG]   (s) disallowDanglingUnderbarInIdentifiers = false
+[DEBUG]   (s) disallowIncrAndDecr = false
+[DEBUG]   (s) disallowInsecureCharsInRegExp = true
+[DEBUG]   (s) disallowUndefinedVariables = true
+[DEBUG]   (s) encoding = UTF-8
+[DEBUG]   (s) failOnIssues = true
+[DEBUG]   (s) maximumNumberOfErrors = 50
+[DEBUG]   (s) predefinedVars = false
+[DEBUG]   (s) requireInitialCapsForConstructors = true
+[DEBUG]   (s) requireUseStrict = false
+[DEBUG]   (s) safeSubset = false
+[DEBUG]   (s) sourceJsFolder = C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\webapp\scripts\js\pb
+[DEBUG]   (s) stopOnFirstError = false
+[DEBUG]   (s) strictWhiteSpace = false
+[DEBUG]   (s) strictWhiteSpaceIndentation = 4
+[DEBUG]   (s) tolerateCSSWorkarounds = false
+[DEBUG]   (s) tolerateContinuation = false
+[DEBUG]   (s) tolerateDebuggerStatements = false
+[DEBUG]   (s) tolerateES5Syntax = false
+[DEBUG]   (s) tolerateEval = false
+[DEBUG]   (s) tolerateHTMLCase = false
+[DEBUG]   (s) tolerateHTMLEventHandlers = false
+[DEBUG]   (s) tolerateHTMLFragments = false
+[DEBUG]   (s) tolerateInefficientSubscripting = false
+[DEBUG]   (s) tolerateUnfilteredForIn = true
+[DEBUG]   (s) workFolder = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\JSLintMojo\main
+[DEBUG] -- end configuration --
+[INFO] Parsing: adt\dictionary.js
+[INFO] Parsing: chart\statistics.js
+[INFO] Parsing: form\measure-form.js
+[INFO] Parsing: form\register-form.js
+[INFO] Parsing: form\register.js
+[INFO] Parsing: table\measure-input.js
+[INFO] Parsing: table\measures-table.js
+[INFO] Parsing: table\pb-measure.js
+[INFO] Parsing: time\date-bg.js
+[INFO] Parsing: time\datetime.js
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:resources (default-resources) @ pressure-blood-web ---
+[DEBUG] org.apache.maven.plugins:maven-resources-plugin:jar:2.5:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-project:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-profile:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-artifact-manager:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-plugin-registry:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-core:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-plugin-parameter-documenter:jar:2.0.6:compile
+[DEBUG]       org.apache.maven.reporting:maven-reporting-api:jar:2.0.6:compile
+[DEBUG]          org.apache.maven.doxia:doxia-sink-api:jar:1.0-alpha-7:compile
+[DEBUG]       org.apache.maven:maven-repository-metadata:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-error-diagnostics:jar:2.0.6:compile
+[DEBUG]       commons-cli:commons-cli:jar:1.0:compile
+[DEBUG]       org.apache.maven:maven-plugin-descriptor:jar:2.0.6:compile
+[DEBUG]       org.codehaus.plexus:plexus-interactivity-api:jar:1.0-alpha-4:compile
+[DEBUG]       classworlds:classworlds:jar:1.1:compile
+[DEBUG]    org.apache.maven:maven-artifact:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-settings:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-model:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-monitor:jar:2.0.6:compile
+[DEBUG]    org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1:compile
+[DEBUG]       junit:junit:jar:3.8.1:compile
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:2.0.5:compile
+[DEBUG]    org.apache.maven.shared:maven-filtering:jar:1.0:compile
+[DEBUG]       org.sonatype.plexus:plexus-build-api:jar:0.0.4:compile
+[DEBUG]    org.codehaus.plexus:plexus-interpolation:jar:1.13:compile
+[DEBUG] Created new class realm plugin>org.apache.maven.plugins:maven-resources-plugin:2.5
+[DEBUG] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-resources-plugin:2.5
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.apache.maven.plugins:maven-resources-plugin:2.5
+[DEBUG]   Included: org.apache.maven.plugins:maven-resources-plugin:jar:2.5
+[DEBUG]   Included: org.apache.maven.reporting:maven-reporting-api:jar:2.0.6
+[DEBUG]   Included: org.apache.maven.doxia:doxia-sink-api:jar:1.0-alpha-7
+[DEBUG]   Included: commons-cli:commons-cli:jar:1.0
+[DEBUG]   Included: org.codehaus.plexus:plexus-interactivity-api:jar:1.0-alpha-4
+[DEBUG]   Included: junit:junit:jar:3.8.1
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:2.0.5
+[DEBUG]   Included: org.apache.maven.shared:maven-filtering:jar:1.0
+[DEBUG]   Included: org.sonatype.plexus:plexus-build-api:jar:0.0.4
+[DEBUG]   Included: org.codehaus.plexus:plexus-interpolation:jar:1.13
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-api:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-project:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-profile:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-artifact-manager:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-registry:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-core:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-parameter-documenter:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-repository-metadata:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-error-diagnostics:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-descriptor:jar:2.0.6
+[DEBUG]   Excluded: classworlds:classworlds:jar:1.1
+[DEBUG]   Excluded: org.apache.maven:maven-artifact:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-settings:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-model:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-monitor:jar:2.0.6
+[DEBUG]   Excluded: org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1
+[DEBUG] Configuring mojo org.apache.maven.plugins:maven-resources-plugin:2.5:resources from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-resources-plugin:2.5, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[debug] execute contextualize
+[DEBUG] Configuring mojo 'org.apache.maven.plugins:maven-resources-plugin:2.5:resources' with basic configurator -->
+[DEBUG]   (f) buildFilters = []
+[DEBUG]   (f) encoding = UTF-8
+[DEBUG]   (f) escapeWindowsPaths = true
+[DEBUG]   (s) includeEmptyDirs = false
+[DEBUG]   (s) outputDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[DEBUG]   (s) overwrite = false
+[DEBUG]   (f) project = MavenProject: pb:pressure-blood-web:1.0.3-SNAPSHOT @ C:\Users\borko\Git\pressure-blood\pressure-blood-web\pom.xml
+[DEBUG]   (s) resources = [Resource {targetPath: null, filtering: false, FileSet {directory: C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\resources, PatternSet [includes: {}, excludes: {}]}}]
+[DEBUG]   (f) session = org.apache.maven.execution.MavenSession@33b20859
+[DEBUG]   (f) supportMultiLineFiltering = false
+[DEBUG]   (f) useBuildFilters = true
+[DEBUG]   (s) useDefaultDelimiters = true
+[DEBUG] -- end configuration --
+[DEBUG] properties used {java.vendor=Oracle Corporation, env.SYSTEMROOT=C:\Windows, env.VS90COMNTOOLS=c:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\Tools\, sun.java.launcher=SUN_STANDARD, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, env.PROMPT=$P$G, os.name=Windows 7, env.HISTFILE=c:/Users/borko/.bash_history, env.FP_NO_HOST_CHECK=NO, sun.boot.class.path=c:\Program Files\Java\jdk1.7.0\jre\lib\resources.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\rt.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\sunrsasign.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\jsse.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\jce.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\charsets.jar;c:\Program Files\Java\jdk1.7.0\jre\classes, env.COMPUTERNAME=BORKO-ALIENWARE, env.PWD=c:/Users/borko/Git/pressure-blood, env.MAKE_MODE=unix, user.country.format=BG, env.ALLUSERSPROFILE=C:\ProgramData, sun.desktop=windows, env.LANG=BG, env.LESS=-FRSX, java.vm.specification.vendor=Oracle Corporation, java.runtime.version=1.7.0-b147, gson.version=2.2.4, env.HOMEPATH=\Users\borko, project.build.sourceEncoding=UTF-8, user.name=borko, maven.build.version=Apache Maven 3.0.4 (r1232337; 2012-01-17 10:44:56+0200), user.language.format=bg, env.GNUPGHOME=c:/Users/borko/.gnupg, env.MSYSTEM=MINGW32, env.PATH=c:\Users\borko\bin;.;C:\Program Files (x86)\Git\local\bin;C:\Program Files (x86)\Git\mingw\bin;C:\Program Files (x86)\Git\bin;c:\csvn\bin\;c:\csvn\Python25\;c:\Windows\system32;c:\Windows;c:\Windows\System32\Wbem;c:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files\Intel\DMIX;c:\Program Files\WIDCOMM\Bluetooth Software\;c:\Program Files\WIDCOMM\Bluetooth Software\syswow64;c:\Program Files\Java\jdk1.7.0\bin;c:\apache-ant-1.8.0\bin;c:\Program Files\Python;c:\apache-maven-3.0.4\bin;c:\Users\borko\Downloads\jadnt158;c:\MinGW\bin;c:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;c:\Program Files (x86)\Vim\vim73;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files (x86)\Android\android-sdk\platform-tools;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files\MySQL\MySQL Server 5.6\bin;C:\Program Files (x86)\Git\bin;c:\Program Files (x86)\QuickTime\QTSystem\, user.language=en, env.WINDIR=C:\Windows, sun.boot.library.path=c:\Program Files\Java\jdk1.7.0\jre\bin, classworlds.conf=c:/apache-maven-3.0.4/bin/m2.conf, eclipse.link.version=2.5.0-RC1, java.version=1.7.0, env.PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 30 Stepping 5, GenuineIntel, user.timezone=Europe/Helsinki, env.TEMP=C:/Users/borko/AppData/Local/Temp, sun.arch.data.model=64, env.!::=::\, java.endorsed.dirs=c:\Program Files\Java\jdk1.7.0\jre\lib\endorsed, sun.cpu.isalist=amd64, env.HOMEDRIVE=C:, sun.jnu.encoding=Cp1251, file.encoding.pkg=sun.io, env.SHLVL=1, env.SYSTEMDRIVE=C:, file.separator=\, java.specification.name=Java Platform API Specification, java.class.version=51.0, user.country=US, java.home=c:\Program Files\Java\jdk1.7.0\jre, env.APPDATA=C:\Users\borko\AppData\Roaming, env.PUBLIC=C:\Users\Public, java.vm.info=mixed mode, env.CATALINA_HOME=C:\Program Files\Apache Software Foundation\Tomcat 7.0, env.OS=Windows_NT, env.LOGNAME=borko, os.version=6.1, path.separator=;, java.vm.version=21.0-b17, env.APR_ICONV1_PATH=C:\csvn\bin\iconv\, user.variant=, env.USERPROFILE=C:\Users\borko, env.JAVA_HOME=c:/Program Files/Java/jdk1.7.0, java.awt.printerjob=sun.awt.windows.WPrinterJob, env.TERM=cygwin, env.TMP=C:/Users/borko/AppData/Local/Temp, env.PROGRAMFILES=C:\Program Files, sun.io.unicode.encoding=UnicodeLittle, javax.servelt.api.version=3.0.1, awt.toolkit=sun.awt.windows.WToolkit, user.script=, env.PYTHONHOME=C:\csvn\Python25\, user.home=C:\Users\borko, env.COMMONPROGRAMFILES=C:\Program Files\Common Files, env.SESSIONNAME=Console, java.specification.vendor=Oracle Corporation, env.M2_HOME=c:/apache-maven-3.0.4, java.library.path=c:\Program Files\Java\jdk1.7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:\Users\borko\bin;.;C:\Program Files (x86)\Git\local\bin;C:\Program Files (x86)\Git\mingw\bin;C:\Program Files (x86)\Git\bin;c:\csvn\bin\;c:\csvn\Python25\;c:\Windows\system32;c:\Windows;c:\Windows\System32\Wbem;c:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files\Intel\DMIX;c:\Program Files\WIDCOMM\Bluetooth Software\;c:\Program Files\WIDCOMM\Bluetooth Software\syswow64;c:\Program Files\Java\jdk1.7.0\bin;c:\apache-ant-1.8.0\bin;c:\Program Files\Python;c:\apache-maven-3.0.4\bin;c:\Users\borko\Downloads\jadnt158;c:\MinGW\bin;c:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;c:\Program Files (x86)\Vim\vim73;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files (x86)\Android\android-sdk\platform-tools;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files\MySQL\MySQL Server 5.6\bin;C:\Program Files (x86)\Git\bin;c:\Program Files (x86)\QuickTime\QTSystem\;., env.NUMBER_OF_PROCESSORS=8, java.vendor.url=http://java.oracle.com/, env.COMMONPROGRAMFILES(X86)=C:\Program Files (x86)\Common Files, env.PSMODULEPATH=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\, java.vm.vendor=Oracle Corporation, jsp.api.version=2.0, maven.home=c:\apache-maven-3.0.4, java.runtime.name=Java(TM) SE Runtime Environment, sun.java.command=org.codehaus.plexus.classworlds.launcher.Launcher -X clean install, java.class.path=c:/apache-maven-3.0.4/boot/plexus-classworlds-2.4.jar, env.PROGRAMW6432=C:\Program Files, maven.version=3.0.4, jdk.version=1.7, env.PROGRAMFILES(X86)=C:\Program Files (x86), java.vm.specification.name=Java Virtual Machine Specification, env.LOGONSERVER=\\BORKO-ALIENWARE, java.vm.specification.version=1.7, env.PROCESSOR_ARCHITECTURE=AMD64, env.COMMONPROGRAMW6432=C:\Program Files\Common Files, sun.cpu.endian=little, sun.os.patch.level=Service Pack 1, env.HOME=c:/Users/borko, env.ANT_HOME=C:\apache-ant-1.8.0, java.io.tmpdir=C:\Users\borko\AppData\Local\Temp\, env.PROCESSOR_REVISION=1e05, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, env.PROGRAMDATA=C:\ProgramData, env.COMSPEC=C:\Windows\system32\cmd.exe, os.arch=amd64, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, env.PLINK_PROTOCOL=ssh, java.ext.dirs=c:\Program Files\Java\jdk1.7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, user.dir=c:\Users\borko\Git\pressure-blood, env.LOCALAPPDATA=C:\Users\borko\AppData\Local, line.separator=
+, env.INPUTRC=C:/Program Files (x86)/Git/etc/inputrc, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, env.PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, env.USERNAME=borko, file.encoding=Cp1251, env.USERDOMAIN=borko-alienware, java.specification.version=1.7, env.=C:=C:\Users\borko, junit.version=4.11, env.PROCESSOR_LEVEL=6}
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[DEBUG] resource with targetPath null
+directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\resources
+excludes []
+includes []
+[DEBUG] ignoreDelta true
+[INFO] Copying 1 resource
+[DEBUG] file persistence.xml has a filtered file extension
+[DEBUG] copy C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\resources\META-INF\persistence.xml to C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes\META-INF\persistence.xml
+[DEBUG] no use filter components
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ pressure-blood-web ---
+[DEBUG] org.apache.maven.plugins:maven-compiler-plugin:jar:3.0:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:2.0.9:compile
+[DEBUG]    org.apache.maven:maven-artifact:jar:2.0.9:compile
+[DEBUG]       org.codehaus.plexus:plexus-utils:jar:1.5.1:compile
+[DEBUG]    org.apache.maven:maven-core:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-settings:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-plugin-parameter-documenter:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-profile:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-model:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-repository-metadata:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-error-diagnostics:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-project:jar:2.0.9:compile
+[DEBUG]          org.apache.maven:maven-plugin-registry:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-plugin-descriptor:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-artifact-manager:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-monitor:jar:2.0.9:compile
+[DEBUG]    org.apache.maven:maven-toolchain:jar:1.0:compile
+[DEBUG]    org.apache.maven.shared:maven-shared-utils:jar:0.1:compile
+[DEBUG]       com.google.code.findbugs:jsr305:jar:2.0.1:compile
+[DEBUG]    org.apache.maven.shared:maven-shared-incremental:jar:1.0:compile
+[DEBUG]       org.codehaus.plexus:plexus-component-annotations:jar:1.5.5:compile
+[DEBUG]    org.codehaus.plexus:plexus-compiler-api:jar:2.0:compile
+[DEBUG]    org.codehaus.plexus:plexus-compiler-manager:jar:2.0:compile
+[DEBUG]    org.codehaus.plexus:plexus-compiler-javac:jar:2.0:runtime
+[DEBUG]    org.codehaus.plexus:plexus-container-default:jar:1.5.5:compile
+[DEBUG]       org.codehaus.plexus:plexus-classworlds:jar:2.2.2:compile
+[DEBUG]       org.apache.xbean:xbean-reflect:jar:3.4:compile
+[DEBUG]          log4j:log4j:jar:1.2.12:compile
+[DEBUG]          commons-logging:commons-logging-api:jar:1.1:compile
+[DEBUG]       com.google.collections:google-collections:jar:1.0:compile
+[DEBUG]       junit:junit:jar:3.8.2:compile
+[DEBUG] Created new class realm plugin>org.apache.maven.plugins:maven-compiler-plugin:3.0
+[DEBUG] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-compiler-plugin:3.0
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.apache.maven.plugins:maven-compiler-plugin:3.0
+[DEBUG]   Included: org.apache.maven.plugins:maven-compiler-plugin:jar:3.0
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:1.5.1
+[DEBUG]   Included: org.apache.maven.shared:maven-shared-utils:jar:0.1
+[DEBUG]   Included: com.google.code.findbugs:jsr305:jar:2.0.1
+[DEBUG]   Included: org.apache.maven.shared:maven-shared-incremental:jar:1.0
+[DEBUG]   Included: org.codehaus.plexus:plexus-component-annotations:jar:1.5.5
+[DEBUG]   Included: org.codehaus.plexus:plexus-compiler-api:jar:2.0
+[DEBUG]   Included: org.codehaus.plexus:plexus-compiler-manager:jar:2.0
+[DEBUG]   Included: org.codehaus.plexus:plexus-compiler-javac:jar:2.0
+[DEBUG]   Included: org.apache.xbean:xbean-reflect:jar:3.4
+[DEBUG]   Included: log4j:log4j:jar:1.2.12
+[DEBUG]   Included: commons-logging:commons-logging-api:jar:1.1
+[DEBUG]   Included: com.google.collections:google-collections:jar:1.0
+[DEBUG]   Included: junit:junit:jar:3.8.2
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-api:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-artifact:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-core:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-settings:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-parameter-documenter:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-profile:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-model:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-repository-metadata:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-error-diagnostics:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-project:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-registry:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-descriptor:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-artifact-manager:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-monitor:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-toolchain:jar:1.0
+[DEBUG]   Excluded: org.codehaus.plexus:plexus-container-default:jar:1.5.5
+[DEBUG]   Excluded: org.codehaus.plexus:plexus-classworlds:jar:2.2.2
+[DEBUG] Configuring mojo org.apache.maven.plugins:maven-compiler-plugin:3.0:compile from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-compiler-plugin:3.0, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[DEBUG] Configuring mojo 'org.apache.maven.plugins:maven-compiler-plugin:3.0:compile' with basic configurator -->
+[DEBUG]   (f) basedir = C:\Users\borko\Git\pressure-blood\pressure-blood-web
+[DEBUG]   (f) buildDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target
+[DEBUG]   (f) classpathElements = [C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes, C:\Users\borko\.m2\repository\javax\servlet\javax.servlet-api\3.0.1\javax.servlet-api-3.0.1.jar, C:\Users\borko\.m2\repository\javax\servlet\jsp-api\2.0\jsp-api-2.0.jar, C:\Users\borko\.m2\repository\org\eclipse\persistence\eclipselink\2.5.0-RC1\eclipselink-2.5.0-RC1.jar, C:\Users\borko\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0-RC1\javax.persistence-2.1.0-RC1.jar, C:\Users\borko\.m2\repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar]
+[DEBUG]   (f) compileSourceRoots = [C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\java]
+[DEBUG]   (f) compilerId = javac
+[DEBUG]   (f) debug = true
+[DEBUG]   (f) encoding = UTF-8
+[DEBUG]   (f) failOnError = true
+[DEBUG]   (f) forceJavacCompilerUse = false
+[DEBUG]   (f) fork = false
+[DEBUG]   (f) generatedSourcesDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\generated-sources\annotations
+[DEBUG]   (f) mojoExecution = org.apache.maven.plugins:maven-compiler-plugin:3.0:compile {execution: default-compile}
+[DEBUG]   (f) optimize = false
+[DEBUG]   (f) outputDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[DEBUG]   (f) projectArtifact = pb:pressure-blood-web:war:1.0.3-SNAPSHOT
+[DEBUG]   (f) showDeprecation = false
+[DEBUG]   (f) showWarnings = false
+[DEBUG]   (f) skipMultiThreadWarning = false
+[DEBUG]   (f) source = 1.7
+[DEBUG]   (f) staleMillis = 0
+[DEBUG]   (f) target = 1.7
+[DEBUG]   (f) verbose = false
+[DEBUG]   (f) mavenSession = org.apache.maven.execution.MavenSession@33b20859
+[DEBUG]   (f) session = org.apache.maven.execution.MavenSession@33b20859
+[DEBUG] -- end configuration --
+[DEBUG] Using compiler 'javac'.
+[DEBUG] Source directories: [C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\java]
+[DEBUG] Classpath: [C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+ C:\Users\borko\.m2\repository\javax\servlet\javax.servlet-api\3.0.1\javax.servlet-api-3.0.1.jar
+ C:\Users\borko\.m2\repository\javax\servlet\jsp-api\2.0\jsp-api-2.0.jar
+ C:\Users\borko\.m2\repository\org\eclipse\persistence\eclipselink\2.5.0-RC1\eclipselink-2.5.0-RC1.jar
+ C:\Users\borko\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0-RC1\javax.persistence-2.1.0-RC1.jar
+ C:\Users\borko\.m2\repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar]
+[DEBUG] Output directory: C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[DEBUG] CompilerReuseStrategy: reuseCreated
+[INFO] Changes detected - recompiling the module!
+[DEBUG] Classpath:
+[DEBUG]  C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[DEBUG]  C:\Users\borko\.m2\repository\javax\servlet\javax.servlet-api\3.0.1\javax.servlet-api-3.0.1.jar
+[DEBUG]  C:\Users\borko\.m2\repository\javax\servlet\jsp-api\2.0\jsp-api-2.0.jar
+[DEBUG]  C:\Users\borko\.m2\repository\org\eclipse\persistence\eclipselink\2.5.0-RC1\eclipselink-2.5.0-RC1.jar
+[DEBUG]  C:\Users\borko\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0-RC1\javax.persistence-2.1.0-RC1.jar
+[DEBUG]  C:\Users\borko\.m2\repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar
+[DEBUG] Source roots:
+[DEBUG]  C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\java
+[DEBUG] Command line options:
+[DEBUG] -d C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes -classpath C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes;C:\Users\borko\.m2\repository\javax\servlet\javax.servlet-api\3.0.1\javax.servlet-api-3.0.1.jar;C:\Users\borko\.m2\repository\javax\servlet\jsp-api\2.0\jsp-api-2.0.jar;C:\Users\borko\.m2\repository\org\eclipse\persistence\eclipselink\2.5.0-RC1\eclipselink-2.5.0-RC1.jar;C:\Users\borko\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0-RC1\javax.persistence-2.1.0-RC1.jar;C:\Users\borko\.m2\repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar; -sourcepath C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\java; -s C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\generated-sources\annotations -g -nowarn -target 1.7 -source 1.7 -encoding UTF-8
+[INFO] Compiling 23 source files to C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[INFO] 
+[INFO] --- uglifyjs-maven-plugin:1.0:uglify (uglify-js) @ pressure-blood-web ---
+[DEBUG] net.tqh.plugins:uglifyjs-maven-plugin:jar:1.0:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:2.0.9:compile
+[DEBUG]    commons-io:commons-io:jar:2.1:compile
+[DEBUG]    commons-lang:commons-lang:jar:2.6:compile
+[DEBUG]    org.mozilla:rhino:jar:1.7R3:compile
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:1.1:runtime
+[DEBUG] Created new class realm plugin>net.tqh.plugins:uglifyjs-maven-plugin:1.0
+[DEBUG] Importing foreign packages into class realm plugin>net.tqh.plugins:uglifyjs-maven-plugin:1.0
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>net.tqh.plugins:uglifyjs-maven-plugin:1.0
+[DEBUG]   Included: net.tqh.plugins:uglifyjs-maven-plugin:jar:1.0
+[DEBUG]   Included: commons-io:commons-io:jar:2.1
+[DEBUG]   Included: commons-lang:commons-lang:jar:2.6
+[DEBUG]   Included: org.mozilla:rhino:jar:1.7R3
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:1.1
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-api:jar:2.0.9
+[DEBUG] Configuring mojo net.tqh.plugins:uglifyjs-maven-plugin:1.0:uglify from plugin realm ClassRealm[plugin>net.tqh.plugins:uglifyjs-maven-plugin:1.0, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[DEBUG] Configuring mojo 'net.tqh.plugins:uglifyjs-maven-plugin:1.0:uglify' with basic configurator -->
+[DEBUG]   (f) encoding = UTF-8
+[DEBUG]   (f) outputDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\webapp\scripts\pb
+[DEBUG]   (f) sourceDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\webapp\scripts\js\pb
+[DEBUG] -- end configuration --
+[INFO] Uglified 10 file(s).
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:testResources (default-testResources) @ pressure-blood-web ---
+[DEBUG] Configuring mojo org.apache.maven.plugins:maven-resources-plugin:2.5:testResources from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-resources-plugin:2.5, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[debug] execute contextualize
+[DEBUG] Configuring mojo 'org.apache.maven.plugins:maven-resources-plugin:2.5:testResources' with basic configurator -->
+[DEBUG]   (f) buildFilters = []
+[DEBUG]   (f) encoding = UTF-8
+[DEBUG]   (f) escapeWindowsPaths = true
+[DEBUG]   (s) includeEmptyDirs = false
+[DEBUG]   (s) outputDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\test-classes
+[DEBUG]   (s) overwrite = false
+[DEBUG]   (f) project = MavenProject: pb:pressure-blood-web:1.0.3-SNAPSHOT @ C:\Users\borko\Git\pressure-blood\pressure-blood-web\pom.xml
+[DEBUG]   (s) resources = [Resource {targetPath: null, filtering: false, FileSet {directory: C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\test\resources, PatternSet [includes: {}, excludes: {}]}}]
+[DEBUG]   (f) session = org.apache.maven.execution.MavenSession@33b20859
+[DEBUG]   (f) supportMultiLineFiltering = false
+[DEBUG]   (f) useBuildFilters = true
+[DEBUG]   (s) useDefaultDelimiters = true
+[DEBUG] -- end configuration --
+[DEBUG] properties used {java.vendor=Oracle Corporation, env.SYSTEMROOT=C:\Windows, env.VS90COMNTOOLS=c:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\Tools\, sun.java.launcher=SUN_STANDARD, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, env.PROMPT=$P$G, os.name=Windows 7, env.HISTFILE=c:/Users/borko/.bash_history, env.FP_NO_HOST_CHECK=NO, sun.boot.class.path=c:\Program Files\Java\jdk1.7.0\jre\lib\resources.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\rt.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\sunrsasign.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\jsse.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\jce.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\charsets.jar;c:\Program Files\Java\jdk1.7.0\jre\classes, env.COMPUTERNAME=BORKO-ALIENWARE, env.PWD=c:/Users/borko/Git/pressure-blood, env.MAKE_MODE=unix, user.country.format=BG, env.ALLUSERSPROFILE=C:\ProgramData, sun.desktop=windows, env.LANG=BG, env.LESS=-FRSX, java.vm.specification.vendor=Oracle Corporation, java.runtime.version=1.7.0-b147, gson.version=2.2.4, env.HOMEPATH=\Users\borko, project.build.sourceEncoding=UTF-8, user.name=borko, maven.build.version=Apache Maven 3.0.4 (r1232337; 2012-01-17 10:44:56+0200), user.language.format=bg, env.GNUPGHOME=c:/Users/borko/.gnupg, env.MSYSTEM=MINGW32, env.PATH=c:\Users\borko\bin;.;C:\Program Files (x86)\Git\local\bin;C:\Program Files (x86)\Git\mingw\bin;C:\Program Files (x86)\Git\bin;c:\csvn\bin\;c:\csvn\Python25\;c:\Windows\system32;c:\Windows;c:\Windows\System32\Wbem;c:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files\Intel\DMIX;c:\Program Files\WIDCOMM\Bluetooth Software\;c:\Program Files\WIDCOMM\Bluetooth Software\syswow64;c:\Program Files\Java\jdk1.7.0\bin;c:\apache-ant-1.8.0\bin;c:\Program Files\Python;c:\apache-maven-3.0.4\bin;c:\Users\borko\Downloads\jadnt158;c:\MinGW\bin;c:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;c:\Program Files (x86)\Vim\vim73;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files (x86)\Android\android-sdk\platform-tools;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files\MySQL\MySQL Server 5.6\bin;C:\Program Files (x86)\Git\bin;c:\Program Files (x86)\QuickTime\QTSystem\, user.language=en, env.WINDIR=C:\Windows, sun.boot.library.path=c:\Program Files\Java\jdk1.7.0\jre\bin, classworlds.conf=c:/apache-maven-3.0.4/bin/m2.conf, eclipse.link.version=2.5.0-RC1, java.version=1.7.0, env.PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 30 Stepping 5, GenuineIntel, user.timezone=Europe/Helsinki, env.TEMP=C:/Users/borko/AppData/Local/Temp, sun.arch.data.model=64, env.!::=::\, java.endorsed.dirs=c:\Program Files\Java\jdk1.7.0\jre\lib\endorsed, sun.cpu.isalist=amd64, env.HOMEDRIVE=C:, sun.jnu.encoding=Cp1251, file.encoding.pkg=sun.io, env.SHLVL=1, env.SYSTEMDRIVE=C:, file.separator=\, java.specification.name=Java Platform API Specification, java.class.version=51.0, user.country=US, java.home=c:\Program Files\Java\jdk1.7.0\jre, env.APPDATA=C:\Users\borko\AppData\Roaming, env.PUBLIC=C:\Users\Public, java.vm.info=mixed mode, env.CATALINA_HOME=C:\Program Files\Apache Software Foundation\Tomcat 7.0, env.OS=Windows_NT, env.LOGNAME=borko, os.version=6.1, path.separator=;, java.vm.version=21.0-b17, env.APR_ICONV1_PATH=C:\csvn\bin\iconv\, user.variant=, env.USERPROFILE=C:\Users\borko, env.JAVA_HOME=c:/Program Files/Java/jdk1.7.0, java.awt.printerjob=sun.awt.windows.WPrinterJob, env.TERM=cygwin, env.TMP=C:/Users/borko/AppData/Local/Temp, env.PROGRAMFILES=C:\Program Files, sun.io.unicode.encoding=UnicodeLittle, javax.servelt.api.version=3.0.1, awt.toolkit=sun.awt.windows.WToolkit, user.script=, env.PYTHONHOME=C:\csvn\Python25\, user.home=C:\Users\borko, env.COMMONPROGRAMFILES=C:\Program Files\Common Files, env.SESSIONNAME=Console, java.specification.vendor=Oracle Corporation, env.M2_HOME=c:/apache-maven-3.0.4, java.library.path=c:\Program Files\Java\jdk1.7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:\Users\borko\bin;.;C:\Program Files (x86)\Git\local\bin;C:\Program Files (x86)\Git\mingw\bin;C:\Program Files (x86)\Git\bin;c:\csvn\bin\;c:\csvn\Python25\;c:\Windows\system32;c:\Windows;c:\Windows\System32\Wbem;c:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files\Intel\DMIX;c:\Program Files\WIDCOMM\Bluetooth Software\;c:\Program Files\WIDCOMM\Bluetooth Software\syswow64;c:\Program Files\Java\jdk1.7.0\bin;c:\apache-ant-1.8.0\bin;c:\Program Files\Python;c:\apache-maven-3.0.4\bin;c:\Users\borko\Downloads\jadnt158;c:\MinGW\bin;c:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;c:\Program Files (x86)\Vim\vim73;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files (x86)\Android\android-sdk\platform-tools;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files\MySQL\MySQL Server 5.6\bin;C:\Program Files (x86)\Git\bin;c:\Program Files (x86)\QuickTime\QTSystem\;., env.NUMBER_OF_PROCESSORS=8, java.vendor.url=http://java.oracle.com/, env.COMMONPROGRAMFILES(X86)=C:\Program Files (x86)\Common Files, env.PSMODULEPATH=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\, java.vm.vendor=Oracle Corporation, jsp.api.version=2.0, maven.home=c:\apache-maven-3.0.4, java.runtime.name=Java(TM) SE Runtime Environment, sun.java.command=org.codehaus.plexus.classworlds.launcher.Launcher -X clean install, java.class.path=c:/apache-maven-3.0.4/boot/plexus-classworlds-2.4.jar, env.PROGRAMW6432=C:\Program Files, maven.version=3.0.4, jdk.version=1.7, env.PROGRAMFILES(X86)=C:\Program Files (x86), java.vm.specification.name=Java Virtual Machine Specification, env.LOGONSERVER=\\BORKO-ALIENWARE, java.vm.specification.version=1.7, env.PROCESSOR_ARCHITECTURE=AMD64, env.COMMONPROGRAMW6432=C:\Program Files\Common Files, sun.cpu.endian=little, sun.os.patch.level=Service Pack 1, env.HOME=c:/Users/borko, env.ANT_HOME=C:\apache-ant-1.8.0, java.io.tmpdir=C:\Users\borko\AppData\Local\Temp\, env.PROCESSOR_REVISION=1e05, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, env.PROGRAMDATA=C:\ProgramData, env.COMSPEC=C:\Windows\system32\cmd.exe, os.arch=amd64, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, env.PLINK_PROTOCOL=ssh, java.ext.dirs=c:\Program Files\Java\jdk1.7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, user.dir=c:\Users\borko\Git\pressure-blood, env.LOCALAPPDATA=C:\Users\borko\AppData\Local, line.separator=
+, env.INPUTRC=C:/Program Files (x86)/Git/etc/inputrc, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, env.PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, env.USERNAME=borko, file.encoding=Cp1251, env.USERDOMAIN=borko-alienware, java.specification.version=1.7, env.=C:=C:\Users\borko, junit.version=4.11, env.PROCESSOR_LEVEL=6}
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[DEBUG] resource with targetPath null
+directory C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\test\resources
+excludes []
+includes []
+[INFO] skip non existing resourceDirectory C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\test\resources
+[DEBUG] no use filter components
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ pressure-blood-web ---
+[DEBUG] Configuring mojo org.apache.maven.plugins:maven-compiler-plugin:3.0:testCompile from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-compiler-plugin:3.0, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[DEBUG] Configuring mojo 'org.apache.maven.plugins:maven-compiler-plugin:3.0:testCompile' with basic configurator -->
+[DEBUG]   (f) basedir = C:\Users\borko\Git\pressure-blood\pressure-blood-web
+[DEBUG]   (f) buildDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target
+[DEBUG]   (f) classpathElements = [C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\test-classes, C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes, C:\Users\borko\.m2\repository\junit\junit\4.11\junit-4.11.jar, C:\Users\borko\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar, C:\Users\borko\.m2\repository\javax\servlet\javax.servlet-api\3.0.1\javax.servlet-api-3.0.1.jar, C:\Users\borko\.m2\repository\javax\servlet\jsp-api\2.0\jsp-api-2.0.jar, C:\Users\borko\.m2\repository\org\eclipse\persistence\eclipselink\2.5.0-RC1\eclipselink-2.5.0-RC1.jar, C:\Users\borko\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0-RC1\javax.persistence-2.1.0-RC1.jar, C:\Users\borko\.m2\repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar]
+[DEBUG]   (f) compileSourceRoots = [C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\test\java]
+[DEBUG]   (f) compilerId = javac
+[DEBUG]   (f) debug = true
+[DEBUG]   (f) encoding = UTF-8
+[DEBUG]   (f) failOnError = true
+[DEBUG]   (f) forceJavacCompilerUse = false
+[DEBUG]   (f) fork = false
+[DEBUG]   (f) generatedTestSourcesDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\generated-test-sources\test-annotations
+[DEBUG]   (f) mojoExecution = org.apache.maven.plugins:maven-compiler-plugin:3.0:testCompile {execution: default-testCompile}
+[DEBUG]   (f) optimize = false
+[DEBUG]   (f) outputDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\test-classes
+[DEBUG]   (f) showDeprecation = false
+[DEBUG]   (f) showWarnings = false
+[DEBUG]   (f) skipMultiThreadWarning = false
+[DEBUG]   (f) source = 1.7
+[DEBUG]   (f) staleMillis = 0
+[DEBUG]   (f) target = 1.7
+[DEBUG]   (f) verbose = false
+[DEBUG]   (f) mavenSession = org.apache.maven.execution.MavenSession@33b20859
+[DEBUG]   (f) session = org.apache.maven.execution.MavenSession@33b20859
+[DEBUG] -- end configuration --
+[DEBUG] Using compiler 'javac'.
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ pressure-blood-web ---
+[DEBUG] org.apache.maven.plugins:maven-surefire-plugin:jar:2.10:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:2.0.9:compile
+[DEBUG]    org.apache.maven.surefire:surefire-booter:jar:2.10:compile
+[DEBUG]       org.apache.maven.surefire:surefire-api:jar:2.10:compile
+[DEBUG]    org.apache.maven.surefire:maven-surefire-common:jar:2.10:compile
+[DEBUG]       org.apache.maven.shared:maven-common-artifact-filters:jar:1.3:compile
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:2.1:compile
+[DEBUG]    org.apache.maven:maven-artifact:jar:2.0.9:compile
+[DEBUG]    org.apache.maven:maven-project:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-settings:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-profile:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-model:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-artifact-manager:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-plugin-registry:jar:2.0.9:compile
+[DEBUG]       org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1:compile
+[DEBUG]          junit:junit:jar:3.8.1:test (scope managed from compile)
+[DEBUG]    org.apache.maven:maven-core:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-plugin-parameter-documenter:jar:2.0.9:compile
+[DEBUG]       org.apache.maven.reporting:maven-reporting-api:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-repository-metadata:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-error-diagnostics:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-plugin-descriptor:jar:2.0.9:compile
+[DEBUG]       org.apache.maven:maven-monitor:jar:2.0.9:compile
+[DEBUG]       classworlds:classworlds:jar:1.1:compile
+[DEBUG]    org.apache.maven:maven-toolchain:jar:2.0.9:compile
+[DEBUG] Created new class realm plugin>org.apache.maven.plugins:maven-surefire-plugin:2.10
+[DEBUG] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-surefire-plugin:2.10
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.apache.maven.plugins:maven-surefire-plugin:2.10
+[DEBUG]   Included: org.apache.maven.plugins:maven-surefire-plugin:jar:2.10
+[DEBUG]   Included: org.apache.maven.surefire:surefire-booter:jar:2.10
+[DEBUG]   Included: org.apache.maven.surefire:surefire-api:jar:2.10
+[DEBUG]   Included: org.apache.maven.surefire:maven-surefire-common:jar:2.10
+[DEBUG]   Included: org.apache.maven.shared:maven-common-artifact-filters:jar:1.3
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:2.1
+[DEBUG]   Included: org.apache.maven.reporting:maven-reporting-api:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-api:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-artifact:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-project:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-settings:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-profile:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-model:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-artifact-manager:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-registry:jar:2.0.9
+[DEBUG]   Excluded: org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1
+[DEBUG]   Excluded: junit:junit:jar:3.8.1
+[DEBUG]   Excluded: org.apache.maven:maven-core:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-parameter-documenter:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-repository-metadata:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-error-diagnostics:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-descriptor:jar:2.0.9
+[DEBUG]   Excluded: org.apache.maven:maven-monitor:jar:2.0.9
+[DEBUG]   Excluded: classworlds:classworlds:jar:1.1
+[DEBUG]   Excluded: org.apache.maven:maven-toolchain:jar:2.0.9
+[DEBUG] Configuring mojo org.apache.maven.plugins:maven-surefire-plugin:2.10:test from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-surefire-plugin:2.10, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[DEBUG] Configuring mojo 'org.apache.maven.plugins:maven-surefire-plugin:2.10:test' with basic configurator -->
+[DEBUG]   (s) basedir = C:\Users\borko\Git\pressure-blood\pressure-blood-web
+[DEBUG]   (s) childDelegation = false
+[DEBUG]   (s) classesDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[DEBUG]   (s) disableXmlReport = false
+[DEBUG]   (s) enableAssertions = true
+[DEBUG]   (s) forkMode = once
+[DEBUG]   (s) junitArtifactName = junit:junit
+[DEBUG]   (s) localRepository =        id: local
+      url: file:///C:/Users/borko/.m2/repository/
+   layout: none
+
+[DEBUG]   (f) parallelMavenExecution = false
+[DEBUG]   (s) perCoreThreadCount = true
+[DEBUG]   (s) pluginArtifactMap = {org.apache.maven.plugins:maven-surefire-plugin=org.apache.maven.plugins:maven-surefire-plugin:maven-plugin:2.10:, org.apache.maven.surefire:surefire-booter=org.apache.maven.surefire:surefire-booter:jar:2.10:compile, org.apache.maven.surefire:surefire-api=org.apache.maven.surefire:surefire-api:jar:2.10:compile, org.apache.maven.surefire:maven-surefire-common=org.apache.maven.surefire:maven-surefire-common:jar:2.10:compile, org.apache.maven.shared:maven-common-artifact-filters=org.apache.maven.shared:maven-common-artifact-filters:jar:1.3:compile, org.codehaus.plexus:plexus-utils=org.codehaus.plexus:plexus-utils:jar:2.1:compile, org.apache.maven.reporting:maven-reporting-api=org.apache.maven.reporting:maven-reporting-api:jar:2.0.9:compile}
+[DEBUG]   (s) printSummary = true
+[DEBUG]   (s) project = MavenProject: pb:pressure-blood-web:1.0.3-SNAPSHOT @ C:\Users\borko\Git\pressure-blood\pressure-blood-web\pom.xml
+[DEBUG]   (s) projectArtifactMap = {junit:junit=junit:junit:jar:4.11:test, org.hamcrest:hamcrest-core=org.hamcrest:hamcrest-core:jar:1.3:test, javax.servlet:javax.servlet-api=javax.servlet:javax.servlet-api:jar:3.0.1:provided, javax.servlet:jsp-api=javax.servlet:jsp-api:jar:2.0:provided, org.eclipse.persistence:eclipselink=org.eclipse.persistence:eclipselink:jar:2.5.0-RC1:compile, org.eclipse.persistence:javax.persistence=org.eclipse.persistence:javax.persistence:jar:2.1.0-RC1:compile, com.google.code.gson:gson=com.google.code.gson:gson:jar:2.2.4:compile}
+[DEBUG]   (s) redirectTestOutputToFile = false
+[DEBUG]   (s) remoteRepositories = [       id: uglifyjs-maven-plugin
+      url: https://raw.github.com/tqh/uglifyjs-maven-plugin/master/repo
+   layout: default
+snapshots: [enabled => true, update => daily]
+ releases: [enabled => true, update => daily]
+,        id: central
+      url: http://repo.maven.apache.org/maven2
+   layout: default
+snapshots: [enabled => false, update => daily]
+ releases: [enabled => true, update => never]
+]
+[DEBUG]   (s) reportFormat = brief
+[DEBUG]   (s) reportsDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\surefire-reports
+[DEBUG]   (s) runOrder = filesystem
+[DEBUG]   (s) session = org.apache.maven.execution.MavenSession@33b20859
+[DEBUG]   (s) skip = false
+[DEBUG]   (s) skipTests = false
+[DEBUG]   (s) testClassesDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\test-classes
+[DEBUG]   (s) testFailureIgnore = false
+[DEBUG]   (s) testNGArtifactName = org.testng:testng
+[DEBUG]   (s) testSourceDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\test\java
+[DEBUG]   (s) trimStackTrace = true
+[DEBUG]   (s) useFile = true
+[DEBUG]   (s) useManifestOnlyJar = true
+[DEBUG]   (s) useSystemClassLoader = true
+[DEBUG]   (s) useUnlimitedThreads = false
+[DEBUG]   (s) workingDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web
+[DEBUG] -- end configuration --
+[INFO] No tests to run.
+[INFO] Surefire report directory: C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\surefire-reports
+[DEBUG] dummy:dummy:jar:1.0 (selected for null)
+[DEBUG]   org.apache.maven.surefire:surefire-booter:jar:2.10:compile (selected for compile)
+[DEBUG]     org.apache.maven.surefire:surefire-api:jar:2.10:compile (selected for compile)
+[DEBUG] Adding to surefire booter test classpath: C:\Users\borko\.m2\repository\org\apache\maven\surefire\surefire-booter\2.10\surefire-booter-2.10.jar Scope: compile
+[DEBUG] Adding to surefire booter test classpath: C:\Users\borko\.m2\repository\org\apache\maven\surefire\surefire-api\2.10\surefire-api-2.10.jar Scope: compile
+[DEBUG] Setting system property [user.dir]=[C:\Users\borko\Git\pressure-blood\pressure-blood-web]
+[DEBUG] Setting system property [localRepository]=[C:\Users\borko\.m2\repository]
+[DEBUG] Setting system property [basedir]=[C:\Users\borko\Git\pressure-blood\pressure-blood-web]
+[DEBUG] Using JVM: c:\Program Files\Java\jdk1.7.0\jre\bin\java
+[DEBUG] dummy:dummy:jar:1.0 (selected for null)
+[DEBUG]   org.apache.maven.surefire:surefire-junit4:jar:2.10:test (selected for test)
+[DEBUG]     org.apache.maven.surefire:surefire-api:jar:2.10:test (selected for test)
+[DEBUG] Adding to surefire test classpath: C:\Users\borko\.m2\repository\org\apache\maven\surefire\surefire-junit4\2.10\surefire-junit4-2.10.jar Scope: test
+[DEBUG] Adding to surefire test classpath: C:\Users\borko\.m2\repository\org\apache\maven\surefire\surefire-api\2.10\surefire-api-2.10.jar Scope: test
+[DEBUG] test classpath classpath:
+[DEBUG]   C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\test-classes
+[DEBUG]   C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[DEBUG]   C:\Users\borko\.m2\repository\junit\junit\4.11\junit-4.11.jar
+[DEBUG]   C:\Users\borko\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar
+[DEBUG]   C:\Users\borko\.m2\repository\javax\servlet\javax.servlet-api\3.0.1\javax.servlet-api-3.0.1.jar
+[DEBUG]   C:\Users\borko\.m2\repository\javax\servlet\jsp-api\2.0\jsp-api-2.0.jar
+[DEBUG]   C:\Users\borko\.m2\repository\org\eclipse\persistence\eclipselink\2.5.0-RC1\eclipselink-2.5.0-RC1.jar
+[DEBUG]   C:\Users\borko\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0-RC1\javax.persistence-2.1.0-RC1.jar
+[DEBUG]   C:\Users\borko\.m2\repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar
+[DEBUG] provider classpath classpath:
+[DEBUG]   C:\Users\borko\.m2\repository\org\apache\maven\surefire\surefire-junit4\2.10\surefire-junit4-2.10.jar
+[DEBUG]   C:\Users\borko\.m2\repository\org\apache\maven\surefire\surefire-api\2.10\surefire-api-2.10.jar
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Forking command line: cmd.exe /X /C ""c:\Program Files\Java\jdk1.7.0\jre\bin\java" -jar C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\surefire\surefirebooter8090938160041388344.jar C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\surefire\surefire8788332262700750633tmp C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\surefire\surefire1222722506166908846tmp"
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-war-plugin:2.5:war (default-war) @ pressure-blood-web ---
+[DEBUG] org.apache.maven.plugins:maven-war-plugin:jar:2.5:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:2.2.1:compile
+[DEBUG]    org.apache.maven:maven-artifact:jar:2.2.1:compile
+[DEBUG]    org.apache.maven:maven-model:jar:2.2.1:compile
+[DEBUG]    org.apache.maven:maven-project:jar:2.2.1:compile
+[DEBUG]       org.apache.maven:maven-profile:jar:2.2.1:compile
+[DEBUG]       org.apache.maven:maven-artifact-manager:jar:2.2.1:compile
+[DEBUG]          backport-util-concurrent:backport-util-concurrent:jar:3.1:compile
+[DEBUG]       org.apache.maven:maven-plugin-registry:jar:2.2.1:compile
+[DEBUG]       org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1:compile
+[DEBUG]          junit:junit:jar:3.8.1:compile
+[DEBUG]    org.apache.maven:maven-core:jar:2.2.1:compile
+[DEBUG]       org.apache.maven:maven-plugin-parameter-documenter:jar:2.2.1:compile
+[DEBUG]       org.slf4j:slf4j-jdk14:jar:1.5.6:runtime
+[DEBUG]          org.slf4j:slf4j-api:jar:1.5.6:runtime
+[DEBUG]       org.slf4j:jcl-over-slf4j:jar:1.5.6:runtime
+[DEBUG]       org.apache.maven.reporting:maven-reporting-api:jar:2.2.1:compile
+[DEBUG]          org.apache.maven.doxia:doxia-sink-api:jar:1.1:compile
+[DEBUG]          org.apache.maven.doxia:doxia-logging-api:jar:1.1:compile
+[DEBUG]       org.apache.maven:maven-repository-metadata:jar:2.2.1:compile
+[DEBUG]       org.apache.maven:maven-error-diagnostics:jar:2.2.1:compile
+[DEBUG]       commons-cli:commons-cli:jar:1.2:compile
+[DEBUG]       org.apache.maven:maven-plugin-descriptor:jar:2.2.1:compile
+[DEBUG]       org.codehaus.plexus:plexus-interactivity-api:jar:1.0-alpha-4:compile
+[DEBUG]       org.apache.maven:maven-monitor:jar:2.2.1:compile
+[DEBUG]       classworlds:classworlds:jar:1.1:compile
+[DEBUG]       org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3:compile
+[DEBUG]          org.sonatype.plexus:plexus-cipher:jar:1.4:compile
+[DEBUG]    org.apache.maven:maven-settings:jar:2.2.1:compile
+[DEBUG]    org.apache.maven:maven-archiver:jar:2.5:compile
+[DEBUG]    org.codehaus.plexus:plexus-io:jar:2.1.3:compile
+[DEBUG]    commons-io:commons-io:jar:2.2:compile
+[DEBUG]    org.codehaus.plexus:plexus-archiver:jar:2.6.3:compile
+[DEBUG]       org.apache.commons:commons-compress:jar:1.8.1:compile
+[DEBUG]    org.codehaus.plexus:plexus-interpolation:jar:1.19:compile
+[DEBUG]    com.thoughtworks.xstream:xstream:jar:1.4.4:compile
+[DEBUG]       xmlpull:xmlpull:jar:1.1.3.1:compile
+[DEBUG]       xpp3:xpp3_min:jar:1.1.4c:compile
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:3.0.18:compile
+[DEBUG]    org.apache.maven.shared:maven-filtering:jar:1.2:compile
+[DEBUG]       org.apache.maven.shared:maven-shared-utils:jar:0.3:compile
+[DEBUG]          com.google.code.findbugs:jsr305:jar:2.0.1:compile
+[DEBUG]       org.sonatype.plexus:plexus-build-api:jar:0.0.4:compile
+[DEBUG]    org.apache.maven.shared:maven-mapping:jar:1.0:compile
+[DEBUG] Created new class realm plugin>org.apache.maven.plugins:maven-war-plugin:2.5
+[DEBUG] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-war-plugin:2.5
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.apache.maven.plugins:maven-war-plugin:2.5
+[DEBUG]   Included: org.apache.maven.plugins:maven-war-plugin:jar:2.5
+[DEBUG]   Included: backport-util-concurrent:backport-util-concurrent:jar:3.1
+[DEBUG]   Included: junit:junit:jar:3.8.1
+[DEBUG]   Included: org.slf4j:slf4j-jdk14:jar:1.5.6
+[DEBUG]   Included: org.slf4j:slf4j-api:jar:1.5.6
+[DEBUG]   Included: org.slf4j:jcl-over-slf4j:jar:1.5.6
+[DEBUG]   Included: org.apache.maven.reporting:maven-reporting-api:jar:2.2.1
+[DEBUG]   Included: org.apache.maven.doxia:doxia-sink-api:jar:1.1
+[DEBUG]   Included: org.apache.maven.doxia:doxia-logging-api:jar:1.1
+[DEBUG]   Included: commons-cli:commons-cli:jar:1.2
+[DEBUG]   Included: org.codehaus.plexus:plexus-interactivity-api:jar:1.0-alpha-4
+[DEBUG]   Included: org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3
+[DEBUG]   Included: org.sonatype.plexus:plexus-cipher:jar:1.4
+[DEBUG]   Included: org.apache.maven:maven-archiver:jar:2.5
+[DEBUG]   Included: org.codehaus.plexus:plexus-io:jar:2.1.3
+[DEBUG]   Included: commons-io:commons-io:jar:2.2
+[DEBUG]   Included: org.codehaus.plexus:plexus-archiver:jar:2.6.3
+[DEBUG]   Included: org.apache.commons:commons-compress:jar:1.8.1
+[DEBUG]   Included: org.codehaus.plexus:plexus-interpolation:jar:1.19
+[DEBUG]   Included: com.thoughtworks.xstream:xstream:jar:1.4.4
+[DEBUG]   Included: xmlpull:xmlpull:jar:1.1.3.1
+[DEBUG]   Included: xpp3:xpp3_min:jar:1.1.4c
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:3.0.18
+[DEBUG]   Included: org.apache.maven.shared:maven-filtering:jar:1.2
+[DEBUG]   Included: org.apache.maven.shared:maven-shared-utils:jar:0.3
+[DEBUG]   Included: com.google.code.findbugs:jsr305:jar:2.0.1
+[DEBUG]   Included: org.sonatype.plexus:plexus-build-api:jar:0.0.4
+[DEBUG]   Included: org.apache.maven.shared:maven-mapping:jar:1.0
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-api:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-artifact:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-model:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-project:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-profile:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-artifact-manager:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-registry:jar:2.2.1
+[DEBUG]   Excluded: org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1
+[DEBUG]   Excluded: org.apache.maven:maven-core:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-parameter-documenter:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-repository-metadata:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-error-diagnostics:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-descriptor:jar:2.2.1
+[DEBUG]   Excluded: org.apache.maven:maven-monitor:jar:2.2.1
+[DEBUG]   Excluded: classworlds:classworlds:jar:1.1
+[DEBUG]   Excluded: org.apache.maven:maven-settings:jar:2.2.1
+[DEBUG] Configuring mojo org.apache.maven.plugins:maven-war-plugin:2.5:war from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-war-plugin:2.5, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[DEBUG] Configuring mojo 'org.apache.maven.plugins:maven-war-plugin:2.5:war' with basic configurator -->
+[DEBUG]   (s) archiveClasses = false
+[DEBUG]   (s) attachClasses = false
+[DEBUG]   (s) cacheFile = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\war\work\webapp-cache.xml
+[DEBUG]   (s) classesClassifier = classes
+[DEBUG]   (s) classesDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\classes
+[DEBUG]   (f) escapedBackslashesInFilePath = false
+[DEBUG]   (s) failOnMissingWebXml = true
+[DEBUG]   (f) filteringDeploymentDescriptors = false
+[DEBUG]   (f) includeEmptyDirectories = false
+[DEBUG]   (s) outputDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target
+[DEBUG]   (s) primaryArtifact = true
+[DEBUG]   (s) project = MavenProject: pb:pressure-blood-web:1.0.3-SNAPSHOT @ C:\Users\borko\Git\pressure-blood\pressure-blood-web\pom.xml
+[DEBUG]   (f) recompressZippedFiles = true
+[DEBUG]   (f) resourceEncoding = UTF-8
+[DEBUG]   (f) session = org.apache.maven.execution.MavenSession@33b20859
+[DEBUG]   (f) supportMultiLineFiltering = false
+[DEBUG]   (s) useCache = false
+[DEBUG]   (f) useJvmChmod = true
+[DEBUG]   (s) warName = pressure-blood-web-1.0.3-SNAPSHOT
+[DEBUG]   (s) warSourceDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\webapp
+[DEBUG]   (s) warSourceIncludes = **
+[DEBUG]   (s) directory = C:\Users\borko\Git\pressure-blood\pressure-blood-web/src/main/webapp/scripts/js/pb
+[DEBUG]   (s) excludes = [**/*.js]
+[DEBUG]   (s) webResources = [Resource {targetPath: null, filtering: false, FileSet {directory: C:\Users\borko\Git\pressure-blood\pressure-blood-web/src/main/webapp/scripts/js/pb, PatternSet [includes: {}, excludes: {**/*.js}]}}]
+[DEBUG]   (s) webappDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT
+[DEBUG]   (s) workDirectory = C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\war\work
+[DEBUG] -- end configuration --
+[INFO] Packaging webapp
+[INFO] Assembling webapp [pressure-blood-web] in [C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT]
+[DEBUG] properties used {java.vendor=Oracle Corporation, env.SYSTEMROOT=C:\Windows, env.VS90COMNTOOLS=c:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\Tools\, sun.java.launcher=SUN_STANDARD, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, env.PROMPT=$P$G, os.name=Windows 7, env.HISTFILE=c:/Users/borko/.bash_history, env.FP_NO_HOST_CHECK=NO, sun.boot.class.path=c:\Program Files\Java\jdk1.7.0\jre\lib\resources.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\rt.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\sunrsasign.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\jsse.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\jce.jar;c:\Program Files\Java\jdk1.7.0\jre\lib\charsets.jar;c:\Program Files\Java\jdk1.7.0\jre\classes, env.COMPUTERNAME=BORKO-ALIENWARE, env.PWD=c:/Users/borko/Git/pressure-blood, env.MAKE_MODE=unix, user.country.format=BG, env.ALLUSERSPROFILE=C:\ProgramData, sun.desktop=windows, env.LANG=BG, env.LESS=-FRSX, java.vm.specification.vendor=Oracle Corporation, java.runtime.version=1.7.0-b147, gson.version=2.2.4, env.HOMEPATH=\Users\borko, project.build.sourceEncoding=UTF-8, user.name=borko, maven.build.version=Apache Maven 3.0.4 (r1232337; 2012-01-17 10:44:56+0200), user.language.format=bg, env.GNUPGHOME=c:/Users/borko/.gnupg, env.MSYSTEM=MINGW32, env.PATH=c:\Users\borko\bin;.;C:\Program Files (x86)\Git\local\bin;C:\Program Files (x86)\Git\mingw\bin;C:\Program Files (x86)\Git\bin;c:\csvn\bin\;c:\csvn\Python25\;c:\Windows\system32;c:\Windows;c:\Windows\System32\Wbem;c:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files\Intel\DMIX;c:\Program Files\WIDCOMM\Bluetooth Software\;c:\Program Files\WIDCOMM\Bluetooth Software\syswow64;c:\Program Files\Java\jdk1.7.0\bin;c:\apache-ant-1.8.0\bin;c:\Program Files\Python;c:\apache-maven-3.0.4\bin;c:\Users\borko\Downloads\jadnt158;c:\MinGW\bin;c:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;c:\Program Files (x86)\Vim\vim73;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files (x86)\Android\android-sdk\platform-tools;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files\MySQL\MySQL Server 5.6\bin;C:\Program Files (x86)\Git\bin;c:\Program Files (x86)\QuickTime\QTSystem\, user.language=en, env.WINDIR=C:\Windows, sun.boot.library.path=c:\Program Files\Java\jdk1.7.0\jre\bin, classworlds.conf=c:/apache-maven-3.0.4/bin/m2.conf, eclipse.link.version=2.5.0-RC1, java.version=1.7.0, env.PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 30 Stepping 5, GenuineIntel, user.timezone=Europe/Helsinki, env.TEMP=C:/Users/borko/AppData/Local/Temp, sun.arch.data.model=64, env.!::=::\, java.endorsed.dirs=c:\Program Files\Java\jdk1.7.0\jre\lib\endorsed, sun.cpu.isalist=amd64, env.HOMEDRIVE=C:, sun.jnu.encoding=Cp1251, file.encoding.pkg=sun.io, env.SHLVL=1, env.SYSTEMDRIVE=C:, file.separator=\, java.specification.name=Java Platform API Specification, java.class.version=51.0, user.country=US, java.home=c:\Program Files\Java\jdk1.7.0\jre, env.APPDATA=C:\Users\borko\AppData\Roaming, env.PUBLIC=C:\Users\Public, java.vm.info=mixed mode, env.CATALINA_HOME=C:\Program Files\Apache Software Foundation\Tomcat 7.0, env.OS=Windows_NT, env.LOGNAME=borko, os.version=6.1, path.separator=;, java.vm.version=21.0-b17, env.APR_ICONV1_PATH=C:\csvn\bin\iconv\, user.variant=, env.USERPROFILE=C:\Users\borko, env.JAVA_HOME=c:/Program Files/Java/jdk1.7.0, java.awt.printerjob=sun.awt.windows.WPrinterJob, env.TERM=cygwin, env.TMP=C:/Users/borko/AppData/Local/Temp, env.PROGRAMFILES=C:\Program Files, sun.io.unicode.encoding=UnicodeLittle, javax.servelt.api.version=3.0.1, awt.toolkit=sun.awt.windows.WToolkit, user.script=, env.PYTHONHOME=C:\csvn\Python25\, user.home=C:\Users\borko, env.COMMONPROGRAMFILES=C:\Program Files\Common Files, env.SESSIONNAME=Console, java.specification.vendor=Oracle Corporation, env.M2_HOME=c:/apache-maven-3.0.4, java.library.path=c:\Program Files\Java\jdk1.7.0\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:\Users\borko\bin;.;C:\Program Files (x86)\Git\local\bin;C:\Program Files (x86)\Git\mingw\bin;C:\Program Files (x86)\Git\bin;c:\csvn\bin\;c:\csvn\Python25\;c:\Windows\system32;c:\Windows;c:\Windows\System32\Wbem;c:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files\Intel\DMIX;c:\Program Files\WIDCOMM\Bluetooth Software\;c:\Program Files\WIDCOMM\Bluetooth Software\syswow64;c:\Program Files\Java\jdk1.7.0\bin;c:\apache-ant-1.8.0\bin;c:\Program Files\Python;c:\apache-maven-3.0.4\bin;c:\Users\borko\Downloads\jadnt158;c:\MinGW\bin;c:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;c:\Program Files (x86)\Vim\vim73;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files (x86)\Android\android-sdk\platform-tools;c:\Program Files (x86)\Android\android-sdk\tools;c:\Program Files\MySQL\MySQL Server 5.6\bin;C:\Program Files (x86)\Git\bin;c:\Program Files (x86)\QuickTime\QTSystem\;., env.NUMBER_OF_PROCESSORS=8, java.vendor.url=http://java.oracle.com/, env.COMMONPROGRAMFILES(X86)=C:\Program Files (x86)\Common Files, env.PSMODULEPATH=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\, java.vm.vendor=Oracle Corporation, jsp.api.version=2.0, maven.home=c:\apache-maven-3.0.4, java.runtime.name=Java(TM) SE Runtime Environment, sun.java.command=org.codehaus.plexus.classworlds.launcher.Launcher -X clean install, java.class.path=c:/apache-maven-3.0.4/boot/plexus-classworlds-2.4.jar, env.PROGRAMW6432=C:\Program Files, maven.version=3.0.4, jdk.version=1.7, env.PROGRAMFILES(X86)=C:\Program Files (x86), java.vm.specification.name=Java Virtual Machine Specification, env.LOGONSERVER=\\BORKO-ALIENWARE, java.vm.specification.version=1.7, env.PROCESSOR_ARCHITECTURE=AMD64, env.COMMONPROGRAMW6432=C:\Program Files\Common Files, sun.cpu.endian=little, sun.os.patch.level=Service Pack 1, env.HOME=c:/Users/borko, env.ANT_HOME=C:\apache-ant-1.8.0, java.io.tmpdir=C:\Users\borko\AppData\Local\Temp\, env.PROCESSOR_REVISION=1e05, java.vendor.url.bug=http://bugreport.sun.com/bugreport/, env.PROGRAMDATA=C:\ProgramData, env.COMSPEC=C:\Windows\system32\cmd.exe, os.arch=amd64, java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment, env.PLINK_PROTOCOL=ssh, java.ext.dirs=c:\Program Files\Java\jdk1.7.0\jre\lib\ext;C:\Windows\Sun\Java\lib\ext, user.dir=c:\Users\borko\Git\pressure-blood, env.LOCALAPPDATA=C:\Users\borko\AppData\Local, line.separator=
+, env.INPUTRC=C:/Program Files (x86)/Git/etc/inputrc, java.vm.name=Java HotSpot(TM) 64-Bit Server VM, env.PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC, env.USERNAME=borko, file.encoding=Cp1251, env.USERDOMAIN=borko-alienware, java.specification.version=1.7, env.=C:=C:\Users\borko, junit.version=4.11, env.PROCESSOR_LEVEL=6}
+[INFO] Processing war project
+[INFO] Copying webapp webResources [C:\Users\borko\Git\pressure-blood\pressure-blood-web/src/main/webapp/scripts/js/pb] to [C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT]
+[INFO] Copying webapp resources [C:\Users\borko\Git\pressure-blood\pressure-blood-web\src\main\webapp]
+[DEBUG]  + index.jsp has been copied.
+[DEBUG]  + loginError.html has been copied.
+[DEBUG]  + loginPage.html has been copied.
+[DEBUG]  + META-INF/persistence.xml has been copied.
+[DEBUG]  + registerPage.html has been copied.
+[DEBUG]  + scripts/jquery/jquery-1.11.1.min.js has been copied.
+[DEBUG]  + scripts/jquery/jquery.dataTables.min.js has been copied.
+[DEBUG]  + scripts/jquery/jquery.datetimepicker.js has been copied.
+[DEBUG]  + scripts/jquery/jquery.jeditable.mini.js has been copied.
+[DEBUG]  + scripts/jquery/jquery.validate.min.js has been copied.
+[DEBUG]  + scripts/js/pb/adt/dictionary.js has been copied.
+[DEBUG]  + scripts/js/pb/chart/statistics.js has been copied.
+[DEBUG]  + scripts/js/pb/form/measure-form.js has been copied.
+[DEBUG]  + scripts/js/pb/form/register-form.js has been copied.
+[DEBUG]  + scripts/js/pb/form/register.js has been copied.
+[DEBUG]  + scripts/js/pb/table/measure-input.js has been copied.
+[DEBUG]  + scripts/js/pb/table/measures-table.js has been copied.
+[DEBUG]  + scripts/js/pb/table/pb-measure.js has been copied.
+[DEBUG]  + scripts/js/pb/time/date-bg.js has been copied.
+[DEBUG]  + scripts/js/pb/time/datetime.js has been copied.
+[DEBUG]  + scripts/pb/adt/dictionary.js has been copied.
+[DEBUG]  + scripts/pb/chart/statistics.js has been copied.
+[DEBUG]  + scripts/pb/form/measure-form.js has been copied.
+[DEBUG]  + scripts/pb/form/register-form.js has been copied.
+[DEBUG]  + scripts/pb/form/register.js has been copied.
+[DEBUG]  + scripts/pb/table/measure-input.js has been copied.
+[DEBUG]  + scripts/pb/table/measures-table.js has been copied.
+[DEBUG]  + scripts/pb/table/pb-measure.js has been copied.
+[DEBUG]  + scripts/pb/time/date-bg.js has been copied.
+[DEBUG]  + scripts/pb/time/datetime.js has been copied.
+[DEBUG]  + scripts/underscore/underscore-min.js has been copied.
+[DEBUG]  + scripts/underscore/underscore-min.map has been copied.
+[DEBUG]  + styles/images/back_disabled.png has been copied.
+[DEBUG]  + styles/images/back_enabled.png has been copied.
+[DEBUG]  + styles/images/back_enabled_hover.png has been copied.
+[DEBUG]  + styles/images/favicon.ico has been copied.
+[DEBUG]  + styles/images/forward_disabled.png has been copied.
+[DEBUG]  + styles/images/forward_enabled.png has been copied.
+[DEBUG]  + styles/images/forward_enabled_hover.png has been copied.
+[DEBUG]  + styles/images/Sorting icons.psd has been copied.
+[DEBUG]  + styles/images/sort_asc.png has been copied.
+[DEBUG]  + styles/images/sort_asc_disabled.png has been copied.
+[DEBUG]  + styles/images/sort_both.png has been copied.
+[DEBUG]  + styles/images/sort_desc.png has been copied.
+[DEBUG]  + styles/images/sort_desc_disabled.png has been copied.
+[DEBUG]  + styles/jquery/jquery.dataTables.min.css has been copied.
+[DEBUG]  + styles/jquery/jquery.datetimepicker.css has been copied.
+[DEBUG]  + styles/pb/index.css has been copied.
+[DEBUG]  + styles/pb/loginPage.css has been copied.
+[DEBUG]  + styles/pb/registerPage.css has been copied.
+[DEBUG]  + WEB-INF/web.xml has been copied.
+[DEBUG] Dump of the current build pathSet content -->
+[DEBUG] index.jsp
+[DEBUG] loginError.html
+[DEBUG] loginPage.html
+[DEBUG] META-INF/persistence.xml
+[DEBUG] registerPage.html
+[DEBUG] scripts/jquery/jquery-1.11.1.min.js
+[DEBUG] scripts/jquery/jquery.dataTables.min.js
+[DEBUG] scripts/jquery/jquery.datetimepicker.js
+[DEBUG] scripts/jquery/jquery.jeditable.mini.js
+[DEBUG] scripts/jquery/jquery.validate.min.js
+[DEBUG] scripts/js/pb/adt/dictionary.js
+[DEBUG] scripts/js/pb/chart/statistics.js
+[DEBUG] scripts/js/pb/form/measure-form.js
+[DEBUG] scripts/js/pb/form/register-form.js
+[DEBUG] scripts/js/pb/form/register.js
+[DEBUG] scripts/js/pb/table/measure-input.js
+[DEBUG] scripts/js/pb/table/measures-table.js
+[DEBUG] scripts/js/pb/table/pb-measure.js
+[DEBUG] scripts/js/pb/time/date-bg.js
+[DEBUG] scripts/js/pb/time/datetime.js
+[DEBUG] scripts/pb/adt/dictionary.js
+[DEBUG] scripts/pb/chart/statistics.js
+[DEBUG] scripts/pb/form/measure-form.js
+[DEBUG] scripts/pb/form/register-form.js
+[DEBUG] scripts/pb/form/register.js
+[DEBUG] scripts/pb/table/measure-input.js
+[DEBUG] scripts/pb/table/measures-table.js
+[DEBUG] scripts/pb/table/pb-measure.js
+[DEBUG] scripts/pb/time/date-bg.js
+[DEBUG] scripts/pb/time/datetime.js
+[DEBUG] scripts/underscore/underscore-min.js
+[DEBUG] scripts/underscore/underscore-min.map
+[DEBUG] styles/images/back_disabled.png
+[DEBUG] styles/images/back_enabled.png
+[DEBUG] styles/images/back_enabled_hover.png
+[DEBUG] styles/images/favicon.ico
+[DEBUG] styles/images/forward_disabled.png
+[DEBUG] styles/images/forward_enabled.png
+[DEBUG] styles/images/forward_enabled_hover.png
+[DEBUG] styles/images/Sorting icons.psd
+[DEBUG] styles/images/sort_asc.png
+[DEBUG] styles/images/sort_asc_disabled.png
+[DEBUG] styles/images/sort_both.png
+[DEBUG] styles/images/sort_desc.png
+[DEBUG] styles/images/sort_desc_disabled.png
+[DEBUG] styles/jquery/jquery.dataTables.min.css
+[DEBUG] styles/jquery/jquery.datetimepicker.css
+[DEBUG] styles/pb/index.css
+[DEBUG] styles/pb/loginPage.css
+[DEBUG] styles/pb/registerPage.css
+[DEBUG] WEB-INF/web.xml
+[DEBUG] -- end of dump --
+[DEBUG]  + WEB-INF/classes/META-INF/persistence.xml has been copied.
+[DEBUG]  + WEB-INF/classes/pb/controller/AddMeasure.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/controller/DeleteMeasure.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/controller/GetMeasures.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/controller/PressureBloodBaseServlet$1.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/controller/PressureBloodBaseServlet$DatetimeDeserializer.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/controller/PressureBloodBaseServlet$DatetimeSerializer.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/controller/PressureBloodBaseServlet.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/controller/PressureBloodServletContextListener.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/controller/UpdateMeasure.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/db/BaseDAO.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/db/MeasureDAO.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/db/UsersDAO.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/model/Hand.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/model/Measurement.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/model/PressureBlood.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/model/UserRoles$Role.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/model/UserRoles.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/model/UserRolesId.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/model/Users.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/model/UsersDTO.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/usermanagement/LogoutServlet.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/usermanagement/RegisterNewUserServlet.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/usermanagement/RegisterUserResponse$Status.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/usermanagement/RegisterUserResponse.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/validator/EmailValidator.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/validator/MeasurementValidator.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/validator/PasswordValidator.class has been copied.
+[DEBUG]  + WEB-INF/classes/pb/validator/UserValidator.class has been copied.
+[DEBUG] Processing: eclipselink-2.5.0-RC1.jar
+[DEBUG]  + WEB-INF/lib/eclipselink-2.5.0-RC1.jar has been copied.
+[DEBUG] Processing: javax.persistence-2.1.0-RC1.jar
+[DEBUG]  + WEB-INF/lib/javax.persistence-2.1.0-RC1.jar has been copied.
+[DEBUG] Processing: gson-2.2.4.jar
+[DEBUG]  + WEB-INF/lib/gson-2.2.4.jar has been copied.
+[INFO] Webapp assembled in [302 msecs]
+[DEBUG] Excluding [] from the generated webapp archive.
+[DEBUG] Including [**] in the generated webapp archive.
+[INFO] Building war: C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT.war
+[DEBUG] adding directory META-INF/
+[DEBUG] adding entry META-INF/MANIFEST.MF
+[DEBUG] adding directory scripts/
+[DEBUG] adding directory scripts/jquery/
+[DEBUG] adding directory scripts/js/
+[DEBUG] adding directory scripts/js/pb/
+[DEBUG] adding directory scripts/js/pb/adt/
+[DEBUG] adding directory scripts/js/pb/chart/
+[DEBUG] adding directory scripts/js/pb/form/
+[DEBUG] adding directory scripts/js/pb/table/
+[DEBUG] adding directory scripts/js/pb/time/
+[DEBUG] adding directory scripts/pb/
+[DEBUG] adding directory scripts/pb/adt/
+[DEBUG] adding directory scripts/pb/chart/
+[DEBUG] adding directory scripts/pb/form/
+[DEBUG] adding directory scripts/pb/table/
+[DEBUG] adding directory scripts/pb/time/
+[DEBUG] adding directory scripts/underscore/
+[DEBUG] adding directory styles/
+[DEBUG] adding directory styles/images/
+[DEBUG] adding directory styles/jquery/
+[DEBUG] adding directory styles/pb/
+[DEBUG] adding directory WEB-INF/
+[DEBUG] adding directory WEB-INF/classes/
+[DEBUG] adding directory WEB-INF/classes/META-INF/
+[DEBUG] adding directory WEB-INF/classes/pb/
+[DEBUG] adding directory WEB-INF/classes/pb/controller/
+[DEBUG] adding directory WEB-INF/classes/pb/db/
+[DEBUG] adding directory WEB-INF/classes/pb/model/
+[DEBUG] adding directory WEB-INF/classes/pb/usermanagement/
+[DEBUG] adding directory WEB-INF/classes/pb/validator/
+[DEBUG] adding directory WEB-INF/lib/
+[DEBUG] adding entry index.jsp
+[DEBUG] adding entry loginError.html
+[DEBUG] adding entry loginPage.html
+[DEBUG] adding entry META-INF/persistence.xml
+[DEBUG] adding entry registerPage.html
+[DEBUG] adding entry scripts/jquery/jquery-1.11.1.min.js
+[DEBUG] adding entry scripts/jquery/jquery.dataTables.min.js
+[DEBUG] adding entry scripts/jquery/jquery.datetimepicker.js
+[DEBUG] adding entry scripts/jquery/jquery.jeditable.mini.js
+[DEBUG] adding entry scripts/jquery/jquery.validate.min.js
+[DEBUG] adding entry scripts/js/pb/adt/dictionary.js
+[DEBUG] adding entry scripts/js/pb/chart/statistics.js
+[DEBUG] adding entry scripts/js/pb/form/measure-form.js
+[DEBUG] adding entry scripts/js/pb/form/register-form.js
+[DEBUG] adding entry scripts/js/pb/form/register.js
+[DEBUG] adding entry scripts/js/pb/table/measure-input.js
+[DEBUG] adding entry scripts/js/pb/table/measures-table.js
+[DEBUG] adding entry scripts/js/pb/table/pb-measure.js
+[DEBUG] adding entry scripts/js/pb/time/date-bg.js
+[DEBUG] adding entry scripts/js/pb/time/datetime.js
+[DEBUG] adding entry scripts/pb/adt/dictionary.js
+[DEBUG] adding entry scripts/pb/chart/statistics.js
+[DEBUG] adding entry scripts/pb/form/measure-form.js
+[DEBUG] adding entry scripts/pb/form/register-form.js
+[DEBUG] adding entry scripts/pb/form/register.js
+[DEBUG] adding entry scripts/pb/table/measure-input.js
+[DEBUG] adding entry scripts/pb/table/measures-table.js
+[DEBUG] adding entry scripts/pb/table/pb-measure.js
+[DEBUG] adding entry scripts/pb/time/date-bg.js
+[DEBUG] adding entry scripts/pb/time/datetime.js
+[DEBUG] adding entry scripts/underscore/underscore-min.js
+[DEBUG] adding entry scripts/underscore/underscore-min.map
+[DEBUG] adding entry styles/images/back_disabled.png
+[DEBUG] adding entry styles/images/back_enabled.png
+[DEBUG] adding entry styles/images/back_enabled_hover.png
+[DEBUG] adding entry styles/images/favicon.ico
+[DEBUG] adding entry styles/images/forward_disabled.png
+[DEBUG] adding entry styles/images/forward_enabled.png
+[DEBUG] adding entry styles/images/forward_enabled_hover.png
+[DEBUG] adding entry styles/images/Sorting icons.psd
+[DEBUG] adding entry styles/images/sort_asc.png
+[DEBUG] adding entry styles/images/sort_asc_disabled.png
+[DEBUG] adding entry styles/images/sort_both.png
+[DEBUG] adding entry styles/images/sort_desc.png
+[DEBUG] adding entry styles/images/sort_desc_disabled.png
+[DEBUG] adding entry styles/jquery/jquery.dataTables.min.css
+[DEBUG] adding entry styles/jquery/jquery.datetimepicker.css
+[DEBUG] adding entry styles/pb/index.css
+[DEBUG] adding entry styles/pb/loginPage.css
+[DEBUG] adding entry styles/pb/registerPage.css
+[DEBUG] adding entry WEB-INF/classes/META-INF/persistence.xml
+[DEBUG] adding entry WEB-INF/classes/pb/controller/AddMeasure.class
+[DEBUG] adding entry WEB-INF/classes/pb/controller/DeleteMeasure.class
+[DEBUG] adding entry WEB-INF/classes/pb/controller/GetMeasures.class
+[DEBUG] adding entry WEB-INF/classes/pb/controller/PressureBloodBaseServlet$1.class
+[DEBUG] adding entry WEB-INF/classes/pb/controller/PressureBloodBaseServlet$DatetimeDeserializer.class
+[DEBUG] adding entry WEB-INF/classes/pb/controller/PressureBloodBaseServlet$DatetimeSerializer.class
+[DEBUG] adding entry WEB-INF/classes/pb/controller/PressureBloodBaseServlet.class
+[DEBUG] adding entry WEB-INF/classes/pb/controller/PressureBloodServletContextListener.class
+[DEBUG] adding entry WEB-INF/classes/pb/controller/UpdateMeasure.class
+[DEBUG] adding entry WEB-INF/classes/pb/db/BaseDAO.class
+[DEBUG] adding entry WEB-INF/classes/pb/db/MeasureDAO.class
+[DEBUG] adding entry WEB-INF/classes/pb/db/UsersDAO.class
+[DEBUG] adding entry WEB-INF/classes/pb/model/Hand.class
+[DEBUG] adding entry WEB-INF/classes/pb/model/Measurement.class
+[DEBUG] adding entry WEB-INF/classes/pb/model/PressureBlood.class
+[DEBUG] adding entry WEB-INF/classes/pb/model/UserRoles$Role.class
+[DEBUG] adding entry WEB-INF/classes/pb/model/UserRoles.class
+[DEBUG] adding entry WEB-INF/classes/pb/model/UserRolesId.class
+[DEBUG] adding entry WEB-INF/classes/pb/model/Users.class
+[DEBUG] adding entry WEB-INF/classes/pb/model/UsersDTO.class
+[DEBUG] adding entry WEB-INF/classes/pb/usermanagement/LogoutServlet.class
+[DEBUG] adding entry WEB-INF/classes/pb/usermanagement/RegisterNewUserServlet.class
+[DEBUG] adding entry WEB-INF/classes/pb/usermanagement/RegisterUserResponse$Status.class
+[DEBUG] adding entry WEB-INF/classes/pb/usermanagement/RegisterUserResponse.class
+[DEBUG] adding entry WEB-INF/classes/pb/validator/EmailValidator.class
+[DEBUG] adding entry WEB-INF/classes/pb/validator/MeasurementValidator.class
+[DEBUG] adding entry WEB-INF/classes/pb/validator/PasswordValidator.class
+[DEBUG] adding entry WEB-INF/classes/pb/validator/UserValidator.class
+[DEBUG] adding entry WEB-INF/lib/eclipselink-2.5.0-RC1.jar
+[DEBUG] adding entry WEB-INF/lib/gson-2.2.4.jar
+[DEBUG] adding entry WEB-INF/lib/javax.persistence-2.1.0-RC1.jar
+[DEBUG] adding entry WEB-INF/web.xml
+[DEBUG] WEB-INF\web.xml already added, skipping
+[DEBUG] adding entry META-INF/maven/pb/pressure-blood-web/pom.xml
+[DEBUG] adding entry META-INF/maven/pb/pressure-blood-web/pom.properties
+[INFO] 
+[INFO] --- maven-install-plugin:2.3.1:install (default-install) @ pressure-blood-web ---
+[DEBUG] org.apache.maven.plugins:maven-install-plugin:jar:2.3.1:
+[DEBUG]    org.apache.maven:maven-plugin-api:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-project:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-settings:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-profile:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-plugin-registry:jar:2.0.6:compile
+[DEBUG]       org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1:compile
+[DEBUG]          junit:junit:jar:3.8.1:compile
+[DEBUG]          classworlds:classworlds:jar:1.1-alpha-2:compile
+[DEBUG]    org.apache.maven:maven-model:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-artifact-manager:jar:2.0.6:compile
+[DEBUG]       org.apache.maven:maven-repository-metadata:jar:2.0.6:compile
+[DEBUG]    org.apache.maven:maven-artifact:jar:2.0.6:compile
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:2.0.5:compile
+[DEBUG]    org.codehaus.plexus:plexus-digest:jar:1.0:compile
+[DEBUG] Created new class realm plugin>org.apache.maven.plugins:maven-install-plugin:2.3.1-251186021
+[DEBUG] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-install-plugin:2.3.1-251186021
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.apache.maven.plugins:maven-install-plugin:2.3.1-251186021
+[DEBUG]   Included: org.apache.maven.plugins:maven-install-plugin:jar:2.3.1
+[DEBUG]   Included: junit:junit:jar:3.8.1
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:2.0.5
+[DEBUG]   Included: org.codehaus.plexus:plexus-digest:jar:1.0
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-api:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-project:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-settings:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-profile:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-plugin-registry:jar:2.0.6
+[DEBUG]   Excluded: org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1
+[DEBUG]   Excluded: classworlds:classworlds:jar:1.1-alpha-2
+[DEBUG]   Excluded: org.apache.maven:maven-model:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-artifact-manager:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-repository-metadata:jar:2.0.6
+[DEBUG]   Excluded: org.apache.maven:maven-artifact:jar:2.0.6
+[DEBUG] Configuring mojo org.apache.maven.plugins:maven-install-plugin:2.3.1:install from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-install-plugin:2.3.1-251186021, parent: sun.misc.Launcher$AppClassLoader@2b8f73cb]
+[DEBUG] Configuring mojo 'org.apache.maven.plugins:maven-install-plugin:2.3.1:install' with basic configurator -->
+[DEBUG]   (f) artifact = pb:pressure-blood-web:war:1.0.3-SNAPSHOT
+[DEBUG]   (f) attachedArtifacts = []
+[DEBUG]   (f) createChecksum = false
+[DEBUG]   (f) localRepository =        id: local
+      url: file:///C:/Users/borko/.m2/repository/
+   layout: none
+
+[DEBUG]   (f) packaging = war
+[DEBUG]   (f) pomFile = C:\Users\borko\Git\pressure-blood\pressure-blood-web\pom.xml
+[DEBUG]   (f) updateReleaseInfo = false
+[DEBUG] -- end configuration --
+[INFO] Installing C:\Users\borko\Git\pressure-blood\pressure-blood-web\target\pressure-blood-web-1.0.3-SNAPSHOT.war to C:\Users\borko\.m2\repository\pb\pressure-blood-web\1.0.3-SNAPSHOT\pressure-blood-web-1.0.3-SNAPSHOT.war
+[DEBUG] Writing resolution tracking file C:\Users\borko\.m2\repository\pb\pressure-blood-web\1.0.3-SNAPSHOT\_maven.repositories
+[INFO] Installing C:\Users\borko\Git\pressure-blood\pressure-blood-web\pom.xml to C:\Users\borko\.m2\repository\pb\pressure-blood-web\1.0.3-SNAPSHOT\pressure-blood-web-1.0.3-SNAPSHOT.pom
+[DEBUG] Writing resolution tracking file C:\Users\borko\.m2\repository\pb\pressure-blood-web\1.0.3-SNAPSHOT\_maven.repositories
+[DEBUG] Installing pb:pressure-blood-web:1.0.3-SNAPSHOT/maven-metadata.xml to C:\Users\borko\.m2\repository\pb\pressure-blood-web\1.0.3-SNAPSHOT\maven-metadata-local.xml
+[DEBUG] Installing pb:pressure-blood-web/maven-metadata.xml to C:\Users\borko\.m2\repository\pb\pressure-blood-web\maven-metadata-local.xml
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] pressure-blood .................................... SUCCESS [0.582s]
+[INFO] pressure-blood-web ................................ SUCCESS [17.774s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 18.521s
+[INFO] Finished at: Wed Dec 24 21:26:59 EET 2014
+[INFO] Final Memory: 25M/367M
+[INFO] ------------------------------------------------------------------------

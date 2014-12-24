@@ -23,6 +23,13 @@
 		</repository>
 	</repositories>
 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>uglifyjs-maven-plugin</id>
+			<url>https://raw.github.com/tqh/uglifyjs-maven-plugin/master/repo</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.11</junit.version>
@@ -97,7 +104,26 @@
 							<goal>jslint</goal>
 						</goals>
 						<configuration>
-							<sourceJsFolder>${basedir}/src/main/webapp/scripts/pb</sourceJsFolder>
+							<sourceJsFolder>${basedir}/src/main/webapp/scripts/js/pb</sourceJsFolder>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>net.tqh.plugins</groupId>
+				<artifactId>uglifyjs-maven-plugin</artifactId>
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<id>uglify-js</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>uglify</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+							<sourceDirectory>${basedir}/src/main/webapp/scripts/js/pb</sourceDirectory>
+							<outputDirectory>${basedir}/src/main/webapp/scripts/pb</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
