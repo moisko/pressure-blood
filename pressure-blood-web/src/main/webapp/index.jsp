@@ -13,93 +13,29 @@
 
 <link rel="stylesheet" type="text/css" href="styles/pb/index.css">
 
-</head>
-<body>
-	<div id="user-info">
-		<nav>
-			<span><%= username %></span> |
-			<a href="/pressure-blood-web/o.logout">logout</a>
-		</nav>
-	</div>
-	<div id="main">
-		<div id="measures">
-			<table id="measures-table" class="display" border="1">
-				<thead>
-					<tr>
-						<th class="measures-header" colspan="6"/>
-					</tr>
-					<tr>
-						<th class="sbp-column">SBP</th>
-						<th class="dbp-column">DBP</th>
-						<th class="hand-column">HAND</th>
-						<th class="pulse-column">PULSE</th>
-						<th class="datetime-column">DATE AND TIME</th>
-						<th class="delete-column">DELETE</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
-		</div>
+<script src="scripts/jquery/jquery-1.11.1.min.js"></script>
+<script src="scripts/jquery/jquery.validate.min.js"></script>
+<script src="scripts/jquery/jquery.dataTables.min.js"></script>
+<script src="scripts/jquery/jquery.datetimepicker.js"></script>
+<script src="scripts/jquery/jquery.jeditable.mini.js"></script>
+<script src="scripts/underscore/underscore-min.js"></script>
+<script src="scripts/underscore/underscore-min.map"></script>
 
-		<div id="add-measure">
-			<h2>Add measure</h2>
-			<form id="add-measure-form" action="">
-				<div id="sbp-measure">
-					<label for="sbp">SBP*:</label>
-					<input id="sbp" name="sbp" type="number" min="0" max="300" size="3" class="required">
-				</div>
+<script src="https://www.google.com/jsapi"></script>
 
-				<div id="dbp-measure">
-					<label for="dbp">DBP*:</label>
-					<input id="dbp" name="dbp" type="number" min="0" max="300" size="3" class="required">
-				</div>
-
-				<div id="hand-selector">
-					<label for="hand">HAND:</label>
-					<select id="hand" name="hand">
-						<option value="LEFT_HAND">LEFT_HAND</option>
-						<option value="RIGHT_HAND">RIGHT_HAND</option>
-					</select>
-				</div>
-
-				<div id="pulse-measure">
-					<label for="pulse">PULSE:</label>
-					<input id="pulse" name="pulse" type="number" min="0" max="300" size="3">
-				</div>
-				
-				<div id="datetime">
-					<label for="datetimepicker">DATE AND TIME*:</label>
-					<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
-				</div>
-
-				<div id="add-measure-button">
-					<button type="submit">Add measure</button>
-				</div>
-			</form>
-		</div>
-		<br />
-		<div id="statistics">
-			<h2>Statistics</h2>
-			<div id="column-chart"></div>
-		</div>
-	</div>
-</body>
-
-<script data-main="scripts/main" src="scripts/require/require.js"></script>
+<script src = "scripts/pb/form/measure-form.js"></script>
+<script src = "scripts/pb/form/register-form.js"></script>
+<script src = "scripts/pb/chart/statistics.js"></script>
+<script src = "scripts/pb/table/measures-table.js"></script>
+<script src = "scripts/pb/table/pb-measure.js"></script>
+<script src = "scripts/pb/table/measure-input.js"></script>
+<script src = "scripts/pb/time/datetime.js"></script>
+<script src= "scripts/pb/time/date-bg.js"></script>
+<script src = "scripts/pb/adt/dictionary.js"></script>
 <script>
-
-	require({
-		// Make sure it is enough to load all scripts
-		waitSeconds : 10,
-		paths : {
-			async : "require/async/async",
-			goog : "require/goog/goog",
-			propertyParser : "require/propertyParser/propertyParser"
-		}
-	});
-
-	require(["goog!visualization,1,packages:[corechart]", "goog!search,1"], function() {
+	// When the browser is ready ...
+	google.load("visualization", "1", {packages : [ "corechart" ]});
+	google.setOnLoadCallback(function() {
 		$(function() {
 
 			// Hide Statistics header
@@ -115,7 +51,7 @@
 			var dataTables = $("#measures-table").dataTable({
 				"order" : [[ 4, "asc" ]],
 				"aoColumnDefs" : [
-					{"aTargets" : [5],// DELETE column
+					{"aTargets" : [5],
 					"bSortable" : false
 					},
 					{"aTargets" : [ "datetime-column" ],
@@ -315,4 +251,76 @@
 		});
 	});
 </script>
+</head>
+<body>
+	<div id="user-info">
+		<nav>
+			<span><%= username %></span> |
+			<a href="/pressure-blood-web/o.logout">logout</a>
+		</nav>
+	</div>
+	<div id="main">
+		<div id="measures">
+			<table id="measures-table" class="display" border="1">
+				<thead>
+					<tr>
+						<th class="measures-header" colspan="6"/>
+					</tr>
+					<tr>
+						<th class="sbp-column">SBP</th>
+						<th class="dbp-column">DBP</th>
+						<th class="hand-column">HAND</th>
+						<th class="pulse-column">PULSE</th>
+						<th class="datetime-column">DATE AND TIME</th>
+						<th class="delete-column">DELETE</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+
+		<div id="add-measure">
+			<h2>Add measure</h2>
+			<form id="add-measure-form" action="">
+				<div id="sbp-measure">
+					<label for="sbp">SBP*:</label>
+					<input id="sbp" name="sbp" type="number" min="0" max="300" size="3" class="required">
+				</div>
+
+				<div id="dbp-measure">
+					<label for="dbp">DBP*:</label>
+					<input id="dbp" name="dbp" type="number" min="0" max="300" size="3" class="required">
+				</div>
+
+				<div id="hand-selector">
+					<label for="hand">HAND:</label>
+					<select id="hand" name="hand">
+						<option value="LEFT_HAND">LEFT_HAND</option>
+						<option value="RIGHT_HAND">RIGHT_HAND</option>
+					</select>
+				</div>
+
+				<div id="pulse-measure">
+					<label for="pulse">PULSE:</label>
+					<input id="pulse" name="pulse" type="number" min="0" max="300" size="3">
+				</div>
+				
+				<div id="datetime">
+					<label for="datetimepicker">DATE AND TIME*:</label>
+					<input id="datetimepicker" name="datetimepicker" type="text" size="12" class="required">
+				</div>
+
+				<div id="add-measure-button">
+					<button type="submit">Add measure</button>
+				</div>
+			</form>
+		</div>
+		<br />
+		<div id="statistics">
+			<h2>Statistics</h2>
+			<div id="column-chart"></div>
+		</div>
+	</div>
+</body>
 </html>
