@@ -99,7 +99,7 @@
 		}
 	});
 
-	require(["goog!visualization,1,packages:[corechart]"], function() {
+	require(["goog!visualization,1,packages:[corechart]", "goog!search,1"], function() {
 		$(function() {
 
 			// Hide Statistics header
