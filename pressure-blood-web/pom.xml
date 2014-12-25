@@ -113,14 +113,14 @@
 				<executions>
 					<execution>
 						<id>uglify-js</id>
-						<phase>compile</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>uglify</goal>
 						</goals>
 						<configuration>
 							<skip>false</skip>
 							<sourceDirectory>${basedir}/src/main/webapp/scripts/pb</sourceDirectory>
-							<outputDirectory>${project.build.directory}/${project.build.finalName}/scripts</outputDirectory>
+							<outputDirectory>${project.build.directory}/${project.build.finalName}/scripts/pb</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
