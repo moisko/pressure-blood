@@ -15,15 +15,12 @@
 
 	<url>http://maven.apache.org</url>
 
-	<repositories>
-		<repository>
+	<pluginRepositories>
+		<pluginRepository>
 			<id>oss.sonatype.org</id>
 			<name>OSS Sonatype Staging</name>
 			<url>https://oss.sonatype.org/content/groups/staging</url>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
+		</pluginRepository>
 		<pluginRepository>
 			<id>uglifyjs-maven-plugin</id>
 			<url>https://raw.github.com/tqh/uglifyjs-maven-plugin/master/repo</url>
