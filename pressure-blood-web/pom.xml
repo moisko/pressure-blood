@@ -104,7 +104,7 @@
 							<goal>jslint</goal>
 						</goals>
 						<configuration>
-							<sourceJsFolder>${basedir}/src/main/webapp/scripts/js/pb</sourceJsFolder>
+							<sourceJsFolder>${basedir}/src/main/webapp/scripts/pb</sourceJsFolder>
 						</configuration>
 					</execution>
 				</executions>
@@ -122,8 +122,8 @@
 						</goals>
 						<configuration>
 							<skip>false</skip>
-							<sourceDirectory>${basedir}/src/main/webapp/scripts/js/pb</sourceDirectory>
-							<outputDirectory>${basedir}/src/main/webapp/scripts/pb</outputDirectory>
+							<sourceDirectory>${basedir}/src/main/webapp/scripts/pb</sourceDirectory>
+							<outputDirectory>${project.build.directory}/${project.build.finalName}/scripts</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>

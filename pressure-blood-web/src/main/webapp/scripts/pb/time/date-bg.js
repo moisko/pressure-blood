@@ -1,1 +1,14 @@
-jQuery.extend(jQuery.fn.dataTableExt.oSort,{"date-bg-asc":function(e,a){var t=LocalDateTime.parse(e),r=LocalDateTime.parse(a);return t-r},"date-bg-desc":function(e,a){var t=LocalDateTime.parse(e),r=LocalDateTime.parse(a);return t-r}})
+/*global jQuery,LocalDateTime*/
+jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+	"date-bg-asc" : function(dateTimeStringA, dateTimeStringB) {
+		var dateTimeInMilllisA = LocalDateTime.parse(dateTimeStringA),
+			dateTimeInMilllisB = LocalDateTime.parse(dateTimeStringB);
+		return dateTimeInMilllisA - dateTimeInMilllisB;
+	},
+
+	"date-bg-desc" : function(dateTimeStringA, dateTimeStringB) {
+		var dateTimeInMilllisA = LocalDateTime.parse(dateTimeStringA),
+			dateTimeInMilllisB = LocalDateTime.parse(dateTimeStringB);
+		return dateTimeInMilllisA - dateTimeInMilllisB;
+	}
+});

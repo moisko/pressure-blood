@@ -1,1 +1,30 @@
-var PbMeasure={getId:function(e){return e.id},getSbp:function(e){return e.pressureBlood.sbp},getDbp:function(e){return e.pressureBlood.dbp},getHand:function(e){return e.hand},getPulse:function(e){var t=e.pulse;return _.isUndefined(t)&&(t=""),t},getDatetime:function(e){return e.datetime},getRemoveLink:function(e){var t='<a id="'+PbMeasure.getId(e)+'" href="">Delete measure</a>';return t}}
+/*global _*/
+var PbMeasure = {
+	getId : function(measure) {
+		return measure.id;
+	},
+	getSbp : function(measure) {
+		return measure.pressureBlood.sbp;
+	},
+	getDbp : function(measure) {
+		return measure.pressureBlood.dbp;
+	},
+	getHand : function(measure) {
+		return measure.hand;
+	},
+	getPulse : function(measure) {
+		var pulse = measure.pulse;
+		if (_.isUndefined(pulse)) {
+			pulse = "";
+		}
+		return pulse;
+	},
+	getDatetime : function(measure) {
+		return measure.datetime;
+	},
+	getRemoveLink : function(measure) {
+		var removeLink = "<a id=\"" + PbMeasure.getId(measure)
+				+ "\" href=\"\">Delete measure</a>";
+		return removeLink;
+	}
+};
