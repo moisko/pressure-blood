@@ -22,7 +22,7 @@ require.config({
 			exports : "_"
 		},
 		measureInput : {
-			deps : [ "jquery" ]
+			deps : [ "jquery", "editable" ]
 		},
 		dateBg : {
 			deps : [ "jquery" ]
@@ -42,8 +42,8 @@ require.config({
 require([ "jquery", "underscore", "datatables", "datetimepicker", "editable",
 		"validate", "statistics", "dictionary", "measureForm", "registerForm",
 		"register", "measureInput", "measuresTable", "pbMeasure", "dateBg",
-		"datetime" ], function($, _, datetimepicker, editable, validate,
-		Statistics, Dictionary, MeasureForm, RegisterForm, Register, editable,
-		MeasuresTable, PbMeasure, LocalDateTime) {
+		"datetime" ], function($, _, datatables, datetimepicker, editable,
+		validate, Statistics, Dictionary, MeasureForm, RegisterForm, Register,
+		$, MeasuresTable, PbMeasure, LocalDateTime) {
 
 });
