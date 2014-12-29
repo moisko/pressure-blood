@@ -1,4 +1,4 @@
-/*global $,PbMeasure,LocalDateTime*/
+/*global $,PbMeasure*/
 function Dictionary() {
 	this.datastore = [];
 }
