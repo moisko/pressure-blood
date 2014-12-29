@@ -1,149 +1,155 @@
-/*global $,_,alert,MeasureForm,PbMeasure,Statistics,LocalDateTime*/
-function MeasuresTable(dataTables, dictionary, pageNumber) {
-	this.dataTables = dataTables;
-	this.dictionary = dictionary;
-	this.pageNumber = pageNumber;
-}
+/*global define, alert*/
+define("MeasuresTable", ["jquery", "underscore", "MeasureForm", "PbMeasure", "Statistics", "LocalDateTime"], function($, _, MeasureForm, PbMeasure, Statistics, LocalDateTime) {
 
-MeasuresTable.prototype.populateMeasuresTable = function() {
-	$.get("/pressure-blood-web/o.getMeasures", $.proxy(function(measures) {
-		// Dictionary
+	function MeasuresTable(dataTables, dictionary, pageNumber) {
+		this.dataTables = dataTables;
+		this.dictionary = dictionary;
+		this.pageNumber = pageNumber;
+	}
 
-		this.getDictionary().initDictionary(measures);
+	MeasuresTable.prototype.populateMeasuresTable = function() {
+		$.get("/pressure-blood-web/o.getMeasures", $.proxy(function(measures) {
+			// Dictionary
 
-		// Measures table
+			this.getDictionary().initDictionary(measures);
 
-		var measuresData = this.getDictionary().toMeasuresData(),
-		dataTablesRef = this.getDataTables();
-		measuresData.forEach(function(measureData) {
-			dataTablesRef.fnAddData([ measureData[0], measureData[1],
-					measureData[2], measureData[3], measureData[4],
-					measureData[5] ]);
+			// Measures table
+
+			var measuresData = this.getDictionary().toMeasuresData(),
+			dataTablesRef = this.getDataTables();
+			measuresData.forEach(function(measureData) {
+				dataTablesRef.fnAddData([ measureData[0], measureData[1],
+				                          measureData[2], measureData[3], measureData[4],
+				                          measureData[5] ]);
+			});
+
+			// Statistics
+			if (!_.isEmpty(measures)) {
+				this.updateStatisticsChart();
+			}
+		}, this));
+	};
+
+	MeasuresTable.prototype.addMeasure = function() {
+		$.ajax({
+			url : "/pressure-blood-web/o.addMeasure",
+			type : "PUT",
+			dataType : "json",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({
+				"pressureBlood" : {
+					"sbp" : parseInt(MeasureForm.getSbp(), 10),
+					"dbp" : parseInt(MeasureForm.getDbp(), 10)
+				},
+				"datetime" : LocalDateTime.parse(MeasureForm.getDatetime()),
+				"hand" : MeasureForm.getHand(),
+				"pulse" : parseInt(MeasureForm.getPulse(), 10)
+			}),
+			success : $.proxy(function(measure) {
+				// Add row to measures table
+				
+				this.getDataTables().fnAddData(
+						[ PbMeasure.getSbp(measure),
+						  PbMeasure.getDbp(measure),
+						  PbMeasure.getHand(measure),
+						  PbMeasure.getPulse(measure),
+						  PbMeasure.getDatetime(measure),
+						  PbMeasure.getRemoveLink(measure) ]);
+				
+				// Add measure to dictionary
+				
+				this.getDictionary().add(PbMeasure.getId(measure), measure);
+				
+				// Statistics
+				
+				this.updateStatisticsChart();
+				
+				// Clear form
+				
+				MeasureForm.clear();
+			}, this),
+			error : function(xhr, status) {
+				alert("Failed to add measure.\nServer returned: "
+						+ xhr.responseText);
+				
+				MeasureForm.clear();
+			}
 		});
+	};
 
-		// Statistics
-		if (!_.isEmpty(measures)) {
-			this.updateStatisticsChart();
+	MeasuresTable.prototype.deleteMeasure = function(tableRow) {
+		$.ajax({
+			type : "POST",
+			url : "/pressure-blood-web/o.deleteMeasure",
+			data : "id=" + this.getMeasureIdFromTableRow(tableRow),
+			success : $.proxy(function() {
+				// Delete row from measures table
+				
+				this.getDataTables().fnDeleteRow(tableRow);
+				
+				// Remove measure from dictionary
+				
+				var measureId = this.getMeasureIdFromTableRow(tableRow);
+				this.getDictionary().remove(measureId);
+				
+				// Statistics
+				
+				this.updateStatisticsChart();
+			}, this),
+			error : function(xhr, status) {
+				alert("Failed to delete measure.\nServer returned: "
+						+ xhr.statusText);
+			}
+		});
+	};
+
+	MeasuresTable.prototype.updateStatisticsChart = function() {
+		var beginIndex = this.calculateBeginIndex(),
+		endIndex = this.calculateEndIndex(),
+		chartData = this.getDictionary().toChartData().splice(beginIndex, endIndex);
+		if (!_.isEmpty(chartData)) {
+			Statistics.showStatisticsHeader();
+			Statistics.drawChart(chartData);
+		} else {
+			Statistics.hideStatisticsHeader();
 		}
-	}, this));
-};
+	};
 
-MeasuresTable.prototype.addMeasure = function() {
-	$.ajax({
-		url : "/pressure-blood-web/o.addMeasure",
-		type : "PUT",
-		dataType : "json",
-		contentType : "application/json; charset=utf-8",
-		data : JSON.stringify({
-			"pressureBlood" : {
-				"sbp" : parseInt(MeasureForm.getSbp(), 10),
-				"dbp" : parseInt(MeasureForm.getDbp(), 10)
-			},
-			"datetime" : LocalDateTime.parse(MeasureForm.getDatetime()),
-			"hand" : MeasureForm.getHand(),
-			"pulse" : parseInt(MeasureForm.getPulse(), 10)
-		}),
-		success : $.proxy(function(measure) {
-			// Add row to measures table
+	MeasuresTable.prototype.calculateBeginIndex = function() {
+		return 0;
+	};
 
-			this.getDataTables().fnAddData(
-					[ PbMeasure.getSbp(measure), PbMeasure.getDbp(measure),
-							PbMeasure.getHand(measure),
-							PbMeasure.getPulse(measure),
-							PbMeasure.getDatetime(measure),
-							PbMeasure.getRemoveLink(measure) ]);
-
-			// Add measure to dictionary
-
-			this.getDictionary().add(PbMeasure.getId(measure), measure);
-
-			// Statistics
-
-			this.updateStatisticsChart();
-
-			// Clear form
-
-			MeasureForm.clear();
-		}, this),
-		error : function(xhr, status) {
-			alert("Failed to add measure.\nServer returned: "
-					+ xhr.responseText);
-
-			MeasureForm.clear();
+	MeasuresTable.prototype.calculateEndIndex = function() {
+		var endIndex = 10;
+		if (endIndex > this.dictionary.count()) {
+			endIndex = this.dictionary.count();
 		}
-	});
-};
+		return endIndex;
+	};
 
-MeasuresTable.prototype.deleteMeasure = function(tableRow) {
-	$.ajax({
-		type : "POST",
-		url : "/pressure-blood-web/o.deleteMeasure",
-		data : "id=" + this.getMeasureIdFromTableRow(tableRow),
-		success : $.proxy(function() {
-			// Delete row from measures table
+	MeasuresTable.prototype.getMeasuresCount = function() {
+		return this.dataTables.fnGetData().length;
+	};
 
-			this.getDataTables().fnDeleteRow(tableRow);
+	MeasuresTable.prototype.getMeasureIdFromTableRow = function(tableRow) {
+		return tableRow.find("td a").attr("id");
+	};
 
-			// Remove measure from dictionary
+	MeasuresTable.prototype.getDataTables = function() {
+		return this.dataTables;
+	};
 
-			var measureId = this.getMeasureIdFromTableRow(tableRow);
-			this.getDictionary().remove(measureId);
+	MeasuresTable.prototype.getDictionary = function() {
+		return this.dictionary;
+	};
 
-			// Statistics
+	MeasuresTable.prototype.getPageNumber = function() {
+		return this.pageNumber;
+	};
 
-			this.updateStatisticsChart();
-		}, this),
-		error : function(xhr, status) {
-			alert("Failed to delete measure.\nServer returned: "
-					+ xhr.statusText);
-		}
-	});
-};
+	MeasuresTable.prototype.setPageNumber = function(pageNumber) {
+		this.pageNumber = pageNumber;
+	};
 
-MeasuresTable.prototype.updateStatisticsChart = function() {
-	var beginIndex = this.calculateBeginIndex(),
-	endIndex = this.calculateEndIndex(),
-	chartData = this.getDictionary().toChartData().splice(beginIndex, endIndex);
-	if (!_.isEmpty(chartData)) {
-		Statistics.showStatisticsHeader();
-		Statistics.drawChart(chartData);
-	} else {
-		Statistics.hideStatisticsHeader();
-	}
-};
-
-MeasuresTable.prototype.calculateBeginIndex = function() {
-	return 0;
-};
-
-MeasuresTable.prototype.calculateEndIndex = function() {
-	var endIndex = 10;
-	if (endIndex > this.dictionary.count()) {
-		endIndex = this.dictionary.count();
-	}
-	return endIndex;
-};
-
-MeasuresTable.prototype.getMeasuresCount = function() {
-	return this.dataTables.fnGetData().length;
-};
-
-MeasuresTable.prototype.getMeasureIdFromTableRow = function(tableRow) {
-	return tableRow.find("td a").attr("id");
-};
-
-MeasuresTable.prototype.getDataTables = function() {
-	return this.dataTables;
-};
-
-MeasuresTable.prototype.getDictionary = function() {
-	return this.dictionary;
-};
-
-MeasuresTable.prototype.getPageNumber = function() {
-	return this.pageNumber;
-};
-
-MeasuresTable.prototype.setPageNumber = function(pageNumber) {
-	this.pageNumber = pageNumber;
-};
+	return (MeasuresTable);
+});

@@ -10,25 +10,30 @@ require.config({
 		dictionary : "pb/adt/dictionary",
 		measureForm : "pb/form/measure-form",
 		registerForm : "pb/form/register-form",
-		register : "pb/form/register",
-		measureInput : "pb/table/measure-input",
+		register : "pb/register",
+		measureInput : "pb/plugins/measure-input",
 		measuresTable : "pb/table/measures-table",
-		pbMeasure : "pb/table/pb-measure",
-		dateBg : "pb/time/date-bg",
+		pbMeasure : "pb/pb-measure",
+		dateBg : "pb/plugins/date-bg",
 		datetime : "pb/time/datetime"
 	},
 	shim : {
+		jquery : {
+			exports : "$"
+		},
 		underscore : {
 			exports : "_"
+		},
+		editable : {
+			deps : [ "jquery" ],
+			exports : "jQuery.editable"
 		},
 		measureInput : {
 			deps : [ "jquery", "editable" ]
 		},
 		dateBg : {
-			deps : [ "jquery" ]
-		},
-		editable : {
-			deps : [ "jquery" ]
+			deps : [ "jquery" ],
+			exports : "jQuery.fn.dataTableExt.oSort"
 		},
 		datetimepicker : {
 			deps : [ "jquery" ]
@@ -39,11 +44,11 @@ require.config({
 	}
 });
 
-require([ "jquery", "underscore", "datatables", "datetimepicker", "editable",
-		"validate", "statistics", "dictionary", "measureForm", "registerForm",
-		"register", "measureInput", "measuresTable", "pbMeasure", "dateBg",
-		"datetime" ], function($, _, datatables, datetimepicker, editable,
-		validate, Statistics, Dictionary, MeasureForm, RegisterForm, Register,
-		$, MeasuresTable, PbMeasure, LocalDateTime) {
+require([ "jquery", "underscore", "datatables", "datetimepicker", "validate",
+		"statistics", "dictionary", "measureForm", "registerForm", "register",
+		"measureInput", "measuresTable", "pbMeasure", "dateBg", "datetime" ],
+		function($, _, datatables, datetimepicker, validate, Statistics,
+				Dictionary, MeasureForm, RegisterForm, Register, MeasuresTable,
+				PbMeasure, LocalDateTime) {
 
-});
+		});
