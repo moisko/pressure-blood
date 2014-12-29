@@ -27,10 +27,10 @@
 <script src = "scripts/pb/form/register-form.js"></script>
 <script src = "scripts/pb/chart/statistics.js"></script>
 <script src = "scripts/pb/table/measures-table.js"></script>
-<script src = "scripts/pb/table/pb-measure.js"></script>
-<script src = "scripts/pb/table/measure-input.js"></script>
+<script src = "scripts/pb/pb-measure.js"></script>
+<script src = "scripts/pb/plugins/measure-input.js"></script>
 <script src = "scripts/pb/time/datetime.js"></script>
-<script src= "scripts/pb/time/date-bg.js"></script>
+<script src= "scripts/pb/plugins/date-bg.js"></script>
 <script src = "scripts/pb/adt/dictionary.js"></script>
 <script>
 	// When the browser is ready ...
