@@ -1,5 +1,6 @@
 /*global define, alert*/
-define("MeasuresTable", ["jquery", "underscore", "MeasureForm", "PbMeasure", "Statistics", "LocalDateTime"], function($, _, MeasureForm, PbMeasure, Statistics, LocalDateTime) {
+define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "Statistics"],
+		function($, _, MeasureForm, PbMeasure, LocalDateTime, Statistics) {
 
 	function MeasuresTable(dataTables, dictionary, pageNumber) {
 		this.dataTables = dataTables;
@@ -18,9 +19,7 @@ define("MeasuresTable", ["jquery", "underscore", "MeasureForm", "PbMeasure", "St
 			var measuresData = this.getDictionary().toMeasuresData(),
 			dataTablesRef = this.getDataTables();
 			measuresData.forEach(function(measureData) {
-				dataTablesRef.fnAddData([ measureData[0], measureData[1],
-				                          measureData[2], measureData[3], measureData[4],
-				                          measureData[5] ]);
+				dataTablesRef.fnAddData([ measureData[0], measureData[1], measureData[2], measureData[3], measureData[4], measureData[5] ]);
 			});
 
 			// Statistics
@@ -47,31 +46,25 @@ define("MeasuresTable", ["jquery", "underscore", "MeasureForm", "PbMeasure", "St
 			}),
 			success : $.proxy(function(measure) {
 				// Add row to measures table
-				
-				this.getDataTables().fnAddData(
-						[ PbMeasure.getSbp(measure),
-						  PbMeasure.getDbp(measure),
-						  PbMeasure.getHand(measure),
-						  PbMeasure.getPulse(measure),
-						  PbMeasure.getDatetime(measure),
-						  PbMeasure.getRemoveLink(measure) ]);
-				
+
+				this.getDataTables().fnAddData([ PbMeasure.getSbp(measure), PbMeasure.getDbp(measure), PbMeasure.getHand(measure), PbMeasure.getPulse(measure),
+													PbMeasure.getDatetime(measure), PbMeasure.getRemoveLink(measure) ]);
+
 				// Add measure to dictionary
-				
+
 				this.getDictionary().add(PbMeasure.getId(measure), measure);
-				
+
 				// Statistics
-				
+
 				this.updateStatisticsChart();
-				
+
 				// Clear form
-				
+
 				MeasureForm.clear();
 			}, this),
 			error : function(xhr, status) {
-				alert("Failed to add measure.\nServer returned: "
-						+ xhr.responseText);
-				
+				alert("Failed to add measure.\nServer returned: " + xhr.responseText);
+
 				MeasureForm.clear();
 			}
 		});
@@ -84,16 +77,16 @@ define("MeasuresTable", ["jquery", "underscore", "MeasureForm", "PbMeasure", "St
 			data : "id=" + this.getMeasureIdFromTableRow(tableRow),
 			success : $.proxy(function() {
 				// Delete row from measures table
-				
+
 				this.getDataTables().fnDeleteRow(tableRow);
-				
+
 				// Remove measure from dictionary
-				
+
 				var measureId = this.getMeasureIdFromTableRow(tableRow);
 				this.getDictionary().remove(measureId);
-				
+
 				// Statistics
-				
+
 				this.updateStatisticsChart();
 			}, this),
 			error : function(xhr, status) {

@@ -1,6 +1,5 @@
-/*global require*/
-require(["jquery", "editable"], function($, editable) {
-
+/*global define*/
+define(["jquery", "editable"], function($) {
 	$.editable.addInputType("measure", {
 		element : function(settings, original) {
 

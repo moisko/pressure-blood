@@ -1,5 +1,5 @@
 /*global define*/
-define("Dictionary", ["jquery", "PbMeasure", "LocalDateTime"], function($, PbMeasure, LocalDateTime) {
+define([ "jquery", "PbMeasure" ], function($, PbMeasure) {
 
 	function Dictionary() {
 		this.datastore = [];
@@ -63,7 +63,8 @@ define("Dictionary", ["jquery", "PbMeasure", "LocalDateTime"], function($, PbMea
 		this.datastore.forEach(function(measure) {
 			measuresData.push([ PbMeasure.getSbp(measure),
 					PbMeasure.getDbp(measure), PbMeasure.getHand(measure),
-					PbMeasure.getPulse(measure), PbMeasure.getDatetime(measure),
+					PbMeasure.getPulse(measure),
+					PbMeasure.getDatetime(measure),
 					PbMeasure.getRemoveLink(measure) ]);
 		});
 		return measuresData.sort(function(a, b) {
@@ -89,5 +90,5 @@ define("Dictionary", ["jquery", "PbMeasure", "LocalDateTime"], function($, PbMea
 		return this.count() === 0;
 	};
 
-	return (Dictionary);
+	return Dictionary;
 });
