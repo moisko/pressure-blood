@@ -72,6 +72,8 @@ require(
 						"onblur" : "submit",
 						"callback" : function(updatedValue) {
 
+							var td = this;
+
 							function convertUpdatedValueToColumnType(column) {
 								switch (column) {
 								case 0: // SBP column
@@ -88,7 +90,6 @@ require(
 								}
 							}
 
-							var td = this;
 
 							function updateMeasuresTable() {
 								var position = dataTables.fnGetPosition(td),
