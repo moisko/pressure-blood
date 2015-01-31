@@ -1,11 +1,13 @@
 package pb.db;
 
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertFalse;
+import static org.mockito.Mockito.*;
 
 import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -34,10 +36,10 @@ public class MeasureDAOTest {
 	EntityManager em;
 
 	@Mock
-	PressureBloodBaseServlet pressureBloodServlet;
+	Query query;
 
 	@Mock
-	BaseDAO baseDAO;
+	PressureBloodBaseServlet pressureBloodServlet;
 
 	@Mock
 	Measurement measure;
@@ -87,6 +89,19 @@ public class MeasureDAOTest {
 		expectedExcetpion.expect(IllegalArgumentException.class);
 		measureDAO.addMeasureForUser(measureWithInvalidPulse, EXISTING_USER,
 				MAX_RECORDS);
+	}
+
+	@Test
+	public void testAddMeasureWithUserMaxRecordsReached() throws Exception {
+		Measurement validMeasure = createMeasure(120, 80, Hand.LEFT_HAND, 75,
+				new Date(), null);
+		when(em.createNamedQuery("getMeasuresCount")).thenReturn(query);
+		when(query.getSingleResult()).thenReturn(Long.valueOf(11));
+		boolean measureAdded = measureDAO.addMeasureForUser(validMeasure,
+				"test", 10);
+		assertFalse(
+				"User has reached the max number of 10 records. Measure must not be added to db.",
+				measureAdded);
 	}
 
 	private Measurement createMeasureWithInvalidPulseValue() {
