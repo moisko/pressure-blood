@@ -1,14 +1,11 @@
 package pb.db;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
+
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,10 +16,10 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import pb.controller.PressureBloodBaseServlet;
-import pb.db.MeasureDAO;
 import pb.model.Hand;
 import pb.model.Measurement;
 import pb.model.PressureBlood;
+import pb.model.Users;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MeasureDAOTest {
@@ -40,7 +37,10 @@ public class MeasureDAOTest {
 	PressureBloodBaseServlet pressureBloodServlet;
 
 	@Mock
-	Measurement measureMock;
+	BaseDAO baseDAO;
+
+	@Mock
+	Measurement measure;
 
 	private static final int MAX_RECORDS = 10;
 
@@ -66,43 +66,46 @@ public class MeasureDAOTest {
 	@Test
 	public void testAddMeasureWithInvalidSbpValue() throws Exception {
 		PressureBlood pb = createPressureBloodWithInvalidSbpValue();
-		when(measureMock.getPressureBlood()).thenReturn(pb);
+		when(measure.getPressureBlood()).thenReturn(pb);
 
 		expectedExcetpion.expect(IllegalArgumentException.class);
-		measureDAO.addMeasureForUser(measureMock, "test", MAX_RECORDS);
+		measureDAO.addMeasureForUser(measure, "test", MAX_RECORDS);
 	}
 
 	@Test
 	public void testAddMeasureWithInvalidDbpValue() throws Exception {
 		PressureBlood pb = createPressureBloodWithInvalidDbpValue();
-		when(measureMock.getPressureBlood()).thenReturn(pb);
+		when(measure.getPressureBlood()).thenReturn(pb);
 
 		expectedExcetpion.expect(IllegalArgumentException.class);
-		measureDAO.addMeasureForUser(measureMock, "test", MAX_RECORDS);
+		measureDAO.addMeasureForUser(measure, "test", MAX_RECORDS);
 	}
 
 	@Test
 	public void testAddMeasureWithInvalidPulseValue() throws Exception {
-		Measurement invalidMeasure = createMeasureWithInvalidPulseValue();
+		Measurement measureWithInvalidPulse = createMeasureWithInvalidPulseValue();
 		expectedExcetpion.expect(IllegalArgumentException.class);
-		measureDAO.addMeasureForUser(invalidMeasure, EXISTING_USER, MAX_RECORDS);
+		measureDAO.addMeasureForUser(measureWithInvalidPulse, EXISTING_USER,
+				MAX_RECORDS);
 	}
 
 	private Measurement createMeasureWithInvalidPulseValue() {
-		PressureBlood pb = createValidPressureBlood();
-		Hand leftHand = Hand.LEFT_HAND;
-		Measurement measure = new Measurement();
-		measure.setPressureBlood(pb);
-		measure.setHand(leftHand);
-		measure.setPulse(INVALID_PULSE_VALUE);
-		return measure;
+		return createMeasure(VALID_SBP_VALUE, VALID_DBP_VALUE, Hand.LEFT_HAND,
+				INVALID_PULSE_VALUE, new Date(), null);
 	}
 
-	private PressureBlood createValidPressureBlood() {
+	private Measurement createMeasure(int sbp, int dbp, Hand hand, int pulse,
+			Date datetime, Users user) {
+		Measurement measure = new Measurement();
 		PressureBlood pb = new PressureBlood();
-		pb.setSbp(VALID_SBP_VALUE);
-		pb.setDbp(VALID_DBP_VALUE);
-		return pb;
+		pb.setSbp(sbp);
+		pb.setDbp(dbp);
+		measure.setPressureBlood(pb);
+		measure.setHand(hand);
+		measure.setPulse(pulse);
+		measure.setDatetime(datetime);
+		measure.attachUser(user);
+		return measure;
 	}
 
 	private PressureBlood createPressureBloodWithInvalidSbpValue() {
