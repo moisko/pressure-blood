@@ -47,7 +47,6 @@ public class MeasureDAOTest {
 	private static final int MAX_RECORDS = 10;
 
 	private static final String EXISTING_USER = "test";
-	// private static final String UNEXSTING_USER = "unexsting_user";
 
 	private static final int VALID_SBP_VALUE = 120;
 	private static final int INVALID_SBP_VALUE = 301;
