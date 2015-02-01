@@ -19,7 +19,12 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 			var measuresData = this.getDictionary().toMeasuresData(),
 			dataTablesRef = this.getDataTables();
 			measuresData.forEach(function(measureData) {
-				dataTablesRef.fnAddData([ measureData[0], measureData[1], measureData[2], measureData[3], measureData[4], measureData[5] ]);
+				dataTablesRef.fnAddData([ measureData[0],
+				                          measureData[1],
+				                          measureData[2],
+				                          measureData[3],
+				                          measureData[4],
+				                          measureData[5] ]);
 			});
 
 			// Statistics
@@ -47,8 +52,12 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 			success : $.proxy(function(measure) {
 				// Add row to measures table
 
-				this.getDataTables().fnAddData([ PbMeasure.getSbp(measure), PbMeasure.getDbp(measure), PbMeasure.getHand(measure), PbMeasure.getPulse(measure),
-													PbMeasure.getDatetime(measure), PbMeasure.getRemoveLink(measure) ]);
+				this.getDataTables().fnAddData([ PbMeasure.getSbp(measure),
+				                                 PbMeasure.getDbp(measure),
+				                                 PbMeasure.getHand(measure),
+				                                 PbMeasure.getPulse(measure),
+				                                 PbMeasure.getDatetime(measure),
+				                                 PbMeasure.getRemoveLink(measure) ]);
 
 				// Add measure to dictionary
 

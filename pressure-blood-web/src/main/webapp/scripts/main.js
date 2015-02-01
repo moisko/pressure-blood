@@ -111,6 +111,9 @@ require(
 							}
 
 							function updateStatistics() {
+								var beginIndex = calculateBeginIndex(),
+									endIndex = calculateEndIndex(),
+									chartData = dictionary.toChartData().splice(beginIndex, endIndex);
 
 								function calculateBeginIndex() {
 									var beginIndex = 0;
@@ -124,10 +127,6 @@ require(
 									}
 									return endIndex;
 								}
-
-								var beginIndex = calculateBeginIndex(),
-									endIndex = calculateEndIndex(),
-									chartData = dictionary.toChartData().splice(beginIndex, endIndex);
 
 								Statistics.drawChart(chartData);
 							}

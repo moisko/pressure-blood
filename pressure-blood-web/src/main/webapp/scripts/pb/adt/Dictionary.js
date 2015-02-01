@@ -51,7 +51,8 @@ define([ "jquery", "PbMeasure" ], function($, PbMeasure) {
 		var chartData = [];
 		this.datastore.forEach(function(measure) {
 			chartData.push([ PbMeasure.getDatetime(measure),
-					PbMeasure.getSbp(measure), PbMeasure.getDbp(measure) ]);
+			                 PbMeasure.getSbp(measure),
+			                 PbMeasure.getDbp(measure) ]);
 		});
 		return chartData.sort(function(a, b) {
 			return a[0] - b[0];
@@ -62,10 +63,11 @@ define([ "jquery", "PbMeasure" ], function($, PbMeasure) {
 		var measuresData = [];
 		this.datastore.forEach(function(measure) {
 			measuresData.push([ PbMeasure.getSbp(measure),
-					PbMeasure.getDbp(measure), PbMeasure.getHand(measure),
-					PbMeasure.getPulse(measure),
-					PbMeasure.getDatetime(measure),
-					PbMeasure.getRemoveLink(measure) ]);
+			                    PbMeasure.getDbp(measure),
+			                    PbMeasure.getHand(measure),
+			                    PbMeasure.getPulse(measure),
+			                    PbMeasure.getDatetime(measure),
+			                    PbMeasure.getRemoveLink(measure) ]);
 		});
 		return measuresData.sort(function(a, b) {
 			return a[4] - b[4];
