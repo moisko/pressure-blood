@@ -2,11 +2,6 @@
 define(function() {
     return {
         parse : function(dateTimeString) {
-            function decreaseMonth(month) {
-                var m = parseInt(month, 10);
-                return --m;
-            }
-
             var splittedLocalDateTime = dateTimeString.split(" "),
                 localDate = splittedLocalDateTime[0],
                 splittedDate = localDate.split("/"),
@@ -20,10 +15,26 @@ define(function() {
                 mm = splittedTime[1],
                 dateTimeInMillis = new Date(year, decreaseMonth(month), date, hh, mm);
 
+            function decreaseMonth(month) {
+                var m = parseInt(month, 10);
+                return --m;
+            }
+
             return dateTimeInMillis.getTime();
         },
 
         toLocalDateTimeString : function(dateTimeInMillis) {
+        	var d = new Date(dateTimeInMillis),
+            	date = d.getDate(),
+            	month = d.getMonth(),
+            	fullYear = d.getFullYear(),
+
+            	hh = d.getHours(),
+            	mm = d.getMinutes(),
+            	localDateTimeString = formatDate(date) + "/"
+                	+ formatMonth(increaseMonth(month)) + "/" + fullYear + " "
+                	+ formatHour(hh) + ":" + formatMinute(mm);
+
             function formatMinute(minute) {
                 if (minute >= 0 && minute <= 9) {
                     minute = "0" + minute;
@@ -56,17 +67,6 @@ define(function() {
                 var m = parseInt(month, 10);
                 return ++m;
             }
-
-            var d = new Date(dateTimeInMillis),
-                date = d.getDate(),
-                month = d.getMonth(),
-                fullYear = d.getFullYear(),
-
-                hh = d.getHours(),
-                mm = d.getMinutes(),
-                localDateTimeString = formatDate(date) + "/"
-                    + formatMonth(increaseMonth(month)) + "/" + fullYear + " "
-                    + formatHour(hh) + ":" + formatMinute(mm);
 
             return localDateTimeString;
         }
