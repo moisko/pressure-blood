@@ -64,6 +64,14 @@
 			</exclusions>
 		</dependency>
 
+		<!-- Google Gson -->
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
+
 		<!-- Persistence dependencies -->
 
 		<dependency>
@@ -76,11 +84,6 @@
 					<artifactId>commonj.sdo</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>${gson.version}</version>
 		</dependency>
 
 		<!-- Test dependencies -->
