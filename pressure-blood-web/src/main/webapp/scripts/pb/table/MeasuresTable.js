@@ -12,12 +12,12 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 		$.get("/pressure-blood-web/o.getMeasures", $.proxy(function(measures) {
 			// Dictionary
 
-			this.getDictionary().initDictionary(measures);
+			this.dictionary.initDictionary(measures);
 
 			// Measures table
 
-			var measuresData = this.getDictionary().toMeasuresData(),
-			dataTablesRef = this.getDataTables();
+			var measuresData = this.dictionary.toMeasuresData(),
+			dataTablesRef = this.dataTables;
 			measuresData.forEach(function(measureData) {
 				dataTablesRef.fnAddData([ measureData[0],
 				                          measureData[1],
@@ -52,16 +52,17 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 			success : $.proxy(function(measure) {
 				// Add row to measures table
 
-				this.getDataTables().fnAddData([ PbMeasure.getSbp(measure),
+				this.dataTables.fnAddData([ PbMeasure.getSbp(measure),
 				                                 PbMeasure.getDbp(measure),
 				                                 PbMeasure.getHand(measure),
 				                                 PbMeasure.getPulse(measure),
 				                                 PbMeasure.getDatetime(measure),
 				                                 PbMeasure.getRemoveLink(measure) ]);
+				// this.dataTables.fnDraw();
 
 				// Add measure to dictionary
 
-				this.getDictionary().add(PbMeasure.getId(measure), measure);
+				this.dictionary.add(PbMeasure.getId(measure), measure);
 
 				// Statistics
 
@@ -87,12 +88,12 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 			success : $.proxy(function() {
 				// Delete row from measures table
 
-				this.getDataTables().fnDeleteRow(tableRow);
+				this.dataTables.fnDeleteRow(tableRow);
 
 				// Remove measure from dictionary
 
 				var measureId = this.getMeasureIdFromTableRow(tableRow);
-				this.getDictionary().remove(measureId);
+				this.dictionary.remove(measureId);
 
 				// Statistics
 
@@ -108,7 +109,7 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 	MeasuresTable.prototype.updateStatisticsChart = function() {
 		var beginIndex = this.calculateBeginIndex(),
 		endIndex = this.calculateEndIndex(),
-		chartData = this.getDictionary().toChartData().splice(beginIndex, endIndex);
+		chartData = this.dictionary.toChartData().splice(beginIndex, endIndex);
 		if (!_.isEmpty(chartData)) {
 			Statistics.showStatisticsHeader();
 			Statistics.drawChart(chartData);
@@ -135,18 +136,6 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 
 	MeasuresTable.prototype.getMeasureIdFromTableRow = function(tableRow) {
 		return tableRow.find("td a").attr("id");
-	};
-
-	MeasuresTable.prototype.getDataTables = function() {
-		return this.dataTables;
-	};
-
-	MeasuresTable.prototype.getDictionary = function() {
-		return this.dictionary;
-	};
-
-	MeasuresTable.prototype.getPageNumber = function() {
-		return this.pageNumber;
 	};
 
 	MeasuresTable.prototype.setPageNumber = function(pageNumber) {
