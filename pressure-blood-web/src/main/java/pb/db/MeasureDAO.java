@@ -59,15 +59,21 @@ public class MeasureDAO extends BaseDAO {
 			}
 
 			Users user = findUserByUsernameFromDb(em, username);
+			if (measure.attachUser(user)) {
+				addMeasureToDb(em, measure);
 
-			measure.attachUser(user);
+				info(LOGGER, "[" + username + "] " + "Measure " + measure
+						+ " successfully added to db");
 
-			addMeasureToDb(em, measure);
+				return true;
+			} else {
+				error(LOGGER,
+						"User with username '"
+								+ username
+								+ "' does not exist in db. No measure will be added to db.");
+			}
 
-			info(LOGGER, "[" + username + "] " + "Measure " + measure
-					+ " successfully added to db");
-
-			return true;
+			return false;
 		} finally {
 			em.close();
 		}
