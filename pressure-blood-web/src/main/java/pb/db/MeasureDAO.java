@@ -59,7 +59,7 @@ public class MeasureDAO extends BaseDAO {
 			}
 
 			Users user = findUserByUsernameFromDb(em, username);
-			if (measure.attachUser(user)) {
+			if (measure.attachUser(user)) {// TODO if boolean is the best return value
 				addMeasureToDb(em, measure);
 
 				info(LOGGER, "[" + username + "] " + "Measure " + measure
