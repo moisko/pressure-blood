@@ -11,6 +11,7 @@ require.config({
 		datetimepicker : "jquery/jquery.datetimepicker",
 		validate : "jquery/jquery.validate.min",
 		editable : "jquery/jquery.jeditable.mini",
+		DateBg : "pb/plugins/DateBg",
 		MeasureInput : "pb/plugins/MeasureInput",
 		async : "require/async/async",
 		goog : "require/goog/goog",
@@ -36,7 +37,7 @@ require.config({
 require(
 		[ "jquery", "underscore", "datatables", "LocalDateTime", "PbMeasure",
 				"Dictionary", "MeasuresTable", "MeasureForm", "Statistics",
-				"datetimepicker", "validate", "editable", "MeasureInput",
+				"datetimepicker", "validate", "editable", "DateBg", "MeasureInput",
 				"goog!visualization,1,packages:[corechart]" ],
 		function($, _, datatables, LocalDateTime, PbMeasure, Dictionary, MeasuresTable, MeasureForm, Statistics) {
 
@@ -49,7 +50,7 @@ require(
 			// Initialize measures table
 
 			var dataTables = $("#measures-table").dataTable({
-				"order" : [[ 4, "asc" ]],
+				"aaSorting" : [[ 4, "asc" ]],
 				"aoColumnDefs" : [
 					{"aTargets" : [5],// DELETE column
 					"bSortable" : false

@@ -121,12 +121,8 @@ public class Measurement implements Serializable {
 		return false;
 	}
 
-	public boolean attachUser(Users user) {
-		if (user != null) {
-			this.setUser(user);
-			return true;
-		}
-		return false;
+	public void attachUser(Users user) {
+		this.setUser(user);
 	}
 
 }

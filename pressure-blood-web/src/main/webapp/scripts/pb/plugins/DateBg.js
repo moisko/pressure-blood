@@ -5,12 +5,6 @@ define(["jquery", "LocalDateTime"], function($, LocalDateTime) {
 			var dateTimeInMilllisA = LocalDateTime.parse(dateTimeStringA),
 				dateTimeInMilllisB = LocalDateTime.parse(dateTimeStringB);
 			return dateTimeInMilllisA - dateTimeInMilllisB;
-		},
-
-		"date-bg-desc" : function(dateTimeStringA, dateTimeStringB) {
-			var dateTimeInMilllisA = LocalDateTime.parse(dateTimeStringA),
-				dateTimeInMilllisB = LocalDateTime.parse(dateTimeStringB);
-			return dateTimeInMilllisA - dateTimeInMilllisB;
 		}
 	});
 });

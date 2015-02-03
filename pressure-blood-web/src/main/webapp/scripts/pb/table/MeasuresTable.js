@@ -58,7 +58,6 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 				                                 PbMeasure.getPulse(measure),
 				                                 PbMeasure.getDatetime(measure),
 				                                 PbMeasure.getRemoveLink(measure) ]);
-				// this.dataTables.fnDraw();
 
 				// Add measure to dictionary
 
@@ -73,7 +72,7 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 				MeasureForm.clear();
 			}, this),
 			error : function(xhr, status) {
-				alert("Failed to add measure.\nServer returned: " + xhr.responseText);
+				alert("Failed to add measure");
 
 				MeasureForm.clear();
 			}
