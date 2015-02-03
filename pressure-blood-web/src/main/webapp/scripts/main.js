@@ -30,6 +30,9 @@ require.config({
 		},
 		editable : {
 			deps : ["jquery"]
+		},
+		DateBg : {
+			deps : ["jquery"]
 		}
 	}
 });
