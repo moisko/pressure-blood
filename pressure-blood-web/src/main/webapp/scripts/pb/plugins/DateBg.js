@@ -9,7 +9,7 @@ define(["jquery", "LocalDateTime"], function($, LocalDateTime) {
 		"date-bg-desc" : function(dateTimeStringA, dateTimeStringB) {
 			var dateTimeInMilllisA = LocalDateTime.parse(dateTimeStringA),
 				dateTimeInMilllisB = LocalDateTime.parse(dateTimeStringB);
-			return dateTimeInMilllisA - dateTimeInMilllisB;
+			return dateTimeInMilllisB - dateTimeInMilllisA;
 		}
 	});
 });
