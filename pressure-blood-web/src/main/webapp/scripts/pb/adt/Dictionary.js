@@ -92,5 +92,5 @@ define([ "jquery", "PbMeasure" ], function($, PbMeasure) {
 		return this.count() === 0;
 	};
 
-	return Dictionary;
+	return (Dictionary);
 });
