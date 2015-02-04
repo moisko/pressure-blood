@@ -12,9 +12,6 @@
 <link rel="stylesheet" type="text/css" href="styles/jquery/jquery.datetimepicker.css">
 
 <link rel="stylesheet" type="text/css" href="styles/pb/index.css">
-
-<script data-main="scripts/main" src="scripts/require/require.js"></script>
-
 </head>
 <body>
 	<div id="user-info">
@@ -87,4 +84,7 @@
 		</div>
 	</div>
 </body>
+
+<script data-main="scripts/main" src="scripts/require/require.js"></script>
+
 </html>
