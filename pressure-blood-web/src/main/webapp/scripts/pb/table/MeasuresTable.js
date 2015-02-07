@@ -97,7 +97,7 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 			}
 		}).done(function() {
 			$.unblockUI();
-		});;
+		});
 	};
 
 	MeasuresTable.prototype.deleteMeasure = function(tableRow) {
@@ -129,7 +129,7 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 			}
 		}).done(function() {
 			$.unblockUI();
-		});;
+		});
 	};
 
 	MeasuresTable.prototype.updateStatisticsChart = function() {
