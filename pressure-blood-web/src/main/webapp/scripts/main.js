@@ -194,10 +194,6 @@ require(
 
 			var measuresTable = new MeasuresTable(dataTables, dictionary, 0);
 
-			$.blockUI({
-				message : "<h1>Loading ...</h1>"
-			});
-
 			measuresTable.populateMeasuresTable();
 
 			dataTables.on("page.dt", function(event, oSettings) {

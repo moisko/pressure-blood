@@ -9,30 +9,42 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 	}
 
 	MeasuresTable.prototype.populateMeasuresTable = function() {
-		$.get("/pressure-blood-web/o.getMeasures", $.proxy(function(measures) {
-			// Dictionary
+		$.ajax({
+			url : "/pressure-blood-web/o.getMeasures",
+			type : "GET",
+			beforeSend : function() {
+				$.blockUI({
+					message : "<h1>Loading ...</h1>"
+				});
+			},
+			success : $.proxy(function(measures) {
+				// Dictionary
 
-			this.dictionary.initDictionary(measures);
+				this.dictionary.initDictionary(measures);
 
-			// Measures table
+				// Measures table
 
-			var measuresData = this.dictionary.toMeasuresData(),
-			dataTablesRef = this.dataTables;
-			measuresData.forEach(function(measureData) {
-				dataTablesRef.fnAddData([ measureData[0],
-				                          measureData[1],
-				                          measureData[2],
-				                          measureData[3],
-				                          measureData[4],
-				                          measureData[5] ]);
-			});
+				var measuresData = this.dictionary.toMeasuresData(),
+				dataTablesRef = this.dataTables;
+				measuresData.forEach(function(measureData) {
+					dataTablesRef.fnAddData([ measureData[0],
+					                          measureData[1],
+					                          measureData[2],
+					                          measureData[3],
+					                          measureData[4],
+					                          measureData[5] ]);
+				});
 
-			// Statistics
-			if (!_.isEmpty(measures)) {
-				this.updateStatisticsChart();
+				// Statistics
+				if (!_.isEmpty(measures)) {
+					this.updateStatisticsChart();
+				}
+			}, this),
+			error : function(xhr, status) {
+				alert("Failed to get measures.\nServer returned: " + xhr.statusText);
 			}
-		}, this)).done(function() {
-			$(document).ajaxStop($.unblockUI);
+		}).done(function() {
+			$.unblockUI();
 		});
 	};
 
@@ -51,6 +63,11 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 				"hand" : MeasureForm.getHand(),
 				"pulse" : parseInt(MeasureForm.getPulse(), 10)
 			}),
+			beforeSend : function() {
+				$.blockUI({
+					message : "<h1>Loading ...</h1>"
+				});
+			},
 			success : $.proxy(function(measure) {
 				// Add row to measures table
 
@@ -74,11 +91,13 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 				MeasureForm.clear();
 			}, this),
 			error : function(xhr, status) {
-				alert("Failed to add measure");
+				alert("Failed to add measure.\nServer returned: " + xhr.statusText);
 
 				MeasureForm.clear();
 			}
-		});
+		}).done(function() {
+			$.unblockUI();
+		});;
 	};
 
 	MeasuresTable.prototype.deleteMeasure = function(tableRow) {
@@ -86,6 +105,11 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 			type : "POST",
 			url : "/pressure-blood-web/o.deleteMeasure",
 			data : "id=" + this.getMeasureIdFromTableRow(tableRow),
+			beforeSend : function() {
+				$.blockUI({
+					message : "<h1>Loading ...</h1>"
+				});
+			},
 			success : $.proxy(function() {
 				// Delete row from measures table
 
@@ -101,10 +125,11 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 				this.updateStatisticsChart();
 			}, this),
 			error : function(xhr, status) {
-				alert("Failed to delete measure.\nServer returned: "
-						+ xhr.statusText);
+				alert("Failed to delete measure.\nServer returned: " + xhr.statusText);
 			}
-		});
+		}).done(function() {
+			$.unblockUI();
+		});;
 	};
 
 	MeasuresTable.prototype.updateStatisticsChart = function() {
