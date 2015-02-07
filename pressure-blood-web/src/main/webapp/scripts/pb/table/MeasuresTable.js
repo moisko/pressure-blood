@@ -31,7 +31,9 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 			if (!_.isEmpty(measures)) {
 				this.updateStatisticsChart();
 			}
-		}, this));
+		}, this)).done(function() {
+			$(document).ajaxStop($.unblockUI);
+		});
 	};
 
 	MeasuresTable.prototype.addMeasure = function() {

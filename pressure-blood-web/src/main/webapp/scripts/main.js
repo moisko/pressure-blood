@@ -8,15 +8,16 @@ require.config({
 		Dictionary : "pb/adt/Dictionary",
 		MeasuresTable : "pb/table/MeasuresTable",
 		MeasureForm : "pb/form/MeasureForm",
+		Statistics : "pb/chart/Statistics",
 		datetimepicker : "jquery/jquery.datetimepicker",
 		validate : "jquery/jquery.validate.min",
 		editable : "jquery/jquery.jeditable.mini",
 		DateBg : "pb/plugins/DateBg",
 		MeasureInput : "pb/plugins/MeasureInput",
+		jqueryblockUI : "jquery/jquery.blockUI",
 		async : "require/async/async",
 		goog : "require/goog/goog",
-		propertyParser : "require/propertyParser/propertyParser",
-		Statistics : "pb/chart/Statistics"
+		propertyParser : "require/propertyParser/propertyParser"
 	},
 	shim : {
 		underscore : {
@@ -33,6 +34,12 @@ require.config({
 		},
 		DateBg : {
 			deps : ["jquery"]
+		},
+		MeasureInput : {
+			deps : ["jquery", "editable"]
+		},
+		jqueryblockUI : {
+			deps : ["jquery"]
 		}
 	}
 });
@@ -41,7 +48,7 @@ require(
 		[ "jquery", "underscore", "datatables", "LocalDateTime", "PbMeasure",
 				"Dictionary", "MeasuresTable", "MeasureForm", "Statistics",
 				"datetimepicker", "validate", "editable", "DateBg", "MeasureInput",
-				"goog!visualization,1,packages:[corechart]" ],
+				"jqueryblockUI", "goog!visualization,1,packages:[corechart]" ],
 		function($, _, datatables, LocalDateTime, PbMeasure, Dictionary, MeasuresTable, MeasureForm, Statistics) {
 
 			Statistics.hideStatisticsHeader();
@@ -186,6 +193,11 @@ require(
 			});
 
 			var measuresTable = new MeasuresTable(dataTables, dictionary, 0);
+
+			$.blockUI({
+				message : "<h1>Loading ...</h1>"
+			});
+
 			measuresTable.populateMeasuresTable();
 
 			dataTables.on("page.dt", function(event, oSettings) {
