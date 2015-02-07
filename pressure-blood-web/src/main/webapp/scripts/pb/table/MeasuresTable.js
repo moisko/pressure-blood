@@ -63,11 +63,6 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 				"hand" : MeasureForm.getHand(),
 				"pulse" : parseInt(MeasureForm.getPulse(), 10)
 			}),
-			beforeSend : function() {
-				$.blockUI({
-					message : "<h1>Loading ...</h1>"
-				});
-			},
 			success : $.proxy(function(measure) {
 				// Add row to measures table
 
@@ -95,8 +90,6 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 
 				MeasureForm.clear();
 			}
-		}).done(function() {
-			$.unblockUI();
 		});
 	};
 
@@ -105,11 +98,6 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 			type : "POST",
 			url : "/pressure-blood-web/o.deleteMeasure",
 			data : "id=" + this.getMeasureIdFromTableRow(tableRow),
-			beforeSend : function() {
-				$.blockUI({
-					message : "<h1>Loading ...</h1>"
-				});
-			},
 			success : $.proxy(function() {
 				// Delete row from measures table
 
@@ -127,8 +115,6 @@ define(["jquery", "underscore", "MeasureForm", "PbMeasure", "LocalDateTime", "St
 			error : function(xhr, status) {
 				alert("Failed to delete measure.\nServer returned: " + xhr.statusText);
 			}
-		}).done(function() {
-			$.unblockUI();
 		});
 	};
 
