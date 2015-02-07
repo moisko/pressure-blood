@@ -13,6 +13,11 @@ define(["jquery", "RegisterForm"], function($, RegisterForm) {
 					"confirmedPassword" : RegisterForm.getConfirmedPassword(),
 					"email" : RegisterForm.getEmail()
 				}),
+				beforeSend : function() {
+					$.blockUI({
+						message : "<h1>Loading ...</h1>"
+					});
+				},
 				success : function(userRegistration) {
 					var status = userRegistration.status;
 					switch (status) {
@@ -33,6 +38,8 @@ define(["jquery", "RegisterForm"], function($, RegisterForm) {
 
 					RegisterForm.clear();
 				}
+			}).done(function() {
+				$.unblockUI();
 			});
 		}
 	};
