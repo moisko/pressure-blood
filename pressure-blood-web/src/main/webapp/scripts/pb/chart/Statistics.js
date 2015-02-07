@@ -13,6 +13,7 @@ define(["jquery", "LocalDateTime"], function($, LocalDateTime) {
 				localDateTimeString = LocalDateTime.toLocalDateTimeString(dateTimeInMillis),
 				sbp = measureData[1],
 				dbp = measureData[2];
+
 				data.addRow([ localDateTimeString, sbp, dbp ]);
 			});
 
