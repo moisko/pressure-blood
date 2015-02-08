@@ -114,11 +114,15 @@ public class Measurement implements Serializable {
 	}
 
 	public boolean belongsToUser(String username) {
-		return user.getUsername().equals(username);
+		String actualUsername = this.user.getUsername();
+		if (actualUsername != null) {
+			return actualUsername.equals(username);
+		}
+		return false;
 	}
 
 	public void attachUser(Users user) {
-		setUser(user);
+		this.setUser(user);
 	}
 
 }
