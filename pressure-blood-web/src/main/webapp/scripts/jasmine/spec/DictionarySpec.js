@@ -11,8 +11,7 @@ var measure = {
 define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 		"main/webapp/scripts/underscore/underscore-min",
 		"main/webapp/scripts/pb/PbMeasure",
-		"main/webapp/scripts/pb/adt/Dictionary" ], function($, _, PbMeasure,
-		Dictionary) {
+		"main/webapp/scripts/pb/adt/Dictionary" ], function($, _, PbMeasure, Dictionary) {
 
 	describe("Dictionary test suite", function() {
 
