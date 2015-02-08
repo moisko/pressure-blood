@@ -153,6 +153,7 @@
 					<preloadSources>
 						<source>${basedir}/src/main/webapp/scripts/require/require.js</source>
 					</preloadSources>
+					<haltOnFailure>true</haltOnFailure>
 				</configuration>
 			</plugin>
 			<plugin>
