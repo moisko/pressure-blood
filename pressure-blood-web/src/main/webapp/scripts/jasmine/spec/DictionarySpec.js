@@ -1,13 +1,3 @@
-var measure = {
-	"id" : 84,
-	"datetime" : 1389205440000,
-	"hand" : "LEFT_HAND",
-	pressureBlood : {
-		"sbp" : 120,
-		"dbp" : 80
-	},
-	"pulse" : 70
-};
 define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 		"main/webapp/scripts/underscore/underscore-min",
 		"main/webapp/scripts/pb/PbMeasure",
@@ -15,7 +5,17 @@ define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 
 	describe("Dictionary test suite", function() {
 
-		var dictionary = new Dictionary();
+		var measure = {
+				"id" : 84,
+				"datetime" : 1389205440000,
+				"hand" : "LEFT_HAND",
+				pressureBlood : {
+					"sbp" : 120,
+					"dbp" : 80
+				},
+				"pulse" : 70
+			},
+			dictionary = new Dictionary();
 
 		it("testAddMeasureToDictionary", function() {
 			dictionary.add(measure.id, measure);
