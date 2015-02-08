@@ -29,7 +29,7 @@ define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 			expect(dictionary.count()).toBe(0);
 		});
 
-		it("testAddTwoMeasuresWithSameKey", function() {
+		it("testAddTwoMeasuresWithSameKeyToDictionary", function() {
 			dictionary.add(measure.id, measure);
 			expect(dictionary.count()).toBe(1);
 			dictionary.add(measure.id, measure);
@@ -43,7 +43,7 @@ define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 			expect(dictionary.isEmpty()).toBe(true);
 		});
 
-		it("testUpdateMeasure", function() {
+		it("testUpdateMeasureToDictionary", function() {
 			dictionary.add(measure.id, measure);
 			expect(dictionary.find(measure.id).pulse).toBe(70);
 			dictionary.update(measure.id, "pulse", 80);
