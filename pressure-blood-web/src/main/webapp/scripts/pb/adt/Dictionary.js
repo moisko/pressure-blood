@@ -75,9 +75,8 @@ define([ "jquery", "PbMeasure" ], function($, PbMeasure) {
 	};
 
 	Dictionary.prototype.clear = function() {
-		this.datastore.forEach(function(measure) {
-			delete this.datastore[measure.id];
-		});
+		var deleteCount = this.datastore.length;
+		this.datastore.splice(0, deleteCount);
 	};
 
 	Dictionary.prototype.count = function() {

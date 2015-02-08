@@ -15,14 +15,14 @@ define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 
 	describe("Dictionary test suite", function() {
 
+		var dictionary = new Dictionary();
+
 		it("testAddMeasureToDictionary", function() {
-			var dictionary = new Dictionary();
 			dictionary.add(measure.id, measure);
 			expect(dictionary.count()).toBe(1);
 		});
 
 		it("testDeleteMeasureFromDictionay", function() {
-			var dictionary = new Dictionary();
 			dictionary.add(measure.id, measure);
 			expect(dictionary.count()).toBe(1);
 			dictionary.remove(measure.id);
@@ -30,7 +30,6 @@ define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 		});
 
 		it("testAddTwoMeasuresWithSameKey", function() {
-			var dictionary = new Dictionary();
 			dictionary.add(measure.id, measure);
 			expect(dictionary.count()).toBe(1);
 			dictionary.add(measure.id, measure);
@@ -38,12 +37,26 @@ define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 		});
 
 		it("testRemoveMeasureFromDictionary", function() {
-			var dictionary = new Dictionary();
 			dictionary.add(measure.id, measure);
 			expect(dictionary.count()).toBe(1);
 			dictionary.remove(measure.id);
 			expect(dictionary.isEmpty()).toBe(true);
 		});
+
+		it("testUpdateMeasure", function() {
+			dictionary.add(measure.id, measure);
+			expect(dictionary.find(measure.id).pulse).toBe(70);
+			dictionary.update(measure.id, "pulse", 80);
+			expect(dictionary.find(measure.id).pulse).toBe(80);
+		});
+
+		it("testClearMeasureFromDictionary", function() {
+			dictionary.add(measure.id, measure);
+			expect(dictionary.isEmpty()).toBe(false);
+			dictionary.clear();
+			expect(dictionary.count()).toBe(0);
+		});
+
 	});
 
 });
