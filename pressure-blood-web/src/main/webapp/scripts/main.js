@@ -36,7 +36,7 @@ require.config({
 			deps : ["jquery"]
 		},
 		MeasureInput : {
-			deps : ["jquery", "editable"]
+			deps : ["jquery"]
 		},
 		jqueryblockUI : {
 			deps : ["jquery"]
