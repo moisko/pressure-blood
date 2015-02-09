@@ -15,6 +15,26 @@ define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 				},
 				"pulse" : 70
 			},
+			measure2 = {
+				"id" : 85,
+				"datetime" : 1423150260000,
+				"hand" : "RIGHT_HAND",
+				pressureBlood : {
+					"sbp" : 130,
+					"dbp" : 80
+				},
+				"pulse" : 75
+			},
+			measure3 = {
+				"id" : 86,
+				"datetime" : 1423588260000,
+				"hand" : "RIGHT_HAND",
+				pressureBlood : {
+					"sbp" : 140,
+					"dbp" : 90
+				},
+				"pulse" : 60
+			},
 			dictionary = new Dictionary();
 
 		it("testAddMeasureToDictionary", function() {
@@ -55,6 +75,21 @@ define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 			expect(dictionary.isEmpty()).toBe(false);
 			dictionary.clear();
 			expect(dictionary.count()).toBe(0);
+		});
+
+		it("testToMeasuresData", function() {
+			var measures = [ measure, measure2, measure3 ];
+			dictionary.initDictionary(measures);
+			var measuresData = dictionary.toMeasuresData();
+			var firstMeasure = measuresData[0];
+			expect(firstMeasure[0]).toBe(120);
+			expect(firstMeasure[4]).toBe(1389205440000);
+			var secondMeasure = measuresData[1];
+			expect(secondMeasure[0]).toBe(130);
+			expect(secondMeasure[4]).toBe(1423150260000);
+			var thirdMeasure = measuresData[2];
+			expect(thirdMeasure[0]).toBe(140);
+			expect(thirdMeasure[4]).toBe(1423588260000);
 		});
 
 	});
