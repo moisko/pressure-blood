@@ -1,15 +1,14 @@
 package pb.validator;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import pb.db.BaseDAO;
 import pb.model.Hand;
 import pb.model.Measurement;
 import pb.model.PressureBlood;
 
 public class MeasurementValidator {
-
 	// SBP
 	private static final int MIN_SBP_VALUE = 0;
 	private static final int MAX_SBP_VALDUE = 300;
@@ -157,8 +156,10 @@ public class MeasurementValidator {
 	private static void validateDatetime(String value) {
 		ensureNotNull(value, "Datetime value not set");
 		try {
-			Date datetime = BaseDAO.FORMATTER.parse(value);
-			String datetimeString = BaseDAO.FORMATTER.format(datetime);
+			SimpleDateFormat formatter = new SimpleDateFormat(
+					"dd/MM/yyyy HH:mm");
+			Date datetime = formatter.parse(value);
+			String datetimeString = formatter.format(datetime);
 			if (!datetimeString.equals(value)) {
 				throw new IllegalArgumentException("Datetime value " + value
 						+ " is not valid");

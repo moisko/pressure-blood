@@ -78,7 +78,7 @@ define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 		});
 
 		it("testToMeasuresData", function() {
-			var measures = [ measure, measure2, measure3 ];
+			var measures = [ measure3, measure, measure2 ];
 			dictionary.initDictionary(measures);
 			var measuresData = dictionary.toMeasuresData();
 			var firstMeasure = measuresData[0];
@@ -90,6 +90,18 @@ define([ "main/webapp/scripts/jquery/jquery-1.11.1.min",
 			var thirdMeasure = measuresData[2];
 			expect(thirdMeasure[0]).toBe(140);
 			expect(thirdMeasure[4]).toBe(1423588260000);
+		});
+
+		it("testToChartData", function() {
+			var measures = [ measure3, measure2, measure ];
+			dictionary.initDictionary(measures);
+			var chartData = dictionary.toChartData();
+			var firstChartData = chartData[0];
+			expect(firstChartData[0]).toBe(1389205440000);
+			var secondChartData = chartData[1];
+			expect(secondChartData[0]).toBe(1423150260000);
+			var thirdChartData = chartData[2];
+			expect(thirdChartData[0]).toBe(1423588260000);
 		});
 
 	});

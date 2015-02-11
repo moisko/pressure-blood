@@ -16,11 +16,11 @@ import pb.model.Users;
 
 public class BaseDAO {
 
-	public static final SimpleDateFormat FORMATTER = new SimpleDateFormat(
-			"dd/MM/yyyy HH:mm");
-
 	private static final Logger LOGGER = Logger.getLogger(BaseDAO.class
 			.getName());
+
+	private final SimpleDateFormat formatter = new SimpleDateFormat(
+			"dd/MM/yyyy HH:mm");
 
 	// Measures
 
@@ -86,7 +86,7 @@ public class BaseDAO {
 				break;
 			case Measurement.DATETIME: {
 				try {
-					Date datetime = FORMATTER.parse(value);
+					Date datetime = formatter.parse(value);
 					measure.setDatetime(datetime);
 				} catch (ParseException e) {
 					error(LOGGER, e.getMessage());

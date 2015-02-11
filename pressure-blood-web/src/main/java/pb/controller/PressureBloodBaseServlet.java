@@ -53,7 +53,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 	protected Users getUserFromHttpRequest(HttpServletRequest request)
 			throws IOException {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(
-				request.getInputStream()))) {
+				request.getInputStream(), "UTF-8"))) {
 			Gson gson = new Gson();
 			UsersDTO userDTO = gson.fromJson(br, UsersDTO.class);
 			Users user = new Users(userDTO);
@@ -64,7 +64,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 	protected Measurement getMeasureFromHttpRequest(HttpServletRequest request)
 			throws IOException {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(
-				request.getInputStream()));) {
+				request.getInputStream(), "UTF-8"));) {
 			Gson gson = createGsonInstanceWithTypeAdapter();
 			Measurement measure = gson.fromJson(br, Measurement.class);
 			return measure;
@@ -116,7 +116,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		return gson;
 	}
 
-	private class DatetimeDeserializer implements JsonDeserializer<Date> {
+	private static class DatetimeDeserializer implements JsonDeserializer<Date> {
 		@Override
 		public Date deserialize(JsonElement json, Type typeOfT,
 				JsonDeserializationContext context) throws JsonParseException {
@@ -125,7 +125,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		}
 	}
 
-	private class DatetimeSerializer implements JsonSerializer<Date> {
+	private static class DatetimeSerializer implements JsonSerializer<Date> {
 		@Override
 		public JsonElement serialize(Date date, Type type,
 				JsonSerializationContext context) {
