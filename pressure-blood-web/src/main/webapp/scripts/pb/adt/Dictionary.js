@@ -91,5 +91,15 @@ define([ "jquery", "PbMeasure" ], function($, PbMeasure) {
 		return this.count() === 0;
 	};
 
+	Dictionary.prototype.spliceChartData = function(beginIndex, endIndex) {
+		var splicedChartData = [],
+		arrayIndex = 0,
+		i;
+		for(i = beginIndex; i < endIndex; i++, arrayIndex++) {
+			splicedChartData[arrayIndex] = this.datastore[i];
+		}
+		return splicedChartData;
+	};
+
 	return (Dictionary);
 });

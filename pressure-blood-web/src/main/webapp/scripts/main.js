@@ -122,9 +122,6 @@ require(
 							}
 
 							function updateStatistics() {
-								var beginIndex = calculateBeginIndex(),
-									endIndex = calculateEndIndex(),
-									chartData = dictionary.toChartData().splice(beginIndex, endIndex);
 
 								function calculateBeginIndex() {
 									var beginIndex = 0;
@@ -139,7 +136,11 @@ require(
 									return endIndex;
 								}
 
-								Statistics.drawChart(chartData);
+								var beginIndex = calculateBeginIndex(),
+								endIndex = calculateEndIndex(),
+								splicedChartData = dictionary.spliceChartData(beginIndex, endIndex);
+
+								Statistics.drawChart(splicedChartData);
 							}
 
 							// Measures table
@@ -221,10 +222,10 @@ require(
 
 					var beginIndex = calculateBeginIndex(),
 						endIndex = calculateEndIndex(),
-						chartData = dictionary.toChartData().splice(beginIndex, endIndex);
+						splicedChartData = dictionary.spliceChartData(beginIndex, endIndex);
 
 					Statistics.showStatisticsHeader();
-					Statistics.drawChart(chartData);
+					Statistics.drawChart(splicedChartData);
 				}
 
 				// Update measures table page number
