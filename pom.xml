@@ -1,15 +1,69 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>pb</groupId>
-  <artifactId>pressure-blood</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0.3-SNAPSHOT</version>
+	<groupId>pb</groupId>
+	<artifactId>pressure-blood</artifactId>
+	<version>1.0.3-SNAPSHOT</version>
 
-  <name>pressure-blood</name>
+	<packaging>pom</packaging>
 
-  <modules>
-	<module>pressure-blood-web</module>
-  </modules>
+	<name>pressure-blood</name>
+
+	<modules>
+		<module>pressure-blood-web</module>
+	</modules>
+
+	<properties>
+		<javax.servelt.api.version>3.0.1</javax.servelt.api.version>
+		<eclipse.link.version>2.5.0-RC1</eclipse.link.version>
+		<junit.version>4.11</junit.version>
+		<mockito.version>1.10.19</mockito.version>
+		<javax.persistence.version>2.1.0-RC1</javax.persistence.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servelt.api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${gson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>eclipselink</artifactId>
+				<version>${eclipse.link.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.eclipse.persistence</groupId>
+						<artifactId>commonj.sdo</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>javax.persistence</artifactId>
+				<version>${javax.persistence.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>${mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 </project>

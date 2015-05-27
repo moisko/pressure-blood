@@ -136,9 +136,19 @@ require(
 									return endIndex;
 								}
 
+								function spliceChartData(chartData, beginIndex, endIndex) {
+									var splicedChartData = [],
+									arrayIndex = 0,
+									i;
+									for (i = beginIndex; i < endIndex; i++, arrayIndex++) {
+										splicedChartData[arrayIndex] = chartData[i];
+									}
+									return splicedChartData;
+								}
+
 								var beginIndex = calculateBeginIndex(),
 								endIndex = calculateEndIndex(),
-								splicedChartData = dictionary.spliceChartData(beginIndex, endIndex);
+								splicedChartData = spliceChartData(dictionary.toChartData(), beginIndex, endIndex);
 
 								Statistics.drawChart(splicedChartData);
 							}
@@ -220,9 +230,19 @@ require(
 						return endIndex;
 					}
 
+					function spliceChartData(chartData, beginIndex, endIndex) {
+						var splicedChartData = [],
+						arrayIndex = 0,
+						i;
+						for (i = beginIndex; i < endIndex; i++, arrayIndex++) {
+							splicedChartData[arrayIndex] = chartData[i];
+						}
+						return splicedChartData;
+					}
+
 					var beginIndex = calculateBeginIndex(),
 						endIndex = calculateEndIndex(),
-						splicedChartData = dictionary.spliceChartData(beginIndex, endIndex);
+						splicedChartData = spliceChartData(dictionary.toChartData(), beginIndex, endIndex);
 
 					Statistics.showStatisticsHeader();
 					Statistics.drawChart(splicedChartData);

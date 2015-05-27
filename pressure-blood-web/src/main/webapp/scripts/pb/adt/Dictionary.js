@@ -51,8 +51,7 @@ define([ "jquery", "PbMeasure" ], function($, PbMeasure) {
 		var chartData = [];
 		this.datastore.forEach(function(measure) {
 			chartData.push([ PbMeasure.getDatetime(measure),
-			                 PbMeasure.getSbp(measure),
-			                 PbMeasure.getDbp(measure) ]);
+					PbMeasure.getSbp(measure), PbMeasure.getDbp(measure) ]);
 		});
 		return chartData.sort(function(a, b) {
 			return a[0] - b[0];
@@ -63,11 +62,10 @@ define([ "jquery", "PbMeasure" ], function($, PbMeasure) {
 		var measuresData = [];
 		this.datastore.forEach(function(measure) {
 			measuresData.push([ PbMeasure.getSbp(measure),
-			                    PbMeasure.getDbp(measure),
-			                    PbMeasure.getHand(measure),
-			                    PbMeasure.getPulse(measure),
-			                    PbMeasure.getDatetime(measure),
-			                    PbMeasure.getRemoveLink(measure) ]);
+					PbMeasure.getDbp(measure), PbMeasure.getHand(measure),
+					PbMeasure.getPulse(measure),
+					PbMeasure.getDatetime(measure),
+					PbMeasure.getRemoveLink(measure) ]);
 		});
 		return measuresData.sort(function(a, b) {
 			return a[4] - b[4];
@@ -89,16 +87,6 @@ define([ "jquery", "PbMeasure" ], function($, PbMeasure) {
 
 	Dictionary.prototype.isEmpty = function() {
 		return this.count() === 0;
-	};
-
-	Dictionary.prototype.spliceChartData = function(beginIndex, endIndex) {
-		var splicedChartData = [],
-		arrayIndex = 0,
-		i;
-		for(i = beginIndex; i < endIndex; i++, arrayIndex++) {
-			splicedChartData[arrayIndex] = this.datastore[i];
-		}
-		return splicedChartData;
 	};
 
 	return (Dictionary);
