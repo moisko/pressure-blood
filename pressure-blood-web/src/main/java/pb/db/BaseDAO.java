@@ -19,8 +19,10 @@ public class BaseDAO {
 	private static final Logger LOGGER = Logger.getLogger(BaseDAO.class
 			.getName());
 
-	private final SimpleDateFormat formatter = new SimpleDateFormat(
-			"dd/MM/yyyy HH:mm");
+	private static final String DATE_PATTERN = "dd/MM/yyyy HH:mm";
+
+	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat(
+			DATE_PATTERN);
 
 	// Measures
 
@@ -86,7 +88,7 @@ public class BaseDAO {
 				break;
 			case Measurement.DATETIME: {
 				try {
-					Date datetime = formatter.parse(value);
+					Date datetime = FORMATTER.parse(value);
 					measure.setDatetime(datetime);
 				} catch (ParseException e) {
 					error(LOGGER, e.getMessage());

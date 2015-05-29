@@ -26,6 +26,8 @@ public class DeleteMeasure extends PressureBloodBaseServlet {
 
 		String measureId = getMeasureIdFromHttpRequest(request);
 
-		measureDAO.deleteMeasure(measureId);
+		if (measureDAO.deleteMeasure(measureId)) {
+			sendResponseMessage(response, "{\"measureId\":" + measureId + "}");
+		}
 	}
 }

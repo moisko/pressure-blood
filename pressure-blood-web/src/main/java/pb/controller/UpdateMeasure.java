@@ -15,10 +15,6 @@ public class UpdateMeasure extends PressureBloodBaseServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final int MEASURE_PROPERTY_INDEX = 0;
-
-	private static final int MEASURE_ID_INDEX = 1;
-
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -33,27 +29,8 @@ public class UpdateMeasure extends PressureBloodBaseServlet {
 		String value = getValue(request);
 
 		MeasureDAO measureDAO = new MeasureDAO(emf);
-
-		measureDAO.updateMeasure(measureId, measureProperty, value);
-
-		sendResponseMessage(response, value);
+		if (measureDAO.updateMeasure(measureId, measureProperty, value)) {
+			sendResponseMessage(response, value);
+		}
 	}
-
-	private String getMeasureProperty(HttpServletRequest request) {
-		String elementId = request.getParameter("id");
-		String measureProperty = elementId.split("_")[MEASURE_PROPERTY_INDEX];
-		return measureProperty;
-	}
-
-	private String getMeasureId(HttpServletRequest request) {
-		String elementId = request.getParameter("id");
-		String measureId = elementId.split("_")[MEASURE_ID_INDEX];
-		return measureId;
-	}
-
-	private String getValue(HttpServletRequest request) {
-		String elementValue = request.getParameter("value");
-		return elementValue;
-	}
-
 }

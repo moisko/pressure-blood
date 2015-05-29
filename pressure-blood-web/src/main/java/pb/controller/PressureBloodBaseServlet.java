@@ -40,6 +40,12 @@ public class PressureBloodBaseServlet extends HttpServlet {
 
 	private static final String PARAM_MEASURE_ID = "id";
 
+	private static final String CHARSET_NAME = "UTF-8";
+
+	private static final int MEASURE_PROPERTY_INDEX = 0;
+
+	private static final int MEASURE_ID_INDEX = 1;
+
 	protected String getUsernameFromHttpRequest(HttpServletRequest request) {
 		String username = request.getRemoteUser();
 		return username;
@@ -53,7 +59,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 	protected Users getUserFromHttpRequest(HttpServletRequest request)
 			throws IOException {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(
-				request.getInputStream(), "UTF-8"))) {
+				request.getInputStream(), CHARSET_NAME))) {
 			Gson gson = new Gson();
 			UsersDTO userDTO = gson.fromJson(br, UsersDTO.class);
 			Users user = new Users(userDTO);
@@ -64,7 +70,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 	protected Measurement getMeasureFromHttpRequest(HttpServletRequest request)
 			throws IOException {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(
-				request.getInputStream(), "UTF-8"));) {
+				request.getInputStream(), CHARSET_NAME));) {
 			Gson gson = createGsonInstanceWithTypeAdapter();
 			Measurement measure = gson.fromJson(br, Measurement.class);
 			return measure;
@@ -105,6 +111,23 @@ public class PressureBloodBaseServlet extends HttpServlet {
 			writer.write(message);
 			writer.flush();
 		}
+	}
+
+	protected String getMeasureProperty(HttpServletRequest request) {
+		String elementId = request.getParameter("id");
+		String measureProperty = elementId.split("_")[MEASURE_PROPERTY_INDEX];
+		return measureProperty;
+	}
+
+	protected String getMeasureId(HttpServletRequest request) {
+		String elementId = request.getParameter("id");
+		String measureId = elementId.split("_")[MEASURE_ID_INDEX];
+		return measureId;
+	}
+
+	protected String getValue(HttpServletRequest request) {
+		String elementValue = request.getParameter("value");
+		return elementValue;
 	}
 
 	private Gson createGsonInstanceWithTypeAdapter() {

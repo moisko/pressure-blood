@@ -61,7 +61,7 @@ public class MeasureDAOTest {
 	@Before
 	public void setUp() throws Exception {
 		when(emf.createEntityManager()).thenReturn(em);
-		measureDAO = new MeasureDAO(emf);
+		measureDAO = new MeasureDAO(emf, MAX_RECORDS);
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class MeasureDAOTest {
 		when(measure.getPressureBlood()).thenReturn(pb);
 
 		expectedExcetpion.expect(IllegalArgumentException.class);
-		measureDAO.addMeasureForUser(measure, "test", MAX_RECORDS);
+		measureDAO.addMeasureForUser(measure, "test");
 	}
 
 	@Test
@@ -79,15 +79,14 @@ public class MeasureDAOTest {
 		when(measure.getPressureBlood()).thenReturn(pb);
 
 		expectedExcetpion.expect(IllegalArgumentException.class);
-		measureDAO.addMeasureForUser(measure, "test", MAX_RECORDS);
+		measureDAO.addMeasureForUser(measure, "test");
 	}
 
 	@Test
 	public void testAddMeasureWithInvalidPulseValue() throws Exception {
 		Measurement measureWithInvalidPulse = createMeasureWithInvalidPulseValue();
 		expectedExcetpion.expect(IllegalArgumentException.class);
-		measureDAO.addMeasureForUser(measureWithInvalidPulse, EXISTING_USER,
-				MAX_RECORDS);
+		measureDAO.addMeasureForUser(measureWithInvalidPulse, EXISTING_USER);
 	}
 
 	@Test
@@ -97,7 +96,7 @@ public class MeasureDAOTest {
 		when(em.createNamedQuery("getMeasuresCount")).thenReturn(query);
 		when(query.getSingleResult()).thenReturn(Long.valueOf(11));
 		boolean measureAdded = measureDAO.addMeasureForUser(validMeasure,
-				"test", 10);
+				"test");
 		assertFalse(
 				"User has reached the max number of 10 records. Measure must not be added to db.",
 				measureAdded);

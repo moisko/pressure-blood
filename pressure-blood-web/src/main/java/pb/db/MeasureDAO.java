@@ -16,14 +16,22 @@ public class MeasureDAO extends BaseDAO {
 	private static final Logger LOGGER = Logger.getLogger(MeasureDAO.class
 			.getName());
 
+	private static final int DEFAULT_MAX_RECORDS = 10;
+
 	private final EntityManagerFactory emf;
 
+	private final int maxRecords;
+
 	public MeasureDAO(EntityManagerFactory emf) {
-		this.emf = emf;
+		this(emf, DEFAULT_MAX_RECORDS);
 	}
 
-	public List<Measurement> getAllMeasuresForUser(String username,
-			int maxRecords) {
+	public MeasureDAO(EntityManagerFactory emf, int maxRecords) {
+		this.emf = emf;
+		this.maxRecords = maxRecords;
+	}
+
+	public List<Measurement> getAllMeasuresForUser(String username) {
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
 		try {
@@ -39,8 +47,7 @@ public class MeasureDAO extends BaseDAO {
 		}
 	}
 
-	public boolean addMeasureForUser(Measurement measure, String username,
-			int maxRecords) {
+	public boolean addMeasureForUser(Measurement measure, String username) {
 		MeasurementValidator.validateMeasure(measure);
 		UserValidator.validateUsername(username);
 		EntityManager em = emf.createEntityManager();
@@ -76,7 +83,7 @@ public class MeasureDAO extends BaseDAO {
 		}
 	}
 
-	public void deleteMeasure(String measureId) {
+	public boolean deleteMeasure(String measureId) {
 		MeasurementValidator.validateMeasureId(measureId);
 		EntityManager em = emf.createEntityManager();
 		try {
@@ -89,13 +96,15 @@ public class MeasureDAO extends BaseDAO {
 				info(LOGGER, "[" + username + "] " + "Measure " + measure
 						+ " with id " + measureId
 						+ " successfully deleted from db");
+				return true;
 			}
 		} finally {
 			em.close();
 		}
+		return false;
 	}
 
-	public void updateMeasure(String measureId, String measureProperty,
+	public boolean updateMeasure(String measureId, String measureProperty,
 			String value) {
 		MeasurementValidator.validateMeasureId(measureId);
 		MeasurementValidator.validateMeasureProperty(measureProperty, value);
@@ -110,7 +119,9 @@ public class MeasureDAO extends BaseDAO {
 				info(LOGGER, "[" + username + "] " + "Measure property "
 						+ measureProperty + " successfully updated with value "
 						+ value + "in db");
+				return true;
 			}
+			return false;
 		} finally {
 			em.close();
 		}
