@@ -72,6 +72,17 @@ define([ "jquery", "PbMeasure" ], function($, PbMeasure) {
 		});
 	};
 
+	Dictionary.prototype.spliceChartData = function(beginIndex, endIndex) {
+		var splicedChartData = [],
+		chartData = this.toChartData(),
+		spliceChartArrayIndex = 0,
+		i;
+		for (i = beginIndex; i < endIndex; i++, spliceChartArrayIndex++) {
+			splicedChartData[spliceChartArrayIndex] = chartData[i];
+		}
+		return splicedChartData;
+	};
+
 	Dictionary.prototype.clear = function() {
 		var deleteCount = this.datastore.length;
 		this.datastore.splice(0, deleteCount);
