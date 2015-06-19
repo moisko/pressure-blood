@@ -71,7 +71,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 			throws IOException {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(
 				request.getInputStream(), CHARSET_NAME));) {
-			Gson gson = createGsonInstanceWithTypeAdapter();
+			Gson gson = createGsonInstance();
 			Measurement measure = gson.fromJson(br, Measurement.class);
 			return measure;
 		}
@@ -90,7 +90,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 	protected void serializeMeasuresToJson(HttpServletResponse response,
 			List<Measurement> measures) throws IOException {
 		try (PrintWriter writer = response.getWriter()) {
-			Gson gson = createGsonInstanceWithTypeAdapter();
+			Gson gson = createGsonInstance();
 			String json = gson.toJson(measures);
 			writer.write(json);
 		}
@@ -99,7 +99,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 	protected void serializeMeasureToJson(HttpServletResponse response,
 			Measurement measure) throws IOException {
 		try (PrintWriter writer = response.getWriter()) {
-			Gson gson = createGsonInstanceWithTypeAdapter();
+			Gson gson = createGsonInstance();
 			String json = gson.toJson(measure);
 			writer.write(json);
 		}
@@ -130,7 +130,7 @@ public class PressureBloodBaseServlet extends HttpServlet {
 		return elementValue;
 	}
 
-	private Gson createGsonInstanceWithTypeAdapter() {
+	private Gson createGsonInstance() {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(Date.class, new DatetimeDeserializer());
 		gsonBuilder.registerTypeAdapter(Date.class, new DatetimeSerializer());
