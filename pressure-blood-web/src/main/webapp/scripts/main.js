@@ -101,7 +101,6 @@ require(
 								}
 							}
 
-
 							function updateMeasuresTable() {
 								var position = dataTables.fnGetPosition(td),
 									row = position[0],
@@ -186,6 +185,7 @@ require(
 							break;
 						case 5:
 							tdElement.setAttribute("class", "delete");
+							break;
 						default:
 							break;
 						}
